@@ -16,7 +16,15 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/about/{category}', ['uses' => 'webController@about', 'as' => 'about']);
 	Route::post('/newsletter/register', ['uses' => 'webController@registerNewsletter', 'as' => 'register']);
 	Route::get('/newsletter/registered', ['uses' => 'webController@registeredNewsletter', 'as' => 'registered']);
+
+	Route::get('/toys/{category_name}', ['uses' => 'productController@index']);
+	Route::get('/toys/{category_name}/{product_slug}', ['uses' => 'productController@show'] );
+	Route::get('/paket', ['uses' => 'packageController@index']);
+	Route::get('/paket/{package_slug}', ['uses' => 'packageController@show']);
+
 });
+
+
 	
 Route::get('/', function () {
     return view('welcome');
