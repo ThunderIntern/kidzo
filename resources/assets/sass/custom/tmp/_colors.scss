@@ -1,0 +1,123 @@
+.black{
+    color: $black;
+}
+
+.gray-dark{
+    color: $dark-gray;
+}
+
+.green{
+    color: $green;
+}
+
+.aqua{
+    color: $aqua;
+}
+
+.pink{
+    color: $pink;
+}
+
+.lime{
+    color: $lime;
+}
+
+.red{
+    color: $red;
+}
+
+.blue{
+    color: $blue;
+}
+
+.yellow{
+    color: $yellow;
+}
+
+.orange{
+    color: $orange;
+}
+
+.purple{
+    color: $purple;
+}
+
+.white{
+    color: $white;
+}
+
+.abu{
+	color: $abu;
+}
+
+.bggray-dark{
+    background-color: $dark-gray;
+}
+
+.bggreen{
+    background-color: $green;
+}
+
+.bgaqua{
+    background-color: $aqua;
+}
+
+.bgpink{
+    background-color: $pink;
+}
+
+.bglime{
+    background-color: $lime;
+}
+
+.bgred{
+    background-color: $red;
+}
+
+.bgblue{
+    background-color: $blue;
+}
+
+.bgyellow{
+    background-color: $yellow;
+}
+
+.bgorange{
+    background-color: $orange;
+}
+
+.bgpurple{
+    background-color: $purple;
+}
+
+.bgwhite{
+    background-color: $white;
+}
+
+.bgabu{
+	background-color: $abu;
+}
+
+.bgblack{
+    background-color: $black;
+}
+
+//background 0-1 tahun
+.bg0{
+    background-color: $bggreen;
+}
+
+//background 1-2 tahun
+.bg3{
+    background-color: $bgorange;
+}
+
+//background 2-3 tahun tahun
+.bg1{
+    background-color: $bgaqua;
+}
+
+//background 3+ tahun
+.bg2{
+    background-color: $bgblue;
+}

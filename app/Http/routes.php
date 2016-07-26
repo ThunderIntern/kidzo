@@ -25,10 +25,18 @@ Route::group(['namespace' => 'Frontend'], function(){
 
 });
 
+Route::group(['namespace' => 'Backend'], function(){
+	Route::get('/admin/dashboard', ['uses' => 'dashboardController@index']);
+	// Route::resource('/admin/about/manage_web', ['uses' => 'aboutController']);
+	// Route::resource('/admin/about/manage_newslatter', ['uses' => 'newslatterController']);
+	// Route::get('/admin/about/blast_newslatter', ['uses' => 'newslatterController@create']);
+	// Route::post('/admin/about/blast_newslatter', ['uses' => 'newslatterController@create']);
+	// Route::resource('/admin/about/manage_version', ['uses' => 'versionController']);
+});
 
 	
 Route::get('/', function () {
-    return view('frontend.pages.content');
+    return redirect()->route('home');
 });
 
 Route::group(['namespace' => 'Frontend'], function(){

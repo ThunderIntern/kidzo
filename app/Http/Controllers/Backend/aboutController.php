@@ -1,42 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\Controller;
 
-class webController extends BaseController
+class aboutController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function home()
-    {
-        return $this->generateView('frontend.pages.home', Request::route()->getName());
-    }
-
-    public function about()
-    {
-        //
-    }
-
-    public function registerNewsletter()
-    {
-        //
-    }
-
-    public function registeredNewsletter()
-    {
-        //
-    }
-
-
-
     public function index()
     {
         //
