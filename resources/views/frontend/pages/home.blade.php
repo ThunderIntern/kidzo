@@ -27,6 +27,42 @@
 			<h2>3. Browse</h2><br>
 			<h3>Pilih produk permainan yang Anda suka.</h3>
 		</div>
+		<div class="col-sm-12 text-center">
+			<br><br>
+			<h2>Kategori Permainan</h2>
+			<hr class="garis-bawah" width="100">
+			<br><br>
+		</div>
+		<div class="dekstop">
+			<div class="col-sm-2"></div>
+			<a href="#"><div class="col-sm-2 bg0 kotak-left">
+				<h1 class="text-center green">0 - 1<br>tahun</h1>
+			</div></a>
+			<a href="#"><div class="col-sm-2 bg3 kotak">
+				<h1 class="text-center orange">1 - 2<br>tahun</h1>
+			</div></a>
+			<a href="#"><div class="col-sm-2 bg1 kotak">
+				<h1 class="text-center purple">2 - 3<br>tahun</h1>
+			</div></a>
+			<a href="#"><div class="col-sm-2 bg2 kotak-right">
+				<h1 class="text-center aqua">3 +<br>tahun</h1>
+			</div></a>
+			<div class="col-sm-2"></div>
+		</div>
+		<div class="mobile">
+			<a href="#"><div class="col-sm-12 bg0 kotak-mobile">
+				<h1 class="text-center green">0 - 1<br>tahun</h1>
+			</div></a>
+			<a href="#"><div class="col-sm-12 bg3 kotak-mobile">
+				<h1 class="text-center orange">1 - 2<br>tahun</h1>
+			</div></a>
+			<a href="#"><div class="col-sm-12 bg1 kotak-mobile">
+				<h1 class="text-center purple">2 - 3<br>tahun</h1>
+			</div></a>
+			<a href="#"><div class="col-sm-12 bg2 kotak-mobile">
+				<h1 class="text-center aqua">3 +<br>tahun</h1>
+			</div></a>
+		</div>
 	</div>
 	<br><br><br><br>
 	<div class="bgblue dekstop">
