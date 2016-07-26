@@ -4590,17 +4590,14 @@ h2 {
   color: #292929;
   size: 32; }
 
-font-mobile {
-  font-size: 12px; }
+.text-center {
+  text-align: center; }
 
 .text-left {
   text-align: left; }
 
 .text-right {
   text-align: right; }
-
-.text-center {
-  text-align: center; }
 
 footer a {
   color: #565758; }
@@ -4698,6 +4695,113 @@ footer a .hover {
 .bg2 {
   background-color: #b8e4ff; }
 
+.butFoot {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  border: 1px solid #E2E2E2;
+  padding: 5px 10px;
+  margin-left: -5px; }
+
+body {
+  font-family: 'Lato'; }
+
+.floatRight {
+  float: right; }
+
+.floatLeft {
+  float: left; }
+
+.borderTopLima {
+  border-top: 5px solid; }
+
+.borderRightSatu {
+  border-right: 1px solid #E2E2E2; }
+
+.widthDuaPuluh {
+  width: 20%; }
+
+.width17 {
+  width: 17%; }
+
+.width26 {
+  width: 26%; }
+
+.width40 {
+  width: 40%; }
+
+.width330 {
+  width: 330px; }
+
+.heightLima {
+  height: 5px; }
+
+.paddingTop25 {
+  padding-top: 25px; }
+
+.paddingTop10 {
+  padding-top: 10px; }
+
+.paddingLeft50 {
+  padding-left: 50px; }
+
+.paddingRight50 {
+  padding-right: 50px; }
+
+.paddingSamping {
+  padding: 0 50px; }
+
+.gambar {
+  height: 75px;
+  width: 100px; }
+
+@media (max-width: 768px) {
+  .desktop {
+    display: none; }
+  .buttonNav {
+    margin-left: 20px; }
+  .normala, .normalb {
+    display: none; }
+  .kecila {
+    padding-top: 50px;
+    padding-bottom: 50px; }
+  .kecilb {
+    text-align: center;
+    padding-bottom: 15px;
+    padding-top: 15px; }
+  .email {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border: 1px solid #E2E2E2;
+    padding: 5px 10px; }
+  .font-mobile {
+    font-size: 12px; } }
+
+@media (min-width: 769px) {
+  .mobile {
+    display: none; }
+  .kecila, .kecilb {
+    display: none; }
+  .normala {
+    padding-top: 30px;
+    padding-bottom: 170px; }
+  .email {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border: 1px solid #E2E2E2;
+    padding: 5px 10px; } }
+
+.ptop {
+  padding-top: 30px; }
+
+.pbottom {
+  padding-bottom: 30px; }
+
+.mbottom {
+  margin-bottom: 80px; }
+
+.mtop {
+  margin-top: 80px; }
+
 .img-center {
   margin: 0 auto; }
 
@@ -4710,22 +4814,10 @@ footer a .hover {
 
 .kotak {
   padding: 35px;
-  margin-right: 10px; }
+  margin-right: 15px; }
 
 .kotak-mobile {
   border: 1px solid;
   padding: 35px; }
 
-.ptop {
-  padding-top: 30px; }
-
-.pbottom {
-  padding-bottom: 30px; }
-
-.mbottom {
-  margin-bottom: 30px; }
-
-.mtop {
-  margin-top: 80px; }
-
-/*# sourceMappingURL=app.css.map */
+/*# sourceMappingURL=frontend.css.map */

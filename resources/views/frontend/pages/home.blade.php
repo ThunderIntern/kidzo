@@ -1,32 +1,29 @@
 	@extends('frontend.layout.layout')
 	@section('content')
-	<div class="dekstop">
-		<img width="100%" class="img-responsive img-center" src="{{asset('assets/image/capture1.jpg')}}"></img>	
+	<div>
+		<img width="100%" class="img-responsive img-center" src="{{asset('image/frontend/frontend/capture1.jpg')}}"></img>	
 	</div>
-	<div class="mobile">
-		<img width="100%" class="img-responsive img-center" src="{{asset('assets/image/capture1.jpg')}}"></img>	
-	</div>
-	<div class="container-fluid mtop">
+	<div class="container-fluid mtop mbottom">
 		<div class="col-sm-12 col-md-12 text-center">
 			<h2>3 Langkah Mudah Sewa Mainan di Kidzo</h2>
 			<br><br>
 		</div>
 		<div class="col-sm-4 col-md-4 text-center">
-			<a href="#"><img width="250" class="img-responsive img-circle img-center" src="{{asset('assets/image/capture2.jpg')}}"></img><br><br></a>
+			<a href="#"><img width="250" class="img-responsive img-circle img-center" src="{{asset('image/frontend/frontend/capture2.jpg')}}"></img><br><br></a>
 			<h2>1. Browse</h2><br>
 			<h3>Pilih produk permainan yang Anda suka.</h3>
 		</div>
 		<div class="col-sm-4 col-md-4 text-center">
-			<a href="#"><img width="250" class="img-responsive img-circle img-center" src="{{asset('assets/image/capture2.jpg')}}"></img><br><br></a>
+			<a href="#"><img width="250" class="img-responsive img-circle img-center" src="{{asset('image/frontend/frontend/capture2.jpg')}}"></img><br><br></a>
 			<h2>2. Browse</h2><br>
 			<h3>Pilih produk permainan yang Anda suka.</h3>
 		</div>
 		<div class="col-sm-4 col-md-4 text-center">
-			<a href="#"><img width="250" class="img-responsive img-circle img-center" src="{{asset('assets/image/capture2.jpg')}}"></img><br><br></a>
+			<a href="#"><img width="250" class="img-responsive img-circle img-center" src="{{asset('image/frontend/frontend/capture2.jpg')}}""></img><br><br></a>
 			<h2>3. Browse</h2><br>
 			<h3>Pilih produk permainan yang Anda suka.</h3>
 		</div>
-		<div class="col-md-12 col-sm-12 text-center mtop">
+		<div class="col-md-12 col-sm-12 text-center mtop mbottom">
 			<br><br>
 			<h2>Kategori Permainan</h2>
 			<hr class="garis-bawah" width="100">
@@ -55,8 +52,8 @@
 					wfhasbucgbasiuvgbicsuabvicuabsuivcbiausbv iuasbvuiabiuvbiaubvisuabviubasiuvuiasbvib asiuviubasviuasibviuasbviuabsivbiabvibais ucvyudsgvgwugvbuidviuvbiusbviubiuvbiubviu ewbvuebwuvbwuibfaggfauygufaygfugasuygfyua sguyfgasggfugsaufygsaugfuyahsbfhsabfjhbsa jhbfjshsjhfjhsjgsjhfgsjgsjhgfjgjhgsjfgjsa</h3>
 				<a href="#"><button class="btn-lg bgwhite blue mbottom">Lebih Lanjut</button></a>
 			</div>
-			<div class="col-md-4">
-				<a href="#"><img class="img-responsive img-center img-m-top" src="{{asset('assets/image/capture3.jpg')}}"></img></a>
+			<div class="col-md-4 desktop">
+				<a href="#"><img class="img-responsive img-center img-m-top pbottom" src="{{asset('image/frontend/frontend/capture3.jpg')}}"></img></a>
 			</div>
 		</div>
 	</div>
@@ -75,12 +72,12 @@
 			<div class="col-sm-12 col-md-2"></div>
 	</div>
 	<div class="container-fluid mbottom mtop">
-		<div class="col-sm-12 text-center col-md-6">
+		<div class="col-sm-12 col-md-6 text-center">
 			<h2 class="blue"><b>Temukan <a class="orange">1900</a> Koleksi Mainan Lainnya !</b></h2>
 		</div>
-		<div class="col-md-3"></div>
-		<div class="col-sm-12 col-md-3">
-			<a href="#"><button class="text-center btn btn-primary btn-lg white">Lihat Koleksi</button></a>
+		<div class="col-md-2"></div>
+		<div class="col-sm-12 col-md-4 text-center">
+			<a href="#"><button class="btn btn-primary btn-lg white">Lihat Koleksi</button></a>
 		</div>
 	</div>
     @stop
