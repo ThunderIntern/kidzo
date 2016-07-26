@@ -1,23 +1,12 @@
 @import "variables";
+@import "navbar";
+@import "font";
+@import "footer";
+@import "colors";
 
-.red{
-	color: $red;
-}
 
-.green{
-	color: $green;
-}
 
-.blue{
-	color: $blue;
-}
-.yellow{
-	color: $yellow;
-}
 
-.black{
-	color: $black;
-}
-.purple{
-	color: $purple;
-}
+@import "image";
+@import "garis";
+@import "kotak";
