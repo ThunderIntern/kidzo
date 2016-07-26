@@ -17,13 +17,25 @@ var gulp = require('gulp');
 // });
 
 elixir(function(mix) {
-    mix.sass('app.scss')
+    mix.sass('frontend.scss')
     .scripts([
     			'jquery.js',
 				'bootstrap.min.js',
-			], 'public/js/app.js')
+			], 'public/js/frontend.js')
 	.version([
-				'public/css/app.css',
-				'public/js/app.js',
+				'public/css/frontend.css',
+				'public/js/frontend.js',
 		]);
+
+
+	mix.sass('backend.scss')
+    .scripts([
+    			'jquery.js',
+				'bootstrap.min.js',
+			], 'public/js/backend.js')
+	.version([
+				'public/css/backend.css',
+				'public/js/backend.js',
+		])
+	.copy('resources/assets/images/backend', 'public/images/backend');
 });
