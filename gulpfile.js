@@ -18,6 +18,7 @@ var gulp = require('gulp');
 
 elixir(function(mix) {
 	mix.sass('backend.scss')
+    .scripts([
     			'jquery.js',
 				'bootstrap.min.js',
 			], 'public/js/backend.js')
