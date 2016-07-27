@@ -17,17 +17,6 @@ var gulp = require('gulp');
 // });
 
 elixir(function(mix) {
-    mix.sass('frontend.scss')
-    .scripts([
-    			'jquery.js',
-				'bootstrap.min.js',
-			], 'public/js/frontend.js')
-	.version([
-				'public/css/frontend.css',
-				'public/js/frontend.js',
-		]);
-
-
 	mix.sass('backend.scss')
     .scripts([
     			'jquery.js',
@@ -38,4 +27,17 @@ elixir(function(mix) {
 				'public/js/backend.js',
 		])
 	.copy('resources/assets/images/backend', 'public/images/backend');
+
+	mix.sass('frontend.scss')
+    .scripts([
+    			'jquery.js',
+				'bootstrap.min.js',
+			], 'public/js/frontend.js')
+	.version([
+				'public/css/frontend.css',
+				'public/js/frontend.js',
+		])
+	.copy('resources/assets/images', 'public/image/frontend');
+
+
 });
