@@ -21,7 +21,7 @@
 				<h3>Pilih produk permainan yang Anda suka.</h3>
 			</div>
 			<div class="col-sm-12 col-md-4 text-center">
-				<a href="#"><img width="100%" class="img-responsive img-circle img-center" src="{{asset('image/frontend/frontend/capture2.jpg')}}""></img><br><br></a>
+				<a href="#"><img width="100%" class="img-responsive img-circle img-center" src="{{asset('image/frontend/frontend/capture2.jpg')}}"></img><br><br></a>
 				<h2>3. Browse</h2><br>
 				<h3>Pilih produk permainan yang Anda suka.</h3>
 			</div>

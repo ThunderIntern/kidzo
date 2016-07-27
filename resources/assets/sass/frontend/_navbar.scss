@@ -1,3 +1,26 @@
 .navbar{
 	font-size : 16 px;
 }
+
+.navbar-light .navbar-nav .nav-link { 
+	color: black;
+	border-radius: 5px;
+}
+
+.navbar-light .navbar-nav .nav-link:hover{ 
+	color: black; 
+}
+
+.navbar{
+    margin-top: -8px;
+}
+
+.navbar-nav .nav-item +.nav-item{
+    margin-left:0; 
+    padding-left:10px;
+    padding-right: 10px;
+}
+
+.fa{
+    padding-top: 15px;
+}

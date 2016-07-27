@@ -5,3 +5,25 @@ footer a{
 footer a .hover{
 	color : $black;
 }
+.butFoot{
+    border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+	border:1px solid #E2E2E2;
+	padding:5px 10px;
+	margin-left: -5px;
+}
+.footer-col1{
+	width:17%;
+}
+.footer-col2{
+	width:26%;
+}
+.footer-col3{
+	width:40%;
+}
+.footer-col3 input{
+	width:85%;
+}
+.footer-col3 button{
+	width:15%;
+}
