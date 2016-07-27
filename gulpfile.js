@@ -18,7 +18,6 @@ var gulp = require('gulp');
 
 elixir(function(mix) {
 	mix.sass('backend.scss')
-    .scripts([
     			'jquery.js',
 				'bootstrap.min.js',
 			], 'public/js/backend.js')
@@ -36,8 +35,6 @@ elixir(function(mix) {
 	.version([
 				'public/css/frontend.css',
 				'public/js/frontend.js',
-		])
+	])
 	.copy('resources/assets/images', 'public/image/frontend');
-
-
 });
