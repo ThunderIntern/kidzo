@@ -19,14 +19,7 @@ class MergeExtensionConfigurationPassTest extends \PHPUnit_Framework_TestCase
     {
         $container = $this->getMock(
             'Symfony\\Component\\DependencyInjection\\ContainerBuilder',
-            array(
-                'getExtensionConfig',
-                'loadFromExtension',
-                'getParameterBag',
-                'getDefinitions',
-                'getAliases',
-                'getExtensions',
-            )
+            array('getExtensionConfig', 'loadFromExtension', 'getParameterBag')
         );
         $params = $this->getMock('Symfony\\Component\\DependencyInjection\\ParameterBag\\ParameterBag');
 

@@ -19,10 +19,7 @@ class InputDefinitionTest extends \PHPUnit_Framework_TestCase
 {
     protected static $fixtures;
 
-    protected $foo;
-    protected $bar;
-    protected $foo1;
-    protected $foo2;
+    protected $foo, $bar, $foo1, $foo2;
 
     public static function setUpBeforeClass()
     {

@@ -147,7 +147,7 @@ class Loader
      */
     protected function isComment($line)
     {
-        return strpos(ltrim($line), '#') === 0;
+        return strpos(trim($line), '#') === 0;
     }
 
     /**
@@ -235,8 +235,8 @@ class Loader
     /**
      * Resolve the nested variables.
      *
-     * Look for {$varname} patterns in the variable value and replace with an
-     * existing environment variable.
+     * Look for {$varname} patterns in the variable value and replace with an existing
+     * environment variable.
      *
      * @param string $value
      *
@@ -295,7 +295,7 @@ class Loader
      *
      * @param string $name
      *
-     * @return string|null
+     * @return string
      */
     public function getEnvironmentVariable($name)
     {
@@ -333,12 +333,6 @@ class Loader
         // Ruby's dotenv does this with `ENV[key] ||= value`.
         if ($this->immutable && $this->getEnvironmentVariable($name) !== null) {
             return;
-        }
-
-        // If PHP is running as an Apache module and an existing
-        // Apache environment variable exists, overwrite it
-        if (function_exists('apache_getenv') && function_exists('apache_setenv') && apache_getenv($name)) {
-            apache_setenv($name, $value);
         }
 
         putenv("$name=$value");

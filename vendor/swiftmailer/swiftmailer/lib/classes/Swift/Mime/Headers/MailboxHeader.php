@@ -277,7 +277,9 @@ class Swift_Mime_Headers_MailboxHeader extends Swift_Mime_Headers_AbstractHeader
      */
     protected function createDisplayNameString($displayName, $shorten = false)
     {
-        return $this->createPhrase($this, $displayName, $this->getCharset(), $this->getEncoder(), $shorten);
+        return $this->createPhrase($this, $displayName,
+            $this->getCharset(), $this->getEncoder(), $shorten
+            );
     }
 
     /**
@@ -297,9 +299,8 @@ class Swift_Mime_Headers_MailboxHeader extends Swift_Mime_Headers_AbstractHeader
     /**
      * Redefine the encoding requirements for mailboxes.
      *
-     * All "specials" must be encoded as the full header value will not be quoted
-     * 
-     * @see RFC 2822 3.2.1
+     * Commas and semicolons are used to separate
+     * multiple addresses, and should therefore be encoded
      *
      * @param string $token
      *
@@ -307,7 +308,7 @@ class Swift_Mime_Headers_MailboxHeader extends Swift_Mime_Headers_AbstractHeader
      */
     protected function tokenNeedsEncoding($token)
     {
-        return preg_match('/[()<>\[\]:;@\,."]/', $token) || parent::tokenNeedsEncoding($token);
+        return preg_match('/[,;]/', $token) || parent::tokenNeedsEncoding($token);
     }
 
     /**

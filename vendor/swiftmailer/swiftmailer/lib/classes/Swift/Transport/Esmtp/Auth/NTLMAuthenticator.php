@@ -41,7 +41,11 @@ class Swift_Transport_Esmtp_Auth_NTLMAuthenticator implements Swift_Transport_Es
      */
     public function authenticate(Swift_Transport_SmtpAgent $agent, $username, $password)
     {
-        if (!function_exists('openssl_random_pseudo_bytes') || !function_exists('openssl_encrypt')) {
+        if (!function_exists('mcrypt_module_open')) {
+            throw new LogicException('The mcrypt functions need to be enabled to use the NTLM authenticator.');
+        }
+
+        if (!function_exists('openssl_random_pseudo_bytes')) {
             throw new LogicException('The OpenSSL extension must be enabled to use the NTLM authenticator.');
         }
 
@@ -369,7 +373,7 @@ class Swift_Transport_Esmtp_Auth_NTLMAuthenticator implements Swift_Transport_Es
 
         $binary = $this->si2bin($time, 64); // create 64 bit binary string
         $timestamp = '';
-        for ($i = 0; $i < 8; ++$i) {
+        for ($i = 0; $i < 8; $i++) {
             $timestamp .= chr(bindec(substr($binary, -(($i + 1) * 8), 8)));
         }
 
@@ -433,7 +437,7 @@ class Swift_Transport_Esmtp_Auth_NTLMAuthenticator implements Swift_Transport_Es
     {
         $material = array(bin2hex($key[0]));
         $len = strlen($key);
-        for ($i = 1; $i < $len; ++$i) {
+        for ($i = 1; $i < $len; $i++) {
             list($high, $low) = str_split(bin2hex($key[$i]));
             $v = $this->castToByte(ord($key[$i - 1]) << (7 + 1 - $i) | $this->uRShift(hexdec(dechex(hexdec($high) & 0xf).dechex(hexdec($low) & 0xf)), $i));
             $material[] = str_pad(substr(dechex($v), -2), 2, '0', STR_PAD_LEFT); // cast to byte
@@ -564,15 +568,17 @@ class Swift_Transport_Esmtp_Auth_NTLMAuthenticator implements Swift_Transport_Es
     /**
      * DES Encryption.
      *
-     * @param string $value An 8-byte string
+     * @param string $value
      * @param string $key
      *
      * @return string
      */
     protected function desEncrypt($value, $key)
     {
-        // 1 == OPENSSL_RAW_DATA - but constant is only available as of PHP 5.4.
-        return substr(openssl_encrypt($value, 'DES-ECB', $key, 1), 0, 8);
+        $cipher = mcrypt_module_open(MCRYPT_DES, '', 'ecb', '');
+        mcrypt_generic_init($cipher, $key, mcrypt_create_iv(mcrypt_enc_get_iv_size($cipher), MCRYPT_DEV_RANDOM));
+
+        return mcrypt_generic($cipher, $value);
     }
 
     /**

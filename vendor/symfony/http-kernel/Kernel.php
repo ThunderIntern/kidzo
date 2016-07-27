@@ -59,11 +59,11 @@ abstract class Kernel implements KernelInterface, TerminableInterface
     protected $startTime;
     protected $loadClassCache;
 
-    const VERSION = '3.0.8';
-    const VERSION_ID = 30008;
+    const VERSION = '3.0.3';
+    const VERSION_ID = 30003;
     const MAJOR_VERSION = 3;
     const MINOR_VERSION = 0;
-    const RELEASE_VERSION = 8;
+    const RELEASE_VERSION = 3;
     const EXTRA_VERSION = '';
 
     const END_OF_MAINTENANCE = '07/2016';
@@ -134,14 +134,6 @@ abstract class Kernel implements KernelInterface, TerminableInterface
         }
 
         if ($this->getHttpKernel() instanceof TerminableInterface) {
-            if (!$this->debug) {
-                if (function_exists('fastcgi_finish_request')) {
-                    fastcgi_finish_request();
-                } elseif ('cli' !== PHP_SAPI) {
-                    Response::closeOutputBuffers(0, true);
-                }
-            }
-
             $this->getHttpKernel()->terminate($request, $response);
         }
     }
@@ -637,7 +629,10 @@ abstract class Kernel implements KernelInterface, TerminableInterface
             $dumper->setProxyDumper(new ProxyDumper(md5($cache->getPath())));
         }
 
-        $content = $dumper->dump(array('class' => $class, 'base_class' => $baseClass, 'file' => $cache->getPath(), 'debug' => $this->debug));
+        $content = $dumper->dump(array('class' => $class, 'base_class' => $baseClass, 'file' => $cache->getPath()));
+        if (!$this->debug) {
+            $content = static::stripComments($content);
+        }
 
         $cache->write($content, $container->getResources());
     }
