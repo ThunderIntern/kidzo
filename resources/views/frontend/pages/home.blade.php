@@ -97,9 +97,15 @@
 			</div>
 		</div>
 		<div class="row mbottom">
-			<div class="col-sm-12 col-md-12">
+			<div class="col-md-12 desktop">
 				<h2 class="blue"><b>Temukan <a class="orange">1900</a> Koleksi Mainan Lainnya !</b>
 				<a href="#"><button class="btn btn-primary btn-lg white pull-right">Lihat Koleksi</button></a></h2>
+			</div>
+			<div class="col-sm-12 mobile text-center">
+				<h2 class="blue"><b>Temukan <a class="orange">1900</a> Koleksi Mainan Lainnya !</b></h2>
+			</div>
+			<div class="col-sm-12 mobile text-center">
+				<a href="#"><button class="btn btn-primary btn-lg white">Lihat Koleksi</button></a>
 			</div>
 		</div>
 	</div>
