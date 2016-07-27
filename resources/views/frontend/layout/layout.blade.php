@@ -7,7 +7,9 @@
 		{!! Html::style(elixir('css/frontend.css')) !!}
         <title>@section('title','Welcome')</title>
     <body>
+        @include('frontend.widget.header')
 		@yield('content')
+        @include('frontend.widget.footer')
     </body>
         {!! Html::script(elixir('js/frontend.js')) !!}
 </html>
