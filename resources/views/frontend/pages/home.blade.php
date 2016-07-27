@@ -1,38 +1,38 @@
 	@extends('frontend.layout.layout')
 	@section('content')
-	<div class="mbottom">
+	<div class="mbottom-l">
 		<img width="100%" class="img-responsive img-center" src="{{asset('image/frontend/frontend/capture1.jpg')}}"></img>	
 	</div>
 	<div class="container pleft-l pright-l">
-		<div class="row mbottom">
+		<div class="row mbottom-l">
 			<div class="col-sm-12 col-md-12 text-center">
 				<h2>3 Langkah Mudah Sewa Mainan di Kidzo</h2>
 			</div>
 		</div>
-		<div class="row mbottom">
+		<div class="row mbottom-l">
 			<div class="col-sm-12 col-md-4 text-center">
-				<a href="#"><img width="100%" class="img-responsive img-circle img-center" src="{{asset('image/frontend/frontend/capture2.jpg')}}"></img><br><br></a>
+				<a href="#"><img width="65%" class="img-responsive img-circle img-center" src="{{asset('image/frontend/frontend/capture2.jpg')}}"></img><br><br></a>
 				<h2>1. Browse</h2><br>
 				<h3>Pilih produk permainan yang Anda suka.</h3>
 			</div>
 			<div class="col-sm-12 col-md-4 text-center">
-				<a href="#"><img width="100%" class="img-responsive img-circle img-center" src="{{asset('image/frontend/frontend/capture2.jpg')}}"></img><br><br></a>
+				<a href="#"><img width="65%" class="img-responsive img-circle img-center" src="{{asset('image/frontend/frontend/capture2.jpg')}}"></img><br><br></a>
 				<h2>2. Browse</h2><br>
 				<h3>Pilih produk permainan yang Anda suka.</h3>
 			</div>
 			<div class="col-sm-12 col-md-4 text-center">
-				<a href="#"><img width="100%" class="img-responsive img-circle img-center" src="{{asset('image/frontend/frontend/capture2.jpg')}}"></img><br><br></a>
+				<a href="#"><img width="65%" class="img-responsive img-circle img-center" src="{{asset('image/frontend/frontend/capture2.jpg')}}"></img><br><br></a>
 				<h2>3. Browse</h2><br>
 				<h3>Pilih produk permainan yang Anda suka.</h3>
 			</div>
 		</div>
-		<div class="row mbottom">
+		<div class="row mbottom-l">
 			<div class="col-md-12 col-sm-12 text-center">
 				<h2>Kategori Permainan</h2>
 				<hr class="garis-bawah" width="100">
 			</div>
 		</div>
-		<div class="row mbottom">
+		<div class="row mbottom-l">
 			<div class="col-md-12">
 				<div class="col-sm-12 col-md-3 text-center">
 					<div class="row">
@@ -65,7 +65,7 @@
 			</div>
 		</div>
 	</div>
-		<div class="bgblue mbottom">
+		<div class="bgblue mbottom-l">
 			<div class="container pleft-l pright-l">
 				<div class="row">
 					<div class="col-sm-12 col-md-8">
@@ -81,13 +81,13 @@
 			</div>
 		</div>
 	<div class="container pleft-l pright-l">
-		<div class="row mbottom">
+		<div class="row mbottom-l">
 			<div class="col-sm-12 col-md-12 text-center">
 				<h2>Mainan Terbaru</h2>
 				<hr class="garis-bawah" width="100">
 			</div>
 		</div>
-		<div class="row mbottom">
+		<div class="row mbottom-l">
 			<div class="col-md-12">
 				@for($i=0;$i<4;$i++)
 				<div class="col-sm-12 col-md-3">
@@ -96,7 +96,7 @@
 				@endfor
 			</div>
 		</div>
-		<div class="row mbottom">
+		<div class="row mbottom-l">
 			<div class="col-md-12 desktop">
 				<h2 class="blue"><b>Temukan <a class="orange">1900</a> Koleksi Mainan Lainnya !</b>
 				<a href="#"><button class="btn btn-primary btn-lg white pull-right">Lihat Koleksi</button></a></h2>
