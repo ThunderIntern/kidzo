@@ -26,7 +26,7 @@ Route::group(['namespace' => 'Frontend'], function(){
 });
 
 Route::group(['namespace' => 'Backend'], function(){
-	Route::get('/admin/dashboard', ['uses' => 'dashboardController@index']);
+	Route::get('/admin/dashboard', ['uses' => 'dashboardController@index', 'as' => 'dashboard']);
 	Route::resource('/admin/about/manage_web', 'aboutController');
 	Route::resource('/admin/about/manage_newslatter', 'newslatterController');
 	Route::get('/admin/about/blast_newslatter', ['uses' => 'newslatterController@create']);
