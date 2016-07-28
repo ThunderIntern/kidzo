@@ -22,7 +22,7 @@ class webController extends BaseController
 
     public function about()
     {
-        //
+        return $this->generateView('frontend.pages.about', Request::route()->getName());
     }
 
     public function registerNewsletter()
