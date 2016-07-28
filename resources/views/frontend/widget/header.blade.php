@@ -17,6 +17,8 @@ button:
 
 -->
         <div class="container-fluid">
+        
+
             <nav class="navbar navbar">
                 <div class="desktop">
                     <div class="col-sm-12">
@@ -59,29 +61,45 @@ button:
                     <div class="col-sm-12">
                         <img src="{{asset('image/frontend/frontend/logo.png')}}" class="floatLeft paddingLeft10">
                         <div class="floatRight paddingRight10">
-                            <a href="#"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a>
-                            <button class="navbar-toggler hidden-sm-up buttonNav" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
-                            &#9776;
+                            <a href="#"><i class="fa fa-shopping-cart fa-2x paddingRight10" aria-hidden="true"></i></a>
+                            <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="modal" data-target="#myModal2">
+                                &#9776;
                             </button>
-                            <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-                                <ul class="nav navbar-nav">
-                                    <li class="nav-item borderTop5 borderRight1 red">
-                                        <a class="nav-link black" href="#">Home</a>
-                                    </li>
-                                    <li class="nav-item borderTop5 borderRight1 green">
-                                        <a class="nav-link black" href="#">Mainan</a>
-                                    </li>
-                                    <li class="nav-item borderTop5 borderRight1 orange">
-                                        <a class="nav-link black" href="#">Party Pack</a>
-                                    </li>
-                                    <li class="nav-item borderTop5 borderRight1 purple">
-                                        <a class="nav-link black" href="#">Tentang Kami</a>
-                                    </li>
-                                    <li class="nav-item borderTop5 blue">
-                                        <a class="nav-link black" href="#">Login</a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <!-- Modal -->
+                            <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <div class="icon pull-right">
+                                                <a href="#"><i class="fa fa-shopping-cart fa-2x paddingRight50" aria-hidden="true"></i></a>
+                                                <a href="#"><i class="fa fa-search fa-2x" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="nav navbar-nav">
+                                                <li class="nav-item borderTop5 green">
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link black pull-right" href="#">Home</a>
+                                                </li>
+                                                <li class="nav-item borderTop1 green">
+                                                    <a class="nav-link black pull-right" href="#">Mainan</a>
+                                                </li>
+                                                <li class="nav-item borderTop1 orange">
+                                                    <a class="nav-link black pull-right" href="#">Party Pack</a>
+                                                </li>
+                                                <li class="nav-item borderTop1 purple">
+                                                    <a class="nav-link black pull-right" href="#">Tentang Kami</a>
+                                                </li>
+                                                <li class="nav-item borderTop1 blue">
+                                                    <a class="nav-link black pull-right" href="#">Login</a>
+                                                </li></br></br></br></br></br></br></br></br></br></br></br></br></br>
+                                            </ul>
+                                        </div>
+                                    </div><!-- modal-content -->
+                                </div><!-- modal-dialog -->
+                            </div><!-- modal -->
                         </div>
                     </div>
                 </div>
