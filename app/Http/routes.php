@@ -13,8 +13,8 @@
 
 Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/home', ['uses' => 'webController@home', 'as' => 'home']);
-	Route::get('/about', ['uses' => 'webController@about']);
-	Route::get('/about/{category}', ['uses' => 'webController@about', 'as' => 'about']);
+	Route::get('/about', ['uses' => 'webController@about', 'as' => 'about']);
+	Route::get('/about/{category}', ['uses' => 'webController@about', 'as' => 'aboutCategory']);
 	Route::post('/newsletter/register', ['uses' => 'webController@registerNewsletter', 'as' => 'register']);
 	Route::get('/newsletter/registered', ['uses' => 'webController@registeredNewsletter', 'as' => 'registered']);
 
@@ -36,7 +36,8 @@ Route::group(['namespace' => 'Backend'], function(){
 
 	
 Route::get('/', function () {
-    return redirect()->route('home');
+    //return view('frontend.pages.about');
+    return redirect()->route('about');
 });
 
 Route::group(['namespace' => 'Frontend'], function(){
