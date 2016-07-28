@@ -15,6 +15,16 @@ class webController extends BaseController
      * @return \Illuminate\Http\Response
      */
 
+    protected $view_source_root             = 'frontend.pages';
+    protected $page_title                   = 'about';
+    protected $breadcrumb                   = [];
+    
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+
     public function home()
     {
         return $this->generateView('frontend.pages.home', Request::route()->getName());
@@ -22,7 +32,13 @@ class webController extends BaseController
 
     public function about()
     {
-        return $this->generateView('frontend.pages.about', Request::route()->getName());
+
+         $this->page_attributes->page_title  = $this->page_title;
+         $this->page_datas->datas            = ['0'=>'test', '1'=>'test lagi'];
+       //generate view
+        $view_source                       = $this->view_source_root . '.about';
+        $route_source                      = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
     }
 
     public function registerNewsletter()
