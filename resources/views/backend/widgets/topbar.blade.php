@@ -18,22 +18,13 @@
 			</li>
 			<li class="list-inline-item text-xs-center">
 				<a href="#" class="block p-y-1 p-x-0 ">
-					<i class="fa fa-plane fa-2x fa-fw"></i><br>Trips
+					<i class="fa fa-desktop fa-2x fa-fw"></i>
+					</i><br>Website
 				</a>
 			</li>
 			<li class="list-inline-item text-xs-center">
 				<a href="#" class="block p-y-1 p-x-0 ">
-					<i class="fa fa-newspaper-o fa-2x fa-fw"></i><br>Contents
-				</a>
-			</li>
-			<li class="list-inline-item text-xs-center">
-				<a href="#" class="block p-y-1 p-x-0 ">
-					<i class="fa fa-file-text-o fa-2x fa-fw"></i><br>Reports
-				</a>
-			</li>
-			<li class="list-inline-item text-xs-center">
-				<a href="#" class="block p-y-1 p-x-0 ">
-					<i class="fa fa-user fa-2x fa-fw"></i><br>Me
+					<i class="fa fa-users fa-2x fa-fw"></i><br>CRM
 				</a>
 			</li>
 		</ul>
