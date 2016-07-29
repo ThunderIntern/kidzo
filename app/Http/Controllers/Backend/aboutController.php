@@ -8,7 +8,7 @@ use Request;
 class aboutController extends BaseController
 {
     protected $view_source_root             = 'backend.pages';
-    protected $page_title                   = 'website';
+    protected $page_title                   = 'about';
     protected $breadcrumb                   = [];
     public function __construct()
     {
@@ -27,7 +27,7 @@ class aboutController extends BaseController
         $this->page_attributes->page_title  = $this->page_title;
 
         //generate view
-        $view_source                       = $this->view_source_root . '.website';
+        $view_source                       = $this->view_source_root . '.about';
         $route_source                      = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);
     }

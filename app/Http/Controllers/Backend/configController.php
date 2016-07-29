@@ -61,7 +61,12 @@ class configController extends BaseController
      */
     public function show($id)
     {
-        //
+         $this->page_attributes->page_title  = $this->page_title;
+
+        //generate view
+        $view_source                       = $this->view_source_root . '.config';
+        $route_source                      = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
     }
 
     /**

@@ -37,7 +37,12 @@ class newsletterController extends BaseController
      */
     public function create()
     {
-        //
+        $this->page_attributes->page_title  = $this->page_title;
+
+        //generate view
+        $view_source                       = $this->view_source_root . '.blast';
+        $route_source                      = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
     }
 
     /**
@@ -59,7 +64,12 @@ class newsletterController extends BaseController
      */
     public function show($id)
     {
-        //
+         $this->page_attributes->page_title  = $this->page_title;
+
+        //generate view
+        $view_source                       = $this->view_source_root . '.manage';
+        $route_source                      = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
     }
 
     /**

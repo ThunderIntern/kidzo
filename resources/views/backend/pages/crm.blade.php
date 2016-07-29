@@ -11,7 +11,7 @@
 		<div class="col-xs-12 col-lg-3">
 		@include('backend.widgets.sidebar', ['components' => [
 			'0' => ['link' => "http://localhost:8000/admin/CRM/blast_newsletter", 'caption' => 'Subscribber'],
-			'1' => ['link' => "http://localhost:8000/admin/CRM/manage_newsletter", 'caption' => 'Newsletter'],
+			'1' => ['link' => "http://localhost:8000/admin/CRM/manage_newsletter/{id}", 'caption' => 'Newsletter'],
 		]])
 		</div>
  
