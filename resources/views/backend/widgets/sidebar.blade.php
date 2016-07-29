@@ -13,6 +13,7 @@
 		<p class="card-text">Pengaturan Website</p>
 	</div>
 	<ul class="list-group list-group-flush">
+		<?php sort($components);?>
 		@forelse($components as $component)
 		    @include("backend.widgets.components.sidebar.menu_list", $component)
 		@empty
