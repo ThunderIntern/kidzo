@@ -11,6 +11,12 @@
 |
 */
 
+use Illuminate\Support\Facades\Mail;
+
+Route::get('/a',function(){
+	return view('email');
+});
+
 Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/home', ['uses' => 'webController@home', 'as' => 'home']);
 	Route::get('/about', ['uses' => 'webController@about', 'as' => 'about']);
@@ -24,6 +30,8 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/toys/{category_name}/{product_slug}', ['uses' => 'productController@show', 'as' => 'toysSlug'] );
 	Route::get('/paket', ['uses' => 'packageController@index', 'as' => 'paket']);
 	Route::get('/paket/{package_slug}', ['uses' => 'packageController@show', 'as' => 'paketPackage']);
+
+	Route::get('/email', ['uses' => 'emailController@email', 'as' => 'email']);
 
 });
 
@@ -48,3 +56,4 @@ Route::group(['namespace' => 'Frontend'], function(){
 });
 
 // Route::resource('/home', 		'homeController',			['names' => ['index' => 'home.index', 'create' => 'home.create', 'store' => 'home.store', 'show' => 'home.show', 'edit' => 'home.edit', 'update' => 'home.update', 'destroy' => 'home.destroy']]);
+

@@ -7,7 +7,7 @@ use App\Http\Controllers\Functions\email;
 use App\Http\Requests;
 use App\Http\Controllers\BaseController;
 
-class webController extends BaseController
+class emailController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -15,57 +15,14 @@ class webController extends BaseController
      * @return \Illuminate\Http\Response
      */
 
-    protected $view_source_root             = 'frontend.pages';
-    protected $page_title                   = 'about';
-    protected $breadcrumb                   = [];
-    
-    public function __construct()
-    {
-        parent::__construct();
+    public function email()
+    { 
+        $email = new email;
+        dd($email -> send('judul', 'konten'));
     }
-
-
-    public function home()
-    {
-        return $this->generateView('frontend.pages.home', Request::route()->getName());
-    }
-
-    public function about()
-    {
-
-        $this->page_attributes->page_title  = $this->page_title;
-        $this->page_datas->datas            = ['0'=>'test', '1'=>'test lagi'];
-       //generate view
-        $view_source                       = $this->view_source_root . '.about';
-        $route_source                      = Request::route()->getName();        
-        return $this->generateView($view_source , $route_source);
-    }
-
-    public function registerNewsletter()
-    {
-        //
-    }
-
-    public function registeredNewsletter()
-    {
-       return $this->generateView('frontend.pages.registered', Request::route()->getName());
-    }
-
-     public function unsubscribeNewsletter()
-    {
-        //
-    }
-
-    public function unsubscribedNewsletter()
-    {
-        return $this->generateView('frontend.pages.unsubscribed', Request::route()->getName());
-    }
-
-
-
     public function index()
     {
-        //
+        return 'test dibalik';
     }
 
     /**
@@ -97,7 +54,7 @@ class webController extends BaseController
      */
     public function show($id)
     {
-        //
+        return $id. 'dibalik';
     }
 
     /**
