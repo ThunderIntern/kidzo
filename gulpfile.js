@@ -18,24 +18,21 @@ var gulp = require('gulp');
 
 elixir(function(mix) {
 	mix.sass('backend.scss')
+	.sass('frontend.scss')
     .scripts([
     			'jquery.js',
 				'bootstrap.min.js',
 			], 'public/js/backend.js')
-	.version([
-				'public/css/backend.css',
-				'public/js/backend.js',
-		])
-	.copy('resources/assets/images/backend', 'public/images/backend');
-
-	mix.sass('frontend.scss')
     .scripts([
     			'jquery.js',
 				'bootstrap.min.js',
 			], 'public/js/frontend.js')
 	.version([
+				'public/css/backend.css',
+				'public/js/backend.js',
 				'public/css/frontend.css',
 				'public/js/frontend.js',
 	])
+	.copy('resources/assets/images/backend', 'public/images/backend')
 	.copy('resources/assets/images', 'public/image/frontend');
 });
