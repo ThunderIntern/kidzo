@@ -17,13 +17,13 @@ button:
 - butFoot : mengubah model button di footer
 
 -->
-
-            <div class="floatLeft width20Per height5 bgred"></div>
-            <div class="floatLeft width20Per height5 bggreen"></div>
-            <div class="floatLeft width20Per height5 bgorange"></div>
-            <div class="floatLeft width20Per height5 bgpurple ungu"></div>
-            <div class="floatLeft width20Per height5 bgblue"></div>
-        
+                <div class="warna">
+                    <div class="floatLeft width20Per height5 bgred"></div>
+                    <div class="floatLeft width20Per height5 bggreen"></div>
+                    <div class="floatLeft width20Per height5 bgorange"></div>
+                    <div class="floatLeft width20Per height5 bgpurple ungu"></div>
+                    <div class="floatLeft width20Per height5 bgblue"></div>
+                </div>
 
             
                 <div class="col-sm-12 paddingSamping bgsky">
@@ -50,8 +50,8 @@ button:
                             <p><b>Newslatter</b></p>
                             <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
                             
-                                <input type="text" class="form email" placeholder="Email Anda">
-                                <a href="http://localhost:8000/newsletter/registered"><button type="submit" class="black bgabu butFoot">Daftar</button></a>
+                                <input type="text" class="form email width85Per" placeholder="Email Anda">
+                                <a href="http://localhost:8000/newsletter/registered"><button type="submit" class="black bgabu butFoot width15Per">Daftar</button></a>
                             
                         </div>
                     </div>
@@ -59,8 +59,8 @@ button:
                             <p><b>Newslatter</b></p>
                             <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
                             
-                                <input type="text" class="form email" placeholder="Email Anda">
-                                <a href="http://localhost:8000/newsletter/registered"><button type="submit" class="black bgabu butFoot">Daftar</button></a>
+                                <input type="text" class="form email width80Per" placeholder="Email Anda">
+                                <a href="http://localhost:8000/newsletter/registered"><button type="submit" class="black bgabu butFoot width20Per">Daftar</button></a>
                         </div>
                     
                 </div>
