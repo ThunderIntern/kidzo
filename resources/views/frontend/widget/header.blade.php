@@ -16,10 +16,7 @@ button:
 - buttonNav : button di navbar yang muncul saat ukuran mobile
 
 -->
-        <div class="container-fluid">
-        
-
-            <nav class="navbar navbar">
+        <nav class="navbar navbar">
                 <div class="desktop">
                     <div class="col-sm-12">
                         <img src="{{asset('image/frontend/frontend/logo.png')}}" class="pull-left">
@@ -30,28 +27,29 @@ button:
                             </button>
                             <div class="collapse navbar-toggleable-xs" id="tes">
                                 <ul class="nav navbar-nav">
-                                    <li class="nav-item borderTop5 borderRight1 red">
+                                    <li class="nav-item borderTop5 green"></li>
+                                    <li class="nav-item borderTop5 borderRight1 red paddingBottom15  paddingTop15">
                                         <a class="nav-link black" href="#">Home</a>
                                     </li>
-                                    <li class="nav-item borderTop5 borderRight1 green">
+                                    <li class="nav-item borderTop5 borderRight1 green paddingBottom15 paddingTop15">
                                         <a class="nav-link black" href="#">Mainan</a>
                                     </li>
-                                    <li class="nav-item borderTop5 borderRight1 orange">
+                                    <li class="nav-item borderTop5 borderRight1 orange paddingBottom15 paddingTop15">
                                         <a class="nav-link black" href="#">Party Pack</a>
                                     </li>
-                                    <li class="nav-item borderTop5 borderRight1 purple">
+                                    <li class="nav-item borderTop5 borderRight1 purple paddingBottom15 paddingTop15">
                                         <a class="nav-link black" href="#">Tentang Kami</a>
                                     </li>
-                                    <li class="nav-item borderTop5 blue">
+                                    <li class="nav-item borderTop5 blue paddingBottom15 paddingTop15">
                                         <a class="nav-link black" href="#">Login</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
 
-                        <div class="icon pull-right">
-                            <a href="#"><i class="fa fa-shopping-cart fa-2x paddingRight50" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-search fa-2x" aria-hidden="true"></i></a>
+                        <div class="icon pull-right paddingTop15">
+                            <a href="#"><i class="fa fa-shopping-cart fa-lg paddingRight30" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-search fa-lg paddingRight50" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -104,4 +102,4 @@ button:
                     </div>
                 </div>
             </nav>
-        </div>
+        
