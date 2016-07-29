@@ -13,7 +13,7 @@
 			'0' => ['link' => "#", 'caption' => 'Config'],
 			'1' => ['link' => "#", 'caption' => 'Sliders'],
 			'2' => ['link' => "#", 'caption' => 'FAQ'],
-		]]);
+		]])
 		</div>
  
 		<div class="col-xs-12 col-lg-9">

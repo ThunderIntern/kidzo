@@ -12,7 +12,7 @@
 		@include('backend.widgets.sidebar', ['components' => [
 			'0' => ['link' => "#", 'caption' => 'Subscribber'],
 			'1' => ['link' => "#", 'caption' => 'Newsletter'],
-		]]);
+		]])
 		</div>
  
 		<div class="col-xs-12 col-lg-9">
