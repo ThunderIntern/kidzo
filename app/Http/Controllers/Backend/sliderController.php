@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\baseController;
 use Request;
 
-class aboutController extends BaseController
+class sliderController extends BaseController
 {
     protected $view_source_root             = 'backend.pages';
     protected $page_title                   = 'website';

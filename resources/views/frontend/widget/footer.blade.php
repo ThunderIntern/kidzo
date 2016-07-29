@@ -49,10 +49,10 @@ button:
                         <div class="floatLeft footer-col3">
                             <p><b>Newslatter</b></p>
                             <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
-                            <form class="form-inline" role="form">
+                            
                                 <input type="text" class="form email" placeholder="Email Anda">
-                                <button type="submit" class="bgabu butFoot">Daftar</button>
-                            </form>
+                                <a href="http://localhost:8000/newsletter/registered"><button type="submit" class="black bgabu butFoot">Daftar</button></a>
+                            
                         </div>
                     </div>
                         <div class="kecila">
@@ -60,7 +60,7 @@ button:
                             <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
                             
                                 <input type="text" class="form email" placeholder="Email Anda">
-                                <button type="submit" class="bgabu butFoot">Daftar</button>
+                                <a href="http://localhost:8000/newsletter/registered"><button type="submit" class="black bgabu butFoot">Daftar</button></a>
                         </div>
                     
                 </div>

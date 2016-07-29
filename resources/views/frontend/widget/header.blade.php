@@ -29,7 +29,7 @@ button:
                                 <ul class="nav navbar-nav">
                                     <li class="nav-item borderTop5 green"></li>
                                     <li class="nav-item borderTop5 borderRight1 red paddingBottom15  paddingTop15">
-                                        <a class="nav-link black" href="#">Home</a>
+                                        <a class="nav-link black" href="http://localhost:8000/home">Home</a>
                                     </li>
                                     <li class="nav-item borderTop5 borderRight1 green paddingBottom15 paddingTop15">
                                         <a class="nav-link black" href="#">Mainan</a>
@@ -38,7 +38,7 @@ button:
                                         <a class="nav-link black" href="#">Party Pack</a>
                                     </li>
                                     <li class="nav-item borderTop5 borderRight1 purple paddingBottom15 paddingTop15">
-                                        <a class="nav-link black" href="#">Tentang Kami</a>
+                                        <a class="nav-link black" href="http://localhost:8000/about">Tentang Kami</a>
                                     </li>
                                     <li class="nav-item borderTop5 blue paddingBottom15 paddingTop15">
                                         <a class="nav-link black" href="#">Login</a>
