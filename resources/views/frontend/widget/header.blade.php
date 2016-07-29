@@ -60,7 +60,7 @@ button:
                         <img src="{{asset('image/frontend/frontend/logo.png')}}" class="floatLeft paddingLeft10">
                         <div class="floatRight paddingRight10">
                             <a href="#"><i class="fa fa-shopping-cart fa-2x paddingRight10" aria-hidden="true"></i></a>
-                            <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="modal" data-target="#myModal2">
+                            <button class="navbar-toggler" type="button" data-toggle="modal" data-target="#myModal2">
                                 &#9776;
                             </button>
                             <!-- Modal -->
@@ -79,7 +79,7 @@ button:
                                                 <li class="nav-item borderTop5 green">
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link black pull-right" href="#">Home</a>
+                                                    <a class="nav-link black pull-right" href="http://localhost:8000/home">Home</a>
                                                 </li>
                                                 <li class="nav-item borderTop1 green">
                                                     <a class="nav-link black pull-right" href="#">Mainan</a>
@@ -88,7 +88,7 @@ button:
                                                     <a class="nav-link black pull-right" href="#">Party Pack</a>
                                                 </li>
                                                 <li class="nav-item borderTop1 purple">
-                                                    <a class="nav-link black pull-right" href="#">Tentang Kami</a>
+                                                    <a class="nav-link black pull-right" href="http://localhost:8000/about">Tentang Kami</a>
                                                 </li>
                                                 <li class="nav-item borderTop1 blue">
                                                     <a class="nav-link black pull-right" href="#">Login</a>
