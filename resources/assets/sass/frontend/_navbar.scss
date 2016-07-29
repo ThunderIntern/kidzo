@@ -35,3 +35,8 @@
 	.modal.right.fade.in .modal-dialog {
 		right: 0;
 	}
+.navbar {
+    -webkit-box-shadow: inset 0px -3px 8px -4px rgba(0,0,0,0.75);
+	-moz-box-shadow: inset 0px -3px 8px -4px rgba(0,0,0,0.75);
+	box-shadow: inset 0px -3px 8px -4px rgba(0,0,0,0.75);
+}

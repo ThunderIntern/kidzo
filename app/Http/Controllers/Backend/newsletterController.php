@@ -5,17 +5,15 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\baseController;
 use Request;
 
-class aboutController extends BaseController
+class newsletterController extends BaseController
 {
     protected $view_source_root             = 'backend.pages';
-    protected $page_title                   = 'website';
+    protected $page_title                   = 'crm';
     protected $breadcrumb                   = [];
     public function __construct()
     {
         parent::__construct();
     }
-
-
     /**
      * Display a listing of the resource.
      *
@@ -23,11 +21,11 @@ class aboutController extends BaseController
      */
     public function index()
     {
-        //page attributes
+         //page attributes
         $this->page_attributes->page_title  = $this->page_title;
 
         //generate view
-        $view_source                       = $this->view_source_root . '.website';
+        $view_source                       = $this->view_source_root . '.crm';
         $route_source                      = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);
     }

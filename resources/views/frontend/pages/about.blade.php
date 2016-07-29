@@ -1,8 +1,8 @@
 @extends('frontend.layout.layout')
 @section('content')
-<div class="container-fluid pleft-0">
+<div class="container-fluid pleft-0 pbottom-0">
 	<div class="col-md-12 bgsky pright-0 pleft-0">
-		<div class="desktop col-md-3">
+		<div class="desktop col-md-3 paddingTop35">
 			@include('frontend.widget.sidebar', ['datas' => [
 			'0' => ['header' => "Kidzo", 'content' => 'Profil', 'link' => '#'],
 			'1' => ['header' => "", 'content' => 'Jasa Kami', 'link' => '#'],
@@ -18,7 +18,7 @@
 			'11' => ['header' => "", 'content' => 'Biaya Pengiriman', 'link' => '#'],
 			]]);
 		</div>
-		<div class="col-md-9 bgwhite paddingBottom140">
+		<div class="col-md-9 bgwhite paddingBottom100">
 			<div class="desktop row mbottom-s paddingTop50 paddingLeft30">
 				<div class="col-md-12">
 					<h2><b>Tentang Kami</b></h2>
@@ -57,7 +57,7 @@
 			'0' => ['header' => "Apa itu Kidzo ?", 'content' => 'webfuybwudfguyg ehbfuywebfubewu hfbewufbueawbuf euwhfbuewbfuewb jfsajfibaisbfi isbfiasbifbai bsiafbiasbfiubaiufb uasbfiubasifubaiub'],
 			'1' => ['header' => "Mengapa Harus Kidzo ?", 'content' => 'webfuybwudfguyg ehbfuywebfubewu hfbewufbueawbuf euwhfbuewbfuewb jfsajfibaisbfi isbfiasbifbai bsiafbiasbfiubaiufb uasbfiubasifubaiub'],
 			'2' => ['header' => "Apakah Kidzo Terpercaya ?", 'content' => 'webfuybwudfguyg ehbfuywebfubewu hfbewufbueawbuf euwhfbuewbfuewb jfsajfibaisbfi isbfiasbifbai bsiafbiasbfiubaiufb uasbfiubasifubaiub'],
-			]]);
+			]])
 		</div>
 	</div>
 </div>

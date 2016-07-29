@@ -1,14 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\baseController;
+use Request;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
-class newslatterController extends Controller
+class configController extends BaseController
 {
+    protected $view_source_root             = 'backend.pages';
+    protected $page_title                   = 'website';
+    protected $breadcrumb                   = [];
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +23,13 @@ class newslatterController extends Controller
      */
     public function index()
     {
-        //
+        //page attributes
+        $this->page_attributes->page_title  = $this->page_title;
+
+        //generate view
+        $view_source                       = $this->view_source_root . '.website';
+        $route_source                      = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
     }
 
     /**

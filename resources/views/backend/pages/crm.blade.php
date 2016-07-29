@@ -10,8 +10,8 @@
 	<div class="row">
 		<div class="col-xs-12 col-lg-3">
 		@include('backend.widgets.sidebar', ['components' => [
-			'0' => ['link' => "#", 'caption' => 'Subscribber'],
-			'1' => ['link' => "#", 'caption' => 'Newsletter'],
+			'0' => ['link' => "http://localhost:8000/admin/CRM/blast_newsletter", 'caption' => 'Subscribber'],
+			'1' => ['link' => "http://localhost:8000/admin/CRM/manage_newsletter", 'caption' => 'Newsletter'],
 		]])
 		</div>
  
