@@ -33,6 +33,6 @@ elixir(function(mix) {
 				'public/css/frontend.css',
 				'public/js/frontend.js',
 	])
-	.copy('resources/assets/images/backend', 'public/images/backend')
-	.copy('resources/assets/images', 'public/image/frontend');
+	.copy('resources/assets/images', 'public/image/')
+	.copy('resources/assets/fonts', 'public/build/fonts/')
 });
