@@ -51,7 +51,7 @@ button:
                             <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
                             
                                 <input type="text" class="form email width85Per" placeholder="Email Anda">
-                                <a href="http://localhost:8000/newsletter/registered"><button type="submit" class="black bgabu butFoot width15Per">Daftar</button></a>
+                                <a href="{{Route('registered')}}"><button type="submit" class="black bgabu butFoot width15Per">Daftar</button></a>
                             
                         </div>
                     </div>
@@ -60,7 +60,7 @@ button:
                             <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
                             
                                 <input type="text" class="form email width80Per" placeholder="Email Anda">
-                                <a href="http://localhost:8000/newsletter/registered"><button type="submit" class="black bgabu butFoot width20Per">Daftar</button></a>
+                                <a href="{{Route('registered')}}"><button type="submit" class="black bgabu butFoot width20Per">Daftar</button></a>
                         </div>
                     
                 </div>
