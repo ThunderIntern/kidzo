@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backend\Website;
 
 use App\Http\Controllers\baseController;
 use Request;
 
 class configController extends BaseController
 {
-    protected $view_source_root             = 'backend.pages';
+    protected $view_source_root             = 'backend.pages.website.config';
     protected $page_title                   = 'website';
     protected $breadcrumb                   = [];
     public function __construct()
@@ -27,7 +27,7 @@ class configController extends BaseController
         $this->page_attributes->page_title  = $this->page_title;
 
         //generate view
-        $view_source                       = $this->view_source_root . '.website';
+        $view_source                       = $this->view_source_root . '.index';
         $route_source                      = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);
     }
@@ -39,7 +39,13 @@ class configController extends BaseController
      */
     public function create()
     {
-        //
+        //page attributes
+        $this->page_attributes->page_title  = $this->page_title;
+
+        //generate view
+        $view_source                       = $this->view_source_root . '.create';
+        $route_source                      = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
     }
 
     /**
@@ -64,7 +70,7 @@ class configController extends BaseController
          $this->page_attributes->page_title  = $this->page_title;
 
         //generate view
-        $view_source                       = $this->view_source_root . '.config';
+        $view_source                       = $this->view_source_root . '.show';
         $route_source                      = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);
     }

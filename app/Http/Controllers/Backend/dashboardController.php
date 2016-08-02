@@ -15,7 +15,6 @@ class dashboardController extends baseController
 
     //init 
     protected $view_source_root             = 'backend.pages';
-    protected $page_title                   = 'dashboard';
     protected $breadcrumb                   = [];
     public function __construct()
     {
@@ -23,14 +22,25 @@ class dashboardController extends baseController
     }
 
 
-    public function index()
+    public function dashboard()
     {
         //page attributes
-        $this->page_attributes->page_title  = $this->page_title;
+        $this->page_attributes->page_title  = 'Dashboard';
 
         //generate view
-        $view_source                       = $this->view_source_root . '.dashboard';
-        $route_source                      = Request::route()->getName();        
+        $view_source                        = $this->view_source_root . '.home';
+        $route_source                       = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);
     }
+
+    public function website()
+    {
+        //page attributes
+        $this->page_attributes->page_title  = 'Website';
+
+        //generate view
+        $view_source                        = $this->view_source_root . '.website.home';
+        $route_source                       = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }    
 }
