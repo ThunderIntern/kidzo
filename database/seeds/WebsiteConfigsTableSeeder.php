@@ -108,6 +108,7 @@ class WebsiteConfigsTableSeeder extends Seeder
 																	],																	
 											];        									
         $newsletter['version']			= $version;
+        $newsletter['admin']			= 'Admin';
         $newsletter->save();
 
 
@@ -203,6 +204,8 @@ class WebsiteConfigsTableSeeder extends Seeder
 																	],																	
 											];        									
         $newsletter['version']			= $version;
+        $newsletter['admin']			= 'Admin Satunya';
+
         $newsletter->save();
     }
 }
