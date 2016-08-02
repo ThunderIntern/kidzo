@@ -80,7 +80,7 @@
     }
   }
 
-  .nav-link.active,
+  .nav-item.active .nav-link, 
   .nav-item.open .nav-link {
     @include plain-hover-focus {
       color: $nav-tabs-active-link-hover-color;

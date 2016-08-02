@@ -12,18 +12,18 @@
 	<div class="nav navbar-nav">
 		<ul class="list-inline">
 			<li class="list-inline-item text-xs-center">
-				<a href="http://localhost:8000/admin/dashboard" class="block p-y-1 p-x-0 ">
+				<a href="{{route('backend.dashboard')}}" class="block p-y-1 p-x-0 ">
 					<i class="fa fa-dashboard fa-2x fa-fw"></i><br>Dashboard
 				</a>
 			</li>
 			<li class="list-inline-item text-xs-center">
-				<a href="http://localhost:8000/admin/website/config" class="block p-y-1 p-x-0 ">
+				<a href="{{route('backend.website')}}" class="block p-y-1 p-x-0 ">
 					<i class="fa fa-desktop fa-2x fa-fw"></i>
 					</i><br>Website
 				</a>
 			</li>
 			<li class="list-inline-item text-xs-center">
-				<a href="http://localhost:8000/admin/CRM/manage_newsletter" class="block p-y-1 p-x-0 ">
+				<a href="" class="block p-y-1 p-x-0 ">
 					<i class="fa fa-users fa-2x fa-fw"></i><br>CRM
 				</a>
 			</li>

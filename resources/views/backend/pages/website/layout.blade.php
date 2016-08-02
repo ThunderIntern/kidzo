@@ -10,18 +10,17 @@
 	<div class="row">
 		<div class="col-xs-12 col-lg-3">
 		@include('backend.widgets.sidebar', ['components' => [
-			'0' => ['link' => "http://localhost:8000/admin/website/config/{id}", 'caption' => 'Config'],
-			'1' => ['link' => "http://localhost:8000/admin/slider", 'caption' => 'Sliders'],
-			'2' => ['link' => "http://localhost:8000/admin/about", 'caption' => 'About'],
-			'3' => ['link' => "http://localhost:8000/admin/website/manage_version", 'caption' => 'Version'],
+			'1' => ['link' => Route('backend.website.config.index'), 'caption' => 'Config'],
+			'2' => ['link' => "#", 'caption' => 'Slider'],
+			'3' => ['link' => "#", 'caption' => 'FAQ'],
+			'4' => ['link' => "#", 'caption' => 'Version'],
 		]])
 		</div>
  
 		<div class="col-xs-12 col-lg-9">
 			<div class="row mb-s">
 				<div class="col-sm-12">
-					<div class="row">
-					</div>
+					@yield('page_content')
 				</div>
 			</div>
 		</div>

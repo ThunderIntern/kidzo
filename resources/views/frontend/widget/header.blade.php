@@ -38,7 +38,7 @@ button:
                                         <a class="nav-link black" href="#">Party Pack</a>
                                     </li>
                                     <li class="nav-item borderTop5 borderRight1 purple paddingBottom15 paddingTop15">
-                                        <a class="nav-link black" href="http://localhost:8000/about">Tentang Kami</a>
+                                        <a class="nav-link black" href="{{Route('about')}}">Tentang Kami</a>
                                     </li>
                                     <li class="nav-item borderTop5 blue paddingBottom15 paddingTop15">
                                         <a class="nav-link black" href="#">Login</a>
