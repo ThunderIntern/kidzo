@@ -2,22 +2,11 @@
 @section('page_content')
 <div class="card">
 	<div class="card-block">
-		<h4 class="card-title">
-			Config / Page 1
-			<a href="{{Route('backend.website.config.create')}}" class="pull-right btn btn-primary-outline">
-				<i class="fa fa-plus"></i>
-			</a>
-		</h4>
-		<div class="card-text">
-			<form method="GET" action="http://cms.capcus.id/dashboard/contents/articles" accept-charset="UTF-8" class="m-t-2 p-y-0">
-				<div class="input-group">
-					<input type="text" name="search" value="" class="form-control" placeholder="Search for...">
-					<span class="input-group-btn">
-						<button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
-					</span>
-				</div>
-			</form>
-		</div>
+	@include('backend.widgets.components.title.title-add-search', ['component' => [
+		'title'			=> 'Config / Page 1',
+		'link-add'		=> '#',
+		'link-search'	=> '#',
+	]])
 	</div>
 	<div class="card-block">
 		<div class="table-responsive">

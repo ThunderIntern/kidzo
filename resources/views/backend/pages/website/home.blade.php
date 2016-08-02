@@ -2,16 +2,16 @@
 @section('page_content')
 <div class="row">
 	<div class="col-sm-3">
-		@include('backend.widgets.cards.card-stat-mini', ['components' => ['title' => 'card 1', 'value' => 'some value']])
+		@include('backend.widgets.cards.stat-mini', ['components' => ['title' => 'card 1', 'value' => 'some value']])
 	</div>
 	<div class="col-sm-3">
-		@include('backend.widgets.cards.card-stat-mini', ['components' => ['title' => 'card 1', 'value' => 'some value']])
+		@include('backend.widgets.cards.stat-mini', ['components' => ['title' => 'card 1', 'value' => 'some value']])
 	</div>      
 	<div class="col-sm-3">
-		@include('backend.widgets.cards.card-stat-mini', ['components' => ['title' => 'card 1', 'value' => 'some value']])
+		@include('backend.widgets.cards.stat-mini', ['components' => ['title' => 'card 1', 'value' => 'some value']])
 	</div>
 	<div class="col-sm-3">
-		@include('backend.widgets.cards.card-stat-mini', ['components' => ['title' => 'card 1', 'value' => 'some value']])
+		@include('backend.widgets.cards.stat-mini', ['components' => ['title' => 'card 1', 'value' => 'some value']])
 	</div>                          
 	</div>
 

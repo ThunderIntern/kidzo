@@ -9,12 +9,16 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-xs-12 col-lg-3">
-		@include('backend.widgets.sidebar', ['components' => [
-			'1' => ['link' => Route('backend.website.config.index'), 'caption' => 'Config'],
-			'2' => ['link' => "#", 'caption' => 'Slider'],
-			'3' => ['link' => "#", 'caption' => 'FAQ'],
-			'4' => ['link' => "#", 'caption' => 'Version'],
-		]])
+		@include('backend.widgets.sidebar', [
+			'title' 		=> 'Website',
+			'description' 	=> 'Pengaturan Website',
+			'components' 	=> [
+									'1' => ['link' => Route('backend.website.config.index'), 'caption' => 'Config'],
+									'2' => ['link' => "#", 'caption' => 'Slider'],
+									'3' => ['link' => "#", 'caption' => 'FAQ'],
+									'4' => ['link' => "#", 'caption' => 'Version'],
+								]
+		])
 		</div>
  
 		<div class="col-xs-12 col-lg-9">
