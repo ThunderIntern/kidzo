@@ -4,7 +4,7 @@
 	<div class="card-block">
 	@include('backend.widgets.components.title.title-add-search', ['component' => [
 		'title'			=> 'Config / Page 1',
-		'link-add'		=> '#',
+		'link-add'		=> route('backend.website.config.create'),
 		'link-search'	=> '#',
 	]])
 	</div>
