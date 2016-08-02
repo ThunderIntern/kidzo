@@ -1,12 +1,42 @@
-@extends('backend.layout.layout')
-@section('content')
-<div class="container-fluid">
-	<div class="row clearfix">
-		&nbsp;
+@extends('backend.pages.crm.layout')
+@section('page_content')
+<div class="card">
+	<div class="card-block">
+	@include('backend.widgets.components.title.title-add-search', ['component' => [
+		'title'			=> 'Blast / Page 1',
+		'link-add'		=> route('backend.newsletter.blast'),
+		'link-search'	=> '#',
+	]])
 	</div>
-</div>
-
-<div class="container-fluid">
-<!-- content -->
+	<div class="card-block">
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th class="col-md-1">#</th>
+						<th class="col-md-9">Published At</th>
+						<th class="col-md-2">Edited By</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="col-md-1">1</td>
+						<td class="col-md-9"><a href="{{Route('backend.newsletter.blast')}}">01-Aug-2016</td>
+						<td class="col-md-2">Admin</td>
+					</tr>
+					<tr>
+						<td class="col-md-1">2</td>
+						<td class="col-md-9">01-Aug-2016</td>
+						<td class="col-md-2">Admin</td>
+					</tr>
+					<tr>
+						<td class="col-md-1">3</td>
+						<td class="col-md-9">01-Aug-2016</td>
+						<td class="col-md-2">Admin</td>
+					</tr>										
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>
 @stop

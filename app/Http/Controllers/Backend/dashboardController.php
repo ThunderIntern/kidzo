@@ -43,4 +43,15 @@ class dashboardController extends baseController
         $route_source                       = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);
     }    
+
+    public function crm()
+    {
+        //page attributes
+        $this->page_attributes->page_title  = 'CRM';
+
+        //generate view
+        $view_source                        = $this->view_source_root . '.crm.crm';
+        $route_source                       = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }    
 }

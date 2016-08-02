@@ -38,7 +38,7 @@ Route::group(['namespace' => 'Frontend'], function(){
 Route::group(['namespace' => 'Backend'], function(){
 	Route::get('/admin/dashboard', 		['uses' => 'dashboardController@dashboard', 'as' => 'backend.dashboard']);
 	Route::get('/admin/website', 		['uses' => 'dashboardController@website', 'as' => 'backend.website']);
-
+	Route::get('/admin/CRM', 		['uses' => 'dashboardController@crm', 'as' => 'backend.crm']);
 
 	//website
 	Route::group(['namespace' => 'Website'], function(){
@@ -51,9 +51,38 @@ Route::group(['namespace' => 'Backend'], function(){
 			'update' 	=> 'backend.website.config.update', 
 			'destroy' 	=> 'backend.website.config.destroy'
 		]]);
+		Route::resource('/admin/website/FAQ', 'FAQController', ['names' => [
+			'index' 	=> 'backend.website.FAQ.index',
+			'create'	=> 'backend.website.FAQ.create', 
+			'store' 	=> 'backend.website.FAQ.store', 
+			'show' 		=> 'backend.website.FAQ.show', 
+			'edit' 		=> 'backend.website.FAQ.edit', 
+			'update' 	=> 'backend.website.FAQ.update', 
+			'destroy' 	=> 'backend.website.FAQ.destroy'
+		]]);
+		Route::resource('/admin/website/slider', 'sliderController', ['names' => [
+			'index' 	=> 'backend.website.slider.index',
+			'create'	=> 'backend.website.slider.create', 
+			'store' 	=> 'backend.website.slider.store', 
+			'show' 		=> 'backend.website.slider.show', 
+			'edit' 		=> 'backend.website.slider.edit', 
+			'update' 	=> 'backend.website.slider.update', 
+			'destroy' 	=> 'backend.website.slider.destroy'
+		]]);
 	});
 
+	//CRM
+	Route::resource('/admin/CRM/subscribber', 'newsletterController', ['names' => [
+		'index' 	=> 'backend.subscribber.index',
+		'create'	=> 'backend.subscribber.create', 
+		'store' 	=> 'backend.subscribber.store', 
+		'show' 		=> 'backend.subscribber.show', 
+		'edit' 		=> 'backend.subscribber.edit', 
+		'update' 	=> 'backend.subscribber.update', 
+		'destroy' 	=> 'backend.subscribber.destroy'
+	]]);
 
+	Route::get('/admin/CRM/newsletter', ['uses' => 'newsletterController@blast', 'as' => 'backend.newsletter.blast']);
 	// Route::resource('/admin/about', 'aboutController', ['names' => ['index' => 'backend.about.index', 'create' => 'backend.about.create', 'store' => 'backend.about.store', 'show' => 'backend.about.show', 'edit' => 'backend.about.edit', 'update' => 'backend.about.update', 'destroy' => 'backend.about.destroy']]);
 	// Route::resource('/admin/slider', 'sliderController', ['names' => ['index' => 'backend.slider.index', 'create' => 'backend.slider.create', 'store' => 'backend.slider.store', 'show' => 'backend.slider.show', 'edit' => 'backend.slider.edit', 'update' => 'backend.slider.update', 'destroy' => 'backend.slider.destroy']]);
 	// Route::resource('/admin/CRM/manage_newsletter', 'newsletterController', ['names' => ['index' => 'backend.newsletter.index', 'create' => 'backend.newsletter.create', 'store' => 'backend.newsletter.store', 'show' => 'backend.newsletter.show', 'edit' => 'backend.newsletter.edit', 'update' => 'backend.newsletter.update', 'destroy' => 'backend.newsletter.destroy']]);

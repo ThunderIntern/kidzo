@@ -10,15 +10,12 @@
 	<div class="row">
 		<div class="col-xs-12 col-lg-3">
 		@include('backend.widgets.sidebar', [
-			'title' 		=> 'Website',
-			'description' 	=> 'Pengaturan Website',
-			'components' 	=> [
-									'1' => ['link' => Route('backend.website.config.index'), 'caption' => 'Config'],
-									'2' => ['link' => Route('backend.website.slider.index'), 'caption' => 'Slider'],
-									'3' => ['link' => Route('backend.website.FAQ.index'), 'caption' => 'FAQ'],
-									'4' => ['link' => "#", 'caption' => 'Version'],
-								]
-		])
+			'title' 		=> 'CRM',
+			'description' 	=> 'Pengaturan Newsletter',
+			'components' => [
+								'0' => ['link' => Route('backend.subscribber.index'), 'caption' => 'Subscribber'],
+								'1' => ['link' => Route('backend.newsletter.blast'), 'caption' => 'Newsletter'],
+		]])
 		</div>
  
 		<div class="col-xs-12 col-lg-9">

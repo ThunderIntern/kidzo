@@ -1,10 +1,10 @@
-@extends('backend.pages.crm.layout')
+@extends('backend.pages.website.layout')
 @section('page_content')
 <div class="card">
 	<div class="card-block">
 	@include('backend.widgets.components.title.title-add-search', ['component' => [
-		'title'			=> 'Subscribber / Page 1',
-		'link-add'		=> route('backend.subscribber.create'),
+		'title'			=> 'FAQ / Page 1',
+		'link-add'		=> route('backend.website.FAQ.create'),
 		'link-search'	=> '#',
 	]])
 	</div>
@@ -21,7 +21,7 @@
 				<tbody>
 					<tr>
 						<td class="col-md-1">1</td>
-						<td class="col-md-9"><a href="{{Route('backend.subscribber.show',['id' => '1'])}}">01-Aug-2016</td>
+						<td class="col-md-9"><a href="{{Route('backend.website.FAQ.show',['id' => '1'])}}">01-Aug-2016</td>
 						<td class="col-md-2">Admin</td>
 					</tr>
 					<tr>

@@ -7,13 +7,26 @@ use Request;
 
 class newsletterController extends BaseController
 {
-    protected $view_source_root             = 'backend.pages';
+    protected $view_source_root             = 'backend.pages.crm';
     protected $page_title                   = 'crm';
     protected $breadcrumb                   = [];
     public function __construct()
     {
         parent::__construct();
     }
+    
+    public function blast()
+    {
+         //page attributes
+        $this->page_attributes->page_title  = $this->page_title;
+
+        //generate view
+        $view_source                       = $this->view_source_root . '.newsletter.blast';
+        $route_source                      = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +38,7 @@ class newsletterController extends BaseController
         $this->page_attributes->page_title  = $this->page_title;
 
         //generate view
-        $view_source                       = $this->view_source_root . '.crm';
+        $view_source                       = $this->view_source_root . '.subscribber.index';
         $route_source                      = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);
     }
@@ -40,7 +53,7 @@ class newsletterController extends BaseController
         $this->page_attributes->page_title  = $this->page_title;
 
         //generate view
-        $view_source                       = $this->view_source_root . '.blast';
+        $view_source                       = $this->view_source_root . '.subscribber.create';
         $route_source                      = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);
     }
@@ -67,7 +80,7 @@ class newsletterController extends BaseController
          $this->page_attributes->page_title  = $this->page_title;
 
         //generate view
-        $view_source                       = $this->view_source_root . '.manage';
+        $view_source                       = $this->view_source_root . '.subscribber.show';
         $route_source                      = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);
     }

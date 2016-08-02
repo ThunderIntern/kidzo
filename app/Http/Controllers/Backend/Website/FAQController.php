@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backend\Website;
 
 use App\Http\Controllers\baseController;
 use Request;
 
-class aboutController extends BaseController
+class FAQController extends BaseController
 {
-    protected $view_source_root             = 'backend.pages';
-    protected $page_title                   = 'about';
+    protected $view_source_root             = 'backend.pages.website.FAQ';
+    protected $page_title                   = 'index';
     protected $breadcrumb                   = [];
     public function __construct()
     {
@@ -27,7 +27,7 @@ class aboutController extends BaseController
         $this->page_attributes->page_title  = $this->page_title;
 
         //generate view
-        $view_source                       = $this->view_source_root . '.about';
+        $view_source                       = $this->view_source_root . '.index';
         $route_source                      = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);
     }

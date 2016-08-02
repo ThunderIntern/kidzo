@@ -18,12 +18,11 @@
 			</li>
 			<li class="list-inline-item text-xs-center">
 				<a href="{{route('backend.website')}}" class="block p-y-1 p-x-0 ">
-					<i class="fa fa-desktop fa-2x fa-fw"></i>
-					</i><br>Website
+					<i class="fa fa-desktop fa-2x fa-fw"></i><br>Website
 				</a>
 			</li>
 			<li class="list-inline-item text-xs-center">
-				<a href="" class="block p-y-1 p-x-0 ">
+				<a href="{{route('backend.crm')}}" class="block p-y-1 p-x-0 ">
 					<i class="fa fa-users fa-2x fa-fw"></i><br>CRM
 				</a>
 			</li>

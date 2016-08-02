@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backend\Website;
 
 use App\Http\Controllers\baseController;
 use Request;
 
 class sliderController extends BaseController
 {
-    protected $view_source_root             = 'backend.pages';
-    protected $page_title                   = 'slider';
+    protected $view_source_root             = 'backend.pages.website.slider';
+    protected $page_title                   = 'website';
     protected $breadcrumb                   = [];
     public function __construct()
     {
@@ -27,7 +27,7 @@ class sliderController extends BaseController
         $this->page_attributes->page_title  = $this->page_title;
 
         //generate view
-        $view_source                       = $this->view_source_root . '.slider';
+        $view_source                       = $this->view_source_root . '.index';
         $route_source                      = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);
     }
