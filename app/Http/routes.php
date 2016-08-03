@@ -68,6 +68,8 @@ Route::group(['namespace' => 'Backend'], function(){
 			'edit' 		=> 'backend.website.slider.edit', 
 			'update' 	=> 'backend.website.slider.update', 
 			'destroy' 	=> 'backend.website.slider.destroy'
+		]]);
+			
 		Route::resource('/admin/website/version', 'versionController', ['names' => [
 			'index' 	=> 'backend.website.version.index', 
 			'create' 	=> 'backend.website.version.create', 
