@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Backend\Website;
 
 use App\Http\Controllers\baseController;
-use Request;
+
+use App\Models\Version;
+use Request, Input;
 
 class versionController extends BaseController
 {
     protected $view_source_root             = 'backend.pages.website.version';
-    protected $page_title                   = 'index';
+    protected $page_title                   = 'version';
     protected $breadcrumb                   = [];
     public function __construct()
     {
@@ -22,13 +24,19 @@ class versionController extends BaseController
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        //get data
+        $version                            = new Version;
+        $datas                              = $version->paginate(50);
+
+        $this->page_datas->datas            = $datas;
+
         //page attributes
         $this->page_attributes->page_title  = $this->page_title;
 
         //generate view
-        $view_source                       = $this->view_source_root . '.index';
-        $route_source                      = Request::route()->getName();        
+        $view_source                        = $this->view_source_root . '.index';
+        $route_source                       = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);
     }
 
@@ -37,9 +45,27 @@ class versionController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id = null)
     {
-        //
+        //get data
+        $datas                              = [];
+        
+        if($id != null)
+        {
+            $version                        = new Version;
+            $datas                          = $version->paginate(50);
+        }
+
+        $this->page_datas->datas            = $datas;
+
+        //page attributes
+        $this->page_attributes->page_title  = $this->page_title;
+        $this->page_datas->id               = $id;
+
+        //generate view
+        $view_source                        = $this->view_source_root . '.create';
+        $route_source                       = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
     }
 
     /**
@@ -48,9 +74,9 @@ class versionController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id = null)
     {
-        //
+        dd(Input::all());
     }
 
     /**
@@ -72,7 +98,7 @@ class versionController extends BaseController
      */
     public function edit($id)
     {
-        //
+        return $this->create($id);
     }
 
     /**
