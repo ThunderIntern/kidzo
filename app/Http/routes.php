@@ -68,6 +68,14 @@ Route::group(['namespace' => 'Backend'], function(){
 			'edit' 		=> 'backend.website.slider.edit', 
 			'update' 	=> 'backend.website.slider.update', 
 			'destroy' 	=> 'backend.website.slider.destroy'
+		Route::resource('/admin/website/version', 'versionController', ['names' => [
+			'index' 	=> 'backend.website.version.index', 
+			'create' 	=> 'backend.website.version.create', 
+			'store' 	=> 'backend.website.version.store', 
+			'show' 		=> 'backend.website.version.show', 
+			'edit' 		=> 'backend.website.version.edit', 
+			'update' 	=> 'backend.website.version.update', 
+			'destroy' 	=> 'backend.website.version.destroy'
 		]]);
 	});
 
@@ -88,7 +96,6 @@ Route::group(['namespace' => 'Backend'], function(){
 	// Route::resource('/admin/CRM/manage_newsletter', 'newsletterController', ['names' => ['index' => 'backend.newsletter.index', 'create' => 'backend.newsletter.create', 'store' => 'backend.newsletter.store', 'show' => 'backend.newsletter.show', 'edit' => 'backend.newsletter.edit', 'update' => 'backend.newsletter.update', 'destroy' => 'backend.newsletter.destroy']]);
 	// Route::get('/admin/CRM/blast_newsletter', ['uses' => 'newsletterController@create', 'as' => 'backend.newsletter.getBlast']);
 	// Route::post('/admin/CRM/blast_newsletter', ['uses' => 'newsletterController@create', 'as' => 'backend.newsletter.postBlast']);
-	// Route::resource('/admin/website/manage_version', 'versionController', ['names' => ['index' => 'backend.version.index', 'create' => 'backend.version.create', 'store' => 'backend.version.store', 'show' => 'backend.version.show', 'edit' => 'backend.version.edit', 'update' => 'backend.version.update', 'destroy' => 'backend.version.destroy']]);
 });
 	
 Route::get('/', function () {
