@@ -56,6 +56,7 @@
 				</tbody>
 			</table>
 		</div>
+		{!! $page_datas->datas->render(new \Illuminate\Pagination\BootstrapFourPresenter($page_datas->datas)); !!}
 	</div>
 </div>
 @stop
