@@ -16,10 +16,11 @@ button:
 - buttonNav : button di navbar yang muncul saat ukuran mobile
 
 -->
-        <nav class="navbar navbar">
-                <div class="desktop">
+        
+            <div class="desktop">
+                <nav class="navbar navbar paddingBottom30">
                     <div class="col-sm-12">
-                        <img src="{{asset('image/frontend/frontend/logo.png')}}" class="pull-left">
+                        <img src="{{asset('image/frontend/frontend/logo.png')}}" class="pull-left posisiAbs">
 
                         <div class="menu tengah">
                             <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#tes">
@@ -52,10 +53,12 @@ button:
                             <a href="#"><i class="fa fa-search fa-lg paddingRight50" aria-hidden="true"></i></a>
                         </div>
                     </div>
-                </div>
+                </nav>
+            </div>
 
 
-                <div class="mobile">
+            <div class="mobile">
+                <nav class="navbar navbar">
                     <div class="col-sm-12">
                         <img src="{{asset('image/frontend/frontend/logo.png')}}" class="floatLeft paddingLeft10">
                         <div class="floatRight paddingRight10">
@@ -100,6 +103,7 @@ button:
                             </div><!-- modal -->
                         </div>
                     </div>
-                </div>
-            </nav>
+                </nav>
+            </div>
+            
         
