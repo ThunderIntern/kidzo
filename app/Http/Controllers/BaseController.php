@@ -2,7 +2,7 @@
 
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\MessageBag;
-use Input, Redirect, URL, App;
+use Input, Redirect, URL, App, Session;
 
 use \App\Http\Controllers\Modules\Mobile_Detect;
 
@@ -122,7 +122,7 @@ abstract class BaseController extends Controller
 	 * 1. check parameter
 	 * 2. redirect
 	 */
-	public function generateRedirectRoute($route_to = null, $parameter = [])
+	public function generateRedirect($route_to = null, $parameter = [])
 	{
   		//check route parameter
   		if(is_null($route_to))
@@ -150,8 +150,7 @@ abstract class BaseController extends Controller
 			{
 				$title					= $this->page_attributes->msg;
 			}
-
-			return Redirect::route($route_to, $parameter)
+			return Redirect::to($route_to)
 					->with('msg',$title)
 					->with('msg-type', $type)
 					->with('msg-action', $action)
@@ -346,4 +345,36 @@ abstract class BaseController extends Controller
 
 		return $sort;
 	}	
+
+	/**
+	 * { setRefererUrl }
+	 *
+	 * @param     
+	 * _
+	 *
+	 * @return
+	 * session save -> url_referer
+	 * @Description
+	 * Set previous page and save to session
+	 */
+	public function setRefererUrl()
+	{
+        Session::flash('url_referer', URL::previous());
+	}
+
+	/**
+	 * { getRefererUrl }
+	 *
+	 * @param     
+	 * _
+	 *
+	 * @return
+	 * referer url
+	 * @Description
+	 * get previous page
+	 */
+	public function getRefererUrl()
+	{
+        return Session::get('url_referer');
+   	}
 }
