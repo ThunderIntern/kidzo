@@ -1,12 +1,61 @@
-@extends('backend.layout.layout')
-@section('content')
-<div class="container-fluid">
-	<div class="row clearfix">
-		&nbsp;
+@extends('backend.pages.website.layout')
+@section('page_content')
+<div class="card">
+	<div class="card-block">
+	@include('backend.widgets.components.title.title-add-search', ['component' => [
+		'title'			=> 'Version / Page 1',
+		'link-add'		=> route('backend.website.version.create'),
+		'link-search'	=> '#',
+	]])
 	</div>
-</div>
-
-<div class="container-fluid">
-<!-- content -->
+	<div class="card-block">
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th class="col-md-1">#</th>
+						<th class="col-md-3">Version Name</th>
+						<th class="col-md-4">Domain</th>
+						<th class="col-md-2">Status</th>
+						<th class="col-md-2 text-xs-right">Control</th>
+					</tr>
+				</thead>
+				<tbody>
+					@forelse ($page_datas->datas as $key => $data)
+						<tr>
+							<td class="col-md-1">
+								{{$key + 1}}
+							</td>
+							<td class="col-md-3">
+								<a href="{{route('backend.website.version.show', ['id' => $data['id']])}}">
+									{{$data['name']}}
+								</a>
+							</td>
+							<td class="col-md-4">
+								{{$data['domain']}}
+							</td>
+							<td class="col-md-2">
+								{{ (($data['is_active']==true) ? 'aktif' : 'tidak aktif') }}
+							</td>
+							<td class="col-md-2 text-xs-right">
+								<a href="#" class="btn btn-primary-outline btn-sm">
+									<i class="fa fa-pencil" aria-hidden="true"></i>
+						        </a>	
+								<a href="#" class="btn btn-primary-outline btn-sm">
+									<i class="fa fa-times" aria-hidden="true"></i>
+						        </a>
+							</td>
+						</tr>										
+					@empty
+						<tr>
+							<td COLSPAN=4>
+								Tidak ada data
+							</td>
+						</tr>
+					@endforelse
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>
 @stop
