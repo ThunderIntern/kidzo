@@ -1,11 +1,17 @@
 @extends('backend.pages.website.layout')
 @section('page_content')
-
 {!! Form::open(['url' => route('backend.website.version.store', ['id' => $page_datas->id]) ]) !!}
 	<div class="card">
 		<div class="card-block">
+			<?php
+				if(is_null($page_datas->id)){
+					$title 		= 'Version Baru';
+				}else{
+					$title 		= 'Edit Version';
+				}
+			?>
 			@include('backend.widgets.components.title.title-control', ['component' => [
-				'title'			=> 'Version',
+				'title'			=> $title,
 				'controls'		=> 	[
 										'back'		=>	[
 															'link'	=> route('backend.website.version.index')
@@ -16,13 +22,17 @@
 									]
 			]])
 			<fieldset class="form-group">
-				<label for="name">Published at <small class="text-primary">Kosongkan untuk tidak dipublish</small></label>
-				<input class="form-control" data-inputmask="'mask':'d-m-y h:s'" name="published_at" type="text" value="">
+				<label for="name">Nama Versi</label>
+				{!! Form::text('version_name', $page_datas->datas['version_name'], ['class' => 'form-control']) !!}
 			</fieldset>
 			<fieldset class="form-group">
-				<label for="name">Title</label>
-				<input class="form-control" name="title" type="text">
+				<label for="name">Domain</label>
+				{!! Form::text('domain', $page_datas->datas['domain'], ['class' => 'form-control']) !!}
 			</fieldset>
+			<fieldset class="form-group">
+				<label for="name">Status</label>
+				{{ Form::select('is_active', ['0' => 'Tidak Aktif', '1' => 'Aktif'], $page_datas->datas['is_active'], ['class' => 'form-control c-select']) }}
+			</fieldset>			
 		</div>
 	</div>
 {!! Form::close() !!}

@@ -61,3 +61,11 @@ html, body {
 // positioning
 .inline-block { display:inline-block;}
 .block { display:block;}
+
+//side menu
+@media screen and (min-width: 993px) {
+	.static-sidemenu{
+		position: fixed;
+	    width: 23%;
+	}
+}

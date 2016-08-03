@@ -3,7 +3,7 @@
 <div class="card">
 	<div class="card-block">
 	@include('backend.widgets.components.title.title-add-search', ['component' => [
-		'title'			=> 'Version / Page 1',
+		'title'			=> 'Version / Page '. $page_datas->datas->currentPage(),
 		'link-add'		=> route('backend.website.version.create'),
 		'link-search'	=> '#',
 	]])
@@ -24,21 +24,21 @@
 					@forelse ($page_datas->datas as $key => $data)
 						<tr>
 							<td class="col-md-1">
-								{{$key + 1}}
+								{{($page_datas->datas->perpage() * ($page_datas->datas->currentPage()-1)) + ($key + 1)}}
 							</td>
 							<td class="col-md-3">
 								<a href="{{route('backend.website.version.show', ['id' => $data['id']])}}">
-									{{$data['name']}}
+									{{ucfirst($data['version_name'])}}
 								</a>
 							</td>
 							<td class="col-md-4">
-								{{$data['domain']}}
+								{{ucfirst($data['domain'])}}
 							</td>
 							<td class="col-md-2">
-								{{ (($data['is_active']==true) ? 'aktif' : 'tidak aktif') }}
+								{{ (($data['is_active']==true) ? 'Aktif' : 'Tidak Aktif') }}
 							</td>
 							<td class="col-md-2 text-xs-right">
-								<a href="#" class="btn btn-primary-outline btn-sm">
+								<a href="{{route('backend.website.version.edit', ['id' => $data['id']])}}" class="btn btn-primary-outline btn-sm">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 						        </a>	
 								<a href="#" class="btn btn-primary-outline btn-sm">

@@ -7,7 +7,7 @@
 	author 				: Budi
 --}}
 
-<div class="card">
+<div class="card static-sidemenu">
 	@include('backend.widgets.components.title.title-description', [
 		'component'		=> 	[
 								'title'			=> $title,
