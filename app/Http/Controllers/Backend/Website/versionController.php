@@ -5,13 +5,13 @@ namespace App\Http\Controllers\Backend\Website;
 use App\Http\Controllers\baseController;
 
 use App\Models\Version;
-use Request, Input;
+use Request, Input, URL;
 
 class versionController extends BaseController
 {
-    protected $view_source_root             = 'backend.pages.website.version';
-    protected $page_title                   = 'version';
-    protected $breadcrumb                   = [];
+    protected $view_source_root                 = 'backend.pages.website.version';
+    protected $page_title                       = 'version';
+    protected $breadcrumb                       = [];
     public function __construct()
     {
         parent::__construct();
@@ -26,17 +26,17 @@ class versionController extends BaseController
     public function index()
     {   
         //get data
-        $version                            = new Version;
-        $datas                              = $version->paginate(50);
+        $version                                = new Version;
+        $datas                                  = $version->paginate(50);
 
-        $this->page_datas->datas            = $datas;
+        $this->page_datas->datas                = $datas;
 
         //page attributes
-        $this->page_attributes->page_title  = $this->page_title;
+        $this->page_attributes->page_title      = $this->page_title;
 
         //generate view
-        $view_source                        = $this->view_source_root . '.index';
-        $route_source                       = Request::route()->getName();        
+        $view_source                            = $this->view_source_root . '.index';
+        $route_source                           = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);
     }
 
@@ -48,23 +48,26 @@ class versionController extends BaseController
     public function create($id = null)
     {
         //get data
-        $datas                              = [];
+        $datas                                  = null;
         
         if($id != null)
         {
-            $version                        = new Version;
-            $datas                          = $version->paginate(50);
+            $version                            = new Version;
+            $datas                              = $version->find($id);
         }
 
-        $this->page_datas->datas            = $datas;
+        $this->page_datas->datas                = $datas;
+
+        //set referral url
+        $this->setRefererUrl();
 
         //page attributes
-        $this->page_attributes->page_title  = $this->page_title;
-        $this->page_datas->id               = $id;
+        $this->page_attributes->msg             = $this->page_title;
+        $this->page_datas->id                   = $id;
 
         //generate view
-        $view_source                        = $this->view_source_root . '.create';
-        $route_source                       = Request::route()->getName();        
+        $view_source                            = $this->view_source_root . '.create';
+        $route_source                           = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);
     }
 
@@ -76,7 +79,27 @@ class versionController extends BaseController
      */
     public function store($id = null)
     {
-        dd(Input::all());
+        //get input
+        $input                                  = Input::only('version_name','domain','is_active');
+
+        //create or edit
+        if(is_null($id)){
+            $version                            = new Version;
+        }else{
+            $version                            = Version::find($id);
+        }
+
+        //save data
+        $version->version_name                  = $input['version_name'];
+        $version->domain                        = $input['domain'];
+        $version->is_active                     = $input['is_active'];
+
+        $version->save();
+
+        $this->errors                           = $version->getErrors();
+        $this->page_attributes->msg             = 'Data telah disimpan';
+
+        return $this->generateRedirect($this->getRefererUrl());
     }
 
     /**

@@ -13,8 +13,9 @@ class Version extends BaseModel
 	 * @var array
 	 */
 	protected $fillable				=	[
-											'name'							,
+											'version_name'					,
 											'domain'						,
+											'is_active'						,
 										];
 
 	/**
@@ -35,8 +36,9 @@ class Version extends BaseModel
 	 */
 
 	protected $rules				=	[
-											'name'							=> 'required|max:255',
-											'domain'						=> 'required|max:255'
+											'version_name'					=> 'required|max:255',
+											'domain'						=> 'required|max:255',
+											'is_active'						=> 'required|boolean'
 										];
 
 	/**
