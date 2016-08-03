@@ -1,6 +1,13 @@
 @extends('backend.pages.website.layout')
 @section('page_content')
-{!! Form::open(['url' => route('backend.website.version.store', ['id' => $page_datas->id]) ]) !!}
+<?php 
+// dd($page_datas->id);
+?>
+@if(is_null($page_datas->id))
+{!! Form::open(['url' => route('backend.website.version.store') ]) !!}
+@else
+{!! Form::open(['url' => route('backend.website.version.update', ['id' => $page_datas->id]), 'method' => 'patch' ]) !!}
+@endif
 	<div class="card">
 		<div class="card-block">
 			<?php

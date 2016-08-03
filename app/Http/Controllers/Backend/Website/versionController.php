@@ -83,11 +83,7 @@ class versionController extends BaseController
         $input                                  = Input::only('version_name','domain','is_active');
 
         //create or edit
-        if(is_null($id)){
-            $version                            = new Version;
-        }else{
-            $version                            = Version::find($id);
-        }
+        $version                                = Version::findOrNew($id);
 
         //save data
         $version->version_name                  = $input['version_name'];
@@ -131,9 +127,9 @@ class versionController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        return $this->store($id);
     }
 
     /**
