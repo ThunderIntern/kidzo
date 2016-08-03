@@ -17,14 +17,14 @@ class VersionsTableSeeder extends Seeder
 
         $Version 						= new Version;
 
-        $Version['name']				= 'Kidzo';
+        $Version['version_name']		= 'Kidzo';
         $Version['domain']              = 'kidzo.id';
         $Version['is_active']			= true;
         $Version->save();
 
         $Version 						= new Version;
 
-        $Version['name']				= 'Sewa Mainan Anak';
+        $Version['version_name']		= 'Sewa Mainan Anak';
         $Version['domain']				= 'sewamainananak.com';
         $Version['is_active']           = true;
         
