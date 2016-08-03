@@ -1,4 +1,3 @@
-<div class="card-block">
 <h4 class="card-title">
 	{{$component['title']}}
 	<a href="{{$component['link-add']}}" class="pull-right btn btn-primary-outline">
