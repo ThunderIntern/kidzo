@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend\CRM;
 use App\Http\Controllers\baseController;
 
 use App\Models\Subscriber;
-use Request, Input, URL;
+use Request, Input, URL, Hash;
 
 class newsletterController extends BaseController
 {
@@ -75,10 +75,10 @@ class newsletterController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id = null)
     {
          //get input
-        $input                                  = Input::only('eamil','version','unsubscribe_token','is_subscribe');
+        $input                                  = Input::only('email','version','unsubscribe_token','is_subscribe');
 
         //create or edit
         $newsletter                           = Subscriber::findOrNew($id);
@@ -86,8 +86,13 @@ class newsletterController extends BaseController
         //save data
         $newsletter->email                     = $input['email'];
         $newsletter->version                   = $input['version'];
-        $newsletter->unsubscribe_token         = $input['unsubscribe_token'];
+        $hashedToken                           = Hash::make($input['unsubscribe_token']);
+        $newsletter->unsubscribe_token         = $hashedToken;
         $newsletter->is_subscribe              = $input['is_subscribe'];
+
+        if(is_null($newsletter->admin)){
+            $newsletter->admin                     = 'Admins';
+        }
 
         $newsletter->save();
 
