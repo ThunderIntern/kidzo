@@ -16,11 +16,11 @@ class WebsiteConfigsTableSeeder extends Seeder
     {
 		WebsiteConfig::truncate();
 
-        $newsletter 					= new WebsiteConfig;
+        $WebsiteConfig 					= new WebsiteConfig;
 
         $version 						= Version::first();
 
-        $newsletter['config']			= 	[
+        $WebsiteConfig['config']		= 	[
         										'slider' 		=> 	[
         																'1' 			=> 'slider1.jpg',
         																'2' 			=> 'slider2.jpg',
@@ -34,89 +34,17 @@ class WebsiteConfigsTableSeeder extends Seeder
 		        														'facebook' 		=> 'facebook.com/kidzo',
 		        														'instagram' 	=> 'instagram.com/kidzo',
 		        													], 		        													       													
-        									];
-		$newsletter['about']			= 	[
-												'Kategori 1'	=> 	[
-																		'Subkategori 1'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																													
-																							],
-																		'Subkategori 2'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'3'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],	
-																								'4'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																																																																																						
-																							],
-																	],
-												'Kategori 2'	=> 	[
-																		'Subkategori 1'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																													
-																							],
-																		'Subkategori 2'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'3'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],	
-																								'4'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																																																																																						
-																							],
-																		'Subkategori 3'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																													
-																							],																							
-																	],																	
-											];        									
-        $newsletter['version']			= $version;
-        $newsletter['admin']			= 'Admin';
-        $newsletter->save();
+        									];      									
+        $WebsiteConfig['version']		= $version;
+        $WebsiteConfig['admin']			= 'Admin';
+        $WebsiteConfig->save();
 
 
-        $newsletter 					= new WebsiteConfig;
+        $WebsiteConfig 					= new WebsiteConfig;
 
         $version 						= Version::first();
 
-        $newsletter['config']			= 	[
+        $WebsiteConfig['config']			= 	[
         										'slider' 		=> 	[
         																'1' 			=> 'slider1.jpg',
         																'2' 			=> 'slider2.jpg',
@@ -130,82 +58,9 @@ class WebsiteConfigsTableSeeder extends Seeder
 		        														'facebook' 		=> 'facebook.com/kidzo',
 		        														'instagram' 	=> 'instagram.com/kidzo',
 		        													], 		        													       													
-        									];
-		$newsletter['about']			= 	[
-												'Kategori 1'	=> 	[
-																		'Subkategori 1'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																													
-																							],
-																		'Subkategori 2'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'3'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],	
-																								'4'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																																																																																						
-																							],
-																	],
-												'Kategori 2'	=> 	[
-																		'Subkategori 1'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																													
-																							],
-																		'Subkategori 2'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'3'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],	
-																								'4'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																																																																																						
-																							],
-																		'Subkategori 3'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																													
-																							],																							
-																	],																	
-											];        									
-        $newsletter['version']			= $version;
-        $newsletter['admin']			= 'Admin Satunya';
-
-        $newsletter->save();
+        									];       									
+        $WebsiteConfig['version']		= $version;
+        $WebsiteConfig['admin']			= 'Admin Satunya';
+        $WebsiteConfig->save();
     }
 }
