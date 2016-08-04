@@ -8,6 +8,7 @@
 	Available Controls 	: 1. Back ['back' => ['link' => 'YOUR BACK LINK']]
 						  2. Save ['save' => ['link' => 'YOUR SAVE LINK']]
 						  3. Edit ['edit' => ['link' => 'YOUR EDIT LINK']]
+						  4. Delete ['delete' => ['modal' => 'YOUR DELETE MODAL PARAMETER']]
 	author 				: Budi
 --}}
 
@@ -30,10 +31,20 @@
 </button>
 @endif
 
+@if(isset($component['controls']['delete']))
+<a href="javascript:void(0);" class="btn btn-primary-outline pull-right ml-s">
+	<i class="fa fa-trash"></i>
+	Hapus
+</a>
+@endif
+
 @if(isset($component['controls']['edit']))
-<a href="{{$component['controls']['edit']['link']}}" class="btn btn-primary-outline pull-right">
+<a href="{{$component['controls']['edit']['link']}}" class="btn btn-primary-outline pull-right ml-s">
 	<i class="fa fa-pencil"></i>
 	Edit
-</button>
+</a>
 @endif
+
+
+
 <hr class="thick">

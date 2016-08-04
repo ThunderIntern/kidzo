@@ -10,15 +10,8 @@
 @endif
 	<div class="card">
 		<div class="card-block">
-			<?php
-				if(is_null($page_datas->id)){
-					$title 		= 'Version Baru';
-				}else{
-					$title 		= 'Edit Version';
-				}
-			?>
 			@include('backend.widgets.components.title.title-control', ['component' => [
-				'title'			=> $title,
+				'title'			=> $page_attributes->page_title,
 				'controls'		=> 	[
 										'back'		=>	[
 															'link'	=> route('backend.website.version.index')
