@@ -71,7 +71,7 @@ button:
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></br>
                                             <div class="icon pull-right">
                                                 <a href="#"><i class="fa fa-shopping-cart fa-2x paddingRight50" aria-hidden="true"></i></a>
                                                 <a href="#"><i class="fa fa-search fa-2x" aria-hidden="true"></i></a>

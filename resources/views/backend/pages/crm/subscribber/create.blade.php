@@ -12,9 +12,9 @@
 // dd($page_datas->id);
 ?>
 @if(is_null($page_datas->id))
-{!! Form::open(['url' => route('backend.subscribber.store') ]) !!}
+{!! Form::open(['url' => route('backend.crm.subscribber.store') ]) !!}
 @else
-{!! Form::open(['url' => route('backend.subscribber.update', ['id' => $page_datas->id]), 'method' => 'patch' ]) !!}
+{!! Form::open(['url' => route('backend.crm.subscribber.update', ['id' => $page_datas->id]), 'method' => 'patch' ]) !!}
 @endif
 	<div class="card">
 		<div class="card-block">
@@ -29,25 +29,29 @@
 				'title'			=> $title,
 				'controls'		=> 	[
 										'back'		=>	[
-															'link'	=> route('backend.subscribber.index')
+															'link'	=> route('backend.crm.subscribber.index')
 														],
 										'save'		=> 	[
-															'link'	=> route('backend.subscribber.store', ['id' => $page_datas->id])
+															'link'	=> route('backend.crm.subscribber.store', ['id' => $page_datas->id])
 														]
 									]
 			]])
 			<fieldset class="form-group">
-				<label for="name">Nama Versi</label>
-				{!! Form::text('version_name', $page_datas->datas['version_name'], ['class' => 'form-control']) !!}
+				<label for="name">Email</label>
+				{!! Form::text('email', $page_datas->datas['email'], ['class' => 'form-control']) !!}
 			</fieldset>
 			<fieldset class="form-group">
-				<label for="name">Domain</label>
-				{!! Form::text('domain', $page_datas->datas['domain'], ['class' => 'form-control']) !!}
+				<label for="name">Version</label>
+				{!! Form::text('version', $page_datas->datas['version'], ['class' => 'form-control']) !!}
 			</fieldset>
 			<fieldset class="form-group">
-				<label for="name">Status</label>
-				{{ Form::select('is_active', ['0' => 'Tidak Aktif', '1' => 'Aktif'], $page_datas->datas['is_active'], ['class' => 'form-control c-select']) }}
-			</fieldset>			
+				<label for="name">Unsubscribe Token</label>
+				{{ Form::text('unsubscribe_token', $page_datas->datas['unsubscribe_token'], ['class' => 'form-control']) }}
+			</fieldset>	
+			<fieldset class="form-group">
+				<label for="name">Is Subscribe</label>
+				{{ Form::select('is_subscribe', ['0' => 'Subscribed', '1' => 'Unsubscribed'], $page_datas->datas['is_subscribe'], ['class' => 'form-control c-select']) }}
+			</fieldset>		
 		</div>
 	</div>
 {!! Form::close() !!}

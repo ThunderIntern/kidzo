@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend\CRM;
 use App\Http\Controllers\baseController;
 
 use App\Models\Subscriber;
-use Request, Input, URL;
+use Request, Input, URL, Hash;
 
 class subscribberController extends BaseController
 {
@@ -78,7 +78,7 @@ class subscribberController extends BaseController
     public function store(Request $request)
     {
         //get input
-        $input                                  = Input::only('eamil','version','unsubscribe_token','is_subscribe');
+        $input                                  = Input::only('email','version','unsubscribe_token','is_subscribe');
 
         //create or edit
         $subscribber                            = Subscriber::findOrNew($id);
@@ -86,8 +86,13 @@ class subscribberController extends BaseController
         //save data
         $subscribber->email                     = $input['email'];
         $subscribber->version                   = $input['version'];
-        $subscribber->unsubscribe_token         = $input['unsubscribe_token'];
+        $hashedToken                            = Hash::make($input['unsubscribe_token']);
+        $subscribber->unsubscribe_token          = $hashedToken;
         $subscribber->is_subscribe              = $input['is_subscribe'];
+
+        if(is_null($subscribber->admin)){
+            $subscribber->admin                     = 'Admins';
+        }
 
         $subscribber->save();
 
