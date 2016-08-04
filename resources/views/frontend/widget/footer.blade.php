@@ -18,7 +18,8 @@ button:
 
 -->
 {!! Form::open(['url' => route('register') ]) !!}
-                <div class="warna">
+                
+                <div>
                     <div class="floatLeft width20Per height5 bgred"></div>
                     <div class="floatLeft width20Per height5 bggreen"></div>
                     <div class="floatLeft width20Per height5 bgorange"></div>
@@ -27,7 +28,7 @@ button:
                 </div>
 
             
-                <div class="col-sm-12 paddingSamping bgsky">
+                <div class="paddingBottom60 bgabumuda paddingRight50 paddingLeft50" >
                     <div class="normala">
                         <div class="paddingTop25 floatLeft footer-col1">
                             <div class="col-sm-1"></div>
@@ -51,23 +52,24 @@ button:
                             <p><b>Newslatter</b></p>
                             <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
                             
-                                {!! Form::email('email_desktop',null, ['class' => 'form email width85Per']) !!}
-                                <button type="submit" class="black bgabu butFoot width15Per">Daftar</button>
+                                {!! Form::email('email_desktop',null, ['class' => 'form email width80Per', 'placeholder' => 'Email Anda']) !!}
+                                <button type="submit" class="black bgabu butFoot width20Per">Daftar</button>
                             
                         </div>
                     </div>
-                        <div class="kecila">
-                            <p><b>Newslatter</b></p>
-                            <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
-                            
-                                {!! Form::email('email_mobile',null, ['class' => 'form email width80Per']) !!}
-                                <button type="submit" class="black bgabu butFoot width20Per">Daftar</button>
-                        </div>
-                    
+                </div>
+                <div class=" paddingLeft40 bgabumuda  paddingRight50 ">
+                    <div class="kecila">
+                        <p><b>Newslatter</b></p>
+                        <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
+                        
+                            {!! Form::email('email_mobile',null, ['class' => 'form email width80Per', 'placeholder' => 'Email Anda']) !!}
+                            <button type="submit" class="black bgabu butFoot width20Per">Daftar</button>
+                    </div>
                 </div>
 
-            <div class="container-fluid paddingLeft50 paddingRight50 bgabu">
-                <div class="col-sm-12 paddingTop10">
+            <div class="col-sm-12 paddingLeft50 paddingRight50 bgabu">
+                <div class="paddingTop10">
                     <div class="normalb">
                         <p>2016 KIDZO. All right reserved<span class="floatRight">Develop by : Thunderlab Indonesia</span></p>
                     </div>

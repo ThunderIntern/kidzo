@@ -1,4 +1,5 @@
-@media (max-width: 768px){
+@media (max-width: 859px){
+    
     .desktop{
         display:none;
     }
@@ -43,12 +44,9 @@
 	.paddingBottom100{
 		padding-bottom: 50px;
 	}
-	.warna{
-		margin-bottom:5px;
-	}
 }
 
-@media(min-width: 769px){
+@media(min-width: 860px){
     .mobile{
         display:none;
     }
@@ -64,5 +62,16 @@
 		border-top-left-radius: 5px;
 		border:1px solid #E2E2E2;
 		padding:5px 10px;
+	}
+	@media(min-width: 990px){
+		.desktop .butKoleksi2{
+			display:none;
+		}
+	}
+}
+
+@media(max-width: 990px){
+	.desktop .butKoleksi{
+		display:none;
 	}
 }
