@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-class Newsletter extends BaseModel
+class Faq extends BaseModel
 {
-	protected $collection			= 'newsletters';
+	protected $collection			= 'faqs';
 	public $timestamps				= true;
 	
 	/**
@@ -13,10 +13,10 @@ class Newsletter extends BaseModel
 	 * @var array
 	 */
 	protected $fillable				=	[
-											'email'							,
+											'doc'							,
 											'version'						,
-											'unsubscribe_token'				,
-											'is_subscribe'					,
+											'published_at'					,
+											'admin'
 										];
 
 	/**
@@ -27,7 +27,8 @@ class Newsletter extends BaseModel
 	protected $dates				=	[
 											'created_at'					, 
 											'updated_at'					, 
-											'deleted_at'
+											'deleted_at'					,
+											'published_at'
 										];
 
 	/**
@@ -37,8 +38,7 @@ class Newsletter extends BaseModel
 	 */
 
 	protected $rules				=	[
-											'email'							=> 'required|email',
-											'is_subscribe'					=> 'required|boolean',
+											'published_at'					=> 'required|date',
 										];
 
 	/**
@@ -48,4 +48,3 @@ class Newsletter extends BaseModel
 	 */
 	protected $message				=	[];	
 }
-

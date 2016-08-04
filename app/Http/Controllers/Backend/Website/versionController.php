@@ -10,7 +10,7 @@ use Request, Input, URL;
 class versionController extends BaseController
 {
     protected $view_source_root                 = 'backend.pages.website.version';
-    protected $page_title                       = 'version';
+    protected $page_title                       = 'Version';
     protected $breadcrumb                       = [];
     public function __construct()
     {
@@ -27,7 +27,7 @@ class versionController extends BaseController
     {   
         //get data
         $version                                = new Version;
-        $datas                                  = $version->paginate(50);
+        $datas                                  = $version->paginate(10);
 
         $this->page_datas->datas                = $datas;
 
@@ -62,7 +62,11 @@ class versionController extends BaseController
         $this->setRefererUrl();
 
         //page attributes
-        $this->page_attributes->msg             = $this->page_title;
+        if($id != null){
+            $this->page_attributes->page_title  = 'Edit '. $this->page_title;
+        }else{
+            $this->page_attributes->page_title  = $this->page_title . ' Baru';
+        }
         $this->page_datas->id                   = $id;
 
         //generate view
@@ -105,10 +109,23 @@ class versionController extends BaseController
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
+    {   
+        //get data
+        $version                                = new Version;
+        $datas                                  = $version->find($id);
 
+        $this->page_datas->datas                = $datas;
+
+        //page attributes
+        $this->page_datas->id                   = $id;
+        $this->page_attributes->page_title      = 'Detail ' . $this->page_title;
+
+
+        //generate view
+        $view_source                            = $this->view_source_root . '.show';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }
     /**
      * Show the form for editing the specified resource.
      *

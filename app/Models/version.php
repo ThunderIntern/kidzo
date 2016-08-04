@@ -16,6 +16,7 @@ class Version extends BaseModel
 											'version_name'					,
 											'domain'						,
 											'is_active'						,
+											'admin'							
 										];
 
 	/**

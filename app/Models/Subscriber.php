@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-class WebsiteConfig extends BaseModel
+class Subscriber extends BaseModel
 {
-	protected $collection			= 'website_configs';
+	protected $collection			= 'Subscribers';
 	public $timestamps				= true;
 	
 	/**
@@ -13,10 +13,10 @@ class WebsiteConfig extends BaseModel
 	 * @var array
 	 */
 	protected $fillable				=	[
-											'config'						,
+											'email'							,
 											'version'						,
-											'published_at'					,
-											'admin'
+											'unsubscribe_token'				,
+											'is_subscribe'					,
 										];
 
 	/**
@@ -27,8 +27,7 @@ class WebsiteConfig extends BaseModel
 	protected $dates				=	[
 											'created_at'					, 
 											'updated_at'					, 
-											'deleted_at'					,
-											'published_at'
+											'deleted_at'
 										];
 
 	/**
@@ -38,7 +37,8 @@ class WebsiteConfig extends BaseModel
 	 */
 
 	protected $rules				=	[
-											'published_at'					=> 'required|date',
+											'email'							=> 'required|email',
+											'is_subscribe'					=> 'required|boolean',
 										];
 
 	/**
@@ -48,3 +48,4 @@ class WebsiteConfig extends BaseModel
 	 */
 	protected $message				=	[];	
 }
+
