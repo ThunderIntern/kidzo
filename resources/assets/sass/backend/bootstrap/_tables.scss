@@ -195,3 +195,6 @@
 .no-top-border th{
     border-top: none !important;
 }
+tr{
+    transition: background-color 0.4s ease;
+}
