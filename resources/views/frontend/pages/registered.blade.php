@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 @extends('frontend.layout.layout')
 @section('content')
     <div class="container berlangganan modal-dialog text-center">

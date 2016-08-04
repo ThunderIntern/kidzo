@@ -6,6 +6,8 @@ use Request;
 use App\Http\Controllers\Functions\email;
 use App\Http\Requests;
 use App\Http\Controllers\BaseController;
+use App\Models\Subscriber;
+use Input, URL, Hash;
 
 class webController extends BaseController
 {
@@ -34,7 +36,6 @@ class webController extends BaseController
     {
 
         $this->page_attributes->page_title  = $this->page_title;
-        $this->page_datas->datas            = ['0'=>'test', '1'=>'test lagi'];
        //generate view
         $view_source                       = $this->view_source_root . '.about';
         $route_source                      = Request::route()->getName();        
@@ -43,12 +44,45 @@ class webController extends BaseController
 
     public function registerNewsletter()
     {
-        //
+        $newsletter                             = new Subscriber;
+
+        $this->page_datas->datas                = [];
+
+        //get input
+        $input                                  = Input::only('email_mobile','email_desktop');
+
+        //save data
+        if(empty($input['email_mobile'])){
+            $newsletter->email                  = $input['email_desktop'];
+        }else{
+            $newsletter->email                  = $input['email_mobile'];
+        }
+
+        $newsletter->version                   = 'Kidzo';
+        $hashedToken                           = Hash::make('123456');
+        $newsletter->unsubscribe_token         = $hashedToken;
+        $newsletter->is_subscribe              = true;
+
+        if(is_null($newsletter->admin)){
+            $newsletter->admin                     = 'Admins';
+        }
+
+        $newsletter->save();
+        $this->errors                           = $newsletter->getErrors();
+        $this->page_attributes->msg             = 'Data telah disimpan';
+
+        return $this->generateRedirect(route('registered'));
+
+
+
     }
 
-    public function registeredNewsletter()
+    public function registeredNewsletter($id = null)
     {
-       return $this->generateView('frontend.pages.registered', Request::route()->getName());
+
+
+        
+        return $this->generateView('frontend.pages.registered', Request::route()->getName());
     }
 
      public function unsubscribeNewsletter()

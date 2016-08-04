@@ -1,4 +1,4 @@
-<!--Document
+ <!--Document
 
 Normala + normalb :yang akan muncul saat ukuran desktop
 Kecila + kecilb  :yang akan muncul saat ukuran mobile
@@ -17,6 +17,7 @@ button:
 - butFoot : mengubah model button di footer
 
 -->
+{!! Form::open(['url' => route('register') ]) !!}
                 <div class="warna">
                     <div class="floatLeft width20Per height5 bgred"></div>
                     <div class="floatLeft width20Per height5 bggreen"></div>
@@ -30,7 +31,7 @@ button:
                     <div class="normala">
                         <div class="paddingTop25 floatLeft footer-col1">
                             <div class="col-sm-1"></div>
-                            <img src="{{asset('image/frontend/frontend/logo.png')}}" class="gambar">
+                            <img src="{{asset('image/frontend/logo.png')}}" class="gambar">
                         </div>
                         <div class="floatLeft footer-col2">
                             <p><b>PT.KIDZO GEMBIRA SENTOSA</b></p>
@@ -50,8 +51,8 @@ button:
                             <p><b>Newslatter</b></p>
                             <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
                             
-                                <input type="text" class="form email width85Per" placeholder="Email Anda">
-                                <a href="{{Route('registered')}}"><button type="submit" class="black bgabu butFoot width15Per">Daftar</button></a>
+                                {!! Form::email('email_desktop',null, ['class' => 'form email width85Per']) !!}
+                                <button type="submit" class="black bgabu butFoot width15Per">Daftar</button>
                             
                         </div>
                     </div>
@@ -59,8 +60,8 @@ button:
                             <p><b>Newslatter</b></p>
                             <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
                             
-                                <input type="text" class="form email width80Per" placeholder="Email Anda">
-                                <a href="{{Route('registered')}}"><button type="submit" class="black bgabu butFoot width20Per">Daftar</button></a>
+                                {!! Form::email('email_mobile',null, ['class' => 'form email width80Per']) !!}
+                                <button type="submit" class="black bgabu butFoot width20Per">Daftar</button>
                         </div>
                     
                 </div>
@@ -76,3 +77,4 @@ button:
                     </div>
                 </div>
             </div>
+{!! Form::close() !!}
