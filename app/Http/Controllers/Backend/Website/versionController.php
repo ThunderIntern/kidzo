@@ -163,15 +163,19 @@ class versionController extends BaseController
      */
     public function destroy($id)
     {
-        //get password
-        $password                               = Input::get('password');
-
         //find 
         $version                                = Version::find($id);
 
-        //delete data
-        $version->delete();
+        //get password
+        $password                               = Input::get('password');
+        if(empty($password)){
+            $this->errors                       = "Password not valid";
+        }else{
+            //delete data
+            $version->delete();
+        }
 
+        //return view
         $this->errors                           = $version->getErrors();
         $this->page_attributes->msg             = 'Data telah dihapus';
 
