@@ -31,7 +31,7 @@
 			'title'		=> 'Status',
 			'content'	=>  $page_datas->datas['is_active']
 		]])		
-		@include('backend.widgets.components.detail.detail-status',['component' => [
+		@include('backend.widgets.components.detail.detail-text',['component' => [
 			'title'		=> 'Created By',
 			'content'	=>  ucfirst($page_datas->datas['admin'])
 		]])	
