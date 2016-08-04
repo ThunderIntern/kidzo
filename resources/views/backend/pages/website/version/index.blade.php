@@ -8,6 +8,7 @@
 		'link-search'	=> '#',
 	]])
 	</div>
+	@include('backend.widgets.alertbox')
 	<div class="card-block">
 		<div class="table-responsive">
 			<table class="table table-hover">

@@ -173,10 +173,11 @@ class versionController extends BaseController
         }else{
             //delete data
             $version->delete();
+            
+            $this->errors                       = $version->getErrors();
         }
 
         //return view
-        $this->errors                           = $version->getErrors();
         $this->page_attributes->msg             = 'Data telah dihapus';
 
         return $this->generateRedirect(route('backend.website.version.index'));

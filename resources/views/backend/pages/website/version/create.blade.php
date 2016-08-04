@@ -1,8 +1,6 @@
 @extends('backend.pages.website.layout')
 @section('page_content')
-<?php 
-// dd($page_datas->id);
-?>
+
 @if(is_null($page_datas->id))
 {!! Form::open(['url' => route('backend.website.version.store') ]) !!}
 @else
