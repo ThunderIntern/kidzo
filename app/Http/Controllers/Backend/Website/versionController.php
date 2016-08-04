@@ -94,6 +94,11 @@ class versionController extends BaseController
         $version->domain                        = $input['domain'];
         $version->is_active                     = $input['is_active'];
 
+        //set Admin
+        if(is_null($version->admin)){
+            $version->admin                     = 'Admins';
+        }
+        
         $version->save();
 
         $this->errors                           = $version->getErrors();

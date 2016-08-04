@@ -16,51 +16,30 @@
 	]])
 	</div>
 	<div class="card-block">
-		<div class="row">
-			<div class="col-xs-3 ">
-				<span class="text-uppercase"><strong>Version Name</strong></span>
-			</div>
-			<div class="col-xs-9">
-				{!! ucfirst($page_datas->datas['version_name']) !!}
-			</div>		
-			<div class="col-xs-12"><hr></div>
-		</div>
-		<div class="row">
-			<div class="col-xs-3 ">
-				<span class="text-uppercase"><strong>Domain</strong></span>
-			</div>
-			<div class="col-xs-9">
-				{!! ucfirst($page_datas->datas['domain']) !!}
-			</div>		
-			<div class="col-xs-12"><hr></div>
-		</div>
-		<div class="row">
-			<div class="col-xs-3 ">
-				<span class="text-uppercase"><strong>Status</strong></span>
-			</div>
-			<div class="col-xs-9">
-				{!! ucfirst($page_datas->datas['is_active']) !!}
-			</div>		
-			<div class="col-xs-12"><hr></div>
-		</div>
-		<div class="row">
-			<div class="col-xs-3 ">
-				<span class="text-uppercase"><strong>Created At</strong></span>
-			</div>
-			<div class="col-xs-9">
-				{!! ucfirst($page_datas->datas['created_at']) !!}
-			</div>		
-			<div class="col-xs-12"><hr></div>
-		</div>
-		<div class="row">
-			<div class="col-xs-3 ">
-				<span class="text-uppercase"><strong>Last Time Updated</strong></span>
-			</div>
-			<div class="col-xs-9">
-				{!! ucfirst($page_datas->datas['created_at']) !!}
-			</div>		
-			<div class="col-xs-12"><hr></div>
-		</div>			
+		@include('backend.widgets.components.detail.detail-text',['component' => [
+			'title'		=> 'Version Name',
+			'content'	=>  ucfirst($page_datas->datas['version_name'])
+		]])
+		@include('backend.widgets.components.detail.detail-text',['component' => [
+			'title'		=> 'Domain',
+			'content'	=>  ucfirst($page_datas->datas['domain'])
+		]])
+		@include('backend.widgets.components.detail.detail-status',['component' => [
+			'title'		=> 'Status',
+			'content'	=>  $page_datas->datas['is_active']
+		]])		
+		@include('backend.widgets.components.detail.detail-status',['component' => [
+			'title'		=> 'Created By',
+			'content'	=>  ucfirst($page_datas->datas['admin'])
+		]])	
+		@include('backend.widgets.components.detail.detail-date',['component' => [
+			'title'		=> 'Created At',
+			'content'	=>  $page_datas->datas['created_at']
+		]])			
+		@include('backend.widgets.components.detail.detail-date',['component' => [
+			'title'		=> 'Last Time Updated',
+			'content'	=>  $page_datas->datas['updated_at']
+		]])	
 	</div>
 </div>
 @stop
