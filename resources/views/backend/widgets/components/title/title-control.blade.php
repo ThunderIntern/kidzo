@@ -8,7 +8,7 @@
 	Available Controls 	: 1. Back ['back' => ['link' => 'YOUR BACK LINK']]
 						  2. Save ['save' => ['link' => 'YOUR SAVE LINK']]
 						  3. Edit ['edit' => ['link' => 'YOUR EDIT LINK']]
-						  4. Delete ['delete' => ['modal' => 'YOUR DELETE MODAL PARAMETER']]
+						  4. Delete ['delete' => ['link' => 'YOUR DELETE LINK']]
 	author 				: Budi
 --}}
 
@@ -32,10 +32,15 @@
 @endif
 
 @if(isset($component['controls']['delete']))
-<a href="javascript:void(0);" class="btn btn-primary-outline pull-right ml-s">
+<a href="javascript:void(0);" class="btn btn-primary-outline pull-right ml-s" data-toggle="modal" data-target="#modalDelete" data-action="{{$component['controls']['delete']['link']}}">
 	<i class="fa fa-trash"></i>
 	Hapus
 </a>
+
+@section('modal')
+	@include('backend.modals.delete')
+@append
+
 @endif
 
 @if(isset($component['controls']['edit']))
