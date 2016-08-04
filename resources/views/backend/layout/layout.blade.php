@@ -8,7 +8,11 @@
     </head>
     <body>
         @include('backend.widgets.topbar')
-		@yield('content')
+        @yield('content')
+		@yield('modal')
     </body>
     {!! Html::script(elixir('js/backend.js')) !!}
+    <script>
+        @yield('scripts')
+    </script>
 </html>

@@ -11,7 +11,9 @@
 								'edit'		=>	[
 													'link'	=> route('backend.website.version.edit', ['id'=> $page_datas->id] )
 												],												
-								'delete'	=> 	[],
+								'delete'	=> 	[
+													'link'	=> route('backend.website.version.destroy',['id' => $page_datas->id] )
+												],
 							]		
 	]])
 	</div>

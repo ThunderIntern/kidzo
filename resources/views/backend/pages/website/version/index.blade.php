@@ -41,7 +41,7 @@
 								<a href="{{route('backend.website.version.edit', ['id' => $data['id']])}}" class="btn btn-primary-outline btn-sm">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 						        </a>	
-								<a href="#" class="btn btn-primary-outline btn-sm">
+								<a href="#" class="btn btn-primary-outline btn-sm" data-toggle="modal" data-target="#modalDelete" data-action="{!! route('backend.website.version.destroy',['id' => $data['id']]) !!}">
 									<i class="fa fa-times" aria-hidden="true"></i>
 						        </a>
 							</td>
@@ -60,3 +60,7 @@
 	</div>
 </div>
 @stop
+
+@section('modal')
+	@include('backend.modals.delete')
+@append
