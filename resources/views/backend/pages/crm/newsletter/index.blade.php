@@ -3,8 +3,8 @@
 <div class="card">
 	<div class="card-block">
 	@include('backend.widgets.components.title.title-add-search', ['component' => [
-		'title'			=> 'Subscribber / Page '. $page_datas->datas->currentPage(),
-		'link-add'		=> route('backend.crm.subscribber.create'),
+		'title'			=> 'Newsletter / Page 1',
+		'link-add'		=> route('backend.crm.newsletter.create'),
 		'link-search'	=> '#',
 	]])
 	</div>
@@ -28,7 +28,7 @@
 								{{($page_datas->datas->perpage() * ($page_datas->datas->currentPage()-1)) + ($key + 1)}}
 							</td>
 							<td class="col-md-3">
-								<a href="{{route('backend.crm.subscribber.show', ['id' => $data['id']])}}">
+								<a href="{{route('backend.crm.newsletter.show', ['id' => $data['id']])}}">
 									{{ucfirst($data['email'])}}
 								</a>
 							</td>
@@ -42,7 +42,7 @@
 								{{ (($data['is_subscribe']==true) ? 'Subscribed' : 'Unsubscribed') }}
 							</td>
 							<td class="col-md-2 text-xs-right">
-								<a href="{{route('backend.crm.subscribber.edit', ['id' => $data['id']])}}" class="btn btn-primary-outline btn-sm">
+								<a href="{{route('backend.crm.newsletter.edit', ['id' => $data['id']])}}" class="btn btn-primary-outline btn-sm">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 						        </a>	
 								<a href="#" class="btn btn-primary-outline btn-sm">

@@ -13,8 +13,8 @@
 			'title' 		=> 'CRM',
 			'description' 	=> 'Pengaturan Newsletter',
 			'components' => [
-								'0' => ['link' => Route('backend.subscribber.index'), 'caption' => 'Subscribber'],
-								'1' => ['link' => Route('backend.newsletter.blast'), 'caption' => 'Newsletter'],
+								'0' => ['link' => Route('backend.crm.subscribber.index'), 'caption' => 'Subscribber'],
+								'1' => ['link' => Route('backend.crm.newsletter.index'), 'caption' => 'Newsletter'],
 		]])
 		</div>
  

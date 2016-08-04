@@ -82,17 +82,26 @@ Route::group(['namespace' => 'Backend'], function(){
 	});
 
 	//CRM
-	Route::resource('/admin/CRM/subscribber', 'newsletterController', ['names' => [
-		'index' 	=> 'backend.subscribber.index',
-		'create'	=> 'backend.subscribber.create', 
-		'store' 	=> 'backend.subscribber.store', 
-		'show' 		=> 'backend.subscribber.show', 
-		'edit' 		=> 'backend.subscribber.edit', 
-		'update' 	=> 'backend.subscribber.update', 
-		'destroy' 	=> 'backend.subscribber.destroy'
-	]]);
-
-	Route::get('/admin/CRM/newsletter', ['uses' => 'newsletterController@blast', 'as' => 'backend.newsletter.blast']);
+	Route::group(['namespace' => 'CRM'], function(){	
+		Route::resource('/admin/CRM/subscribber', 'subscribberController', ['names' => [
+			'index' 	=> 'backend.crm.subscribber.index',
+			'create'	=> 'backend.crm.subscribber.create', 
+			'store' 	=> 'backend.crm.subscribber.store', 
+			'show' 		=> 'backend.crm.subscribber.show', 
+			'edit' 		=> 'backend.crm.subscribber.edit', 
+			'update' 	=> 'backend.crm.subscribber.update', 
+			'destroy' 	=> 'backend.crm.subscribber.destroy'
+		]]);
+		Route::resource('/admin/CRM/newsletter', 'newsletterController', ['names' => [
+			'index' 	=> 'backend.crm.newsletter.index',
+			'create'	=> 'backend.crm.newsletter.create', 
+			'store' 	=> 'backend.crm.newsletter.store', 
+			'show' 		=> 'backend.crm.newsletter.show', 
+			'edit' 		=> 'backend.crm.newsletter.edit', 
+			'update' 	=> 'backend.crm.newsletter.update', 
+			'destroy' 	=> 'backend.crm.newsletter.destroy'
+		]]);
+	});
 	// Route::resource('/admin/about', 'aboutController', ['names' => ['index' => 'backend.about.index', 'create' => 'backend.about.create', 'store' => 'backend.about.store', 'show' => 'backend.about.show', 'edit' => 'backend.about.edit', 'update' => 'backend.about.update', 'destroy' => 'backend.about.destroy']]);
 	// Route::resource('/admin/slider', 'sliderController', ['names' => ['index' => 'backend.slider.index', 'create' => 'backend.slider.create', 'store' => 'backend.slider.store', 'show' => 'backend.slider.show', 'edit' => 'backend.slider.edit', 'update' => 'backend.slider.update', 'destroy' => 'backend.slider.destroy']]);
 	// Route::resource('/admin/CRM/manage_newsletter', 'newsletterController', ['names' => ['index' => 'backend.newsletter.index', 'create' => 'backend.newsletter.create', 'store' => 'backend.newsletter.store', 'show' => 'backend.newsletter.show', 'edit' => 'backend.newsletter.edit', 'update' => 'backend.newsletter.update', 'destroy' => 'backend.newsletter.destroy']]);
