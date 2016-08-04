@@ -30,6 +30,7 @@ class versionController extends BaseController
         $datas                                  = $version->paginate(10);
 
         $this->page_datas->datas                = $datas;
+        $this->page_datas->id                   = null;
 
         //page attributes
         $this->page_attributes->page_title      = $this->page_title;
@@ -120,9 +121,9 @@ class versionController extends BaseController
         $datas                                  = $version->find($id);
 
         $this->page_datas->datas                = $datas;
+        $this->page_datas->id                   = $id;
 
         //page attributes
-        $this->page_datas->id                   = $id;
         $this->page_attributes->page_title      = 'Detail ' . $this->page_title;
 
 
@@ -162,6 +163,18 @@ class versionController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        //get password
+        $password                               = Input::get('password');
+
+        //find 
+        $version                                = Version::find($id);
+
+        //delete data
+        $version->delete();
+
+        $this->errors                           = $version->getErrors();
+        $this->page_attributes->msg             = 'Data telah dihapus';
+
+        return $this->generateRedirect(route('backend.website.version.index'));
     }
 }
