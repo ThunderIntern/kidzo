@@ -7,6 +7,7 @@
 {!! Form::open(['url' => route('backend.website.version.update', ['id' => $page_datas->id]), 'method' => 'patch' ]) !!}
 @endif
 	<div class="card">
+		@include('backend.widgets.alertbox')
 		<div class="card-block">
 			@include('backend.widgets.components.title.title-control', ['component' => [
 				'title'			=> $page_attributes->page_title,

@@ -17,6 +17,7 @@
 							]		
 	]])
 	</div>
+	@include('backend.widgets.alertbox')
 	<div class="card-block">
 		@include('backend.widgets.components.detail.detail-text',['component' => [
 			'title'		=> 'Version Name',
