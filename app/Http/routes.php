@@ -51,7 +51,7 @@ Route::group(['namespace' => 'Backend'], function(){
 			'update' 	=> 'backend.website.config.update', 
 			'destroy' 	=> 'backend.website.config.destroy'
 		]]);
-		Route::resource('/admin/website/FAQ', 'FAQController', ['names' => [
+		Route::resource('/admin/website/faq', 'FAQController', ['names' => [
 			'index' 	=> 'backend.website.FAQ.index',
 			'create'	=> 'backend.website.FAQ.create', 
 			'store' 	=> 'backend.website.FAQ.store', 
