@@ -22,7 +22,7 @@
 			<div class="desktop row mbottom-s paddingTop50 paddingLeft30">
 				<div class="col-md-12">
 					<h2><b>Tentang Kami</b></h2>
-					<hr class="garis-bawah-biru pull-left" width="100">
+					<hr class="garis-bawah-ungu pull-left" width="100">
 				</div>
 			</div>
 			<div class="mobile row mbottom-s paddingTop50">

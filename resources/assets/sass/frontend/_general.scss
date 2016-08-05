@@ -1,5 +1,5 @@
 body {
-    font-family: 'Lato';
+    font-family: 'Roboto';
 }
 
 .floatRight{
@@ -186,6 +186,19 @@ body {
 	padding-top:50px;
 }
 
+.padding10{
+	padding : 10px;
+}
+.padding20{
+	padding : 20px;
+}
+.padding30{
+	padding : 30px;
+}
+
+.paddingBottom1{
+	padding-bottom:1px;
+}
 .paddingBottom5{
 	padding-bottom:5px;
 }
@@ -219,33 +232,8 @@ body {
 .paddingBottom60{
 	padding-bottom:60px;
 }
-.paddingBottom70{
-	padding-bottom:70px;
-}
-.paddingBottom80{
-	padding-bottom:80px;
-}
-.paddingBottom90{
-	padding-bottom:90px;
-}
-.paddingBottom100{
-	padding-bottom:100px;
-}
-.paddingBottom110{
-	padding-bottom:110px;
-}
-.paddingBottom120{
-	padding-bottom:120px;
-}
-.paddingBottom130{
-	padding-bottom:130px;
-}
-.paddingBottom140{
-	padding-bottom:140px;
-}
-.paddingBottom150{
-	padding-bottom:150px;
-}
+
+
 
 .paddingLeft10{
 	padding-left:10px;
@@ -278,9 +266,33 @@ body {
 .paddingRight50{
 	padding-right:50px;
 }
-.paddingSamping{
-	padding:0 50px;
+
+.marginRight-10{
+	margin-right:-10px;
 }
+.marginRight10{
+	margin-right:10px;
+}
+.marginRight20{
+	margin-right:20px;
+}
+.marginRight30{
+	margin-right:30px;
+}
+.marginRight40{
+	margin-right:40px;
+}
+.marginRight50{
+	margin-right:50px;
+}
+.marginBottom5{
+	margin-bottom:5px;
+}
+
+.marginTop5{
+	margin-top:5px;
+}
+
 
 .gambar{
 	height:75px;
@@ -289,11 +301,15 @@ body {
 
 .tengah{
 	position: absolute;
-	top: 70%;
+	top: 47%;
   	left:50%;
   	transform: translate(-50%,-50%);
 }
 
 .posisiAbs{
 	position:absolute;
+}
+
+a:link{
+	text-decoration: none;
 }
