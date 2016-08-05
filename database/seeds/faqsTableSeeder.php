@@ -20,80 +20,12 @@ class faqsTableSeeder extends Seeder
 
         $version 						= Version::first();   
 
-		$faq['doc']						= 	[
-												'Kategori 1'	=> 	[
-																		'Subkategori 1'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																													
-																							],
-																		'Subkategori 2'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'3'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],	
-																								'4'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																																																																																						
-																							],
-																	],
-												'Kategori 2'	=> 	[
-																		'Subkategori 1'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																													
-																							],
-																		'Subkategori 2'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'3'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],	
-																								'4'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																																																																																						
-																							],
-																		'Subkategori 3'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																													
-																							],																							
-																	],																	
-											];
-
-		$faq['version']					= $version;      
+		$faq['pertanyaan']				= 'lorem ipsum dolorem ipsum sit amet ?';      
+		$faq['jawaban']					= 'lorem ipsum dolorem ipsum sit amet';    
+		$faq['no_urut']					= 1;      
+		$faq['kategori']				= 'kategori 1';      
+		$faq['sub_kategori']			= 'sub kategori 1';      
+		$faq['version']					= $version['attributes'];      
 		$faq['admin']					= 'Admin';     
 
 		$faq->save();
@@ -103,82 +35,95 @@ class faqsTableSeeder extends Seeder
 
         $version 						= Version::first();   
 
-
-		$faq['doc']						= 	[
-												'Kategori 1'	=> 	[
-																		'Subkategori 1'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																													
-																							],
-																		'Subkategori 2'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'3'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],	
-																								'4'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																																																																																						
-																							],
-																	],
-												'Kategori 2'	=> 	[
-																		'Subkategori 1'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																													
-																							],
-																		'Subkategori 2'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'3'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],	
-																								'4'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																																																																																						
-																							],
-																		'Subkategori 3'	=> 	[
-																								'1'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],
-																								'2'				=>	[
-																														'question' 		=> 'ashdasgdhags gdhadhaghdgahgd dgshgdhagdhgdhsgdha gdhsgdhagd?',
-																														'answer' 		=> 'ashdg adg ahd ghjasgdakdhg dhgahdgadghjag dhagdkagdhaghdag hasgdhasjdkasdhjagdjh dghsjdakdj asdh.',
-																													],																													
-																							],																							
-																	],																	
-											];
-		$faq['version']					= $version;      
+		$faq['pertanyaan']				= 'lorem ipsum dolorem ipsum sit amet ?';      
+		$faq['jawaban']					= 'lorem ipsum dolorem ipsum sit amet';    
+		$faq['no_urut']					= 2;      
+		$faq['kategori']				= 'kategori 1';      
+		$faq['sub_kategori']			= 'sub kategori 1';      
+		$faq['version']					= $version['attributes'];      
+		$faq['admin']					= 'Admin';
 		$faq['admin']					= 'Admin Satunya';     
 
 		$faq->save();
+
+
+	    $faq 							= new Faq;
+
+        $version 						= Version::first();   
+
+		$faq['pertanyaan']				= 'lorem ipsum dolorem ipsum sit amet ?';      
+		$faq['jawaban']					= 'lorem ipsum dolorem ipsum sit amet';    
+		$faq['no_urut']					= 1;      
+		$faq['kategori']				= 'kategori 1';      
+		$faq['sub_kategori']			= 'sub kategori 2';      
+		$faq['version']					= $version['attributes'];      
+		$faq['admin']					= 'Admin';
+		$faq['admin']					= 'Admin Satunya';     
+
+		$faq->save();	
+
+
+	    $faq 							= new Faq;
+
+        $version 						= Version::first();   
+
+		$faq['pertanyaan']				= 'lorem ipsum dolorem ipsum sit amet ?';      
+		$faq['jawaban']					= 'lorem ipsum dolorem ipsum sit amet';    
+		$faq['no_urut']					= 2;      
+		$faq['kategori']				= 'kategori 1';      
+		$faq['sub_kategori']			= 'sub kategori 2';      
+		$faq['version']					= $version['attributes'];      
+		$faq['admin']					= 'Admin';
+		$faq['admin']					= 'Admin Satunya';     
+
+		$faq->save();	
+
+
+	    $faq 							= new Faq;
+
+        $version 						= Version::first();   
+
+		$faq['pertanyaan']				= 'lorem ipsum dolorem ipsum sit amet ?';      
+		$faq['jawaban']					= 'lorem ipsum dolorem ipsum sit amet';    
+		$faq['no_urut']					= 3;      
+		$faq['kategori']				= 'kategori 1';      
+		$faq['sub_kategori']			= 'sub kategori 2';      
+		$faq['version']					= $version['attributes'];      
+		$faq['admin']					= 'Admin';
+		$faq['admin']					= 'Admin Satunya';     
+
+		$faq->save();	
+
+
+	    $faq 							= new Faq;
+
+        $version 						= Version::first();   
+
+		$faq['pertanyaan']				= 'lorem ipsum dolorem ipsum sit amet ?';      
+		$faq['jawaban']					= 'lorem ipsum dolorem ipsum sit amet';    
+		$faq['no_urut']					= 1;      
+		$faq['kategori']				= 'kategori 2';      
+		$faq['sub_kategori']			= 'sub kategori 1';      
+		$faq['version']					= $version['attributes'];      
+		$faq['admin']					= 'Admin';
+		$faq['admin']					= 'Admin Satunya';     
+
+		$faq->save();	
+
+
+	    $faq 							= new Faq;
+
+        $version 						= Version::first();   
+
+		$faq['pertanyaan']				= 'lorem ipsum dolorem ipsum sit amet ?';      
+		$faq['jawaban']					= 'lorem ipsum dolorem ipsum sit amet';    
+		$faq['no_urut']					= 2;      
+		$faq['kategori']				= 'kategori 2';      
+		$faq['sub_kategori']			= 'sub kategori 1';      
+		$faq['version']					= $version['attributes'];      
+		$faq['admin']					= 'Admin';
+		$faq['admin']					= 'Admin Satunya';     
+
+		$faq->save();											
     }
 }

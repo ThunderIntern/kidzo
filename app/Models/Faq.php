@@ -13,7 +13,11 @@ class Faq extends BaseModel
 	 * @var array
 	 */
 	protected $fillable				=	[
-											'doc'							,
+											'pertanyaan'					,
+											'jawaban'						,
+											'no_urut'						,
+											'kategori'						,
+											'sub_kategori'					,
 											'version'						,
 											'published_at'					,
 											'admin'
