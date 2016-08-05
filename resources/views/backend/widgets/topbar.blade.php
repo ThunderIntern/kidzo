@@ -1,6 +1,6 @@
 <!-- top liner -->
 <nav class="navbar navbar-dark navbar-fixed-top navbar-full bg-primary bg-faded main-nav">
-	<a class="navbar-brand" href="#">KIDZO.ID</a>
+	<a class="navbar-brand" href="{{route('backend.dashboard')}}">CMS</a>
 	<div class="nav navbar-nav">
 		<a href="http://cms.capcus.id/logout" class="pull-xs-right nav-link"><i class="fa fa-sign-out"></i> Logout
 		</a>
