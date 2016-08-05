@@ -22,10 +22,12 @@ elixir(function(mix) {
     .scripts([
     			'jquery.js',
 				'bootstrap.min.js',
+				'selectize.min.js',
 			], 'public/js/backend.js')
     .scripts([
     			'jquery.js',
 				'bootstrap.min.js',
+				'selectize.min.js',
 			], 'public/js/frontend.js')
 	.version([
 				'public/css/backend.css',
