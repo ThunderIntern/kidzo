@@ -21,8 +21,8 @@
 		<div class="col-md-9 bgwhite paddingBottom100">
 			<div class="desktop row mbottom-s paddingTop50 paddingLeft30">
 				<div class="col-md-12">
-					<h2><b>Tentang Kami</b></h2>
-					<hr class="garis-bawah-ungu pull-left" width="100">
+					<h1><b>Tentang Kami</b></h1>
+					<hr class="garis-bawah-ungu pull-left ptop-0" width="100">
 				</div>
 			</div>
 			<div class="row mbottom-s paddingLeft50">
@@ -48,8 +48,8 @@
 	<div class="mobile col-sm-12 paddingBottom50 paddingRight30 paddingLeft30">
 		<div class="row mbottom-s paddingTop50">
 			<div class="col-sm-12 text-center">
-				<h2><b>About Us</b></h2>
-				<hr class="garis-bawah-ungu" width="100">
+				<h1><b>About Us</b></h1>
+				<hr class="garis-bawah-ungu ptop-0" width="100">
 			</div>
 		</div>
 		<div class="row mbottom-s">
