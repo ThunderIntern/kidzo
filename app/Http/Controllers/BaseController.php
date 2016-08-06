@@ -359,7 +359,7 @@ abstract class BaseController extends Controller
 	 */
 	public function setRefererUrl()
 	{
-        Session::flash('url_referer', URL::previous());
+        Session::push('url_referer', URL::previous());
 	}
 
 	/**
@@ -375,6 +375,6 @@ abstract class BaseController extends Controller
 	 */
 	public function getRefererUrl()
 	{
-        return Session::get('url_referer');
+        return Session::pull('url_referer')[0];
    	}
 }
