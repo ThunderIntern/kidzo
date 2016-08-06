@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend\Website;
 
 use App\Http\Controllers\baseController;
-use Request;
+use Request, Input, URL, Hash;
 
 class configController extends BaseController
 {
@@ -54,9 +54,11 @@ class configController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id = null)
     {
-        //
+         //get input
+        $input                                 = Input::only('no','alamat','email','facebook');
+        dd($input);
     }
 
     /**
