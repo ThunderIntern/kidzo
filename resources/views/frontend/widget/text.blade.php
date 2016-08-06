@@ -1,4 +1,4 @@
-<div class="row mbottom-s paddingLeft50">
+<div class="row mbottom-s">
 	@forelse($datas as $data)
 		@include("frontend.widget.texts.text_list", $data)
 	@empty
