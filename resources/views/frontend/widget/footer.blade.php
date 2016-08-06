@@ -19,7 +19,7 @@ button:
 -->
 {!! Form::open(['url' => route('register') ]) !!}
                 
-                <div>
+                <div class="marginBottom5" style="margin-top:-5px">
                     <div class="floatLeft width20Per height5 bgred"></div>
                     <div class="floatLeft width20Per height5 bggreen"></div>
                     <div class="floatLeft width20Per height5 bgorange"></div>
@@ -27,9 +27,8 @@ button:
                     <div class="floatLeft width20Per height5 bgblue"></div>
                 </div>
 
-            
-                <div class="paddingBottom80 bgabumuda paddingRight50 paddingLeft50" >
-                    <div class="normala">
+                <div class="col-sm-12 bgabumuda">
+                    <div class="normala paddingRight50 paddingLeft50">
                         <div class="paddingTop25 floatLeft footer-col1">
                             <div class="col-sm-1"></div>
                             <img src="{{asset('image/frontend/logo.png')}}" class="gambar">
@@ -51,23 +50,23 @@ button:
                         <div class="floatLeft footer-col3">
                             <p><b>Newslatter</b></p>
                             <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
+                            <form class="form-inline"></form> 
                             <form class="form-inline">
-                                {!! Form::email('email_desktop',null, ['class' => 'form email width80Per', 'placeholder' => 'Email Anda']) !!}
-                                <button type="submit" class="black bgabu butFoot ">Daftar</button>
-                                
+                                {!! Form::email('email_desktop',null, ['class' => 'form-control width80Per', 'placeholder' => 'Email Anda']) !!}
+                                <button type="submit" class="black bgabu butFoot width20Per">Daftar</button>
                             </form>
                         </div>
                     </div>
-                </div>
-                <div class=" paddingLeft50 bgabumuda  paddingRight50 ">
-                    <div class="kecila">
+                    <div class="kecila paddingLeft50 bgabumuda  paddingRight50">
                         <p><b>Newslatter</b></p>
                         <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
-                        
-                            {!! Form::email('email_mobile',null, ['class' => 'form email width80Per', 'placeholder' => 'Email Anda']) !!}
+                        <form class="form-inline">
+                            {!! Form::email('email_mobile',null, ['class' => 'form-control email width80Per', 'placeholder' => 'Email Anda']) !!}
                             <button type="submit" class="black bgabu butFoot width20Per">Daftar</button>
+                        </form>
                     </div>
                 </div>
+                
 
             <div class="col-sm-12 paddingLeft50 paddingRight50 bgabu">
                 <div class="paddingTop10">
@@ -80,4 +79,5 @@ button:
                     </div>
                 </div>
             </div>
+
 {!! Form::close() !!}
