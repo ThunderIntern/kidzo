@@ -28,7 +28,7 @@ button:
                 </div>
 
             
-                <div class="paddingBottom60 bgabumuda paddingRight50 paddingLeft50" >
+                <div class="paddingBottom80 bgabumuda paddingRight50 paddingLeft50" >
                     <div class="normala">
                         <div class="paddingTop25 floatLeft footer-col1">
                             <div class="col-sm-1"></div>
@@ -51,14 +51,15 @@ button:
                         <div class="floatLeft footer-col3">
                             <p><b>Newslatter</b></p>
                             <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
-                            
+                            <form class="form-inline">
                                 {!! Form::email('email_desktop',null, ['class' => 'form email width80Per', 'placeholder' => 'Email Anda']) !!}
-                                <button type="submit" class="black bgabu butFoot width20Per">Daftar</button>
-                            
+                                <button type="submit" class="black bgabu butFoot ">Daftar</button>
+                                
+                            </form>
                         </div>
                     </div>
                 </div>
-                <div class=" paddingLeft40 bgabumuda  paddingRight50 ">
+                <div class=" paddingLeft50 bgabumuda  paddingRight50 ">
                     <div class="kecila">
                         <p><b>Newslatter</b></p>
                         <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>

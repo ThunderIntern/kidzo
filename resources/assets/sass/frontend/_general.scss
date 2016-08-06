@@ -315,6 +315,9 @@ body {
 .marginBottom5{
 	margin-bottom:5px;
 }
+.marginBottom85{
+	margin-bottom:85px;
+}
 
 .marginTop5{
 	margin-top:5px;
@@ -328,7 +331,7 @@ body {
 
 .tengah{
 	position: absolute;
-	top: 47%;
+	top: 50%;
   	left:50%;
   	transform: translate(-50%,-50%);
 }
@@ -339,4 +342,14 @@ body {
 
 a:link{
 	text-decoration: none;
+}
+
+.form-control{
+	border-bottom-right-radius: 0px;
+	border-top-right-radius: 0px;
+	padding:5px 10px;
+}
+
+.textCenter{
+	text-align:center;
 }

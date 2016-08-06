@@ -17,8 +17,8 @@ button:
 
 -->
         
-            <div class="desktop">
-                <nav class="navbar navbar paddingBottom1">
+            <div class="desktop marginBottom85">
+                <nav class="navbar navbar  navbar-fixed-top paddingBottom1 bgwhite">
                     <div class="col-sm-12">
                         <img src="{{asset('image/frontend/logo.png')}}" class="paddingTop5 pull-left posisiAbs">
 
@@ -31,7 +31,7 @@ button:
                                     <li class="nav-item borderTop5 green"></li>
                                     <li class="nav-item borderTop5 red paddingBottom25  paddingTop25">
                                         <a class="marginRight-10 paddingRight10 black paddingBottom20 paddingTop20 borderRight1" href="{{Route('home')}}">Home</a>
-                                    </li>
+                                   </li>
                                     <li class="nav-item borderTop5 green paddingBottom25 paddingTop25">
                                         <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black borderRight1" href="#">Mainan</a>
                                     </li>
@@ -48,21 +48,35 @@ button:
                             </div>
                         </div>
 
-                        <div class="pull-right">
-                            <button class="navbar-toggler padding30" type="button">
-                                <a href="#"><i class="fa fa-shopping-cart fa-lg black" aria-hidden="true"></i></a>
-                            </button>
-                            <button class="navbar-toggler padding30" type="button">
-                                <a href="#"><i class="fa fa-search fa-lg black" aria-hidden="true"></i></a>
-                            </button>
+                        <div class="tombol pull-right">
+                            <a href="#">
+                                <button class="navbar-toggler padding30 dropbtn" type="button">
+                                    <i class="fa fa-shopping-cart fa-lg black" aria-hidden="true"></i>
+                                </button>
+                            </a>
+                            <div class="dropdown">
+                                <a href="#">
+                                    <button onclick="myFunction()" class="dropbtn navbar-toggler padding30" type="button">
+                                        <i class="fa fa-search fa-lg black" aria-hidden="true"></i>
+                                    </button>
+                                </a>
+                                <div id="myDropdown" class="dropdown-content" style="width:250px">
+                                    <form class="form-inline">
+                                            {!! Form::email('email_mobile',null, ['class' => 'form-control width80Per', 'placeholder'=>'Cari Produk']) !!}
+                                            <button type="submit" class="black bgabu butFoot">Cari</button>
+                                            <a href="#" class="textCenter">Advance Search</a>
+                                    </form>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </nav>
             </div>
 
 
-            <div class="mobile">
-                <nav class="navbar navbar paddingBottom1">
+            <div class="mobile marginBottom85">
+                <nav class="navbar navbar  navbar-fixed-top paddingBottom1 bgwhite">
                     <div class="col-sm-12">
                         <img src="{{asset('image/frontend/logo.png')}}" class="paddingTop5 floatLeft paddingLeft10">
                         <div class="floatRight paddingRight10">
@@ -116,4 +130,21 @@ button:
                 </nav>
             </div>
             
-        
+<script>
+    function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      
+    }
+  }
+}
+</script>
