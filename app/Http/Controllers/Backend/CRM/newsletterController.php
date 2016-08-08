@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\CRM;
 use App\Http\Controllers\baseController;
 
 use App\Models\Subscriber;
+use App\Models\Version;
 use Request, Input, URL, Hash;
 
 class newsletterController extends BaseController
@@ -27,7 +28,7 @@ class newsletterController extends BaseController
         $datas                                  = $newsletter->paginate(50);
 
         $this->page_datas->datas                = $datas;
-
+        $this->page_datas->id                   = null;
 
          //page attributes
         $this->page_attributes->page_title  = $this->page_title;
@@ -85,7 +86,7 @@ class newsletterController extends BaseController
 
         //save data
         $newsletter->email                     = $input['email'];
-        $newsletter->version                   = $input['version'];
+        $newsletter->version                   = Version::find($input['version'])['attributes'];
         $hashedToken                           = Hash::make($input['unsubscribe_token']);
         $newsletter->unsubscribe_token         = $hashedToken;
         $newsletter->is_subscribe              = $input['is_subscribe'];
@@ -99,7 +100,7 @@ class newsletterController extends BaseController
         $this->errors                           = $newsletter->getErrors();
         $this->page_attributes->msg             = 'Data telah disimpan';
 
-        return $this->generateRedirect($this->getRefererUrl());
+        return $this->generateRedirect(route('backend.crm.newsletter.index'));
     }
 
     /**
@@ -110,7 +111,20 @@ class newsletterController extends BaseController
      */
     public function show($id)
     {
-         //
+         $newsletter                  = new Subscriber;
+        $datas                                  = $newsletter::find($id);
+
+        $this->page_datas->datas                = $datas;
+        $this->page_datas->id                   = $id;
+
+        //page attributes
+        $this->page_attributes->page_title      = 'Detail ' . $this->page_title;
+
+
+        //generate view
+        $view_source                            = $this->view_source_root . '.show';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
     }
 
     /**
@@ -144,6 +158,23 @@ class newsletterController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        //find 
+        $newsletter                                    = Subscriber::find($id);
+
+        //get password
+        $password                               = Input::get('password');
+        if(empty($password)){
+            $this->errors                       = "Password not valid";
+        }else{
+            //delete data
+            $newsletter->delete();
+            
+            $this->errors                       = $newsletter->getErrors();
+        }
+
+        //return view
+        $this->page_attributes->msg             = 'Data telah dihapus';
+
+        return $this->generateRedirect(route('backend.crm.newsletter.index'));
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Functions;
 use Mail;
+use App\Models\Subscriber;
 
 class email{
     /**
@@ -11,16 +12,16 @@ class email{
      * @param  int  $id
      * @return Response
      */
-    public function send($judul=null, $konten)
+    public function send($judul=null, $konten, $input)
     {
         //return $email_address;
 
         //is_null(var)
         //$user = User::findOrFail($id);
 
-        Mail::send('email', ['judul' => $judul, 'konten' => $konten], function($message)
+        Mail::send('email', ['judul' => $judul, 'konten' => $konten], function($message) use ($input)
         {
-            $message->to('311310010@student.machung.ac.id', 'hoi') ->from('graygevaldi@gmail.com')->subject('Welcome!');
+            $message->to($input, 'hoi') ->from('graygevaldi@gmail.com')->subject('Welcome!');
         });
     }
 }

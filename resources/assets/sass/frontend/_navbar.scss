@@ -21,17 +21,30 @@
     padding-right: 10px;
 }
 
-.modal.right.fade .modal-dialog {
-		right: -320px;
-		-webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
-		   -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
-		     -o-transition: opacity 0.3s linear, right 0.3s ease-out;
-		        transition: opacity 0.3s linear, right 0.3s ease-out;
-	}
-	
-	.modal.right.fade.in .modal-dialog {
-		right: 0;
-	}
+/*Right*/
+    .modal.right.fade .modal-dialog {
+        right: -320px;
+        -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+           -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+             -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+                transition: opacity 0.3s linear, right 0.3s ease-out;
+    }
+    
+    .modal.right.fade.in .modal-dialog {
+        right: 0;
+    }
+
+/* ----- MODAL STYLE ----- */
+    .modal-content {
+        border-radius: 0;
+        border: none;
+    }
+
+    .modal-header {
+        border-bottom-color: #EEEEEE;
+        background-color: #FAFAFA;
+    }
+    
 .navbar {
     -webkit-box-shadow: inset 0px -3px 8px -4px rgba(0,0,0,0.75);
 	-moz-box-shadow: inset 0px -3px 8px -4px rgba(0,0,0,0.75);
@@ -68,8 +81,17 @@
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
+.dropdown-cont {
+    display: none;
+    position: static;
+    right:0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
 /* Links inside the dropdown */
-.dropdown-content a {
+.dropdown-content a, .dropdown-cont a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
@@ -77,7 +99,9 @@
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover, .dropdown-cont a:hover {background-color: #f1f1f1}
+
+
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}

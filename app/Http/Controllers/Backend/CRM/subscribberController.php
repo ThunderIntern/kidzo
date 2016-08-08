@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\CRM;
 use App\Http\Controllers\baseController;
 
 use App\Models\Subscriber;
+use App\Models\Version;
 use Request, Input, URL, Hash;
 
 class subscribberController extends BaseController
@@ -27,7 +28,7 @@ class subscribberController extends BaseController
         $datas                                  = $subscribber->paginate(50);
 
         $this->page_datas->datas                = $datas;
-
+        $this->page_datas->id                   = null;
 
          //page attributes
         $this->page_attributes->page_title  = $this->page_title;
@@ -75,7 +76,7 @@ class subscribberController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id = null)
     {
         //get input
         $input                                  = Input::only('email','version','unsubscribe_token','is_subscribe');
@@ -85,7 +86,7 @@ class subscribberController extends BaseController
 
         //save data
         $subscribber->email                     = $input['email'];
-        $subscribber->version                   = $input['version'];
+        $subscribber->version                   = Version::find($input['version'])['attributes'];
         $hashedToken                            = Hash::make($input['unsubscribe_token']);
         $subscribber->unsubscribe_token          = $hashedToken;
         $subscribber->is_subscribe              = $input['is_subscribe'];
@@ -99,7 +100,7 @@ class subscribberController extends BaseController
         $this->errors                           = $subscribber->getErrors();
         $this->page_attributes->msg             = 'Data telah disimpan';
 
-        return $this->generateRedirect($this->getRefererUrl());
+        return $this->generateRedirect(route('backend.crm.subscribber.index'));
     }
 
     /**
@@ -110,7 +111,20 @@ class subscribberController extends BaseController
      */
     public function show($id)
     {
-        //
+        $subscribber                            = new Subscriber;
+        $datas                                  = $subscribber::find($id);
+
+        $this->page_datas->datas                = $datas;
+        $this->page_datas->id                   = $id;
+
+        //page attributes
+        $this->page_attributes->page_title      = 'Detail ' . $this->page_title;
+
+
+        //generate view
+        $view_source                            = $this->view_source_root . '.show';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
     }
 
     /**
@@ -144,6 +158,23 @@ class subscribberController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        //find 
+        $subscribber                                    = Subscriber::find($id);
+
+        //get password
+        $password                               = Input::get('password');
+        if(empty($password)){
+            $this->errors                       = "Password not valid";
+        }else{
+            //delete data
+            $subscribber->delete();
+            
+            $this->errors                       = $subscribber->getErrors();
+        }
+
+        //return view
+        $this->page_attributes->msg             = 'Data telah dihapus';
+
+        return $this->generateRedirect(route('backend.crm.subscribber.index'));
     }
 }

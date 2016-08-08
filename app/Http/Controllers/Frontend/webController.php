@@ -70,11 +70,12 @@ class webController extends BaseController
         $newsletter->save();
         $this->errors                           = $newsletter->getErrors();
         $this->page_attributes->msg             = 'Data telah disimpan';
+        
+
+        $email = new email;
+        $email -> send('Judul', 'Konten',$newsletter->email);
 
         return $this->generateRedirect(route('registered'));
-
-
-
     }
 
     public function registeredNewsletter($id = null)

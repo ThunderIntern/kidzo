@@ -62,7 +62,7 @@ button:
                                 </a>
                                 <div id="myDropdown" class="dropdown-content" style="width:250px">
                                     <form class="form-inline">
-                                            {!! Form::email('email_mobile',null, ['class' => 'form-control width80Per', 'placeholder'=>'Cari Produk']) !!}
+                                            {!! Form::text('email_mobile',null, ['class' => 'form-control width80Per', 'placeholder'=>'Cari Produk']) !!}
                                             <button type="submit" class="black bgabu butFoot">Cari</button>
                                             <a href="#" class="textCenter">Advance Search</a>
                                     </form>
@@ -89,21 +89,30 @@ button:
                         </div>
                     </div>
                 </nav>
-            </div>
-            
-            <!-- Modal -->
+                <!-- Modal -->
             <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></br></br>
                             <div class="icon pull-right">
-                                <button class="navbar-toggler padding10" type="button">
-                                    <a href="#"><i class="dropbtn black fa fa-shopping-cart fa-lg paddingRight50" aria-hidden="true"></i></a>
+                                <div class="dropdown text-xs-right">
+                                    <button class="navbar-toggler dropbtn" type="button">
+                                    <a href="#"><i class="dropbtn black fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
                                 </button>
-                                <button class="navbar-toggler padding10 dropbtn" type="button">
-                                    <a href="#"><i class="black fa fa-search fa-lg" aria-hidden="true"></i></a>
-                                </button>
+                                    <a href="#">
+                                        <button onclick="myFunction2()" class="dropbtn navbar-toggler" type="button">
+                                            <i class="dropbtn fa fa-search fa-lg black" aria-hidden="true"></i>
+                                        </button>
+                                    </a>
+                                    <div id="myDropdown2" class="dropdown-cont" style="width:250px">
+                                        <form class="form-inline">
+                                                {!! Form::text('email_mobile',null, ['class' => 'form-control width80Per', 'placeholder'=>'Cari Produk']) !!}
+                                                <button type="submit" class="black bgabu butFoot">Cari</button>
+                                                <a href="#" class="textCenter">Advance Search</a>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-body">
@@ -130,9 +139,15 @@ button:
                     </div><!-- modal-content -->
                 </div><!-- modal-dialog -->
             </div><!-- modal -->
+            </div>
+            
+            
 <script>
     function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
+}
+function myFunction2() {
+    document.getElementById("myDropdown2").classList.toggle("show");
 }
 
 // Close the dropdown menu if the user clicks outside of it

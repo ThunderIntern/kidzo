@@ -15,9 +15,8 @@
 					<tr>
 						<th class="col-md-1">#</th>
 						<th class="col-md-3">Email</th>
-						<th class="col-md-2">Version</th>
-						<th class="col-md-2">Unsubcribe Token</th>
-						<th class="col-md-2">Is Subscribe</th>
+						<th class="col-md-3">Version</th>
+						<th class="col-md-3">Status</th>
 						<th class="col-md-2 text-xs-right">Control</th>
 					</tr>
 				</thead>
@@ -32,20 +31,17 @@
 									{{ucfirst($data['email'])}}
 								</a>
 							</td>
-							<td class="col-md-2">
-								{{ucfirst($data['version']['version_name'])}}
+							<td class="col-md-3">
+								{{$data['version']['version_name']}}
 							</td>
-							<td class="col-md-2">
-								{{ucfirst($data['unsubscribe_token'])}}
-							</td>
-							<td class="col-md-2">
+							<td class="col-md-3">
 								{{ (($data['is_subscribe']==true) ? 'Subscribed' : 'Unsubscribed') }}
 							</td>
 							<td class="col-md-2 text-xs-right">
 								<a href="{{route('backend.crm.newsletter.edit', ['id' => $data['id']])}}" class="btn btn-primary-outline btn-sm">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 						        </a>	
-								<a href="#" class="btn btn-primary-outline btn-sm">
+								<a href="#" class="btn btn-primary-outline btn-sm" data-toggle="modal" data-target="#modalDelete" data-action="{!! route('backend.crm.newsletter.destroy',['id' => $data['id']]) !!}">
 									<i class="fa fa-times" aria-hidden="true"></i>
 						        </a>
 							</td>
@@ -63,3 +59,7 @@
 	</div>
 </div>
 @stop
+
+@section('modal')
+	@include('backend.modals.delete')
+@append
