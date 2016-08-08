@@ -20,17 +20,33 @@
 														]
 									]
 			]])
+
 			<fieldset class="form-group">
 				<label for="name">Version Name</label>
-				{!! Form::text('version', $page_datas->datas['version']['version_name'], ['class' => 'form-control']) !!}
-			</fieldset>							
+				@include('backend.widgets.selectize', ['components' => [
+					'type'		=> 'version',
+					'name'		=> 'version',
+					'init_data'	=> $page_datas->datas['version'],
+					'ajax_url'	=> route('backend.ajax.getVersion'),
+				]])
+			</fieldset>
 			<fieldset class="form-group">
 				<label for="name">Kategori</label>
-				{!! Form::text('kategori', $page_datas->datas['kategori'], ['class' => 'form-control']) !!}
-			</fieldset>	
+				@include('backend.widgets.selectize', ['components' => [
+					'type'		=> 'faq_kategori',
+					'name'		=> 'kategori',
+					'init_data'	=> $page_datas->datas['kategori'],
+					'ajax_url'	=> route('backend.ajax.getFaqKategori'),
+				]])
+			</fieldset>
 			<fieldset class="form-group">
 				<label for="name">Sub Kategori</label>
-				{!! Form::text('sub_kategori', $page_datas->datas['sub_kategori'], ['class' => 'form-control']) !!}
+				@include('backend.widgets.selectize', ['components' => [
+					'type'		=> 'faq_sub_kategori',
+					'name'		=> 'sub_kategori',
+					'init_data'	=> 	$page_datas->datas['sub_kategori'],
+					'ajax_url'	=> route('backend.ajax.getFaqSubKategori'),
+				]])				
 			</fieldset>
 			<fieldset class="form-group">
 				<label for="name">Nomor Urut</label>
@@ -42,7 +58,7 @@
 			</fieldset>
 			<fieldset class="form-group">
 				<label for="name">Jawaban</label>
-				{!! Form::textarea('jawaban', $page_datas->datas['jawaban'], ['class' => 'form-control']) !!}
+				{!! Form::textarea('jawaban', $page_datas->datas['jawaban'], ['class' => 'form-control', 'rows' => '5']) !!}
 			</fieldset>		
 		</div>
 	</div>
