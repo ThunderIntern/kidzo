@@ -14,7 +14,7 @@
 				'description' 	=> 'Pengaturan Website',
 				'components' 	=> [
 										'1' => ['link' => Route('backend.website.config.index'), 'caption' => 'Config'],
-										'2' => ['link' => "#", 'caption' => 'Slider'],
+										'2' => ['link' => Route('backend.website.slider.index'), 'caption' => 'Slider'],
 										'3' => ['link' => Route("backend.website.FAQ.index"), 'caption' => 'FAQ'],
 										'4' => ['link' => Route("backend.website.version.index"), 'caption' => 'Version'],
 									]
