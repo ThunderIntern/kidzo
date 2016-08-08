@@ -31,10 +31,10 @@
 				</div>
 			</div>
 			<div class="row mbottom-s paddingLeft20">
-				<div class="col-md-12 col-sm-12">
+				<div class="col-md-12">
 					<h5>Cari dikategori ini</h5>
 				</div>
-				<div class="col-md-12 col-sm-12 paddingLeft20">
+				<div class="col-md-12 paddingLeft20">
 					<form class="form-inline">
 						<input class="width80Per form-control" type="text" placeholder="Apa yang ingin Anda Cari?"></input><button type="submit" class="bgabu butFoot width20Per">Cari</button>
 					</form>
@@ -68,9 +68,9 @@
 			<div class="col-sm-12">
 				<h5>Cari dikategori ini</h5>
 			</div>
-			<div class="col-md-12 col-sm-12">
+			<div class="col-sm-12">
 				<form class="form-inline">
-					<input class="form-control width85Per" type="text" placeholder="Apa yang ingin Anda Cari?"></input><button type="submit" class="bgabu butFoot width15Per">Cari</button>
+					<input class="form-control width80Per pull-left" type="text" placeholder="Apa yang ingin Anda Cari?"></input><button type="submit" class="bgabu butFoot width20Per">Cari</button>
 				</form>
 			</div>
 		</div>

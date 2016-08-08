@@ -17,8 +17,8 @@ button:
 
 -->
         
-            <div class="desktop marginBottom85">
-                <nav class="navbar navbar  navbar-fixed-top paddingBottom1 bgwhite">
+            <div class="desktop marginBottom75">
+                <nav class="navbar navbar-fixed-top paddingBottom1 bgwhite">
                     <div class="col-sm-12">
                         <img src="{{asset('image/frontend/logo.png')}}" class="paddingTop5 pull-left posisiAbs">
 
@@ -75,61 +75,61 @@ button:
             </div>
 
 
-            <div class="mobile marginBottom85">
-                <nav class="navbar navbar  navbar-fixed-top paddingBottom1 bgwhite">
+            <div class="mobile marginBottom75">
+                <nav class="navbar navbar-fixed-top paddingBottom1 bgwhite">
                     <div class="col-sm-12">
                         <img src="{{asset('image/frontend/logo.png')}}" class="paddingTop5 floatLeft paddingLeft10">
                         <div class="floatRight paddingRight10">
-                            <button class="navbar-toggler padding30" type="button">
+                            <button class="navbar-toggler padding30 dropbtn" type="button">
                                 <a href="#"><i class="fa fa-shopping-cart fa-lg paddingRight10 black" aria-hidden="true"></i></a>
                             </button>
                             <button class="navbar-toggler padding10" type="button" data-toggle="modal" data-target="#myModal2">
                                 &#9776;
                             </button>
-                            <!-- Modal -->
-                            <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></br></br>
-                                            <div class="icon pull-right">
-                                                <button class="navbar-toggler padding10" type="button">
-                                                    <a href="#"><i class="black fa fa-shopping-cart fa-lg paddingRight50" aria-hidden="true"></i></a>
-                                                </button>
-                                                <button class="navbar-toggler padding10" type="button">
-                                                    <a href="#"><i class="black fa fa-search fa-lg" aria-hidden="true"></i></a>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="modal-body">
-                                            <ul class="nav navbar-nav">
-                                                <li class="nav-item borderTop5 green">
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link black pull-right" href="{{Route('home')}}">Home</a>
-                                                </li>
-                                                <li class="nav-item borderTop1 green">
-                                                    <a class="nav-link black pull-right" href="#">Mainan</a>
-                                                </li>
-                                                <li class="nav-item borderTop1 orange">
-                                                    <a class="nav-link black pull-right" href="#">Party Pack</a>
-                                                </li>
-                                                <li class="nav-item borderTop1 purple">
-                                                    <a class="nav-link black pull-right" href="{{Route('about')}}">Tentang Kami</a>
-                                                </li>
-                                                <li class="nav-item borderTop1 blue">
-                                                    <a class="nav-link black pull-right" href="#">Login</a>
-                                                </li></br></br></br></br></br></br></br></br></br></br></br></br></br>
-                                            </ul>
-                                        </div>
-                                    </div><!-- modal-content -->
-                                </div><!-- modal-dialog -->
-                            </div><!-- modal -->
                         </div>
                     </div>
                 </nav>
             </div>
             
+            <!-- Modal -->
+            <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></br></br>
+                            <div class="icon pull-right">
+                                <button class="navbar-toggler padding10" type="button">
+                                    <a href="#"><i class="dropbtn black fa fa-shopping-cart fa-lg paddingRight50" aria-hidden="true"></i></a>
+                                </button>
+                                <button class="navbar-toggler padding10 dropbtn" type="button">
+                                    <a href="#"><i class="black fa fa-search fa-lg" aria-hidden="true"></i></a>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="nav navbar-nav">
+                                <li class="nav-item borderTop5 green">
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link black pull-right" href="{{Route('home')}}">Home</a>
+                                </li>
+                                <li class="nav-item borderTop1 green">
+                                    <a class="nav-link black pull-right" href="#">Mainan</a>
+                                </li>
+                                <li class="nav-item borderTop1 orange">
+                                    <a class="nav-link black pull-right" href="#">Party Pack</a>
+                                </li>
+                                <li class="nav-item borderTop1 purple">
+                                    <a class="nav-link black pull-right" href="{{Route('about')}}">Tentang Kami</a>
+                                </li>
+                                <li class="nav-item borderTop1 blue">
+                                    <a class="nav-link black pull-right" href="#">Login</a>
+                                </li></br></br></br></br></br></br></br></br></br></br></br></br></br>
+                            </ul>
+                        </div>
+                    </div><!-- modal-content -->
+                </div><!-- modal-dialog -->
+            </div><!-- modal -->
 <script>
     function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
