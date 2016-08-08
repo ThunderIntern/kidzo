@@ -34,4 +34,4 @@
 			$('table > tbody > tr').css('background-color', '');
 		});
 	@endif
-@stop
+@append
