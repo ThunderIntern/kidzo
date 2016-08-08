@@ -91,8 +91,8 @@ class versionController extends BaseController
         $version                                = Version::findOrNew($id);
 
         //save data
-        $version->version_name                  = $input['version_name'];
-        $version->domain                        = $input['domain'];
+        $version->version_name                  = strtolower($input['version_name']);
+        $version->domain                        = strtolower($input['domain']);
         $version->is_active                     = $input['is_active'];
 
         //set Admin
@@ -181,5 +181,22 @@ class versionController extends BaseController
         $this->page_attributes->msg             = 'Data telah dihapus';
 
         return $this->generateRedirect(route('backend.website.version.index'));
+    }
+
+    //AJAX
+    public function ajaxGetVersion()
+    {
+        $version                                = new Version;
+
+        return $version::raw(function($collection) { 
+            return $collection->aggregate(array(
+                array(
+                    '$project'  => array(
+                            'value' => '$_id',
+                            'text'  => '$version_name'
+                    )
+                )
+            )); 
+        })->toArray();        
     }
 }
