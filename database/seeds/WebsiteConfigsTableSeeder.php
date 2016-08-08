@@ -20,47 +20,33 @@ class WebsiteConfigsTableSeeder extends Seeder
 
         $version 						= Version::first();
 
-        $WebsiteConfig['config']		= 	[
-        										'slider' 		=> 	[
-        																'1' 			=> 'slider1.jpg',
-        																'2' 			=> 'slider2.jpg',
-        																'3' 			=> 'slider3.jpg',
-        															],
-        										'contact' 		=> 	[
-		        														'phone' 		=> 'slider1.jpg',
-		        														'address' 		=> 'slider2.jpg',
-		        													], 
- 												'social' 		=> 	[
-		        														'facebook' 		=> 'facebook.com/kidzo',
-		        														'instagram' 	=> 'instagram.com/kidzo',
-		        													], 		        													       													
-        									];      									
-        $WebsiteConfig['version']		= $version;
+        $WebsiteConfig['category']		= 'slider';
+        $WebsiteConfig['config']        =   [
+                                                'slider1'           => 'slider1.jpg',
+                                                'slider2'           => 'slider2.jpg',
+                                                'slider3'           => 'slider3.jpg',
+                                            ];
+        $WebsiteConfig['version']       = $version['attributes'];
         $WebsiteConfig['admin']			= 'Admin';
+        $WebsiteConfig['published_at']  = strtotime('now');
         $WebsiteConfig->save();
+
 
 
         $WebsiteConfig 					= new WebsiteConfig;
 
-        $version 						= Version::first();
+        $version                        = Version::first();
 
-        $WebsiteConfig['config']			= 	[
-        										'slider' 		=> 	[
-        																'1' 			=> 'slider1.jpg',
-        																'2' 			=> 'slider2.jpg',
-        																'3' 			=> 'slider3.jpg',
-        															],
-        										'contact' 		=> 	[
-		        														'phone' 		=> 'slider1.jpg',
-		        														'address' 		=> 'slider2.jpg',
-		        													], 
- 												'social' 		=> 	[
-		        														'facebook' 		=> 'facebook.com/kidzo',
-		        														'instagram' 	=> 'instagram.com/kidzo',
-		        													], 		        													       													
-        									];       									
-        $WebsiteConfig['version']		= $version;
-        $WebsiteConfig['admin']			= 'Admin Satunya';
+        $WebsiteConfig['category']      = 'contact';
+        $WebsiteConfig['config']        =   [
+                                                'phone'             => '081-1230123786',
+                                                'address'           => 'jl. Diponegoro 12A, Malang',
+                                                'facebook'          => 'facebook.com/kidzo',
+                                            ];
+        $WebsiteConfig['version']       = $version['attributes'];
+        $WebsiteConfig['admin']         = 'Admin';
+        $WebsiteConfig['published_at']  = strtotime('now');
         $WebsiteConfig->save();
+
     }
 }

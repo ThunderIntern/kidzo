@@ -13,6 +13,7 @@ class WebsiteConfig extends BaseModel
 	 * @var array
 	 */
 	protected $fillable				=	[
+											'category'						,
 											'config'						,
 											'version'						,
 											'published_at'					,
@@ -38,6 +39,7 @@ class WebsiteConfig extends BaseModel
 	 */
 
 	protected $rules				=	[
+											'category'						=> 'required|max:255',
 											'published_at'					=> 'required|date',
 										];
 
