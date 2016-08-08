@@ -63,7 +63,7 @@ button:
                     <form class="form-inline">
                         {!! Form::email('email_mobile',null, ['class' => 'form-control pull-left width75Per', 'placeholder' => 'Email Anda']) !!}
                         <button type="submit" class="black bgabu butFoot width25Per">Daftar</button>
-                  
+                  </form>
                 </div>
                 
 
