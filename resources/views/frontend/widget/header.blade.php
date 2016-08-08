@@ -17,7 +17,7 @@ button:
 
 -->
         
-            <div class="desktop marginBottom85">
+            <div class="desktop marginBottom75">
                 <nav class="navbar navbar  navbar-fixed-top paddingBottom1 bgwhite">
                     <div class="col-sm-12">
                         <img src="{{asset('image/frontend/logo.png')}}" class="paddingTop5 pull-left posisiAbs">
@@ -80,7 +80,7 @@ button:
                     <div class="col-sm-12">
                         <img src="{{asset('image/frontend/logo.png')}}" class="paddingTop5 floatLeft paddingLeft10">
                         <div class="floatRight paddingRight10">
-                            <button class="navbar-toggler padding30" type="button">
+                            <button class="navbar-toggler padding30 dropbtn" type="button">
                                 <a href="#"><i class="fa fa-shopping-cart fa-lg paddingRight10 black" aria-hidden="true"></i></a>
                             </button>
                             <button class="navbar-toggler padding10" type="button" data-toggle="modal" data-target="#myModal2">
@@ -94,9 +94,9 @@ button:
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></br></br>
                                             <div class="icon pull-right">
                                                 <button class="navbar-toggler padding10" type="button">
-                                                    <a href="#"><i class="black fa fa-shopping-cart fa-lg paddingRight50" aria-hidden="true"></i></a>
+                                                    <a href="#"><i class="dropbtn black fa fa-shopping-cart fa-lg paddingRight50" aria-hidden="true"></i></a>
                                                 </button>
-                                                <button class="navbar-toggler padding10" type="button">
+                                                <button class="navbar-toggler padding10 dropbtn" type="button">
                                                     <a href="#"><i class="black fa fa-search fa-lg" aria-hidden="true"></i></a>
                                                 </button>
                                             </div>
