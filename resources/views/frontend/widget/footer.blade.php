@@ -17,7 +17,7 @@ button:
 - butFoot : mengubah model button di footer
 
 -->
-{!! Form::open(['url' => route('register') ]) !!}
+{!! Form::open(['url' => route('register')]) !!}
                 
                 <div class="marginBottom5" style="margin-top:-5px">
                     <div class="floatLeft width20Per height5 bgred"></div>
@@ -50,21 +50,20 @@ button:
                         <div class="floatLeft footer-col3">
                             <p><b>Newslatter</b></p>
                             <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
-                            <form class="form-inline"></form> 
+                            
                             <form class="form-inline">
-                                {!! Form::email('email_desktop',null, ['class' => 'form-control width80Per', 'placeholder' => 'Email Anda']) !!}
+                                {!! Form::email('email_desktop',null, ['class' => 'form-control pull-left width80Per', 'placeholder' => 'Email Anda']) !!}
                                 <button type="submit" class="black bgabu butFoot width20Per">Daftar</button>
-                            </form>
                         </div>
                     </div>
-                    <div class="kecila paddingLeft50 bgabumuda  paddingRight50">
-                        <p><b>Newslatter</b></p>
-                        <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
-                        <form class="form-inline">
-                            {!! Form::email('email_mobile',null, ['class' => 'form-control email width80Per', 'placeholder' => 'Email Anda']) !!}
-                            <button type="submit" class="black bgabu butFoot width20Per">Daftar</button>
-                        </form>
-                    </div>
+                </div>
+                <div class="kecila paddingLeft50 bgabumuda  paddingRight50">
+                    <p><b>Newslatter</b></p>
+                    <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
+                    <form class="form-inline">
+                        {!! Form::email('email_mobile',null, ['class' => 'form-control pull-left width75Per', 'placeholder' => 'Email Anda']) !!}
+                        <button type="submit" class="black bgabu butFoot width25Per">Daftar</button>
+                  
                 </div>
                 
 
