@@ -73,7 +73,8 @@ class webController extends BaseController
         
 
         $email = new email;
-        $email -> send('Judul', 'Konten',$newsletter->email);
+        $email -> send('Selamat Datang!', 'Anda telah berhasil berlangganan newsletter.
+Terima kasih sudah mendaftar newsletter kidzo dan ikuti terus update dari barang-barang terbaru kami!',$newsletter->email);
 
         return $this->generateRedirect(route('registered'));
     }
