@@ -28,7 +28,7 @@ class FAQController extends BaseController
     {
         //get data
         $faq                                    = new Faq;
-        $datas                                  = $faq->paginate(10);
+        $datas                                  = $faq::paginate(10);
 
         $this->page_datas->datas                = $datas;
         $this->page_datas->id                   = null;
@@ -55,9 +55,28 @@ class FAQController extends BaseController
         if($id != null)
         {
             $faq                                = new Faq;
-            $datas                              = $faq->find($id);
+            $datas                              = $faq::find($id);
+
+            //setup version
+            $datas['version']                   =   json_encode([
+                                                        'value'         => (string)$datas['version']['_id'],
+                                                        'text'          => $datas['version']['version_name']
+                                                    ]);
+            
+            //setup kategori
+            $datas['kategori']                  =  json_encode([
+                                                        'value'         => $datas['kategori'],
+                                                        'text'          => $datas['kategori']
+                                                    ]);
+
+            //setup sub kategori
+            $datas['sub_kategori']              =  json_encode([
+                                                        'value'         => $datas['sub_kategori'],
+                                                        'text'          => $datas['sub_kategori']
+                                                    ]);                                                          
         }
 
+        //set data
         $this->page_datas->datas                = $datas;
 
         //set referral url
@@ -92,9 +111,9 @@ class FAQController extends BaseController
         $faq                                    = Faq::findOrNew($id);
 
         //save data
-        // $faq->version                           = $input['version'];
-        $faq->kategori                          = $input['kategori'];
-        $faq->sub_kategori                      = $input['sub_kategori'];
+        $faq->version                           = Version::find($input['version'])['attributes'];
+        $faq->kategori                          = strtolower($input['kategori']);
+        $faq->sub_kategori                      = strtolower($input['sub_kategori']);
         $faq->no_urut                           = $input['no_urut'];
         $faq->pertanyaan                        = $input['pertanyaan'];
         $faq->jawaban                           = $input['jawaban'];
@@ -103,7 +122,7 @@ class FAQController extends BaseController
         if(is_null($faq->admin)){
             $faq->admin                         = 'Admins';
         }
-        
+
         $faq->save();
 
         $this->errors                           = $faq->getErrors();
@@ -122,7 +141,7 @@ class FAQController extends BaseController
     {
         //get data
         $faq                                    = new Faq;
-        $datas                                  = $faq->find($id);
+        $datas                                  = $faq::find($id);
 
         $this->page_datas->datas                = $datas;
         $this->page_datas->id                   = $id;
@@ -187,4 +206,40 @@ class FAQController extends BaseController
 
         return $this->generateRedirect(route('backend.website.FAQ.index'));
     }
+
+
+    //AJAX
+    public function ajaxGetFaqKategori()
+    {
+        $faq                                    = new Faq;
+
+        return $faq::raw(function($collection) { 
+            return $collection->aggregate(array(
+                array(
+                    '$group'    => array(
+                            '_id'   => '$kategori',
+                            'text'  => ['$first' =>'$kategori'],
+                            'value' => ['$first' =>'$kategori'],
+                    )
+                )     
+            )); 
+        })->toArray();
+    }  
+
+    public function ajaxGetFaqSubKategori()
+    {
+        $faq                                    = new Faq;
+
+        return $faq::raw(function($collection) { 
+            return $collection->aggregate(array(
+                array(
+                    '$group'    => array(
+                            '_id'   => '$sub_kategori',
+                            'text'  => ['$first' =>'$sub_kategori'],
+                            'value' => ['$first' =>'$sub_kategori'],
+                    )
+                )     
+            )); 
+        })->toArray();
+    }         
 }
