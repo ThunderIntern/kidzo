@@ -20,11 +20,20 @@ class WebsiteConfigsTableSeeder extends Seeder
 
         $version 						= Version::first();
 
-        $WebsiteConfig['category']		= 'slider';
+        $WebsiteConfig['kategori']		= 'slider';
         $WebsiteConfig['config']        =   [
-                                                'slider1'           => 'slider1.jpg',
-                                                'slider2'           => 'slider2.jpg',
-                                                'slider3'           => 'slider3.jpg',
+                                                'slider1'           =>  [
+                                                                            'url'    =>'slider1.jpg',
+                                                                            'link'   => 'http://kidzo'
+                                                                        ],
+                                                'slider2'           =>  [
+                                                                            'url'    =>'slider2.jpg',
+                                                                            'link'   => 'http://kidzo'
+                                                                        ],
+                                                'slider3'           =>  [
+                                                                            'url'    =>'slider3.jpg',
+                                                                            'link'   => 'http://kidzo'
+                                                                        ]
                                             ];
         $WebsiteConfig['version']       = $version['attributes'];
         $WebsiteConfig['admin']			= 'Admin';
@@ -37,7 +46,7 @@ class WebsiteConfigsTableSeeder extends Seeder
 
         $version                        = Version::first();
 
-        $WebsiteConfig['category']      = 'contact';
+        $WebsiteConfig['kategori']      = 'contact';
         $WebsiteConfig['config']        =   [
                                                 'phone'             => '081-1230123786',
                                                 'address'           => 'jl. Diponegoro 12A, Malang',

@@ -79,6 +79,11 @@ Route::group(['namespace' => 'Backend'], function(){
 			'update' 	=> 'backend.website.version.update', 
 			'destroy' 	=> 'backend.website.version.destroy'
 		]]);
+
+		//AJAX
+		Route::get('/admin/ajax/version', 	['uses' => 'versionController@ajaxGetVersion', 'as' => 'backend.ajax.getVersion']);
+		Route::get('/admin/ajax/faq/kategori', 	['uses' => 'faqController@ajaxGetFaqKategori', 'as' => 'backend.ajax.getFaqKategori']);
+		Route::get('/admin/ajax/faq/subkategori', 	['uses' => 'faqController@ajaxGetFaqSubKategori', 'as' => 'backend.ajax.getFaqSubKategori']);
 	});
 
 	//AJAX
