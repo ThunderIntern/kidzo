@@ -1,7 +1,7 @@
 @extends('frontend.layout.layout')
 @section('content')
 <div class="container-fluid pleft-0 pbottom-0">
-	<div class="desktop col-md-12 bgabumuda pright-0 pleft-0">
+	<div class="desktop col-md-12 pright-0 pleft-0">
 		<div class="col-md-3 paddingTop35">
 			@include('frontend.widget.sidebar', ['datas' => [
 			'0' => ['header' => "Kidzo", 'content' => 'Profil', 'link' => '#'],
@@ -16,13 +16,13 @@
 			'9' => ['header' => "", 'content' => 'Ketentuan Pembayaran', 'link' => '#'],
 			'10' => ['header' => "Pengiriman", 'content' => 'Metode Pengiriman', 'link' => '#'],
 			'11' => ['header' => "", 'content' => 'Biaya Pengiriman', 'link' => '#'],
-			]]);
+			]])
 		</div>
-		<div class="col-md-9 bgwhite paddingBottom100 paddingLeft30 paddingRight30">
+		<div class="col-md-9 borderLeft1 paddingBottom100 paddingLeft30 paddingRight30">
 			<div class="desktop row mbottom-s paddingTop50">
 				<div class="col-md-12">
 					<h1><b>Tentang Kami</b></h1>
-					<hr class="garis-bawah-ungu pull-left ptop-0" width="100">
+					<hr class="garis-bawah-ungu pull-left mtop-0" width="100">
 				</div>
 			</div>
 			<div class="row mbottom-s paddingLeft20">
