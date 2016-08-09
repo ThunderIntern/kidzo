@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Website;
 
 use App\Http\Controllers\baseController;
+use App\Http\Controllers\functions\dataFormatter;
 
 use App\Models\WebsiteConfig;
 use App\Models\Version;
@@ -57,6 +58,9 @@ class sliderController extends BaseController
             //get data
             $WebsiteConfig                      = new WebsiteConfig;
             $datas                              = $WebsiteConfig->find($id);
+
+            //setup version
+            $datas['version']                   = dataFormatter::toSelectize($datas['version']['_id'],$datas['version']['version_name']);
         }
 
         //set data
@@ -87,7 +91,47 @@ class sliderController extends BaseController
      */
     public function store($id = null)
     {
+        //get input
+        $input                                  = Input::only('version','sliders_image','sliders_link');
 
+        //set input sliders
+        $sliders                                = null;
+        foreach ($input['sliders_image'] as $key => $value) {
+            if(!empty($value)){
+                $sliders['slider' . ($key+1)]   =   [
+                                                        'url'           => $value,
+                                                        'link'          => $input['sliders_link'][$key],
+                                                    ];
+            }
+        }
+
+        //set input version
+        $version                                = Version::find($input['version'])['attributes'];
+        if(is_null($version)){
+            $version                            = null;
+        }
+
+        //create or edit
+        $WebsiteConfig                          = WebsiteConfig::findOrNew($id);
+
+        //save data
+        $WebsiteConfig->version                 = $version;
+        $WebsiteConfig->kategori                = 'slider';
+        $WebsiteConfig->config                  = $sliders;
+        $WebsiteConfig->admin                   = 'Admin';
+        $WebsiteConfig->published_at            = strtotime('now');
+
+        //set Admin
+        if(is_null($WebsiteConfig->admin)){
+            $WebsiteConfig->admin               = 'Admins';
+        }
+
+        $WebsiteConfig->save();
+
+        $this->errors                           = $WebsiteConfig->getErrors();
+        $this->page_attributes->msg             = 'Data telah disimpan';
+
+        return $this->generateRedirect($this->getRefererUrl());
     }
 
     /**

@@ -6,20 +6,17 @@
 		'title'			=> 'Detail Version',
 		'controls'		=> 	[
 								'back'		=>	[
-													'link'	=> route('backend.website.FAQ.index')
+													'link'	=> route('backend.website.faq.index')
 												],
 								'edit'		=>	[
-													'link'	=> route('backend.website.FAQ.edit', ['id'=> $page_datas->id] )
+													'link'	=> route('backend.website.faq.edit', ['id'=> $page_datas->id] )
 												],												
 								'delete'	=> 	[
-													'link'	=> route('backend.website.FAQ.destroy',['id' => $page_datas->id] )
+													'link'	=> route('backend.website.faq.destroy',['id' => $page_datas->id] )
 												],
 							]		
 	]])
 	</div>
-	<?php
-		// var_dump($page_datas);
-	?>
 	@include('backend.widgets.alertbox')
 	<div class="card-block">
 		@include('backend.widgets.components.detail.detail-text',['component' => [

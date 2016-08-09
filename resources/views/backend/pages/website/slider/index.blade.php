@@ -15,8 +15,9 @@
 				<thead>
 					<tr>
 						<th class="col-md-1">#</th>
-						<th class="col-md-5">Published At</th>
 						<th class="col-md-4">Published By</th>
+						<th class="col-md-3">Version Name</th>
+						<th class="col-md-2">Published By</th>
 						<th class="col-md-2 text-xs-right">Control</th>
 					</tr>
 				</thead>
@@ -26,12 +27,15 @@
 							<td class="col-md-1">
 								{{($page_datas->datas->perpage() * ($page_datas->datas->currentPage()-1)) + ($key + 1)}}
 							</td>
-							<td class="col-md-5">
+							<td class="col-md-4">
 								<a href="{{route('backend.website.slider.show', ['id' => $data['id']])}}">
 									{!! $data['published_at']->format('d M Y h:i A') !!}
 								</a>
 							</td>
-							<td class="col-md-4">
+							<td class="col-md-3">
+								{{ucfirst($data['version']['version_name'])}}
+							</td>							
+							<td class="col-md-2">
 								{{ucfirst($data['admin'])}}
 							</td>
 							<td class="col-md-2 text-xs-right">

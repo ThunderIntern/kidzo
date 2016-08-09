@@ -2,9 +2,9 @@
 @section('page_content')
 
 @if(is_null($page_datas->id))
-{!! Form::open(['url' => route('backend.website.FAQ.store') ]) !!}
+{!! Form::open(['url' => route('backend.website.faq.store') ]) !!}
 @else
-{!! Form::open(['url' => route('backend.website.FAQ.update', ['id' => $page_datas->id]), 'method' => 'patch' ]) !!}
+{!! Form::open(['url' => route('backend.website.faq.update', ['id' => $page_datas->id]), 'method' => 'patch' ]) !!}
 @endif
 	<div class="card">
 		@include('backend.widgets.alertbox')
@@ -13,10 +13,10 @@
 				'title'			=> $page_attributes->page_title,
 				'controls'		=> 	[
 										'back'		=>	[
-															'link'	=> route('backend.website.FAQ.index')
+															'link'	=> route('backend.website.faq.index')
 														],
 										'save'		=> 	[
-															'link'	=> route('backend.website.FAQ.store', ['id' => $page_datas->id])
+															'link'	=> route('backend.website.faq.store', ['id' => $page_datas->id])
 														]
 									]
 			]])

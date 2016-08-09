@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Backend\Website;
 
 use App\Http\Controllers\baseController;
+use App\Http\Controllers\functions\dataFormatter;
 
 use App\Models\Version;
 use App\Models\Faq;
 use Request, Input, URL;
 
-class FAQController extends BaseController
+class faqController extends BaseController
 {
     protected $view_source_root             = 'backend.pages.website.FAQ';
     protected $page_title                   = 'FAQ';
@@ -58,22 +59,13 @@ class FAQController extends BaseController
             $datas                              = $faq::find($id);
 
             //setup version
-            $datas['version']                   =   json_encode([
-                                                        'value'         => (string)$datas['version']['_id'],
-                                                        'text'          => $datas['version']['version_name']
-                                                    ]);
-            
+            $datas['version']                   = dataFormatter::toSelectize($datas['version']['_id'],$datas['version']['version_name']);
+
             //setup kategori
-            $datas['kategori']                  =  json_encode([
-                                                        'value'         => $datas['kategori'],
-                                                        'text'          => $datas['kategori']
-                                                    ]);
+            $datas['kategori']                  = dataFormatter::toSelectize($datas['kategori']);
 
             //setup sub kategori
-            $datas['sub_kategori']              =  json_encode([
-                                                        'value'         => $datas['sub_kategori'],
-                                                        'text'          => $datas['sub_kategori']
-                                                    ]);                                                          
+            $datas['sub_kategori']              = dataFormatter::toSelectize($datas['sub_kategori']);
         }
 
         //set data
@@ -204,7 +196,7 @@ class FAQController extends BaseController
         //return view
         $this->page_attributes->msg             = 'Data telah dihapus';
 
-        return $this->generateRedirect(route('backend.website.FAQ.index'));
+        return $this->generateRedirect(route('backend.website.faq.index'));
     }
 
 
