@@ -61,6 +61,22 @@ class sliderController extends BaseController
 
             //setup version
             $datas['version']                   = dataFormatter::toSelectize($datas['version']['_id'],$datas['version']['version_name']);
+
+            //setup slider data
+            for ($i=0; $i < 5; $i++) { 
+                if(!isset($datas['config']['slider'. ($i+1)])){
+                    $slider['slider' . ($i+1)]  =   [
+                                                        'url'           => null,
+                                                        'link'          => null,
+                                                    ];
+                }else{
+                    $slider['slider' . ($i+1)]  =   [
+                                                        'url'           => $datas['config']['slider'. ($i+1)]['url'],
+                                                        'link'          => $datas['config']['slider'. ($i+1)]['link'],
+                                                    ];
+                }
+            }
+            $datas['config']                    = $slider;
         }
 
         //set data
@@ -79,7 +95,7 @@ class sliderController extends BaseController
 
         //generate view
         $view_source                            = $this->view_source_root . '.create';
-        $route_source                           = Request::route()->getName();        
+        $route_source                           = Request::route()->getName();  
         return $this->generateView($view_source , $route_source);
     }
 

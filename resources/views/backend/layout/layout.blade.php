@@ -13,6 +13,10 @@
     </body>
     {!! Html::script(elixir('js/backend.js')) !!}
     <script>
+        $(document).ready(function(){
+            kidzo.init();
+        });
+
         @yield('scripts')
     </script>
 </html>
