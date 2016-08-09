@@ -4,7 +4,7 @@
 	<div class="card-block">
 	@include('backend.widgets.components.title.title-add-search', ['component' => [
 		'title'			=> 'FAQ / Page ' . $page_datas->datas->currentPage(),
-		'link-add'		=> route('backend.website.FAQ.create'),
+		'link-add'		=> route('backend.website.faq.create'),
 		'link-search'	=> '#',
 	]])
 	</div>
@@ -27,7 +27,7 @@
 								{{($page_datas->datas->perpage() * ($page_datas->datas->currentPage()-1)) + ($key + 1)}}
 							</td>
 							<td class="col-md-7">
-								<a href="{{route('backend.website.FAQ.show', ['id' => $data['id']])}}">
+								<a href="{{route('backend.website.faq.show', ['id' => $data['id']])}}">
 									{{ $data['pertanyaan'] }}
 								</a>
 							</td>
@@ -35,10 +35,10 @@
 								{{ $data['version']['version_name'] }}
 							</td>
 							<td class="col-md-2 text-xs-right">
-								<a href="{{route('backend.website.FAQ.edit', ['id' => $data['id']])}}" class="btn btn-primary-outline btn-sm">
+								<a href="{{route('backend.website.faq.edit', ['id' => $data['id']])}}" class="btn btn-primary-outline btn-sm">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 						        </a>	
-								<a href="#" class="btn btn-primary-outline btn-sm" data-toggle="modal" data-target="#modalDelete" data-action="{!! route('backend.website.FAQ.destroy',['id' => $data['id']]) !!}">
+								<a href="#" class="btn btn-primary-outline btn-sm" data-toggle="modal" data-target="#modalDelete" data-action="{!! route('backend.website.faq.destroy',['id' => $data['id']]) !!}">
 									<i class="fa fa-times" aria-hidden="true"></i>
 						        </a>
 							</td>

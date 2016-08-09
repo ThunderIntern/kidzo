@@ -51,14 +51,14 @@ Route::group(['namespace' => 'Backend'], function(){
 			'update' 	=> 'backend.website.config.update', 
 			'destroy' 	=> 'backend.website.config.destroy'
 		]]);
-		Route::resource('/admin/website/faq', 'FAQController', ['names' => [
-			'index' 	=> 'backend.website.FAQ.index',
-			'create'	=> 'backend.website.FAQ.create', 
-			'store' 	=> 'backend.website.FAQ.store', 
-			'show' 		=> 'backend.website.FAQ.show', 
-			'edit' 		=> 'backend.website.FAQ.edit', 
-			'update' 	=> 'backend.website.FAQ.update', 
-			'destroy' 	=> 'backend.website.FAQ.destroy'
+		Route::resource('/admin/website/faq', 'faqController', ['names' => [
+			'index' 	=> 'backend.website.faq.index',
+			'create'	=> 'backend.website.faq.create', 
+			'store' 	=> 'backend.website.faq.store', 
+			'show' 		=> 'backend.website.faq.show', 
+			'edit' 		=> 'backend.website.faq.edit', 
+			'update' 	=> 'backend.website.faq.update', 
+			'destroy' 	=> 'backend.website.faq.destroy'
 		]]);
 		Route::resource('/admin/website/slider', 'sliderController', ['names' => [
 			'index' 	=> 'backend.website.slider.index',
@@ -86,10 +86,6 @@ Route::group(['namespace' => 'Backend'], function(){
 		Route::get('/admin/ajax/faq/subkategori', 	['uses' => 'faqController@ajaxGetFaqSubKategori', 'as' => 'backend.ajax.getFaqSubKategori']);
 	});
 
-	//AJAX
-	Route::get('/admin/ajax/version', 	['uses' => 'versionController@ajaxGetVersion', 'as' => 'backend.ajax.getVersion']);
- 	Route::get('/admin/ajax/faq/kategori', 	['uses' => 'faqController@ajaxGetFaqKategori', 'as' => 'backend.ajax.getFaqKategori']);
- 	Route::get('/admin/ajax/faq/subkategori', 	['uses' => 'faqController@ajaxGetFaqSubKategori', 'as' => 'backend.ajax.getFaqSubKategori']);
 
 	//CRM
 	Route::group(['namespace' => 'CRM'], function(){	
