@@ -23,6 +23,8 @@ elixir(function(mix) {
     			'jquery.js',
 				'bootstrap.min.js',
 				'selectize.min.js',
+				'backend/kidzo.js',
+				'backend/kidzo_ui.js',
 			], 'public/js/backend.js')
     .scripts([
     			'jquery.js',
