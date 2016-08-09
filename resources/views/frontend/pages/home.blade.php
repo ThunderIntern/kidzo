@@ -1,5 +1,7 @@
 	@extends('frontend.layout.layout')
 	@section('content')
+	<!--document-->
+	<!--slider-->
 	<div class="mbottom-l">
 		<img width="100%" class="img-responsive img-center" src="{{asset('image/frontend/capture1.jpg')}}"></img>	
 	</div>
@@ -69,10 +71,10 @@
 			<div class="container pleft-l pright-l">
 				<div class="row">
 					<div class="col-sm-12 col-md-8">
-						<h2 class="white ptop">Party Time</h2>
-						<h3 class="white ptop pbottom font-mobile">
+						<h1 class="white ptop">Party Time</h1>
+						<h4 class="white ptop pbottom font-mobile">
 							wfhasbucgbasiuvgbicsuabvicuabsuivcbiausbv iuasbvuiabiuvbiaubvisuabviubasiuvuiasbvib asiuviubasviuasibviuasbviuabsivbiabvibais ucvyudsgvgwugvbuidviuvbiusbviubiuvbiubviu ewbvuebwuvbwuibfaggfauygufaygfugasuygfyua sguyfgasggfugsaufygsaugfuyahsbfhsabfjhbsa jhbfjshsjhfjhsjgsjhfgsjgsjhgfjgjhgsjfgjsa</h3>
-						<a href="#"><button class="btn-lg bgwhite blue mbutton-bottom">Lebih Lanjut</button></a>
+						<a href="#"><button class="btn bgwhite blue mbutton-bottom">Lebih Lanjut</button></a>
 					</div>
 					<div class="col-md-4 desktop">
 						<a href="#"><img width="100%" class="img-responsive img-m-top img-center" src="{{asset('image/frontend/capture3.jpg')}}"></img></a>

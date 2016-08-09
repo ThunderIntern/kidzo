@@ -86,6 +86,11 @@ Route::group(['namespace' => 'Backend'], function(){
 		Route::get('/admin/ajax/faq/subkategori', 	['uses' => 'faqController@ajaxGetFaqSubKategori', 'as' => 'backend.ajax.getFaqSubKategori']);
 	});
 
+	//AJAX
+	Route::get('/admin/ajax/version', 	['uses' => 'versionController@ajaxGetVersion', 'as' => 'backend.ajax.getVersion']);
+ 	Route::get('/admin/ajax/faq/kategori', 	['uses' => 'faqController@ajaxGetFaqKategori', 'as' => 'backend.ajax.getFaqKategori']);
+ 	Route::get('/admin/ajax/faq/subkategori', 	['uses' => 'faqController@ajaxGetFaqSubKategori', 'as' => 'backend.ajax.getFaqSubKategori']);
+
 	//CRM
 	Route::group(['namespace' => 'CRM'], function(){	
 		Route::resource('/admin/CRM/subscribber', 'subscribberController', ['names' => [
