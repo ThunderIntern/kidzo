@@ -18,7 +18,8 @@ class email{
 
         //is_null(var)
         //$user = User::findOrFail($id);
-
+        
+        // variabel judul & konten dari webController. $input = email yang dituju
         Mail::send('email/email', ['judul' => $judul, 'konten' => $konten], function($message) use ($input)
         {
             $message->to($input, 'hoi') ->from('graygevaldi@gmail.com')->subject('Welcome!');

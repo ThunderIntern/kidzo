@@ -1,3 +1,4 @@
+{{-- Menampung kiriman dari function/email.php --}}
 @extends('email.layout.layout')
 @section('content')
 <div class="isi">

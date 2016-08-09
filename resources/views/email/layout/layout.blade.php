@@ -1,3 +1,5 @@
+{{-- Form email yang akan dikirim --}}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
