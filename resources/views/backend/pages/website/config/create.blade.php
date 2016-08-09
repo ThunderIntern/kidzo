@@ -11,17 +11,13 @@
 														'link'	=> route('backend.website.config.index')
 													],
 										'save'	=>	[
-														'link'	=> route('backend.website.config.store')
+														'link'	=> route('backend.website.config.store'), ['id' => $page_datas->id]
 													]													
 									]
 			]])
 			<fieldset class="form-group">
 				<label for="name">Nomor Telepon</label>
 				{!! Form::text('no', null, ['class' => 'form-control']) !!}
-			</fieldset>
-			<fieldset class="form-group">
-				<label for="name">Alamat</label>
-				{!! Form::text('alamat', null, ['class' => 'form-control']) !!}
 			</fieldset>
 			<fieldset class="form-group">
 				<label for="name">Email</label>
@@ -31,6 +27,19 @@
 				<label for="name">Facebook</label>
 				{{ Form::text('facebook', null, ['class' => 'form-control']) }}
 			</fieldset>		
+			<fieldset class="form-group">
+				<label for="name">Alamat</label>
+				{!! Form::text('alamat', null, ['class' => 'form-control']) !!}
+			</fieldset>
+			<fieldset class="form-group">
+				<label for="name">Version Name</label>
+				@include('backend.widgets.selectize', ['components' => [
+					'type'		=> 'version',
+					'name'		=> 'version',
+					'init_data'	=> $page_datas->datas['version'],
+					'ajax_url'	=> route('backend.ajax.getVersion'),
+				]])
+			</fieldset>
 		</div>
 	</div>
 </div>
