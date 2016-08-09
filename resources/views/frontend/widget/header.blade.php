@@ -16,15 +16,15 @@ button:
 - buttonNav : button di navbar yang muncul saat ukuran mobile
 
 -->
-        
+            <!-- Tampilan saat desktop -->
             <div class="desktop marginBottom75">
                 <nav class="navbar navbar-fixed-top paddingBottom1 bgwhite">
                     <div class="col-sm-12">
-                        <img src="{{asset('image/frontend/logo.png')}}" class="paddingTop5 pull-left posisiAbs">
-
-                        <div class="menu tengah">
+                        <a href="{{Route('home')}}"><img src="{{asset('image/frontend/logo.png')}}" class="gambarHead marginTop5 pull-left posisiAbs"></a>
+        
+                        <div class="menu tengah"> {{-- posisi menu di tengah --}}
                             <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#tes">
-                                &#9776;
+                                &#9776;                                                 
                             </button>
                             <div class="collapse navbar-toggleable-xs" id="tes">
                                 <ul class="nav navbar-nav">
@@ -60,7 +60,7 @@ button:
                                         <i class="fa fa-search fa-lg black" aria-hidden="true"></i>
                                     </button>
                                 </a>
-                                <div id="myDropdown" class="dropdown-content" style="width:250px">
+                                <div id="myDropdown" class="dropdown-content box">
                                     <form class="form-inline">
                                             {!! Form::text('email_mobile',null, ['class' => 'form-control width80Per', 'placeholder'=>'Cari Produk']) !!}
                                             <button type="submit" class="black bgabu butFoot">Cari</button>
@@ -73,12 +73,12 @@ button:
                     </div>
                 </nav>
             </div>
-
+            <!---->
 
             <div class="mobile marginBottom75">
                 <nav class="navbar navbar-fixed-top paddingBottom1 bgwhite">
                     <div class="col-sm-12">
-                        <img src="{{asset('image/frontend/logo.png')}}" class="paddingTop5 floatLeft paddingLeft10">
+                        <a href="{{Route('home')}}"><img src="{{asset('image/frontend/logo.png')}}" class="gambarHead marginTop5 pull-left"></a>
                         <div class="floatRight paddingRight10">
                             <button class="navbar-toggler padding30 dropbtn" type="button">
                                 <a href="#"><i class="fa fa-shopping-cart fa-lg paddingRight10 black" aria-hidden="true"></i></a>
@@ -105,12 +105,12 @@ button:
                                             <i class="dropbtn fa fa-search fa-lg black" aria-hidden="true"></i>
                                         </button>
                                     </a>
-                                    <div id="myDropdown2" class="dropdown-cont" style="width:250px">
+                                    <div id="myDropdown2" class="dropdown-cont box">
                                         <form class="form-inline">
-                                                {!! Form::text('email_mobile',null, ['class' => 'form-control width80Per', 'placeholder'=>'Cari Produk']) !!}
-                                                <button type="submit" class="black bgabu butFoot">Cari</button>
-                                                <a href="#" class="textCenter">Advance Search</a>
-                                        </form>
+                                                {!! Form::text('email_mobile',null, ['class' => 'form-control width80Per floatLeft', 'placeholder'=>'Cari Produk']) !!}
+                                                <button type="submit" class="black bgabu width20Per butFoot floatLeft">Cari</button>
+                                        </form></br>
+                                        <a href="#" class="textCenter paddingTop10 paddingBottom10">Advance Search</a>
                                     </div>
                                 </div>
                             </div>

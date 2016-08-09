@@ -28,10 +28,9 @@ button:
                 </div>
 
                 <div class="col-sm-12 bgabumuda">
-                    <div class="normala paddingRight50 paddingLeft50">
-                        <div class="paddingTop25 floatLeft footer-col1">
-                            <div class="col-sm-1"></div>
-                            <img src="{{asset('image/frontend/logo.png')}}" class="gambar">
+                    <div class="normala paddingRight30 paddingLeft30">
+                        <div class="paddingTop25 pull-left footer-col1">
+                            <img src="{{asset('image/frontend/logo.png')}}" class="gambarFoot ">
                         </div>
                         <div class="floatLeft footer-col2">
                             <p><b>PT.KIDZO GEMBIRA SENTOSA</b></p>
