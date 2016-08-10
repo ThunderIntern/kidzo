@@ -11,7 +11,7 @@ use Request, Input, URL, Hash;
 class newsletterController extends BaseController
 {
     protected $view_source_root             = 'backend.pages.crm.newsletter';
-    protected $page_title                   = 'newsletter';
+    protected $page_title                   = 'Newsletter';
     protected $breadcrumb                   = [];
     public function __construct()
     {
@@ -61,7 +61,11 @@ class newsletterController extends BaseController
         $this->setRefererUrl();
 
         //page attributes
-        $this->page_attributes->msg             = $this->page_title;
+        if($id != null){
+            $this->page_attributes->page_title  = 'Edit '. $this->page_title;
+        }else{
+            $this->page_attributes->page_title  = $this->page_title . ' Baru';
+        }
         $this->page_datas->id                   = $id;
 
         //generate view
@@ -100,7 +104,7 @@ class newsletterController extends BaseController
         $this->errors                           = $newsletter->getErrors();
         $this->page_attributes->msg             = 'Data telah disimpan';
 
-        return $this->generateRedirect(route('backend.crm.newsletter.index'));
+        return $this->generateRedirect($this->getRefererUrl());
     }
 
     /**
@@ -111,7 +115,7 @@ class newsletterController extends BaseController
      */
     public function show($id)
     {
-         $newsletter                  = new Subscriber;
+        $newsletter                             = new Subscriber;
         $datas                                  = $newsletter::find($id);
 
         $this->page_datas->datas                = $datas;
@@ -159,7 +163,7 @@ class newsletterController extends BaseController
     public function destroy($id)
     {
         //find 
-        $newsletter                                    = Subscriber::find($id);
+        $newsletter                             = Subscriber::find($id);
 
         //get password
         $password                               = Input::get('password');

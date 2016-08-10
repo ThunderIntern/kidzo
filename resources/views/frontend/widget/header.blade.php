@@ -22,7 +22,7 @@ button:
                     <div class="col-sm-12">
                         <a href="{{Route('home')}}"><img src="{{asset('image/frontend/logo.png')}}" class="gambarHead marginTop5 pull-left posisiAbs"></a>
         
-                        <div class="menu tengah"> {{-- posisi menu di tengah --}}
+                        <div class="menu tengah"> {{-- posisi menu di tengah layar pas--}}
                             <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#tes">
                                 &#9776;                                                 
                             </button>
@@ -48,19 +48,20 @@ button:
                             </div>
                         </div>
 
-                        <div class="tombol pull-right">
-                            <a href="#">
+                        <div class="pull-right"> {{-- Tombol shoping cart + search --}}
+                            <a href="#">        {{-- Tombol shoping cart --}}        
                                 <button class="navbar-toggler padding30 dropbtn" type="button">
                                     <i class="fa fa-shopping-cart fa-lg black" aria-hidden="true"></i>
                                 </button>
                             </a>
-                            <div class="dropdown">
+                            <div class="dropdown">  {{-- Tombol search --}}
                                 <a href="#">
                                     <button onclick="myFunction()" class="dropbtn navbar-toggler padding30" type="button">
                                         <i class="fa fa-search fa-lg black" aria-hidden="true"></i>
                                     </button>
                                 </a>
-                                <div id="myDropdown" class="dropdown-content box">
+                                {{-- Yang keluar saat tombol search ditekan --}}
+                                <div id="myDropdown" class="dropdown-content box"> 
                                     <form class="form-inline">
                                             {!! Form::text('email_mobile',null, ['class' => 'form-control width80Per', 'placeholder'=>'Cari Produk']) !!}
                                             <button type="submit" class="black bgabu butFoot">Cari</button>
@@ -68,21 +69,26 @@ button:
                                     </form>
 
                                 </div>
-                            </div>
-                        </div>
+                            </div> {{-- Tombol search --}}
+                        </div>{{-- Tombol shoping cart + search --}}
                     </div>
                 </nav>
             </div>
             <!---->
 
-            <div class="mobile marginBottom75">
+            {{-- Saat ukuran mobile --}}
+            <div class="mobile marginBottom75"> 
                 <nav class="navbar navbar-fixed-top paddingBottom1 bgwhite">
                     <div class="col-sm-12">
+                        
                         <a href="{{Route('home')}}"><img src="{{asset('image/frontend/logo.png')}}" class="gambarHead marginTop5 pull-left"></a>
+
                         <div class="floatRight paddingRight10">
+                            {{-- Button shoping --}}
                             <button class="navbar-toggler padding30 dropbtn" type="button">
                                 <a href="#"><i class="fa fa-shopping-cart fa-lg paddingRight10 black" aria-hidden="true"></i></a>
                             </button>
+                            {{-- Button navbar --}}
                             <button class="navbar-toggler padding10" type="button" data-toggle="modal" data-target="#myModal2">
                                 &#9776;
                             </button>
@@ -90,56 +96,63 @@ button:
                     </div>
                 </nav>
                 <!-- Modal -->
-            <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></br></br>
-                            <div class="icon pull-right">
-                                <div class="dropdown text-xs-right">
+                <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                {{-- Button cancel --}}
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></br></br>
+                                {{-- Button shoping + search --}}
+                                <div class="icon pull-right">
+                                    <div class="dropdown text-xs-right">
+                                    {{-- Button Shopping --}}
                                     <button class="navbar-toggler dropbtn" type="button">
-                                    <a href="#"><i class="dropbtn black fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
-                                </button>
-                                    <a href="#">
-                                        <button onclick="myFunction2()" class="dropbtn navbar-toggler" type="button">
-                                            <i class="dropbtn fa fa-search fa-lg black" aria-hidden="true"></i>
-                                        </button>
-                                    </a>
-                                    <div id="myDropdown2" class="dropdown-cont box">
-                                        <form class="form-inline">
-                                                {!! Form::text('email_mobile',null, ['class' => 'form-control width80Per floatLeft', 'placeholder'=>'Cari Produk']) !!}
-                                                <button type="submit" class="black bgabu width20Per butFoot floatLeft">Cari</button>
-                                        </form></br>
-                                        <a href="#" class="textCenter paddingTop10 paddingBottom10">Advance Search</a>
+                                        <a href="#"><i class="dropbtn black fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
+                                    </button>
+
+                                    {{-- Button search --}}
+                                        <a href="#">
+                                            <button onclick="myFunction2()" class="dropbtn navbar-toggler" type="button">
+                                                <i class="dropbtn fa fa-search fa-lg black" aria-hidden="true"></i>
+                                            </button>
+                                        </a>
+                                    {{-- Isi Button Search --}}
+                                        <div id="myDropdown2" class="dropdown-cont box">
+                                            <form class="form-inline">
+                                                    {!! Form::text('email_mobile',null, ['class' => 'form-control width80Per floatLeft', 'placeholder'=>'Cari Produk']) !!}
+                                                    <button type="submit" class="black bgabu width20Per butFoot floatLeft">Cari</button>
+                                            </form></br>
+                                            <a href="#" class="textCenter paddingTop10 paddingBottom10">Advance Search</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-body">
-                            <ul class="nav navbar-nav">
-                                <li class="nav-item borderTop5 green">
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link black pull-right" href="{{Route('home')}}">Home</a>
-                                </li>
-                                <li class="nav-item borderTop1 green">
-                                    <a class="nav-link black pull-right" href="#">Mainan</a>
-                                </li>
-                                <li class="nav-item borderTop1 orange">
-                                    <a class="nav-link black pull-right" href="#">Party Pack</a>
-                                </li>
-                                <li class="nav-item borderTop1 purple">
-                                    <a class="nav-link black pull-right" href="{{Route('about')}}">Tentang Kami</a>
-                                </li>
-                                <li class="nav-item borderTop1 blue">
-                                    <a class="nav-link black pull-right" href="#">Login</a>
-                                </li></br></br></br></br></br></br></br></br></br></br></br></br></br>
-                            </ul>
-                        </div>
-                    </div><!-- modal-content -->
-                </div><!-- modal-dialog -->
-            </div><!-- modal -->
-            </div>
+
+                            <div class="modal-body">
+                                <ul class="nav navbar-nav">
+                                    <li class="nav-item borderTop5 green">
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link black pull-right" href="{{Route('home')}}">Home</a>
+                                    </li>
+                                    <li class="nav-item borderTop1 green">
+                                        <a class="nav-link black pull-right" href="#">Mainan</a>
+                                    </li>
+                                    <li class="nav-item borderTop1 orange">
+                                        <a class="nav-link black pull-right" href="#">Party Pack</a>
+                                    </li>
+                                    <li class="nav-item borderTop1 purple">
+                                        <a class="nav-link black pull-right" href="{{Route('about')}}">Tentang Kami</a>
+                                    </li>
+                                    <li class="nav-item borderTop1 blue">
+                                        <a class="nav-link black pull-right" href="#">Login</a>
+                                    </li></br></br></br></br></br></br></br></br></br></br></br></br></br>
+                                </ul>
+                            </div>
+                        </div><!-- modal-content -->
+                    </div><!-- modal-dialog -->
+                </div><!-- modal -->
+            </div>{{-- Saat ukuran mobile --}}
             
             
 <script>

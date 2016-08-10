@@ -17,8 +17,9 @@ button:
 - butFoot : mengubah model button di footer
 
 -->
+{{-- Isi form akan di kirim ke register --}}
 {!! Form::open(['url' => route('register')]) !!}
-                
+                {{-- Class warna --}}
                 <div class="marginBottom5" style="margin-top:-5px">
                     <div class="floatLeft width20Per height5 bgred"></div>
                     <div class="floatLeft width20Per height5 bggreen"></div>
@@ -27,6 +28,7 @@ button:
                     <div class="floatLeft width20Per height5 bgblue"></div>
                 </div>
 
+                {{-- isi Footer --}}
                 <div class="col-sm-12 bgabumuda">
                     <div class="normala paddingRight30 paddingLeft30">
                         <div class="paddingTop25 pull-left footer-col1">
@@ -55,7 +57,8 @@ button:
                                 <button type="submit" class="black bgabu butFoot width20Per">Daftar</button>
                         </div>
                     </div>
-                </div>
+                </div>{{-- isi Footer ukuran desktop --}}
+                {{-- isi Footer ukuran mobile --}}
                 <div class="kecila paddingLeft50 bgabumuda  paddingRight50">
                     <p><b>Newslatter</b></p>
                     <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
@@ -63,15 +66,17 @@ button:
                         {!! Form::email('email_mobile',null, ['class' => 'form-control pull-left width75Per', 'placeholder' => 'Email Anda']) !!}
                         <button type="submit" class="black bgabu butFoot width25Per">Daftar</button>
                   </form>
-                </div>
+                </div>{{-- isi Footer ukuran mobile --}}
                 
-
+            {{-- Isi footer bawah  --}}
             <div class="col-sm-12 paddingLeft50 paddingRight50 bgabu">
                 <div class="paddingTop10">
+                    {{-- ukuran desktop --}}
                     <div class="normalb">
                         <p>2016 KIDZO. All right reserved<span class="floatRight">Develop by : Thunderlab Indonesia</span></p>
                     </div>
 
+                    {{-- ukuran mobile --}}
                     <div class="kecilb">
                         <p>2016 KIDZO. All right reserved</br>Develop by : Thunderlab Indonesia</p>
                     </div>
