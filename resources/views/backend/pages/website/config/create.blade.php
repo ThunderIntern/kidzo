@@ -1,11 +1,16 @@
 @extends('backend.pages.website.layout')
 @section('page_content')
+
+@if(is_null($page_datas->id))
 {!! Form::open(['url' => route('backend.website.config.store') ]) !!}
-<div>
+@else
+{!! Form::open(['url' => route('backend.website.config.update', ['id' => $page_datas->id]), 'method' => 'patch' ]) !!}
+@endif
 	<div class="card">
+		@include('backend.widgets.alertbox')
 		<div class="card-block">
 			@include('backend.widgets.components.title.title-control', ['component' => [
-				'title'			=> 'Create Config',
+				'title'			=> $page_attributes->page_title,
 				'controls'		=> 	[
 										'back'	=>	[
 														'link'	=> route('backend.website.config.index')
@@ -42,5 +47,5 @@
 			</fieldset>
 		</div>
 	</div>
-</div>
+{!! Form::close() !!}
 @stop

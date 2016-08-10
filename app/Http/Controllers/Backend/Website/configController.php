@@ -51,7 +51,7 @@ class configController extends BaseController
         if($id != null)
         {
             $config                             = new WebsiteConfig;
-            $datas                              = $config->find($id);
+            $datas                              = $config::find($id);
         }
 
         $this->page_datas->datas                = $datas;
@@ -61,6 +61,11 @@ class configController extends BaseController
 
         //page attributes
         $this->page_attributes->msg             = $this->page_title;
+        if($id != null){
+            $this->page_attributes->page_title  = 'Edit '. $this->page_title;
+        }else{
+            $this->page_attributes->page_title  = $this->page_title . ' Baru';
+        }
         $this->page_datas->id                   = $id;
 
         //generate view

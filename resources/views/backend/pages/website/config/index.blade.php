@@ -43,7 +43,7 @@
 								{{ $data['config']['address']}}
 							</td>
 							<td class="col-md-2 text-xs-right">
-								<a href="{{route('backend.website.config.edit', ['id' => $data['id']])}}" class="btn btn-primary-outline btn-sm">
+								<a href="{!! route('backend.website.config.edit', ['id' => $data['id']]) !!}" class="btn btn-primary-outline btn-sm">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 						        </a>	
 								<a href="#" class="btn btn-primary-outline btn-sm" data-toggle="modal" data-target="#modalDelete" data-action="{!! route('backend.website.config.destroy',['id' => $data['id']]) !!}">
