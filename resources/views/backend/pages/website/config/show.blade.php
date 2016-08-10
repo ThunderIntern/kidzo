@@ -21,7 +21,7 @@
 	<div class="card-block">
 		@include('backend.widgets.components.detail.detail-text',['component' => [
 			'title'		=> 'Phone Number',
-			'content'	=>  ucfirst($page_datas->datas['phone'])
+			'content'	=>  ucfirst($page_datas->datas['config']['phone'])
 		]])
 		@include('backend.widgets.components.detail.detail-text',['component' => [
 			'title'		=> 'Email',
@@ -29,11 +29,11 @@
 		]])		
 		@include('backend.widgets.components.detail.detail-text',['component' => [
 			'title'		=> 'Facebook',
-			'content'	=>  ucFirst($page_datas->datas['facebook'])
+			'content'	=>  ucFirst($page_datas->datas['config']['facebook'])
 		]])		
 		@include('backend.widgets.components.detail.detail-text',['component' => [
 			'title'		=> 'Address',
-			'content'	=>  ucFirst($page_datas->datas['address'])
+			'content'	=>  ucFirst($page_datas->datas['config']['address'])
 		]])		
 	</div>
 </div>
