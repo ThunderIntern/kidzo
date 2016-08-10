@@ -30,7 +30,7 @@ class sliderController extends BaseController
     {
         //get data
         $WebsiteConfig                          = new WebsiteConfig;
-        $datas                                  = $WebsiteConfig->paginate(10);
+        $datas                                  = $WebsiteConfig::where('kategori','slider')->paginate(10);
 
         $this->page_datas->datas                = $datas;
         $this->page_datas->id                   = null;
@@ -161,6 +161,23 @@ class sliderController extends BaseController
         //get data
         $WebsiteConfig                          = new WebsiteConfig;
         $datas                                  = $WebsiteConfig::find($id);
+
+        //setup slider data
+        for ($i=0; $i < 5; $i++) { 
+            if(!isset($datas['config']['slider'. ($i+1)])){
+                $slider['slider' . ($i+1)]      =   [
+                                                        'url'           => null,
+                                                        'link'          => null,
+                                                    ];
+            }else{
+                $slider['slider' . ($i+1)]      =   [
+                                                        'url'           => $datas['config']['slider'. ($i+1)]['url'],
+                                                        'link'          => $datas['config']['slider'. ($i+1)]['link'],
+                                                    ];
+            }
+        }
+        $datas['config']                        = $slider;
+
 
         $this->page_datas->datas                = $datas;
         $this->page_datas->id                   = $id;

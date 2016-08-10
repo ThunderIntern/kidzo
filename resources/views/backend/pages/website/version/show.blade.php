@@ -3,7 +3,7 @@
 <div class="card">
 	<div class="card-block">
 	@include('backend.widgets.components.title.title-control', ['component' => [
-		'title'			=> 'Detail Version',
+		'title'			=> $page_attributes->page_title,
 		'controls'		=> 	[
 								'back'		=>	[
 													'link'	=> route('backend.website.version.index')
