@@ -45,11 +45,11 @@
         background-color: #FAFAFA;
     }
     
-.navbar {
-    -webkit-box-shadow: inset 0px -3px 8px -4px rgba(0,0,0,0.75);
-	-moz-box-shadow: inset 0px -3px 8px -4px rgba(0,0,0,0.75);
-	box-shadow: inset 0px -3px 8px -4px rgba(0,0,0,0.75);
-}
+    .navbar {
+        -webkit-box-shadow: 0 6px 6px -6px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0 6px 6px -6px rgba(0,0,0,0.75);
+        box-shadow: 0 6px 6px -6px rgba(0,0,0,0.75);        
+    }
 
 /* Dropdown Button */
 .dropbtn {
