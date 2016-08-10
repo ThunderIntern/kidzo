@@ -26,4 +26,4 @@
 	init: function() {
 		kidzo_previewImage.init();
 	}
-}
+};
