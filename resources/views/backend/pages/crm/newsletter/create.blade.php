@@ -39,7 +39,7 @@
 			]])
 			<fieldset class="form-group">
 				<label for="name">Email</label>
-				{!! Form::text('email', $page_datas->datas['email'], ['class' => 'form-control']) !!}
+				{!! Form::email('email', $page_datas->datas['email'], ['class' => 'form-control']) !!}
 			</fieldset>
 			<fieldset class="form-group">
 				<label for="name">Version Name</label>
@@ -50,10 +50,6 @@
 					'ajax_url'	=> route('backend.ajax.getVersion'),
 				]])
 			</fieldset>
-			<fieldset class="form-group">
-				<label for="name">Unsubscribe Token</label>
-				{{ Form::date('unsubscribe_token', $page_datas->datas['unsubscribe_token'], ['class' => 'form-control']) }}
-			</fieldset>	
 			<fieldset class="form-group">
 				<label for="name">Is Subscribe</label>
 				{{ Form::select('is_subscribe', ['0' => 'Unsubscribed', '1' => 'Subscribed'], $page_datas->datas['is_subscribe'], ['class' => 'form-control c-select']) }}

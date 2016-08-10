@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\CRM;
 
 use App\Http\Controllers\baseController;
+use App\Http\Controllers\functions\dataFormatter;
 
 use App\Models\Subscriber;
 use App\Models\Version;
@@ -53,6 +54,8 @@ class subscribberController extends BaseController
         {
             $subscribber                        = new Subscriber;
             $datas                              = $subscribber->find($id);
+
+            $datas['version']                   = dataFormatter::toSelectize($datas['version']['_id'],$datas['version']['version_name']);
         }
 
         $this->page_datas->datas                = $datas;
@@ -79,7 +82,7 @@ class subscribberController extends BaseController
     public function store($id = null)
     {
         //get input
-        $input                                  = Input::only('email','version','unsubscribe_token','is_subscribe');
+        $input                                  = Input::only('email','version','is_subscribe');
 
         //create or edit
         $subscribber                            = Subscriber::findOrNew($id);
@@ -87,7 +90,7 @@ class subscribberController extends BaseController
         //save data
         $subscribber->email                     = $input['email'];
         $subscribber->version                   = Version::find($input['version'])['attributes'];
-        $hashedToken                            = Hash::make($input['unsubscribe_token']);
+        $hashedToken                            = Hash::make(strtotime('now'));
         $subscribber->unsubscribe_token          = $hashedToken;
         $subscribber->is_subscribe              = $input['is_subscribe'];
 

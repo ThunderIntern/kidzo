@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\CRM;
 
 use App\Http\Controllers\baseController;
+use App\Http\Controllers\functions\dataFormatter;
 
 use App\Models\Subscriber;
 use App\Models\Version;
@@ -53,6 +54,8 @@ class newsletterController extends BaseController
         {
             $newsletter                         = new Subscriber;
             $datas                              = $newsletter->find($id);
+
+            $datas['version']                   = dataFormatter::toSelectize($datas['version']['_id'],$datas['version']['version_name']);
         }
 
         $this->page_datas->datas                = $datas;
@@ -83,7 +86,7 @@ class newsletterController extends BaseController
     public function store($id = null)
     {
          //get input
-        $input                                  = Input::only('email','version','unsubscribe_token','is_subscribe');
+        $input                                  = Input::only('email','version','is_subscribe');
 
         //create or edit
         $newsletter                           = Subscriber::findOrNew($id);
@@ -91,7 +94,7 @@ class newsletterController extends BaseController
         //save data
         $newsletter->email                     = $input['email'];
         $newsletter->version                   = Version::find($input['version'])['attributes'];
-        $hashedToken                           = Hash::make($input['unsubscribe_token']);
+        $hashedToken                           = Hash::make(strtotime('now'));
         $newsletter->unsubscribe_token         = $hashedToken;
         $newsletter->is_subscribe              = $input['is_subscribe'];
 

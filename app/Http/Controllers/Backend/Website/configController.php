@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend\Website;
 
 use App\Http\Controllers\baseController;
+use App\Http\Controllers\functions\dataFormatter;
+
 use App\Models\WebsiteConfig;
 use App\Models\Version;
 use Request, Input, URL, Hash;
@@ -52,6 +54,8 @@ class configController extends BaseController
         {
             $config                             = new WebsiteConfig;
             $datas                              = $config::find($id);
+
+            $datas['version']                   = dataFormatter::toSelectize($datas['version']['_id'],$datas['version']['version_name']);
         }
 
         $this->page_datas->datas                = $datas;
@@ -90,8 +94,8 @@ class configController extends BaseController
         //save data
         $config->kategori                          = 'contact';
         $config->version                           = Version::find($input['version'])['attributes'];
-        $config->config                      = ['phone'=>$input['no'],'address'=>$input['alamat'],'facebook'=>$input['facebook']];
-        $config->email                     = $input['email'];
+        $config->config                            = ['phone'=>$input['no'],'address'=>$input['alamat'],'facebook'=>$input['facebook']];
+        $config->email                             = $input['email'];
 
         //set Admin
         if(is_null($config->admin)){
