@@ -15,7 +15,7 @@
 				<thead>
 					<tr>
 						<th class="col-md-1">#</th>
-						<th class="col-md-4">Published By</th>
+						<th class="col-md-4">Published At</th>
 						<th class="col-md-3">Version Name</th>
 						<th class="col-md-2">Published By</th>
 						<th class="col-md-2 text-xs-right">Control</th>
