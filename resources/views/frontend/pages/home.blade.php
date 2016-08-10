@@ -3,7 +3,7 @@
 	<!--document-->
 	<!--slider-->
 	<div class="mbottom-l">
-		<img width="100%" class="img-responsive img-center" src="{{asset('image/frontend/capture1.jpg')}}"></img>	
+		<img width="100%" class="img-responsive img-center" src="{{asset($page_datas->datas['config']['slider1']['url'])}}"></img>	
 	</div>
 	<div class="container pleft-l pright-l">
 		<div class="row mbottom-l">

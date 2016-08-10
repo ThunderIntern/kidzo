@@ -30,7 +30,9 @@ class sliderController extends BaseController
     {
         //get data
         $WebsiteConfig                          = new WebsiteConfig;
-        $datas                                  = $WebsiteConfig::where('kategori','slider')->paginate(10);
+        $datas                                  = $WebsiteConfig::where('kategori','slider')
+                                                    ->orderBy('published_at','desc')
+                                                    ->paginate(10);
 
         $this->page_datas->datas                = $datas;
         $this->page_datas->id                   = null;

@@ -7,6 +7,8 @@ use App\Http\Controllers\Functions\email;
 use App\Http\Requests;
 use App\Http\Controllers\BaseController;
 use App\Models\Subscriber;
+use App\Models\WebsiteConfig;
+use App\Models\Version;
 use Input, URL, Hash;
 
 class webController extends BaseController
@@ -29,6 +31,12 @@ class webController extends BaseController
 
     public function home()
     {
+        $WebsiteConfig                          = new WebsiteConfig;
+        $datas                                  = $WebsiteConfig::where('kategori','slider')
+                                                    ->orderBy('published_at','desc')
+                                                    ->first();
+        $this->page_datas->datas                = $datas;
+
         return $this->generateView('frontend.pages.home', Request::route()->getName());
     }
 
