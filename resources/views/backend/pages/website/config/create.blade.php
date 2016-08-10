@@ -21,22 +21,6 @@
 									]
 			]])
 			<fieldset class="form-group">
-				<label for="name">Nomor Telepon</label>
-				{!! Form::text('no', null, ['class' => 'form-control']) !!}
-			</fieldset>
-			<fieldset class="form-group">
-				<label for="name">Email</label>
-				{{ Form::email('email', null, ['class' => 'form-control']) }}
-			</fieldset>	
-			<fieldset class="form-group">
-				<label for="name">Facebook</label>
-				{{ Form::text('facebook', null, ['class' => 'form-control']) }}
-			</fieldset>		
-			<fieldset class="form-group">
-				<label for="name">Alamat</label>
-				{!! Form::text('alamat', null, ['class' => 'form-control']) !!}
-			</fieldset>
-			<fieldset class="form-group">
 				<label for="name">Version Name</label>
 				@include('backend.widgets.selectize', ['components' => [
 					'type'		=> 'version',
@@ -44,6 +28,22 @@
 					'init_data'	=> $page_datas->datas['version'],
 					'ajax_url'	=> route('backend.ajax.getVersion'),
 				]])
+			</fieldset>
+			<fieldset class="form-group">
+				<label for="name">Nomor Telepon</label>
+				{!! Form::text('no', $page_datas->datas['config']['phone'], ['class' => 'form-control']) !!}
+			</fieldset>
+			<fieldset class="form-group">
+				<label for="name">Email</label>
+				{{ Form::email('email', $page_datas->datas['email'], ['class' => 'form-control']) }}
+			</fieldset>	
+			<fieldset class="form-group">
+				<label for="name">Facebook</label>
+				{{ Form::text('facebook', $page_datas->datas['config']['facebook'], ['class' => 'form-control']) }}
+			</fieldset>		
+			<fieldset class="form-group">
+				<label for="name">Alamat</label>
+				{!! Form::textArea('alamat', $page_datas->datas['config']['address'], ['class' => 'form-control textarea']) !!}
 			</fieldset>
 		</div>
 	</div>

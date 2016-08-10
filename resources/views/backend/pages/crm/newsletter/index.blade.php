@@ -3,7 +3,7 @@
 <div class="card">
 	<div class="card-block">
 	@include('backend.widgets.components.title.title-add-search', ['component' => [
-		'title'			=> 'Newsletter / Page 1' . $page_datas->datas->currentPage(),
+		'title'			=> 'Newsletter / Page' . $page_datas->datas->currentPage(),
 		'link-add'		=> route('backend.crm.newsletter.create'),
 		'link-search'	=> '#',
 	]])
@@ -23,7 +23,6 @@
 				</thead>
 				<tbody>
 					@forelse ($page_datas->datas as $key => $data)
-					
 						<tr>
 							<td class="col-md-1">
 								{{($page_datas->datas->perpage() * ($page_datas->datas->currentPage()-1)) + ($key + 1)}}
