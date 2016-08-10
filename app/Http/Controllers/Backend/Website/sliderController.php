@@ -7,7 +7,7 @@ use App\Http\Controllers\functions\dataFormatter;
 
 use App\Models\WebsiteConfig;
 use App\Models\Version;
-use Request, Input, URL;
+use Request, Input, URL, Carbon;
 
 
 class sliderController extends BaseController
@@ -108,7 +108,7 @@ class sliderController extends BaseController
     public function store($id = null)
     {
         //get input
-        $input                                  = Input::only('version','sliders_image','sliders_link');
+        $input                                  = Input::only('version','sliders_image','sliders_link','published_at');
 
         //set input sliders
         $sliders                                = null;
@@ -135,7 +135,12 @@ class sliderController extends BaseController
         $WebsiteConfig->kategori                = 'slider';
         $WebsiteConfig->config                  = $sliders;
         $WebsiteConfig->admin                   = 'Admin';
-        $WebsiteConfig->published_at            = strtotime('now');
+
+        if($input['published_at']){
+            $WebsiteConfig->published_at        = Carbon\Carbon::parse($input['published_at'])->format('Y-m-d H:i:s');
+        }else{
+            $WebsiteConfig->published_at        = null;
+        }
 
         //set Admin
         if(is_null($WebsiteConfig->admin)){

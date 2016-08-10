@@ -46,7 +46,11 @@
 				@include('backend.widgets.components.detail.detail-text',['component' => [
 					'title'		=> 'Version Name',
 					'content'	=>  ucfirst($page_datas->datas['version']['version_name'])
-				]])	
+				]])
+				@include('backend.widgets.components.detail.detail-pusblishedDate',['component' => [
+					'title'		=> 'Published At',
+					'content'	=>  $page_datas->datas['published_at']
+				]])						
 				@include('backend.widgets.components.detail.detail-text',['component' => [
 					'title'		=> 'Created By',
 					'content'	=>  ucfirst($page_datas->datas['admin'])

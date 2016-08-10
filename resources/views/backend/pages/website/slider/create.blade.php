@@ -28,7 +28,11 @@
 					'init_data'	=> $page_datas->datas['version'],
 					'ajax_url'	=> route('backend.ajax.getVersion'),
 				]])
-			</fieldset>
+			</fieldset>		
+			<fieldset class="form-group">
+				<label for="name">Published at <small class='text-primary'>Kosongkan untuk tidak dipublish</small></label>
+				{!! Form::text('published_at', $page_datas->datas['published_at'] ? $page_datas->datas['published_at']->format('d-m-Y H:i') : '', ['class' => 'form-control', 'data-inputmask' => "'mask':'d-m-y h:s'"]) !!}
+			</fieldset>			
 
 			<div class="row">
 
