@@ -25,6 +25,10 @@ elixir(function(mix) {
 				'selectize.min.js',
 				'backend/kidzo.js',
 				'backend/kidzo_ui.js',
+				'inputmask/inputmask.js', 
+				'inputmask/inputmask.date.extensions.js', 
+				'inputmask/jquery.inputmask.js', 
+				'inputmask/inputmask.binding.js',
 			], 'public/js/backend.js')
     .scripts([
     			'jquery.js',
