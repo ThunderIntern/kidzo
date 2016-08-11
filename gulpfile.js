@@ -23,6 +23,7 @@ elixir(function(mix) {
     			'jquery.js',
 				'bootstrap.min.js',
 				'selectize.min.js',
+				'summernote.min.js',
 				'backend/kidzo.js',
 				'backend/kidzo_ui.js',
 				'inputmask/inputmask.js', 
