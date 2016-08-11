@@ -21,9 +21,33 @@
 	}
 };
 
+; var kidzo_summerNote = {
+	////////////////////////////////////////////////////////////////
+	// load text editor summernote							      //
+	////////////////////////////////////////////////////////////////	
+	init_summernote: function() {
+	  	$('.summernote').summernote({
+	  		height: 300,
+	       	popover: {
+		        image: [],
+		        link: [],
+		        air: []
+	       	}
+	  	});
+	},
+
+	//////////
+	// Init //
+	//////////
+	init: function() {
+		this.init_summernote();
+	}	
+};
+
 
 ; var kidzo_ui = {
 	init: function() {
 		kidzo_previewImage.init();
+		kidzo_summerNote.init();
 	}
 };
