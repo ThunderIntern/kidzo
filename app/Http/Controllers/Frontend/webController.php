@@ -54,7 +54,7 @@ class webController extends BaseController
     {
         $newsletter                             = new Subscriber;
 
-        $this->page_datas->datas                = [];
+        
 
         //get input
         $input                                  = Input::only('email_mobile','email_desktop');
@@ -66,8 +66,8 @@ class webController extends BaseController
             $newsletter->email                  = $input['email_mobile'];
         }
 
-        $newsletter->version                   = 'Kidzo';
-        $hashedToken                           = Hash::make('123456');
+        $newsletter->version                   = Version::find('Kidzo')['attributes'];
+        $hashedToken                           = Hash::make(strtotime('now'));
         $newsletter->unsubscribe_token         = $hashedToken;
         $newsletter->is_subscribe              = true;
 
@@ -78,7 +78,7 @@ class webController extends BaseController
         $newsletter->save();
         $this->errors                           = $newsletter->getErrors();
         $this->page_attributes->msg             = 'Data telah disimpan';
-        
+        $this->page_datas->datas                = $hashedToken;
 
         $email = new email;
         $email -> send('Selamat Datang!', 'Anda telah berhasil berlangganan newsletter. 

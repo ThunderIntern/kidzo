@@ -34,6 +34,8 @@ elixir(function(mix) {
     			'jquery.js',
 				'bootstrap.min.js',
 				'selectize.min.js',
+				'owl_carousel.min.js',
+				'owl.js',
 			], 'public/js/frontend.js')
 	.version([
 				'public/css/backend.css',

@@ -33,7 +33,7 @@
 								</a>
 							</td>
 							<td class="col-md-3">
-								{{ucfirst($data['version']['version_name'])}}
+								{{ $data['version']['version_name'] }}
 							</td>
 							<td class="col-md-3">
 								{{ (($data['is_subscribe']==true) ? 'Subscribed' : 'Unsubscribed') }}
