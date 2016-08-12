@@ -37,13 +37,13 @@ class webController extends BaseController
         //slider
         $datas['slider']                       = $WebsiteConfig::where('version.version_name',$app_version)
                                                     ->where('kategori','slider')
-                                                    ->orderBy('published_at','asc')
+                                                    ->orderBy('published_at','desc')
                                                     ->first()['attributes']['config'];
 
         //config
         $datas['config']                        = $WebsiteConfig::where('version.version_name',$app_version)
-                                                    ->where('config','contact')
-                                                    ->orderBy('published_at','asc')
+                                                    ->where('kategori','contact')
+                                                    ->orderBy('published_at','desc')
                                                     ->first()['attributes']['config'];
 
         $this->page_datas->datas                = $datas;
@@ -74,8 +74,11 @@ class webController extends BaseController
         }else{
             $newsletter->email                  = $input['email_mobile'];
         }
-
-        $newsletter->version                   = Version::find('Kidzo')['attributes'];
+        $app_version                            = getenv('APP_VERSION');
+        $versi                                  = new Version;
+                                                        
+        $newsletter->version                   = $versi::where('version_name',$app_version)
+                                                        ->get()['0']['attributes'];
         $hashedToken                           = Hash::make(strtotime('now'));
         $newsletter->unsubscribe_token         = $hashedToken;
         $newsletter->is_subscribe              = true;
@@ -94,7 +97,7 @@ class webController extends BaseController
 
         $email = new email;
         $email -> send('Selamat Datang!', 'Anda telah berhasil berlangganan newsletter.       
- -            Terima kasih sudah mendaftar service newsletter kami dan ikuti terus update dari barang-barang terbaru kami!',$newsletter->email);
+ -            Terima kasih sudah mendaftar service newsletter kami dan ikuti terus update dari barang-barang terbaru kami!',$newsletter->email, $this->page_datas->datas);
 
 
         return $this->generateRedirect(route('registered'));
