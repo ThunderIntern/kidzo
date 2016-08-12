@@ -32,9 +32,20 @@ class webController extends BaseController
     public function home()
     {
         $WebsiteConfig                          = new WebsiteConfig;
-        $datas                                  = $WebsiteConfig::where('kategori','slider')
-                                                    ->orderBy('published_at','desc')
-                                                    ->first();
+        $app_version                            = getenv('APP_VERSION');
+
+        //slider
+        $datas['slider']                       = $WebsiteConfig::where('version.version_name',$app_version)
+                                                    ->where('kategori','slider')
+                                                    ->orderBy('published_at','asc')
+                                                    ->first()['attributes']['config'];
+
+        //config
+        $datas['config']                        = $WebsiteConfig::where('version.version_name',$app_version)
+                                                    ->where('config','contact')
+                                                    ->orderBy('published_at','asc')
+                                                    ->first()['attributes']['config'];
+
         $this->page_datas->datas                = $datas;
 
         return $this->generateView('frontend.pages.home', Request::route()->getName());

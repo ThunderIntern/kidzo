@@ -3,11 +3,9 @@
 	<!--document-->
 	<!--slider-->
 	<div id="slider" class="container owl-carousel owl-theme">
-		<img width="100%" class="item img-responsive img-center" src="{{asset($page_datas->datas['config']['slider1']['url'])}}"></img>
-		<img width="100%" class="item img-responsive img-center" src="{{asset($page_datas->datas['config']['slider2']['url'])}}"></img>
-		<img width="100%" class="item img-responsive img-center" src="{{asset($page_datas->datas['config']['slider3']['url'])}}"></img>
-		<img width="100%" class="item img-responsive img-center" src="{{asset($page_datas->datas['config']['slider4']['url'])}}"></img>
-		<img width="100%" class="item img-responsive img-center" src="{{asset($page_datas->datas['config']['slider5']['url'])}}"></img>	
+		@foreach ($page_datas->datas as $key => $data)
+			<img width="100%" class="item img-responsive img-center" src="{{asset($page_datas->datas['slider']['slider1']['url'])}}"></img>
+		@endforeach
 	</div>
 	<div class="container pleft-l pright-l">
 		<div class="row mbottom-l">

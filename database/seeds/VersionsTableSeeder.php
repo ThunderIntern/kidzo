@@ -17,7 +17,7 @@ class VersionsTableSeeder extends Seeder
 
         $Version 						= new Version;
 
-        $Version['version_name']		= 'Kidzo';
+        $Version['version_name']		= 'kidzo';
         $Version['domain']              = 'kidzo.id';
         $Version['is_active']			= true;
         $Version['admin']               = 'Admin';
@@ -26,7 +26,7 @@ class VersionsTableSeeder extends Seeder
 
         $Version 						= new Version;
 
-        $Version['version_name']		= 'Sewa Mainan Anak';
+        $Version['version_name']		= 'sewa Mainan Anak';
         $Version['domain']				= 'sewamainananak.com';
         $Version['is_active']           = true;
         $Version['admin']               = 'Admin Satunya';
