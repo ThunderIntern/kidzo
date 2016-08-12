@@ -15,9 +15,9 @@
 				<thead>
 					<tr>
 						<th class="col-md-1">#</th>
-						<th class="col-md-3">Email</th>
+						<th class="col-md-3">Judul</th>
 						<th class="col-md-3">Version</th>
-						<th class="col-md-3">Status</th>
+						<th class="col-md-3">Publish Date</th>
 						<th class="col-md-2 text-xs-right">Control</th>
 					</tr>
 				</thead>

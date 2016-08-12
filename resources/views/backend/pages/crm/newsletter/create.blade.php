@@ -19,15 +19,8 @@
 	<div class="card">
 		@include('backend.widgets.alertbox')
 		<div class="card-block">
-			<?php
-				if(is_null($page_datas->id)){
-					$title 		= 'Newsletter Baru';
-				}else{
-					$title 		= 'Edit Newsletter';
-				}
-			?>
 			@include('backend.widgets.components.title.title-control', ['component' => [
-				'title'			=> $title,
+				'title'			=> $page_attributes->page_title,
 				'controls'		=> 	[
 										'back'		=>	[
 															'link'	=> route('backend.crm.newsletter.index')
@@ -38,22 +31,22 @@
 									]
 			]])
 			<fieldset class="form-group">
-				<label for="name">Email</label>
-				{!! Form::email('email', $page_datas->datas['email'], ['class' => 'form-control']) !!}
-			</fieldset>
-			<fieldset class="form-group">
-				<label for="name">Version Name</label>
+				<label for="name">Nama Versi</label>
 				@include('backend.widgets.selectize', ['components' => [
 					'type'		=> 'version',
 					'name'		=> 'version',
 					'init_data'	=> $page_datas->datas['version'],
 					'ajax_url'	=> route('backend.ajax.getVersion'),
 				]])
-			</fieldset>
+			</fieldset>		
 			<fieldset class="form-group">
-				<label for="name">Status</label>
-				{{ Form::select('is_subscribe', ['0' => 'Unsubscribed', '1' => 'Subscribed'], $page_datas->datas['is_subscribe'], ['class' => 'form-control c-select']) }}
-			</fieldset>			
+				<label for="name">Judul</label>
+				{{ Form::text('judul', $page_datas->datas['judul'], ['class' => 'form-control']) }}
+			</fieldset>				
+			<fieldset class="form-group">
+				<label for="name">Content</label>
+				{!! Form::textarea('content', $page_datas->datas['content'], ['class' => 'form-control summernote', 'rows' => '10']) !!}				
+			</fieldset>
 		</div>
 	</div>
 {!! Form::close() !!}

@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\baseController;
+
+use App\Models\Version;
+use App\Models\Faq;
+use App\Models\WebsiteConfig;
+
 use Request;
 
 class dashboardController extends baseController
@@ -35,6 +40,30 @@ class dashboardController extends baseController
 
     public function website()
     {
+
+        //page datas
+        //get data version
+        $query[]                            =  ['$group' => [
+                                                    '_id'             => '$version_name',
+                                                    'version_name'     => ['$first' =>'$version_name'],
+                                                    'admin'            => ['$first' =>'$admin'],
+                                                    'domain'           => ['$first' =>'$domain'],
+                                                    'created_at'       => ['$first' =>'$created_at'],
+                                                ]];
+
+
+        $this->page_datas->versions         = Version::raw(function($collection) use ($query) { 
+                                                    return $collection->aggregate($query);  
+                                                });   
+        // var_dump($this->page_datas->versions );   
+
+        //get data slider
+        $slider                             = WebsiteConfig::groupBy('kategori')->get();
+        // agregate where slider
+        // agregate sort latest
+        // agregate group by version
+
+
         //page attributes
         $this->page_attributes->page_title  = 'Website';
 
