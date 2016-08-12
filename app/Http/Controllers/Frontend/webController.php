@@ -65,8 +65,6 @@ class webController extends BaseController
     {
         $newsletter                             = new Subscriber;
 
-        
-
         //get input
         $input                                  = Input::only('email_mobile','email_desktop');
 
@@ -80,10 +78,6 @@ class webController extends BaseController
         $newsletter->version                   = Version::find('Kidzo')['attributes'];
         $hashedToken                           = Hash::make(strtotime('now'));
         $newsletter->unsubscribe_token         = $hashedToken;
-        $newsletter->version                   = Version::find('kidzo')['attributes'];
-        
-        
-
         $newsletter->is_subscribe              = true;
 
         if(is_null($newsletter->admin)){
@@ -92,18 +86,15 @@ class webController extends BaseController
         $newsletter->save();
         $this->errors                           = $newsletter->getErrors();
         $this->page_attributes->msg             = 'Data telah disimpan';
-        $this->page_datas->datas                = $hashedToken;
-
         $newsletter1                            = Subscriber::where('unsubscribe_token', $hashedToken)->get();
         
         foreach($newsletter1 as $nl){
             $this->page_datas->datas = $nl->id;
         }
 
-
         $email = new email;
-        $email -> send('Selamat Datang!', 'Anda telah berhasil berlangganan newsletter. 
-            Terima kasih sudah mendaftar service newsletter kami dan ikuti terus update dari barang-barang terbaru kami!',$newsletter->email);
+        $email -> send('Selamat Datang!', 'Anda telah berhasil berlangganan newsletter.       
+ -            Terima kasih sudah mendaftar service newsletter kami dan ikuti terus update dari barang-barang terbaru kami!',$newsletter->email);
 
 
         return $this->generateRedirect(route('registered'));
@@ -111,9 +102,6 @@ class webController extends BaseController
 
     public function registeredNewsletter($id = null)
     {
-
-
-        
         return $this->generateView('frontend.pages.registered', Request::route()->getName());
     }
 

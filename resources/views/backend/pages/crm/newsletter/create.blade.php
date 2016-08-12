@@ -41,7 +41,7 @@
 			</fieldset>		
 			<fieldset class="form-group">
 				<label for="name">Judul</label>
-				{{ Form::text('judul', $page_datas->datas['judul'], ['class' => 'form-control']) }}
+				{{ Form::text('Judul', $page_datas->datas['judul'], ['class' => 'form-control']) }}
 			</fieldset>				
 			<fieldset class="form-group">
 				<label for="name">Content</label>
