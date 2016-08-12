@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\CRM;
 use App\Http\Controllers\baseController;
 use App\Http\Controllers\functions\dataFormatter;
 
+use App\Http\Controllers\Functions\email;
 use App\Models\Subscriber;
 use App\Models\Newsletter;
 use App\Models\Version;
@@ -107,8 +108,15 @@ class newsletterController extends BaseController
         $this->page_attributes->msg             = 'Data telah disimpan';
 
         $subscriber                             = new Subscriber;
-        $blast                                  = $subscriber::where('version.version_name','Kidzo')
-                                                                ->where('is_subscribe', '1');
+        $blast                                  = $subscriber::where('version.version_name','kidzo')
+                                                                ->where('is_subscribe', '1')
+                                                                ->get();
+
+        foreach($blast as $nl){
+            $email = new email;
+            $email -> send($newsletter->Judul, $newsletter->content, $nl->email, $nl->id);
+        }
+        
 
         return $this->generateRedirect($this->getRefererUrl());
     }
