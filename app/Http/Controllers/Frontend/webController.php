@@ -52,7 +52,7 @@ class webController extends BaseController
 
     public function registerNewsletter()
     {
-        $newsletter                             = new Subscriber;        
+        $newsletter                             = new Subscriber;
 
         //get input
         $input                                  = Input::only('email_mobile','email_desktop');
@@ -64,9 +64,9 @@ class webController extends BaseController
             $newsletter->email                  = $input['email_mobile'];
         }
 
-        $newsletter->version                   = Version::find('kidzo')['attributes'];
-        $hashedToken                            = Hash::make(strtotime('now'));
-        $newsletter->unsubscribe_token          = $hashedToken;
+        $newsletter->version                   = Version::find('Kidzo')['attributes'];
+        $hashedToken                           = Hash::make(strtotime('now'));
+        $newsletter->unsubscribe_token         = $hashedToken;
         $newsletter->is_subscribe              = true;
 
         if(is_null($newsletter->admin)){
@@ -83,7 +83,7 @@ class webController extends BaseController
 
         $email = new email;
         $email -> send('Selamat Datang!', 'Anda telah berhasil berlangganan newsletter. 
-            Terima kasih sudah mendaftar newsletter kidzo dan ikuti terus update dari barang-barang terbaru kami!',
+            Terima kasih sudah mendaftar service newsletter kami dan ikuti terus update dari barang-barang terbaru kami!',$newsletter->email);
             $newsletter->email, $this->page_datas->datas);
 
 
@@ -91,7 +91,7 @@ class webController extends BaseController
     }
 
     public function registeredNewsletter($id = null)
-    {        
+    {
         return $this->generateView('frontend.pages.registered', Request::route()->getName());
     }
 
