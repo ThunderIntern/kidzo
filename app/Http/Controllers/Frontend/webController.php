@@ -69,20 +69,31 @@ class webController extends BaseController
         $newsletter->version                   = Version::find('Kidzo')['attributes'];
         $hashedToken                           = Hash::make(strtotime('now'));
         $newsletter->unsubscribe_token         = $hashedToken;
+        $newsletter->version                   = Version::find('kidzo')['attributes'];
+        
+        
+
         $newsletter->is_subscribe              = true;
 
         if(is_null($newsletter->admin)){
             $newsletter->admin                     = 'Admins';
         }
-
         $newsletter->save();
         $this->errors                           = $newsletter->getErrors();
         $this->page_attributes->msg             = 'Data telah disimpan';
         $this->page_datas->datas                = $hashedToken;
 
+        $newsletter1                            = Subscriber::where('unsubscribe_token', $hashedToken)->get();
+        
+        foreach($newsletter1 as $nl){
+            $this->page_datas->datas = $nl->id;
+        }
+
+
         $email = new email;
         $email -> send('Selamat Datang!', 'Anda telah berhasil berlangganan newsletter. 
-            Terima kasih sudah mendaftar newsletter kidzo dan ikuti terus update dari barang-barang terbaru kami!',$newsletter->email);
+            Terima kasih sudah mendaftar newsletter kidzo dan ikuti terus update dari barang-barang terbaru kami!',
+
 
         return $this->generateRedirect(route('registered'));
     }
@@ -95,12 +106,23 @@ class webController extends BaseController
         return $this->generateView('frontend.pages.registered', Request::route()->getName());
     }
 
-     public function unsubscribeNewsletter()
+     public function unsubscribeNewsletter($id)
     {
-        //
+        if($id != null){
+            
+            $datas                              = Subscriber::find($id);
+            $datas->is_subscribe                = false;
+            $datas->save();
+        
+        }
+        $email = new email;
+        $email -> unSubscribe('Terima Kasih', 'Anda telah berhenti berlangganan newsletter.',
+            $datas->email, null);
+
+        return $this->generateView('frontend.pages.unsubscribed', Request::route()->getName());
     }
 
-    public function unsubscribedNewsletter()
+    public function unsubscribedNewsletter($id = null)
     {
         return $this->generateView('frontend.pages.unsubscribed', Request::route()->getName());
     }

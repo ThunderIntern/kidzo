@@ -51,7 +51,7 @@
 				]])
 			</fieldset>
 			<fieldset class="form-group">
-				<label for="name">Is Subscribe</label>
+				<label for="name">Status</label>
 				{{ Form::select('is_subscribe', ['0' => 'Unsubscribed', '1' => 'Subscribed'], $page_datas->datas['is_subscribe'], ['class' => 'form-control c-select']) }}
 			</fieldset>			
 		</div>

@@ -32,6 +32,7 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/paket/{package_slug}', ['uses' => 'packageController@show', 'as' => 'paketPackage']);
 
 	Route::get('/email', ['uses' => 'emailController@email', 'as' => 'email']);
+	Route::get('/unsubscribe/{unsub_token}', ['uses' => 'webController@unsubscribeNewsletter', 'as' => 'unsub.news']);
 
 });
 

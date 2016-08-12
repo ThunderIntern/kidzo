@@ -12,7 +12,7 @@ class email{
      * @param  int  $id
      * @return Response
      */
-    public function send($judul=null, $konten, $input)
+    public function send($judul=null, $konten, $input, $unsub)
     {
         //return $email_address;
 
@@ -20,9 +20,22 @@ class email{
         //$user = User::findOrFail($id);
         
         // variabel judul & konten dari webController. $input = email yang dituju
-        Mail::send('email/email', ['judul' => $judul, 'konten' => $konten], function($message) use ($input)
+        Mail::send('email/email', ['judul' => $judul, 'konten' => $konten, 'unsub' => $unsub], function($message) use ($input)
         {
             $message->to($input, 'hoi') ->subject('Welcome!');
+        });
+    }
+    public function unSubscribe($judul=null, $konten, $input, $unsub)
+    {
+        //return $email_address;
+
+        //is_null(var)
+        //$user = User::findOrFail($id);
+        
+        // variabel judul & konten dari webController. $input = email yang dituju
+        Mail::send('email/email', ['judul' => $judul, 'konten' => $konten, 'unsub' => $unsub], function($message) use ($input)
+        {
+            $message->to($input, 'hoi') ->subject('Thank You');
         });
     }
 }
