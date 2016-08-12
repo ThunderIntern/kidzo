@@ -23,17 +23,17 @@
 	@include('backend.widgets.alertbox')
 	<div class="card-block">
 		@include('backend.widgets.components.detail.detail-text',['component' => [
+			'title'		=> 'Judul',
+			'content'	=>  ucfirst($page_datas->datas['Judul'])
+		]])		
+		@include('backend.widgets.components.detail.detail-text',['component' => [
 			'title'		=> 'Version Name',
 			'content'	=>  ucfirst($page_datas->datas['version']['version_name'])
 		]])
 		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Email',
-			'content'	=>  ucfirst($page_datas->datas['email'])
-		]])		
-		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Unsubscribe Token',
-			'content'	=>  ucFirst($page_datas->datas['unsubscribe_token'])
-		]])		
+			'title'		=> 'Content',
+			'content'	=>  ucfirst($page_datas->datas['content'])
+		]])	
 		@include('backend.widgets.components.detail.detail-text',['component' => [
 			'title'		=> 'Created By',
 			'content'	=>  ucfirst($page_datas->datas['admin'])

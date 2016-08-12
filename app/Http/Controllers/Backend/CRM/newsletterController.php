@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend\CRM;
 use App\Http\Controllers\baseController;
 use App\Http\Controllers\functions\dataFormatter;
 
-use App\Models\Subscriber;
+use App\Models\Newsletter;
 use App\Models\Version;
 use Request, Input, URL, Hash;
 
@@ -25,7 +25,7 @@ class newsletterController extends BaseController
      */
     public function index()
     {
-        $newsletter                             = new Subscriber;
+        $newsletter                             = new Newsletter;
         $datas                                  = $newsletter->paginate(50);
 
         $this->page_datas->datas                = $datas;
@@ -52,7 +52,7 @@ class newsletterController extends BaseController
         
         if($id != null)
         {
-            $newsletter                         = new Subscriber;
+            $newsletter                         = new Newsletter;
             $datas                              = $newsletter->find($id);
 
             $datas['version']                   = dataFormatter::toSelectize($datas['version']['_id'],$datas['version']['version_name']);
@@ -86,17 +86,15 @@ class newsletterController extends BaseController
     public function store($id = null)
     {
          //get input
-        $input                                  = Input::only('email','version','is_subscribe');
+        $input                                  = Input::only('Judul','version','content');
 
         //create or edit
-        $newsletter                           = Subscriber::findOrNew($id);
+        $newsletter                           = Newsletter::findOrNew($id);
 
         //save data
-        $newsletter->email                     = $input['email'];
+        $newsletter->Judul                     = $input['Judul'];
         $newsletter->version                   = Version::find($input['version'])['attributes'];
-        $hashedToken                           = Hash::make(strtotime('now'));
-        $newsletter->unsubscribe_token         = $hashedToken;
-        $newsletter->is_subscribe              = $input['is_subscribe'];
+        $newsletter->content                   = $input['content'];
 
         if(is_null($newsletter->admin)){
             $newsletter->admin                     = 'Admins';
@@ -118,7 +116,7 @@ class newsletterController extends BaseController
      */
     public function show($id)
     {
-        $newsletter                             = new Subscriber;
+        $newsletter                             = new Newsletter;
         $datas                                  = $newsletter::find($id);
 
         $this->page_datas->datas                = $datas;
@@ -166,7 +164,7 @@ class newsletterController extends BaseController
     public function destroy($id)
     {
         //find 
-        $newsletter                             = Subscriber::find($id);
+        $newsletter                             = Newsletter::find($id);
 
         //get password
         $password                               = Input::get('password');

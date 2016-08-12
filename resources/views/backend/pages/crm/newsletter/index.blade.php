@@ -29,14 +29,14 @@
 							</td>
 							<td class="col-md-3">
 								<a href="{{route('backend.crm.newsletter.show', ['id' => $data['id']])}}">
-									{{ucfirst($data['email'])}}
+									{{ucfirst($data['Judul'])}}
 								</a>
 							</td>
 							<td class="col-md-3">
 								{{$data['version']['version_name']}}
 							</td>
 							<td class="col-md-3">
-								{{ (($data['is_subscribe']==true) ? 'Subscribed' : 'Unsubscribed') }}
+								{{ $data['created_at']}}
 							</td>
 							<td class="col-md-2 text-xs-right">
 								<a href="{{route('backend.crm.newsletter.edit', ['id' => $data['id']])}}" class="btn btn-primary-outline btn-sm">
