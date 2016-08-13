@@ -312,12 +312,38 @@ body {
 .marginRight30{
 	margin-right:30px;
 }
+.marginRight-30{
+	margin-right:-30px;
+}
 .marginRight40{
 	margin-right:40px;
 }
 .marginRight50{
 	margin-right:50px;
 }
+
+
+.marginLeft-10{
+	margin-left:-10px;
+}
+.marginLeft10{
+	margin-left:10px;
+}
+.marginLeft20{
+	margin-left:20px;
+}
+.marginLeft30{
+	margin-left:30px;
+}
+.marginLeft40{
+	margin-left:40px;
+}
+.marginLeft50{
+	margin-left:50px;
+}
+
+
+
 .marginBottom5{
 	margin-bottom:5px;
 }
@@ -333,6 +359,12 @@ body {
 
 .marginTop5{
 	margin-top:5px;
+}
+.marginTop15{
+	margin-top:15px;
+}
+.marginTop77{
+	margin-top:77px;
 }
 
 .gambarHead{
@@ -375,7 +407,7 @@ a:link{
 }
 
 .box{
-	width: 260px;
+	width: 100%;
 	padding-top: 10px;
 	padding-left: 5px;
 	padding-right: 5px;
