@@ -105,3 +105,65 @@
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
+
+.buttonAdvan{
+    border-radius:5px;
+    border:2px solid #808080;
+    padding:0px 10px 0px 10px;
+    font-size:20px
+}
+
+.hoverHome:hover{
+    background-color:$red;
+    .nav-link .red{
+        color:$white;
+    }
+}
+
+.hoverMainan:hover{
+    background-color:$green;
+    .nav-link .green{
+        color:$white;
+    }
+}
+.hoverParty:hover{
+    background-color:$orange;
+    .nav-link .orange{
+        color:$white;
+    }
+}
+.hoverTentang:hover{
+    background-color:$purple;
+    .nav-link .purple{
+        color:$white;
+    }
+}
+.hoverLogin:hover{
+    background-color:$blue;
+    .nav-link .blue{
+        color:$white;
+    }
+}
+
+
+
+.homeHover:hover .black{
+    color:$red;
+}
+.homeHover:active .black{
+    color:$red;
+}
+
+.mainanHover:hover .black{
+    color:$green;
+}
+.partyHover:hover  .black{
+    color:$orange;
+}
+.tentangHover:hover .black{
+    color:$purple;
+}
+.loginHover:hover .black{
+    color:$blue;
+}
