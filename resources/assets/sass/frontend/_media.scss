@@ -69,3 +69,15 @@
 		display:none;
 	}
 }
+
+@media(min-width: 1500px){
+	.full{
+		display: none;
+	}
+}
+
+@media(max-width: 1499px){
+	.slide{
+		display: none;
+	}
+}

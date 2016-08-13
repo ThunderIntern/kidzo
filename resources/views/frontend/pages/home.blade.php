@@ -2,10 +2,31 @@
 	@section('content')
 	<!--document-->
 	<!--slider-->
-	<div id="slider" class="container owl-carousel owl-theme">
-		@foreach ($page_datas->datas as $key => $data)
-			<a href="{{$page_datas->datas['slider']['slider1']['link']}}"><img width="100%" class="item img-responsive img-center" src="{{asset($page_datas->datas['slider']['slider1']['url'])}}"></img>
-		@endforeach
+	<div class="full">
+		<div id="slider1" class="owl-carousel owl-theme">
+			<?php 
+			 	//dd($page_datas->datas);
+			 ?>
+			@foreach ($page_datas->datas['slider'] as $key => $data)
+				<?php 
+			 //dd($data);
+			 ?>
+				<a href="{{$data['link']}}"><img class="item img-responsive img-center width100Per" src="{{asset($data['url'])}}"></img></a>
+			@endforeach
+		</div>
+	</div>
+	<div class="slide">
+		<div id="slider2" class="container owl-carousel owl-theme">
+			<?php 
+			 	//dd($page_datas->datas);
+			 ?>
+			@foreach ($page_datas->datas['slider'] as $key => $data)
+				<?php 
+			 //dd($data);
+			 ?>
+				<a href="{{$data['link']}}"><img class="item img-responsive img-center width100Per" src="{{asset($data['url'])}}"></img></a>
+			@endforeach
+		</div>
 	</div>
 	<div class="container pleft-l pright-l">
 		<div class="row mbottom-l">
