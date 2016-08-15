@@ -56,7 +56,7 @@ button:
                                 </button>
                             </a>
                             <div class="dropdown">  {{-- Tombol search --}}
-                                <a href="#">
+                                <a href="javascript:void(0)">
                                     <button onclick="dropSearch(this)" class="dropbtn navbar-toggler padding30 right-navbar-button" type="button">
                                         <i class="fa fa-search fa-lg black" aria-hidden="true"></i>
                                     </button>
