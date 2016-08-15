@@ -79,7 +79,7 @@ class webController extends BaseController
                                                         
         $newsletter->version                   = $versi::where('version_name',$app_version)
                                                         ->get()['0']['attributes'];
-        $hashedToken                           = Hash::make(strtotime('now'));
+        $hashedToken                           = hash('md5', strtotime('now'));
         $newsletter->unsubscribe_token         = $hashedToken;
         $newsletter->is_subscribe              = true;
 
@@ -92,7 +92,7 @@ class webController extends BaseController
         $newsletter1                            = Subscriber::where('unsubscribe_token', $hashedToken)->get();
         
         foreach($newsletter1 as $nl){
-            $this->page_datas->datas = $nl->id;
+            $this->page_datas->datas = $nl->unsubscribe_token;
         }
 
         $email = new email;
@@ -112,14 +112,14 @@ class webController extends BaseController
     {
         if($id != null){
             
-            $datas                              = Subscriber::find($id);
-            $datas->is_subscribe                = false;
-            $datas->save();
+            $datas                              = Subscriber::where('unsubscribe_token', $id)
+                                                            ->get()['0']['attributes'];
+            Subscriber::where('unsubscribe_token', $id)->update(['is_subscribe'=> false]);
         
         }
         $email = new email;
         $email -> unSubscribe('Terima Kasih', 'Anda telah berhenti berlangganan newsletter.',
-            $datas->email, null);
+            $datas['email'], null);
 
         return $this->generateView('frontend.pages.unsubscribed', Request::route()->getName());
     }

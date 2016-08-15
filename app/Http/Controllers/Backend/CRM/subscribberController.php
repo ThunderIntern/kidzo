@@ -90,7 +90,7 @@ class subscribberController extends BaseController
         //save data
         $subscribber->email                     = $input['email'];
         $subscribber->version                   = Version::find($input['version'])['attributes'];
-        $hashedToken                            = Hash::make(strtotime('now'));
+        $hashedToken                            = hash('md5', strtotime('now'));
         $subscribber->unsubscribe_token          = $hashedToken;
         $subscribber->is_subscribe              = $input['is_subscribe'];
 
