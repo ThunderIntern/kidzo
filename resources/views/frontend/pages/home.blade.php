@@ -54,7 +54,7 @@
 		<div class="row mbottom-s">
 			<div class="col-md-12 col-sm-12 text-center">
 				<h2>Kategori Permainan</h2>
-				<hr class="garis-bawah" width="100">
+				<hr class="garis-bawah" width="70">
 			</div>
 		</div>
 		<div class="row mbottom-l">
@@ -109,7 +109,7 @@
 		<div class="row mbottom-m">
 			<div class="col-sm-12 col-md-12 text-center">
 				<h2>Mainan Terbaru</h2>
-				<hr class="garis-bawah" width="100">
+				<hr class="garis-bawah" width="70">
 			</div>
 		</div>
 		<div class="row mbottom-l">
