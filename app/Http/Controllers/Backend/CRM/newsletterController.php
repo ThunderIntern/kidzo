@@ -111,10 +111,10 @@ class newsletterController extends BaseController
         $blast                                  = $subscriber::where('version.version_name','kidzo')
                                                                 ->where('is_subscribe', '1')
                                                                 ->get();
-
+        
         foreach($blast as $nl){
             $email = new email;
-            $email -> send($newsletter->Judul, $newsletter->content, $nl->email, $nl->id);
+            $email -> send($newsletter->Judul, $newsletter->content, $nl->email, $nl->unsubscribe_token);
         }
         
 

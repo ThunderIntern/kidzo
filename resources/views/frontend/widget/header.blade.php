@@ -76,6 +76,13 @@ button:
                                 </div>
                             </div> {{-- Tombol search --}}
                         </div>{{-- Tombol shoping cart + search --}}
+                        <div id="myDropdown" class="dropdown-content box width25Per marginTop79 marginRight15"> 
+                            <form class="form-inline">
+                                    {!! Form::text('email_mobile',null, ['class' => 'form-control width80Per', 'placeholder'=>'Cari Produk']) !!}
+                                    <button type="submit" class="black bgabu butFoot width20Per">Cari</button>
+                                    <a href="#" class="textCenter">Advance Search</a>
+                            </form>
+                        </div>
                     </div>
                 </nav>
             </div>
