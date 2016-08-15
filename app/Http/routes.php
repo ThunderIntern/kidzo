@@ -25,6 +25,10 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/newsletter/registered', ['uses' => 'webController@registeredNewsletter', 'as' => 'registered']);
 	Route::post('/newsletter/unsubscribe', ['uses' => 'webController@unsubscribeNewsletter', 'as' => 'unsubscribe']);
 	Route::get('/newsletter/unsubscribed', ['uses' => 'webController@unsubscribedNewsletter', 'as' => 'unsubscribed']);
+	Route::post('/signup', ['uses' => 'webController@signup', 'as' => 'signup']);
+	Route::get('/signup/login', ['uses' => 'webController@signuped', 'as' => 'signuped']);
+	Route::post('/login', ['uses' => 'webController@login', 'as' => 'login']);
+	Route::get('/login/done', ['uses' => 'webController@logined', 'as' => 'logined']);
 
 	Route::get('/toys/{category_name}', ['uses' => 'productController@index', 'as' => 'toys']);
 	Route::get('/toys/{category_name}/{product_slug}', ['uses' => 'productController@show', 'as' => 'toysSlug'] );
@@ -40,6 +44,7 @@ Route::group(['namespace' => 'Backend'], function(){
 	Route::get('/admin/dashboard', 		['uses' => 'dashboardController@dashboard', 'as' => 'backend.dashboard']);
 	Route::get('/admin/website', 		['uses' => 'dashboardController@website', 'as' => 'backend.website']);
 	Route::get('/admin/CRM', 		['uses' => 'dashboardController@crm', 'as' => 'backend.crm']);
+	Route::get('/admin/admin', 		['uses' => 'dashboardController@admin', 'as' => 'backend.admin']);
 
 	//website
 	Route::group(['namespace' => 'Website'], function(){
@@ -108,6 +113,37 @@ Route::group(['namespace' => 'Backend'], function(){
 			'update' 	=> 'backend.crm.newsletter.update', 
 			'destroy' 	=> 'backend.crm.newsletter.destroy'
 		]]);
+		Route::resource('/admin/crm/customer', 'customerController', ['names' => [
+			'index' 	=> 'backend.crm.customer.index',
+			'create'	=> 'backend.crm.customer.create', 
+			'store' 	=> 'backend.crm.customer.store', 
+			'show' 		=> 'backend.crm.customer.show', 
+			'edit' 		=> 'backend.crm.customer.edit', 
+			'update' 	=> 'backend.crm.customer.update', 
+			'destroy' 	=> 'backend.crm.customer.destroy'
+		]]);
+	});
+
+	//Admin
+	Route::group(['namespace' => 'Admin'], function(){	
+		Route::resource('/admin/admin/administrator', 'administratorController', ['names' => [
+			'index' 	=> 'backend.admin.administrator.index',
+			'create'	=> 'backend.admin.administrator.create', 
+			'store' 	=> 'backend.admin.administrator.store', 
+			'show' 		=> 'backend.admin.administrator.show', 
+			'edit' 		=> 'backend.admin.administrator.edit', 
+			'update' 	=> 'backend.admin.administrator.update', 
+			'destroy' 	=> 'backend.admin.administrator.destroy'
+		]]);
+		Route::resource('/admin/admin/changePassword', 'changePasswordController', ['names' => [
+			'index' 	=> 'backend.admin.changePassword.index',
+			'create'	=> 'backend.admin.changePassword.create', 
+			'store' 	=> 'backend.admin.changePassword.store', 
+			'show' 		=> 'backend.admin.changePassword.show', 
+			'edit' 		=> 'backend.admin.changePassword.edit', 
+			'update' 	=> 'backend.admin.changePassword.update', 
+			'destroy' 	=> 'backend.admin.changePassword.destroy'
+		]]);
 	});
 	// Route::resource('/admin/about', 'aboutController', ['names' => ['index' => 'backend.about.index', 'create' => 'backend.about.create', 'store' => 'backend.about.store', 'show' => 'backend.about.show', 'edit' => 'backend.about.edit', 'update' => 'backend.about.update', 'destroy' => 'backend.about.destroy']]);
 	// Route::resource('/admin/slider', 'sliderController', ['names' => ['index' => 'backend.slider.index', 'create' => 'backend.slider.create', 'store' => 'backend.slider.store', 'show' => 'backend.slider.show', 'edit' => 'backend.slider.edit', 'update' => 'backend.slider.update', 'destroy' => 'backend.slider.destroy']]);
@@ -118,7 +154,7 @@ Route::group(['namespace' => 'Backend'], function(){
 	
 Route::get('/', function () {
     //return view('frontend.pages.about');
-    return redirect()->route('home');
+    return view('frontend.pages.home');
 });
 
 Route::group(['namespace' => 'Frontend'], function(){

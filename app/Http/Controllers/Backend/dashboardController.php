@@ -83,4 +83,15 @@ class dashboardController extends baseController
         $route_source                       = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);
     }    
+
+    public function admin()
+    {
+        //page attributes
+        $this->page_attributes->page_title  = 'Admin';
+
+        //generate view
+        $view_source                        = $this->view_source_root . '.admin.home';
+        $route_source                       = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }    
 }

@@ -10,6 +10,7 @@ use App\Models\Subscriber;
 use App\Models\Faq;
 use App\Models\WebsiteConfig;
 use App\Models\Version;
+use App\Models\User;
 use Input, URL, Hash;
 
 class webController extends BaseController
@@ -174,7 +175,68 @@ class webController extends BaseController
         return $this->generateView('frontend.pages.unsubscribed', Request::route()->getName());
     }
 
+    public function signup()
+    {
+        $user                                   = new User;
 
+        //get input
+        $input                                  = Input::only('email','username','password','conf_password','nama','no','alamat');
+
+        if($input['password'] != $input['conf_password']){
+            $this->page_attributes->msg             = 'Password Tidak Sesuai';
+            return $this->generateView('frontend.pages.signup', Request::route()->getName());
+        }
+        //save data
+        $user->email                            = $input['email'];
+        $user->username                         = $input['username'];
+        $user->password                         = $input['password'];
+        $user->name                             = $input['nama'];
+        $user->phone                            = $input['no'];
+        $user->address                          = $input['alamat'];
+
+        if(is_null($user->admin)){
+            $user->admin                     = 'Admins';
+        }
+        $user->save();
+        $this->errors                           = $user->getErrors();
+        $this->page_attributes->msg             = 'Data telah disimpan';
+
+        return $this->generateRedirect(route('signuped'));
+    }
+
+    public function signuped($id = null)
+    {
+        return $this->generateView('frontend.pages.login', Request::route()->getName());
+    }
+
+    public function login()
+    {
+        $user                                   = new User;
+
+        //get input
+        $input                                  = Input::only('username','password');
+
+        //save data
+        $cari                                   = $user::where('username',$input['username'])
+                                                        ->where('password',$input['password'])
+                                                        ->first()['attributes'];
+        //dd($cari);
+        if(is_null($cari)){
+            $this->errors                           = $user->getErrors();
+            $this->page_attributes->msg             = 'Login Gagal';
+            return $this->generateRedirect(route('signuped'));                
+        }
+        else{
+            $this->errors                           = $user->getErrors();
+            $this->page_attributes->msg             = 'Login Berhasil';
+            return $this->generateRedirect(route('logined'));
+        }
+    }
+
+    public function logined($id = null)
+    {
+        return $this->generateView('frontend.pages.logined', Request::route()->getName());
+    }
 
     public function index()
     {

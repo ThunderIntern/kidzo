@@ -11,10 +11,11 @@
 		<div class="col-xs-12 col-lg-3">
 		@include('backend.widgets.sidebar', [
 			'title' 		=> 'CRM',
-			'description' 	=> 'Pengaturan Newsletter',
+			'description' 	=> 'Pengaturan Customer Relationship Member',
 			'components' => [
 								'0' => ['link' => Route('backend.crm.subscribber.index'), 'caption' => 'Subscribber'],
 								'1' => ['link' => Route('backend.crm.newsletter.index'), 'caption' => 'Newsletter'],
+								'2' => ['link' => Route('backend.crm.customer.index'), 'caption' => 'Customer'],
 		]])
 		</div>
  
