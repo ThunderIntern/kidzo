@@ -25,19 +25,22 @@
 					<hr class="garis-bawah-ungu pull-left mtop-0" width="100">
 				</div>
 			</div>
+			<div class="row mbottom-m paddingLeft20">
+				<div class="col-md-12 paddingLeft20">
+	                <form method="GET" action="#" accept-charset="UTF-8" class="p-y-0">
+	                    <div class="input-group">
+	                        <input type="text" name="search" value="" class="form-control" placeholder="Cari Informasi Tentang Kami">
+	                        <span class="input-group-btn">
+	                            <button class="btn bgabu black paddingLeft30 paddingRight30" type="submit">Cari</button>
+	                        </span>
+	                    </div>
+	                </form>
+
+				</div>
+			</div>			
 			<div class="row mbottom-s paddingLeft20">
 				<div class="col-md-12">
 					<h2>Profil</h2>
-				</div>
-			</div>
-			<div class="row mbottom-s paddingLeft20">
-				<div class="col-md-12">
-					<h5>Cari dikategori ini</h5>
-				</div>
-				<div class="col-md-12 paddingLeft20">
-					<form class="form-inline">
-						<input class="width80Per form-control" type="text" placeholder="Apa yang ingin Anda Cari?"></input><button type="submit" class="bgabu butFoot width20Per">Cari</button>
-					</form>
 				</div>
 			</div>
 			<div class="paddingLeft20">

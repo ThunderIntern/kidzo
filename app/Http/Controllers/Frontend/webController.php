@@ -7,6 +7,7 @@ use App\Http\Controllers\Functions\email;
 use App\Http\Requests;
 use App\Http\Controllers\BaseController;
 use App\Models\Subscriber;
+use App\Models\Faq;
 use App\Models\WebsiteConfig;
 use App\Models\Version;
 use Input, URL, Hash;
@@ -37,13 +38,13 @@ class webController extends BaseController
         //slider
         $datas['slider']                       = $WebsiteConfig::where('version.version_name',$app_version)
                                                     ->where('kategori','slider')
-                                                    ->orderBy('published_at','desc')
+                                                    ->orderBy('published_at','asc')
                                                     ->first()['attributes']['config'];
 
         //config
         $datas['config']                        = $WebsiteConfig::where('version.version_name',$app_version)
                                                     ->where('kategori','contact')
-                                                    ->orderBy('published_at','desc')
+                                                    ->orderBy('published_at','asc')
                                                     ->first()['attributes']['config'];
 
         $this->page_datas->datas                = $datas;
@@ -51,13 +52,51 @@ class webController extends BaseController
         return $this->generateView('frontend.pages.home', Request::route()->getName());
     }
 
-    public function about()
+    public function about($category = null, $sub_category = null)
     {
+        //get data
+        $faq                                    = new Faq;
+        $app_version                            = getenv('APP_VERSION');
+        $datas                                  = null;
 
-        $this->page_attributes->page_title  = $this->page_title;
+        // //get kategori
+        // $datas['kategori']                      = $faq::where('version.version_name', $app_version)
+        //                                             ->groupBy('kategori')
+        //                                             ->get();
+
+        // //get subkategori
+        // $datas['sub_kategori']                  = $faq::where('version.version_name', $app_version)
+        //                                             ->where('kategori', $category)
+        //                                             ->groupBy('sub_kategori')
+        //                                             ->get();
+
+        $datas                                   = $faq::raw(function($collection) { 
+            return $collection->aggregate(array(
+                array(
+                    '$group'    => array(
+                            '_id'   => '$kategori',
+                            'text'  => ['$first' =>'$kategori'],
+                            'value' => ['$first' =>'$kategori'],
+                    )
+                )     
+            )); 
+        })->toArray();
+        dd($datas);
+
+        //get content
+        if(!is_null($category) && !is_null($sub_category)){
+            $datas['faq']                       = $faq::where('version.version_name',$app_version)
+                                                    ->where('kategori', $category)
+                                                    ->where('sub_kategori', $sub_category)
+                                                    ->get();
+        }
+
+        // dd($datas);
+
+        $this->page_attributes->page_title      = $this->page_title;
        //generate view
-        $view_source                       = $this->view_source_root . '.about';
-        $route_source                      = Request::route()->getName();        
+        $view_source                            = $this->view_source_root . '.about';
+        $route_source                           = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);
     }
 

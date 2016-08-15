@@ -46,9 +46,9 @@
     }
     
     .navbar {
-        -webkit-box-shadow: 0 6px 6px -6px rgba(0,0,0,0.75);
-        -moz-box-shadow: 0 6px 6px -6px rgba(0,0,0,0.75);
-        box-shadow: 0 6px 6px -6px rgba(0,0,0,0.75);        
+        box-shadow: 0 5px 0px -1px rgba(0, 0, 0, 0.45);
+        -webkit-box-shadow:  0 5px 0px -1px rgba(0, 0, 0, 0.45);
+        -moz-box-shadow:  0 5px 0px -1px rgba(0, 0, 0, 0.45);
     }
 
 /* Dropdown Button */
@@ -167,3 +167,67 @@
 .loginHover:hover .black{
     color:$blue;
 }
+=======
+/* themes */
+.drop-search{
+    box-shadow: 0 5px 0px -1px rgba(0, 0, 0, 0.45);
+    width: 375px !important;
+    background: #EFF1F3;
+    padding-top:20px !important;
+    padding-left:20px !important;
+    padding-right:20px !important;
+}
+.right-navbar-button:hover{
+    background-color: white;
+}
+.right-navbar-button:hover i{
+    color: #025AA5;
+}    
+.right-navbar-button:focus{
+    border-radius: 0px;
+    outline: none;
+    background-color: white;
+}
+.right-navbar-button.active{
+    background-color: #EFF1F3 !important;
+    border-radius: 0px !important;
+}
+.right-navbar-button.active i{
+    color: #227FAC !important;
+} 
+.navbar-btn-search{
+    border-radius: 0px;
+    border:none;
+    background-color:#227FAC;
+    padding-left:30px;
+    padding-right:30px;
+    color:white;
+}
+.navbar-btn-search:hover{
+    z-index: 2 !important;
+    /*background-color: #46A0CF;*/
+}    
+.navbar-btn-search:focus{
+    z-index: 0 !important;
+    outline-offset: -4px;
+}    
+.navbar-input-search{
+    height:36px;
+    border:none;
+    border-radius: 0px;
+}
+.navbar-input-search:focus{
+    z-index: 0 !important;
+}
+.navbar-input-search:hover{
+    z-index: 0 !important;
+}
+.navbar-advance-search{
+    font-weight: 300;
+    font-style: italic;
+    font-size: 14px !important;
+}   
+.navbar-advance-search:hover{
+    color: #46A0CF;
+}    
+>>>>>>> Stashed changes

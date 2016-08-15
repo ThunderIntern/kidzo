@@ -51,24 +51,28 @@ button:
 
                         <div class="pull-right"> {{-- Tombol shoping cart + search --}}
                             <a href="#">        {{-- Tombol shoping cart --}}        
-                                <button class="navbar-toggler padding30 dropbtn" type="button">
+                                <button class="navbar-toggler padding30 dropbtn right-navbar-button" type="button">
                                     <i class="fa fa-shopping-cart fa-lg black" aria-hidden="true"></i>
                                 </button>
                             </a>
                             <div class="dropdown">  {{-- Tombol search --}}
                                 <a href="#">
-                                    <button onclick="myFunction()" class="dropbtn navbar-toggler padding30" type="button">
+                                    <button onclick="dropSearch(this)" class="dropbtn navbar-toggler padding30 right-navbar-button" type="button">
                                         <i class="fa fa-search fa-lg black" aria-hidden="true"></i>
                                     </button>
                                 </a>
                                 {{-- Yang keluar saat tombol search ditekan --}}
-                                <div id="myDropdown" class="dropdown-content box"> 
-                                    <form class="form-inline">
-                                            {!! Form::text('email_mobile',null, ['class' => 'form-control width80Per', 'placeholder'=>'Cari Produk']) !!}
-                                            <button type="submit" class="black bgabu butFoot">Cari</button>
-                                            <a href="#" class="textCenter">Advance Search</a>
-                                    </form>
+                                <div id="myDropdown" class="dropdown-content box drop-search"> 
+                                        <form method="GET" action="#" accept-charset="UTF-8" class="p-y-0">
+                                            <div class="input-group">
+                                                <input type="text" name="search" value="" class="form-control navbar-input-search" placeholder="Pencarian Produk">
+                                                <span class="input-group-btn">
+                                                    <button class="btn navbar-btn-search" type="submit">Cari</button>
+                                                </span>
+                                            </div>
+                                        </form>
 
+                                        <a href="#" class="textCenter navbar-advance-search">Advance Search</a>
                                 </div>
                             </div> {{-- Tombol search --}}
                         </div>{{-- Tombol shoping cart + search --}}
@@ -145,9 +149,15 @@ button:
             </div>{{-- Saat ukuran mobile --}}
             
             
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
+function dropSearch(e) {
+    $('#myDropdown').slideToggle('show');
+    if($(e).hasClass( 'active' )){
+        $(e).removeClass("active");
+    }else{
+        $(e).addClass("active");
+    }
 }
 function myFunction2() {
     document.getElementById("myDropdown2").classList.toggle("show");
@@ -156,16 +166,4 @@ function myFunction3() {
     document.getElementById("myDropdown3").classList.toggle("show");
 }
 
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      
-    }
-  }
-}
 </script>
