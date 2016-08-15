@@ -70,31 +70,37 @@ class webController extends BaseController
         //                                             ->groupBy('sub_kategori')
         //                                             ->get();
 
-        $datas                                   = $faq::raw(function($collection) { 
-            return $collection->aggregate(array(
-                array(
-                    '$group'    => array(
-                            '_id'   => '$kategori',
-                            'text'  => ['$first' =>'$kategori'],
-                            'value' => ['$first' =>'$kategori'],
-                    )
-                )     
-            )); 
-        })->toArray();
-        dd($datas);
+        $query[]                                =   ['$group' => [
+                                                        '_id'           =>  [
+                                                                                'kategori'     => '$kategori',
+                                                                                'sub_kategori' => '$sub_kategori',
+                                                                            ],
+                                                        'faq'           =>  [
+                                                                                '$push'         =>   [
+                                                                                                        'no_urut'       => '$no_urut',
+                                                                                                        'pertanyaan'    => '$pertanyaan',
+                                                                                                        'jawaban'       => '$jawaban',
+                                                                                                    ],
+                                                                            ]                                                                          
+                                                    ]];
+        $query[]                                =   ['$group' => [
+                                                        '_id'           =>  '$_id.kategori',
+                                                        'content'       =>  [
+                                                                                '$addToSet'    =>   [
+                                                                                                        'sub_kategori'  => '$_id.sub_kategori',
+                                                                                                        'faq'           => '$faq'
+                                                                                                    ]
+                                                                            ]
+                                                    ]]; 
 
-        //get content
-        if(!is_null($category) && !is_null($sub_category)){
-            $datas['faq']                       = $faq::where('version.version_name',$app_version)
-                                                    ->where('kategori', $category)
-                                                    ->where('sub_kategori', $sub_category)
-                                                    ->get();
-        }
+        $datas                                  = $faq::raw(function($collection) use ($query) { 
+                                                        return $collection->aggregate($query); 
+                                                    });
 
-        // dd($datas);
+        $this->page_datas->datas                = json_decode(json_encode($datas),true);
 
         $this->page_attributes->page_title      = $this->page_title;
-       //generate view
+        //generate view
         $view_source                            = $this->view_source_root . '.about';
         $route_source                           = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);

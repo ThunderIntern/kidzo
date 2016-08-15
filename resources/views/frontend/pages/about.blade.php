@@ -3,20 +3,18 @@
 <div class="container-fluid pleft-0 pbottom-0">
 	<div class="desktop col-md-12 pright-0 pleft-0">
 		<div class="col-md-3 paddingTop35">
-			@include('frontend.widget.sidebar', ['datas' => [
-			'0' => ['header' => "Kidzo", 'content' => 'Profil', 'link' => '#'],
-			'1' => ['header' => "", 'content' => 'Jasa Kami', 'link' => '#'],
-			'2' => ['header' => "", 'content' => 'Alamat', 'link' => '#'],
-			'3' => ['header' => "", 'content' => 'Kontak', 'link' => '#'],
-			'4' => ['header' => "Mainan", 'content' => 'Kualitas Mainan', 'link' => '#'],
-			'5' => ['header' => "", 'content' => 'Penyimpanan Mainan', 'link' => '#'],
-			'6' => ['header' => "Menyewa", 'content' => 'Cara Menyewa', 'link' => '#'],
-			'7' => ['header' => "", 'content' => 'Persyaratan Menyewa', 'link' => '#'],
-			'8' => ['header' => "Pembayaran", 'content' => 'Cara Pembayaran', 'link' => '#'],
-			'9' => ['header' => "", 'content' => 'Ketentuan Pembayaran', 'link' => '#'],
-			'10' => ['header' => "Pengiriman", 'content' => 'Metode Pengiriman', 'link' => '#'],
-			'11' => ['header' => "", 'content' => 'Biaya Pengiriman', 'link' => '#'],
-			]])
+			<ul class="paddingTop15 list-unstyled pul">
+				@foreach ($page_datas->datas as $kategori)
+					<h6 class="pul mbottom-xs"><b>{{ ucFirst($kategori['_id']) }}</b></h6>
+					@foreach ($kategori['content'] as $sub_kategori)
+						<li class="pil black mbottom-xs">
+							<a href="#">
+								<h6>{{ ucFirst($sub_kategori['sub_kategori']) }}</h6>
+							</a>
+						</li>
+					@endforeach
+				@endforeach
+			</ul>			
 		</div>
 		<div class="col-md-9 borderLeft1 paddingBottom100 paddingLeft30 paddingRight30">
 			<div class="desktop row mbottom-s paddingTop50">
@@ -25,7 +23,7 @@
 					<hr class="garis-bawah-ungu pull-left mtop-0" width="100">
 				</div>
 			</div>
-			<div class="row mbottom-m paddingLeft20">
+<!-- 			<div class="row mbottom-m paddingLeft20">
 				<div class="col-md-12 paddingLeft20">
 	                <form method="GET" action="#" accept-charset="UTF-8" class="p-y-0">
 	                    <div class="input-group">
@@ -37,7 +35,7 @@
 	                </form>
 
 				</div>
-			</div>			
+			</div>	 -->		
 			<div class="row mbottom-s paddingLeft20">
 				<div class="col-md-12">
 					<h2>Profil</h2>
