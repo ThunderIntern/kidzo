@@ -20,7 +20,7 @@
 			<div class="desktop row mbottom-s paddingTop50">
 				<div class="col-md-12">
 					<h1><b>Tentang Kami</b></h1>
-					<hr class="garis-bawah-ungu pull-left mtop-0" width="100">
+					<hr class="garis-bawah-ungu pull-left mtop-0" width="70">
 				</div>
 			</div>
 <!-- 			<div class="row mbottom-m paddingLeft20">
@@ -54,7 +54,7 @@
 		<div class="row mbottom-s paddingTop50">
 			<div class="col-sm-12 text-center">
 				<h1><b>About Us</b></h1>
-				<hr class="garis-bawah-ungu ptop-0" width="100">
+				<hr class="garis-bawah-ungu ptop-0" width="70">
 			</div>
 		</div>
 		<div class="row mbottom-s">
