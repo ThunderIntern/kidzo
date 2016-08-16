@@ -29,6 +29,8 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/signup/login', ['uses' => 'webController@signuped', 'as' => 'signuped']);
 	Route::post('/login', ['uses' => 'webController@login', 'as' => 'login']);
 	Route::get('/login/done', ['uses' => 'webController@logined', 'as' => 'logined']);
+	Route::get('/logout', ['uses' => 'webController@logout', 'as' => 'logout']);
+	Route::get('/newsletter/flushed', ['uses' => 'webController@flushregisteredNewsletter', 'as' => 'flushregister']);
 
 	Route::get('/toys/{category_name}', ['uses' => 'productController@index', 'as' => 'toys']);
 	Route::get('/toys/{category_name}/{product_slug}', ['uses' => 'productController@show', 'as' => 'toysSlug'] );

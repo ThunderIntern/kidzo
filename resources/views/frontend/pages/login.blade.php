@@ -1,3 +1,5 @@
+	@if(is_null(Session::get('key')))
+	<?php //dd(Session::get('key')); ?>
 	@extends('frontend.layout.layout')
 	@section('content')
 	{!! Form::open(['url' => route('login')]) !!}
@@ -9,3 +11,8 @@
 		<br><br><button class="btn btn-success" type="submit">Log In</button><br><br>
     {!! Form::close() !!}
     @stop
+    @else
+    	<script type="text/javascript ">
+    		window.location.href = '{{route("home")}}';
+		</script>
+	@endif

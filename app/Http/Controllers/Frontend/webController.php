@@ -129,6 +129,8 @@ class webController extends BaseController
         $newsletter->unsubscribe_token         = $hashedToken;
         $newsletter->is_subscribe              = true;
 
+        session(['key' => $newsletter['email']]);
+
         if(is_null($newsletter->admin)){
             $newsletter->admin                     = 'Admins';
         }
@@ -152,6 +154,13 @@ class webController extends BaseController
     public function registeredNewsletter($id = null)
     {
         return $this->generateView('frontend.pages.registered', Request::route()->getName());
+    }
+
+    public function flushregisteredNewsletter($id = null)
+    {
+        session()->flush();
+        $this->page_attributes->msg             = 'Newsletter Sukses';
+        return $this->generateRedirect(route('home'));
     }
 
      public function unsubscribeNewsletter($id)
@@ -227,6 +236,7 @@ class webController extends BaseController
             return $this->generateRedirect(route('signuped'));                
         }
         else{
+            session(['key' => $input['username']]);
             $this->errors                           = $user->getErrors();
             $this->page_attributes->msg             = 'Login Berhasil';
             return $this->generateRedirect(route('logined'));
@@ -236,6 +246,13 @@ class webController extends BaseController
     public function logined($id = null)
     {
         return $this->generateView('frontend.pages.logined', Request::route()->getName());
+    }
+
+    public function logout($id = null)
+    {
+        session()->flush();
+        $this->page_attributes->msg             = 'Logout Berhasil';
+        return $this->generateRedirect(route('signuped'));
     }
 
     public function index()
