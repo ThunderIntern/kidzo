@@ -17,9 +17,8 @@ button:
 
 -->
             <!-- Tampilan saat desktop -->
-            <div class="desktop paddingBottom80">
-                <div class="navbar container-fluid bgwhite posisiFix width100Per height87 zindex1 paddingBottom7">
-                <nav class="paddingBottom1 navbar-fixed-top bgwhite container">
+            <div class="desktop marginBottom75">
+                <nav class="navbar navbar-fixed-top paddingBottom1 bgwhite">
                     <div class="col-sm-12">
                         <a href="{{Route('home')}}"><img src="{{asset('image/frontend/logo.png')}}" class="gambarHead marginTop5 pull-left posisiAbs"></a>
         
@@ -86,7 +85,6 @@ button:
                         </div>
                     </div>
                 </nav>
-                </div>
             </div>
             <!---->
 
