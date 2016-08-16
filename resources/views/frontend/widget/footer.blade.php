@@ -20,9 +20,9 @@ button:
 {{-- Isi form akan di kirim ke register --}}
 
 {!! Form::open(['url' => route('register')]) !!}
-<div class="container-fluid bgabumuda width100Per">
-    <div class="container">
+
             {{-- Class warna --}}
+        <div class="warnaIn">
             <div class="marginBottom5" style="margin-top:-5px">
                 <div class="floatLeft width20Per height5 bgred"></div>
                 <div class="floatLeft width20Per height5 bggreen"></div>
@@ -30,10 +30,28 @@ button:
                 <div class="floatLeft width20Per height5 bgpurple ungu"></div>
                 <div class="floatLeft width20Per height5 bgblue"></div>
             </div>
+        </div>
 
             {{-- isi Footer --}}
+<div class="container-fluid bgabu width100Per">
+    <div class="container">        
+        {{-- Class warna --}}  
+        <div class="warnaOut">
+            
+            <div class="marginBottom5">
+                <div class="floatLeft width20Per height5 bgred"></div>
+                <div class="floatLeft width20Per height5 bggreen"></div>
+                <div class="floatLeft width20Per height5 bgorange"></div>
+                <div class="floatLeft width20Per height5 bgpurple ungu"></div>
+                <div class="floatLeft width20Per height5 bgblue"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid bgabumuda width100Per">
+    <div class="container">
             <div class="col-sm-12 bgabumuda">
-                <div class="normala paddingRight30 paddingLeft30">
+                <div class="normala">
                     <div class="paddingTop25 pull-left footer-col1">
                         <img src="{{asset('image/frontend/logo.png')}}" class="gambarFoot ">
                     </div>
@@ -72,12 +90,11 @@ button:
             </div>{{-- isi Footer ukuran mobile --}}
     </div>
 </div>
-    
 
         {{-- Isi footer bawah  --}}
 <div class="container-fluid bgabu width100Per">
     <div class="container">
-        <div class="col-sm-12 paddingLeft50 paddingRight50 bgabu">
+        <div class="col-sm-12 bgabu">
             <div class="paddingTop10">
                 {{-- ukuran desktop --}}
                 <div class="normalb">

@@ -92,4 +92,14 @@
 	.container {
 	    max-width: 1216px;
 	}
+}
+@media (min-width: 1500px){
+	.warnaIn{
+		display:none;
+	}
+} 
+@media (max-width: 1499px){
+	.warnaOut{
+		display:none;
+	}
 } 
