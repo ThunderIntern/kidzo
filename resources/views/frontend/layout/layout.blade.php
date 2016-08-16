@@ -5,7 +5,7 @@
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Bubblegum+Sans'>
-        <link href='https://fonts.googleapis.com/css?family=Roboto:300,500,100' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
 		{!! Html::style(elixir('css/frontend.css')) !!}
         <title>@section('title','Welcome')</title>
     <body>

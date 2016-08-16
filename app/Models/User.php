@@ -1,26 +1,43 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-
-class User extends Authenticatable
+class User extends BaseModel
 {
+    protected $collection           = 'users';
+    public $timestamps              = true;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
-    ];
+                                            'username'                      ,
+                                            'password'                      ,
+                                            'email'                         ,
+                                            'name'                          ,
+                                            'phone'                         ,
+                                            'address'                       ,
+                                            'admin'
+                          ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * Timestamp field
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $dates                =   [
+                                            'created_at'                    , 
+                                            'updated_at'                    , 
+                                            'deleted_at'                    
+                                        ];
+
+
+    /**
+     * Basic error message of rule
+     *
+     * @var array
+     */
+    protected $message              =   []; 
 }
