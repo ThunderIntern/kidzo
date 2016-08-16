@@ -26,6 +26,11 @@
 					<i class="fa fa-users fa-2x fa-fw"></i><br>CRM
 				</a>
 			</li>
+			<li class="list-inline-item text-xs-center">
+				<a href="{{route('backend.admin')}}" class="block p-y-1 p-x-0 ">
+					<i class="fa fa-user fa-2x fa-fw"></i><br>Admin
+				</a>
+			</li>
 		</ul>
 	</div>
 </nav>

@@ -1,4 +1,4 @@
-@media (max-width: 879px){
+@media (max-width: 990px){
     
     .desktop{
         display:none;
@@ -40,7 +40,7 @@
 	}
 }
 
-@media(min-width: 880px){
+@media(min-width: 991px){
     .mobile{
         display:none;
     }
@@ -79,5 +79,16 @@
 @media(max-width: 1499px){
 	.slide{
 		display: none;
+	}
+}
+
+@media (min-width: 1200px){
+	.container {
+	    max-width: 2000px;
+	}
+}
+@media (min-width: 992px){
+	.container {
+	    max-width: 1216px;
 	}
 }
