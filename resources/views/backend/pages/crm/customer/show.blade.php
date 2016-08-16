@@ -35,6 +35,18 @@
 			'content'	=>  $page_datas->datas['password']
 		]])	
 		@include('backend.widgets.components.detail.detail-text',['component' => [
+			'title'		=> 'Nama Lengkap',
+			'content'	=>  ucfirst($page_datas->datas['name'])
+		]])		
+		@include('backend.widgets.components.detail.detail-text',['component' => [
+			'title'		=> 'Nomor Telepon',
+			'content'	=>  ucfirst($page_datas->datas['phone'])
+		]])
+		@include('backend.widgets.components.detail.detail-text',['component' => [
+			'title'		=> 'Alamat',
+			'content'	=>  $page_datas->datas['address']
+		]])	
+		@include('backend.widgets.components.detail.detail-text',['component' => [
 			'title'		=> 'Created By',
 			'content'	=>  ucfirst($page_datas->datas['admin'])
 		]])	
