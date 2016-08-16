@@ -47,6 +47,9 @@ Route::group(['namespace' => 'Backend'], function(){
 	Route::get('/admin/website', 		['uses' => 'dashboardController@website', 'as' => 'backend.website']);
 	Route::get('/admin/CRM', 		['uses' => 'dashboardController@crm', 'as' => 'backend.crm']);
 	Route::get('/admin/admin', 		['uses' => 'dashboardController@admin', 'as' => 'backend.admin']);
+	Route::post('/cms/login', 		['uses' => 'dashboardController@login', 'as' => 'logincms']);
+	Route::get('/cms/logout', 		['uses' => 'dashboardController@logout', 'as' => 'logoutcms']);
+	Route::get('/admin', 		['uses' => 'dashboardController@loginPage', 'as' => 'loginPage']);
 
 	//website
 	Route::group(['namespace' => 'Website'], function(){

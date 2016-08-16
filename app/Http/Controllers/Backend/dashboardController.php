@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\baseController;
 
+use App\Models\Admin;
 use App\Models\Version;
 use App\Models\Faq;
 use App\Models\WebsiteConfig;
 
 use Request;
+use Input, URL, Hash;
 
 class dashboardController extends baseController
 {
@@ -93,5 +95,43 @@ class dashboardController extends baseController
         $view_source                        = $this->view_source_root . '.admin.home';
         $route_source                       = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);
+    }
+
+    public function login()
+    {
+        $admin                                   = new Admin;
+
+        //get input
+        $input                                  = Input::only('username','password');
+
+        //save data
+        $cari                                   = $admin::where('username',$input['username'])
+                                                        ->where('password',$input['password'])
+                                                        ->first()['attributes'];
+        //dd($cari);
+        if(is_null($cari)){
+            $this->errors                           = $admin->getErrors();
+            $this->page_attributes->msg             = 'Login Gagal';
+            return $this->generateRedirect(route('logincms'));                
+        }
+        else{
+            session(['key' => $input['username']]);
+            $this->errors                           = $admin->getErrors();
+            $this->page_attributes->msg             = 'Login Berhasil';
+            return $this->generateRedirect(route('backend.dashboard'));
+        }
+    }
+
+    public function loginPage()
+    {
+        $route_source                       = Request::route()->getName();  
+        return $this->generateView('backend.pages.login' , $route_source);
     }    
+
+    public function logout()
+    {
+        session()->flush();
+        $this->page_attributes->msg             = 'Logout Berhasil';       
+        return $this->generateRedirect(route('loginPage'));
+    }  
 }
