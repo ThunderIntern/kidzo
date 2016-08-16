@@ -1,18 +1,18 @@
-@extends('backend.pages.crm.layout')
+@extends('backend.pages.admin.layout')
 @section('page_content')
 <div class="card">
 	<div class="card-block">
 	@include('backend.widgets.components.title.title-control', ['component' => [
-		'title'			=> 'Detail Newsletter',
+		'title'			=> 'Detail administrator',
 		'controls'		=> 	[
 								'back'		=>	[
-													'link'	=> route('backend.crm.newsletter.index')
+													'link'	=> route('backend.admin.administrator.index')
 												],
 								'edit'		=>	[
-													'link'	=> route('backend.crm.newsletter.edit', ['id'=> $page_datas->id] )
+													'link'	=> route('backend.admin.administrator.edit', ['id'=> $page_datas->id] )
 												],												
 								'delete'	=> 	[
-													'link'	=> route('backend.crm.newsletter.destroy',['id' => $page_datas->id] )
+													'link'	=> route('backend.admin.administrator.destroy',['id' => $page_datas->id] )
 												],
 							]		
 	]])
@@ -23,16 +23,16 @@
 	@include('backend.widgets.alertbox')
 	<div class="card-block">
 		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Judul',
-			'content'	=>  ucfirst($page_datas->datas['Judul'])
+			'title'		=> 'Email',
+			'content'	=>  ucfirst($page_datas->datas['email'])
 		]])		
 		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Version Name',
-			'content'	=>  ucfirst($page_datas->datas['version']['version_name'])
+			'title'		=> 'Username',
+			'content'	=>  ucfirst($page_datas->datas['username'])
 		]])
 		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Content',
-			'content'	=>  ucfirst($page_datas->datas['content'])
+			'title'		=> 'Password',
+			'content'	=>  $page_datas->datas['password']
 		]])	
 		@include('backend.widgets.components.detail.detail-text',['component' => [
 			'title'		=> 'Created By',

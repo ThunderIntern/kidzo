@@ -1,10 +1,10 @@
-@extends('backend.pages.crm.layout')
+@extends('backend.pages.admin.layout')
 @section('page_content')
 <div class="card">
 	<div class="card-block">
 	@include('backend.widgets.components.title.title-add-search', ['component' => [
-		'title'			=> 'Newsletter / Page' . $page_datas->datas->currentPage(),
-		'link-add'		=> route('backend.crm.newsletter.create'),
+		'title'			=> 'Manage Admin/ Page' . $page_datas->datas->currentPage(),
+		'link-add'		=> route('backend.admin.administrator.create'),
 		'link-search'	=> '#',
 	]])
 	</div>
@@ -15,9 +15,9 @@
 				<thead>
 					<tr>
 						<th class="col-md-1">#</th>
-						<th class="col-md-3">Judul</th>
-						<th class="col-md-3">Version</th>
-						<th class="col-md-3">Publish Date</th>
+						<th class="col-md-3">Email</th>
+						<th class="col-md-3">Username</th>
+						<th class="col-md-3">Created At</th>
 						<th class="col-md-2 text-xs-right">Control</th>
 					</tr>
 				</thead>
@@ -28,21 +28,21 @@
 								{{($page_datas->datas->perpage() * ($page_datas->datas->currentPage()-1)) + ($key + 1)}}
 							</td>
 							<td class="col-md-3">
-								<a href="{{route('backend.crm.newsletter.show', ['id' => $data['id']])}}">
-									{{ucfirst($data['Judul'])}}
+								<a href="{{route('backend.admin.administrator.show', ['id' => $data['id']])}}">
+									{{ucfirst($data['email'])}}
 								</a>
 							</td>
 							<td class="col-md-3">
-								{{$data['version']['version_name']}}
+								{{ucfirst($data['username'])}}
 							</td>
 							<td class="col-md-3">
-								{{ $data['created_at']}}
+								{{$data['created_at']}}
 							</td>
 							<td class="col-md-2 text-xs-right">
-								<a href="{{route('backend.crm.newsletter.edit', ['id' => $data['id']])}}" class="btn btn-primary-outline btn-sm">
+								<a href="{{route('backend.admin.administrator.edit', ['id' => $data['id']])}}" class="btn btn-primary-outline btn-sm">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 						        </a>	
-								<a href="#" class="btn btn-primary-outline btn-sm" data-toggle="modal" data-target="#modalDelete" data-action="{!! route('backend.crm.newsletter.destroy',['id' => $data['id']]) !!}">
+								<a href="#" class="btn btn-primary-outline btn-sm" data-toggle="modal" data-target="#modalDelete" data-action="{!! route('backend.admin.administrator.destroy',['id' => $data['id']]) !!}">
 									<i class="fa fa-times" aria-hidden="true"></i>
 						        </a>
 							</td>

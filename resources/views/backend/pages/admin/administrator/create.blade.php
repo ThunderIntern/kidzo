@@ -1,4 +1,4 @@
-@extends('backend.pages.crm.layout')
+@extends('backend.pages.admin.layout')
 @section('page_content')
 <div class="container-fluid">
 	<div class="row clearfix">
@@ -12,9 +12,9 @@
 // dd($page_datas->id);
 ?>
 @if(is_null($page_datas->id))
-{!! Form::open(['url' => route('backend.crm.newsletter.store') ]) !!}
+{!! Form::open(['url' => route('backend.admin.administrator.store') ]) !!}
 @else
-{!! Form::open(['url' => route('backend.crm.newsletter.update', ['id' => $page_datas->id]), 'method' => 'patch' ]) !!}
+{!! Form::open(['url' => route('backend.admin.administrator.update', ['id' => $page_datas->id]), 'method' => 'patch' ]) !!}
 @endif
 	<div class="card">
 		@include('backend.widgets.alertbox')
@@ -23,29 +23,28 @@
 				'title'			=> $page_attributes->page_title,
 				'controls'		=> 	[
 										'back'		=>	[
-															'link'	=> route('backend.crm.newsletter.index')
+															'link'	=> route('backend.admin.administrator.index')
 														],
 										'save'		=> 	[
-															'link'	=> route('backend.crm.newsletter.store', ['id' => $page_datas->id])
+															'link'	=> route('backend.admin.administrator.store', ['id' => $page_datas->id])
 														]
 									]
 			]])
 			<fieldset class="form-group">
-				<label for="name">Nama Versi</label>
-				@include('backend.widgets.selectize', ['components' => [
-					'type'		=> 'version',
-					'name'		=> 'version',
-					'init_data'	=> $page_datas->datas['version'],
-					'ajax_url'	=> route('backend.ajax.getVersion'),
-				]])
+				<label for="name">Email</label>
+				{{ Form::email('email', $page_datas->datas['email'], ['class' => 'form-control']) }}
 			</fieldset>		
 			<fieldset class="form-group">
-				<label for="name">Judul</label>
-				{{ Form::text('Judul', $page_datas->datas['Judul'], ['class' => 'form-control']) }}
+				<label for="name">Username</label>
+				{{ Form::text('username', $page_datas->datas['username'], ['class' => 'form-control']) }}
 			</fieldset>				
 			<fieldset class="form-group">
-				<label for="name">Content</label>
-				{!! Form::textarea('content', $page_datas->datas['content'], ['class' => 'form-control summernote', 'rows' => '10']) !!}				
+				<label for="name">Password</label>
+				{{ Form::password('password', array('class' => 'form-control')) }}				
+			</fieldset>
+			<fieldset class="form-group">
+				<label for="name">Confirm Password</label>
+				{{ Form::password('conf_password', array('class' => 'form-control')) }}				
 			</fieldset>
 		</div>
 	</div>
