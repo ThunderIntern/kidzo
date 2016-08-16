@@ -75,7 +75,7 @@ button:
     
 
         {{-- Isi footer bawah  --}}
-<div class="container-fluid bgabumuda width100Per">
+<div class="container-fluid bgabu width100Per">
     <div class="container">
         <div class="col-sm-12 paddingLeft50 paddingRight50 bgabu">
             <div class="paddingTop10">
