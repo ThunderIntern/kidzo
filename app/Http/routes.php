@@ -154,7 +154,7 @@ Route::group(['namespace' => 'Backend'], function(){
 	
 Route::get('/', function () {
     //return view('frontend.pages.about');
-    return view('frontend.pages.home');
+    return redirect()->route('home');
 });
 
 Route::group(['namespace' => 'Frontend'], function(){
