@@ -8,7 +8,7 @@
 					<h6 class="pul mbottom-xs"><b>{{ ucFirst($kategori['_id']) }}</b></h6>
 					@foreach ($kategori['content'] as $sub_kategori)
 						<li class="pil black mbottom-xs">
-							<a href="#">
+							<a onclick="showFaq(this)" href="javascript:void(0);" data-target="{{ str_replace(' ', '_', $kategori['_id']) . '_' . str_replace(' ', '_', $sub_kategori['sub_kategori']) }}">
 								<h6>{{ ucFirst($sub_kategori['sub_kategori']) }}</h6>
 							</a>
 						</li>
@@ -19,8 +19,8 @@
 		<div class="col-md-9 borderLeft1 paddingBottom100 paddingLeft30 paddingRight30">
 			<div class="desktop row mbottom-s paddingTop50">
 				<div class="col-md-12">
-					<h1><b>Tentang Kami</b></h1>
-					<hr class="garis-bawah-ungu pull-left mtop-0" width="70">
+					<h1>Tentang Kami</h1>
+					<hr class="garis-bawah-ungu pull-left mtop-0" width="50">
 				</div>
 			</div>
 <!-- 			<div class="row mbottom-m paddingLeft20">
@@ -35,18 +35,23 @@
 	                </form>
 
 				</div>
-			</div>	 -->		
-			<div class="row mbottom-s paddingLeft20">
-				<div class="col-md-12">
-					<h2>Profil</h2>
-				</div>
-			</div>
-			<div class="paddingLeft20">
-			@include('frontend.widget.text', ['datas' => [
-			'0' => ['header' => "Apa itu Kidzo ?", 'content' => 'webfuybwudfguyg ehbfuywebfubewu hfbewufbueawbuf euwhfbuewbfuewb jfsajfibaisbfi isbfiasbifbai bsiafbiasbfiubaiufb uasbfiubasifubaiub'],
-			'1' => ['header' => "Mengapa Harus Kidzo ?", 'content' => 'webfuybwudfguyg ehbfuywebfubewu hfbewufbueawbuf euwhfbuewbfuewb jfsajfibaisbfi isbfiasbifbai bsiafbiasbfiubaiufb uasbfiubasifubaiub'],
-			'2' => ['header' => "Apakah Kidzo Terpercaya ?", 'content' => 'webfuybwudfguyg ehbfuywebfubewu hfbewufbueawbuf euwhfbuewbfuewb jfsajfibaisbfi isbfiasbifbai bsiafbiasbfiubaiufb uasbfiubasifubaiub'],
-			]])
+			</div>	 -->
+			<div class="content-faq">		
+			@foreach ($page_datas->datas as $kategori)
+				@foreach ($kategori['content'] as $sub_kategori)
+					<div id="{{ str_replace(' ', '_', $kategori['_id']) . '_' . str_replace(' ', '_', $sub_kategori['sub_kategori']) }}" class="row mbottom-s paddingLeft20 faq" style="display:none;">
+						<div class="col-md-12 marginBottom20">
+							<h2>{{ ucFirst($sub_kategori['sub_kategori']) }}</h2>
+						</div>
+						@foreach ($sub_kategori['faq'] as $content)
+							<div class="col-md-12 col-sm-12 marginBottom20">
+								<p class="blue"><strong>{{ $content['pertanyaan'] }}</strong></p>
+								<p>{{ $content['jawaban'] }}</p>
+							</div>
+						@endforeach		
+					</div>	
+				@endforeach		
+			@endforeach		
 			</div>
 		</div>
 	</div>
@@ -83,4 +88,13 @@
 		]])
 	</div>
 </div>
+@stop
+
+@section('scripts')
+	function showFaq(e) {
+	    var target = $(e).data('target');
+	    console.log(target);
+	    $('.faq').hide();
+		$('#' + target).show();
+	}
 @stop

@@ -13,5 +13,9 @@
 		@yield('content')
         @include('frontend.widget.footer')
     </body>
-        {!! Html::script(elixir('js/frontend.js')) !!}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    {!! Html::script(elixir('js/frontend.js')) !!}
+    <script>
+        @yield('scripts')
+    </script>
 </html>

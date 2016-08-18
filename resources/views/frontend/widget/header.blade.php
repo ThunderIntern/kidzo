@@ -158,7 +158,6 @@ button:
             </div>{{-- Saat ukuran mobile --}}
             
             
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 function dropSearch(e) {
     $('#myDropdown').slideToggle('show');
