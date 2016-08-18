@@ -104,6 +104,11 @@ class dashboardController extends baseController
         //get input
         $input                                  = Input::only('username','password');
 
+        if($input['username'] == "" || $input['password'] == ""){
+            $this->page_attributes->msg             = 'Login Gagal';
+            return $this->generateRedirect(route('loginPage'));
+        }
+
         //save data
         $cari                                   = $admin::where('username',$input['username'])
                                                         ->where('password',$input['password'])
@@ -112,7 +117,7 @@ class dashboardController extends baseController
         if(is_null($cari)){
             $this->errors                           = $admin->getErrors();
             $this->page_attributes->msg             = 'Login Gagal';
-            return $this->generateRedirect(route('logincms'));                
+            return $this->generateRedirect(route('loginPage'));                
         }
         else{
             session(['key' => $input['username']]);
