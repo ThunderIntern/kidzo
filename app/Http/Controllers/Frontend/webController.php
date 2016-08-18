@@ -39,13 +39,13 @@ class webController extends BaseController
         //slider
         $datas['slider']                       = $WebsiteConfig::where('version.version_name',$app_version)
                                                     ->where('kategori','slider')
-                                                    ->orderBy('published_at','asc')
+                                                    ->orderBy('published_at','desc')
                                                     ->first()['attributes']['config'];
 
         //config
         $datas['config']                        = $WebsiteConfig::where('version.version_name',$app_version)
                                                     ->where('kategori','contact')
-                                                    ->orderBy('published_at','asc')
+                                                    ->orderBy('published_at','desc')
                                                     ->first()['attributes']['config'];
 
         $this->page_datas->datas                = $datas;
