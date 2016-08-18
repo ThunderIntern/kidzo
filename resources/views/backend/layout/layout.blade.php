@@ -1,3 +1,8 @@
+@if(is_null(Session::get('key')))
+<script type="text/javascript ">
+    window.location.href = '{{route("loginPage")}}';
+</script>
+@else
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,3 +25,4 @@
         @yield('scripts')
     </script>
 </html>
+@endif

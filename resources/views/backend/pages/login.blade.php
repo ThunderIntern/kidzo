@@ -9,14 +9,16 @@
         <title>CMS LOGIN</title>
     </head>
     <body>
+    <div id="box">
+        <h1 class="mtop25">CMS LOGIN</h1>
         {!! Form::open(['url' => route('logincms')]) !!}
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="jumbotron text-center">
-            {!! Form::text('username',null, array('class' => 'form-control' , 'placeholder' => 'Username')) !!}<br>
-            {{ Form::password('password', array('class' => 'form-control' , 'placeholder' => 'Password')) }}<br>
+            {!! Form::text('username',null, array('class' => 'form-control mbottom10' , 'placeholder' => 'Username')) !!}
+            {{ Form::password('password', array('class' => 'form-control mbottom10' , 'placeholder' => 'Password')) }}
             <button class="btn btn-primary text-uppercase form-control" type="submit">Login</button>
         </div>
         {!! Form::close() !!}
+    </div>
     </body>
     {!! Html::script(elixir('js/backend.js')) !!}
 </html>
