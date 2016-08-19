@@ -1,21 +1,16 @@
 	@extends('frontend.layout.layout')
 	@section('content')
+	<div id="box">
 	{!! Form::open(['url' => route('signup')]) !!}
-		<h1 class="text-center">Sign Up</h1>
-		<h2 class="text-center">Username</h2>
-            {!! Form::text('username',null, ['class' => 'form-control' ,'placeholder' => 'Username Anda']) !!}
-		<h2 class="text-center">Password</h2>
-			{!! Form::password('password', ['class' => 'form-control' , 'placeholder' => 'Password Anda']) !!}
-		<h2 class="text-center">Confirm Password</h2>
-			{!! Form::password('conf_password', ['class' => 'form-control' , 'placeholder' => 'Masukkan Kembali Password Anda']) !!}
-		<h2 class="text-center">Email</h2>
-			{!! Form::email('email',null, ['class' => 'form-control' , 'placeholder' => 'Example@Example.com']) !!}
-		<h2 class="text-center">Name Lengkap</h2>
-            {!! Form::text('nama',null, ['class' => 'form-control' , 'placeholder' => 'Nama Lengkap Anda']) !!}
-        <h2 class="text-center">Phone Number</h2>
-            {!! Form::number('no',null, ['class' => 'form-control' , 'placeholder' => 'Nomor Telepon Anda']) !!}
-        <h2 class="text-center">Address</h2>
-            {!! Form::textArea('alamat',null , ['class' => 'form-control textarea', 'placeholder' => 'Alamat Anda']) !!}
-		<br><br><button class="btn btn-success" type="submit">Daftar</button><br><br>
+		<h1 class="text-center mtop-s mbottom-s">Sign Up</h1>
+        {!! Form::text('username',null, ['class' => 'form-control mbottom-s' ,'placeholder' => 'Username Anda']) !!}
+		{!! Form::password('password', ['class' => 'form-control mbottom-s' , 'placeholder' => 'Password Anda']) !!}
+		{!! Form::password('conf_password', ['class' => 'form-control mbottom-s' , 'placeholder' => 'Masukkan Kembali Password Anda']) !!}
+		{!! Form::email('email',null, ['class' => 'form-control mbottom-s' , 'placeholder' => 'Example@Example.com']) !!}
+        {!! Form::text('nama',null, ['class' => 'form-control mbottom-s' , 'placeholder' => 'Nama Lengkap Anda']) !!}
+        {!! Form::number('no',null, ['class' => 'form-control mbottom-s' , 'placeholder' => 'Nomor Telepon Anda']) !!}
+        {!! Form::textArea('alamat',null , ['class' => 'form-control mbottom-s textarea', 'placeholder' => 'Alamat Anda']) !!}
+		<button class="btn btn-success mbottom-s" type="submit">Daftar</button>
     {!! Form::close() !!}
+    </div>
     @stop

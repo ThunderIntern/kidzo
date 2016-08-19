@@ -2,14 +2,14 @@
 	<?php //dd(Session::get('key')); ?>
 	@extends('frontend.layout.layout')
 	@section('content')
+	<div id="box">
 	{!! Form::open(['url' => route('login')]) !!}
-		<h1 class="text-center">Login</h1>
-		<h2>Username</h2>
-            {!! Form::text('username',null, ['placeholder' => 'Username Anda']) !!}
-		<h2>Password</h2>
-			{!! Form::password('password',null, ['placeholder' => 'Password Anda']) !!}
-		<br><br><button class="btn btn-success" type="submit">Log In</button><br><br>
+		<h1 class="text-center mtop-s mbottom-s">Login</h1>
+        {!! Form::text('username',null, ['placeholder' => 'Username Anda' , 'class' => 'form-control mbottom-s']) !!}
+		{!! Form::password('password', ['placeholder' => 'Password Anda' , 'class' => 'form-control mbottom-s']) !!}
+		<button class="btn btn-success mbottom-s" type="submit">Log In</button>
     {!! Form::close() !!}
+    </div>
     @stop
     @else
     	<script type="text/javascript ">
