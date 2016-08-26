@@ -43,9 +43,16 @@ button:
                                     <li class="tentangHover nav-item borderTop5 purple paddingBottom25 paddingTop25">
                                         <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black borderRight1 <?php if($segment1=='about') echo 'purple';?>" href="{{Route('about')}}">Tentang Kami</a>
                                     </li>
-                                    <li class="loginHover nav-item borderTop5 blue paddingBottom25 paddingTop25">
-                                        <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black <?php if($segment1=='login') echo 'blue';?>" href="{{Route('signuped')}}">Login</a>
-                                    </li>
+
+                                    @if(is_null(Session::get('key')))
+                                        <li class="loginHover nav-item borderTop5 blue paddingBottom25 paddingTop25">
+                                            <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black <?php if($segment1=='login') echo 'blue';?>" href="{{Route('signuped')}}">Login</a>
+                                        </li>
+                                    @else
+                                        <li class="loginHover nav-item borderTop5 blue paddingBottom25 paddingTop25">
+                                            <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black <?php if($segment1=='login') echo 'blue';?>" href="{{Route('profile')}}">Profile</a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>

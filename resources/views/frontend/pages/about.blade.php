@@ -55,7 +55,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="mobile col-sm-12 paddingBottom50 paddingRight30 paddingLeft30">
+	<div class="mobile col-sm-12 paddingBottom50 paddingRight30 paddingLeft30">	
 		<div class="row mbottom-s paddingTop50">
 			<div class="col-sm-12 text-center">
 				<h1><b>About Us</b></h1>
@@ -97,4 +97,5 @@
 	    $('.faq').hide();
 		$('#' + target).show();
 	}
+    
 @stop

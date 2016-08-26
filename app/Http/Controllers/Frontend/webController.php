@@ -11,6 +11,7 @@ use App\Models\Faq;
 use App\Models\WebsiteConfig;
 use App\Models\Version;
 use App\Models\User;
+use App\Models\Comment;
 use Input, URL, Hash;
 
 class webController extends BaseController
@@ -28,6 +29,118 @@ class webController extends BaseController
     public function __construct()
     {
         parent::__construct();
+    }
+
+    public function profile($id = null)
+    {
+        if(session('key')==null){
+            $this->page_attributes->msg             = 'Data telah disimpan';
+            return $this->generateRedirect(route('login'));
+        }
+        $this->page_datas->komen                = Comment::where('status', 'approved')
+                                                        ->orderBy('created_at','desc')
+                                                        ->get();
+        return $this->generateView('frontend.pages.profile', Request::route()->getName());
+    }
+
+    public function updatePassword(){                                              
+        //get input
+        $input                              = Input::only('password', 'new_password', 'conf_password');
+        $user                                = User::where('username', session('key'))
+                                                        ->get()['0']['attributes'];
+                                                        
+        if($input['password'] != $user['password'] || $input['new_password'] != $input['conf_password']){
+            $this->page_attributes->msg             = 'Password Tidak Sesuai';
+            return $this->generateView('frontend.pages.signup', Request::route()->getName());
+        }
+
+        $data                                   = ['password' => $input['new_password'] ];
+
+        $user                                = User::where('username', session('key'))->update($data);
+        
+        $this->page_attributes->msg             = 'Data telah disimpan';        
+
+        return $this->generateRedirect(route('home'));
+    }
+
+    public function password(){
+
+        if(session('key')==null){
+            $this->page_attributes->msg             = 'Data telah disimpan';
+            return $this->generateRedirect(route('about'));
+        }
+
+
+        //generate view
+        $view_source                            = $this->view_source_root . '.password';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);    
+    }
+
+    public function updateSetting(){                                              
+        //get input
+        $input                                  = Input::only('username','nama','no','alamat');
+        $data                                   = ['username' => $input['username'], 
+                                                    'name' => $input['nama'],
+                                                    'phone' => $input['no'],
+                                                    'address' => $input['alamat']
+                                                    ];
+        $user                                = User::where('username', session('key'))->update($data);
+        session(['key' => $input['username']]);        
+
+        $this->page_attributes->msg             = 'Data telah disimpan';
+
+        return $this->generateRedirect(route('home'));
+    }
+
+    public function setting(){
+
+        if(session('key')==null){
+            $this->page_attributes->msg             = 'Data telah disimpan';
+            return $this->generateRedirect(route('about'));
+        }
+
+        $user                                = User::where('username', session('key'))
+                                                        ->get()['0']['attributes'];
+                                                        
+
+        $this->page_datas->email               = $user['email'];
+        $this->page_datas->username            = $user['username'];
+        $this->page_datas->password            = $user['password'];
+        $this->page_datas->name                = $user['name'];
+        $this->page_datas->phone               = $user['phone'];
+        $this->page_datas->address             = $user['address'];
+        
+        //generate view
+        $view_source                            = $this->view_source_root . '.setting';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }
+
+
+    public function proses(){
+
+        if(session('key')==null){
+            $this->page_attributes->msg             = 'Data telah disimpan';
+            return $this->generateRedirect(route('about'));
+        }
+        $comment                             = new Comment;
+        $user                                = new User;
+        //get input
+        $input                                  = Input::only('komen_mobile','komen_desktop');
+
+        //save data
+        if(empty($input['komen_mobile'])){
+            $comment->content                  = $input['komen_desktop'];
+        }else{
+            $comment->content                  = $input['komen_mobile'];
+        }
+        $comment->status                        = 'pending';
+        $comment->save();
+        $this->errors                           = $comment->getErrors();
+        $this->page_attributes->msg             = 'Data telah disimpan';
+        
+        return $this->generateRedirect(route('profile'));        
     }
 
 
@@ -239,13 +352,8 @@ class webController extends BaseController
             session(['key' => $input['username']]);
             $this->errors                           = $user->getErrors();
             $this->page_attributes->msg             = 'Login Berhasil';
-            return $this->generateRedirect(route('logined'));
+            return $this->generateRedirect(route('home'));
         }
-    }
-
-    public function logined($id = null)
-    {
-        return $this->generateView('frontend.pages.logined', Request::route()->getName());
     }
 
     public function logout($id = null)
