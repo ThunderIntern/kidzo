@@ -14,6 +14,7 @@ class Comment extends BaseModel
      */
     protected $fillable = [
                                             'username'                      ,
+                                            'email'                         ,
                                             'content'                       ,
                                             'rating'                        ,
                                             'status'
@@ -30,6 +31,9 @@ class Comment extends BaseModel
                                             'deleted_at'                    
                                         ];
 
+    protected $rules                =   [
+                                            'status'                  => 'required|boolean',
+                                        ];
 
     /**
      * Basic error message of rule

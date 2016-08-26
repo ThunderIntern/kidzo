@@ -36,7 +36,7 @@
 								{{ $data['version']['version_name'] }}
 							</td>
 							<td class="col-md-3">
-								{{ (($data['is_subscribe']==true) ? 'Subscribed' : 'Unsubscribed') }}
+								{{ (($data['is_subscribe']==True) ? 'Subscribed' : 'Unsubscribed') }}
 							</td>
 							<td class="col-md-2 text-xs-right">
 								<a href="{{route('backend.crm.subscribber.edit', ['id' => $data['id']])}}" class="btn btn-primary-outline btn-sm">

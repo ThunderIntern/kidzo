@@ -16,6 +16,7 @@ class LogTableSeeder extends Seeder
 		Log::truncate();
 
         $Log 					= new Log;
+        $Log['name']           = 'puji';
         $Log['phone']           = '019201209';
         $Log['email']		    = 'abc@gmail.com';
         $Log['content']			= 'Ada tipe XYZ?';
@@ -23,6 +24,7 @@ class LogTableSeeder extends Seeder
         $Log->save();
 
         $Log 					= new Log;
+        $Log['name']           = 'haji';
         $Log['phone']           = '0129019';
         $Log['email']           = 'abcdef@gmail.com';
         $Log['content']         = 'Jenis ini ada?';

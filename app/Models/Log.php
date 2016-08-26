@@ -13,6 +13,7 @@ class Log extends BaseModel
      * @var array
      */
     protected $fillable = [
+                                            'name'                          ,
                                             'phone'                         ,
                                             'email'                         ,
                                             'content'                       ,

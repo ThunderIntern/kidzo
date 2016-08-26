@@ -37,7 +37,7 @@ class webController extends BaseController
             $this->page_attributes->msg             = 'Data telah disimpan';
             return $this->generateRedirect(route('login'));
         }
-        $this->page_datas->komen                = Comment::where('status', 'approved')
+        $this->page_datas->komen                = Comment::where('status', true)
                                                         ->orderBy('created_at','desc')
                                                         ->get();
         return $this->generateView('frontend.pages.profile', Request::route()->getName());
@@ -125,7 +125,8 @@ class webController extends BaseController
             return $this->generateRedirect(route('about'));
         }
         $comment                             = new Comment;
-        $user                                = new User;
+        $user                                = User::where('username', session('key'))
+                                                        ->get()['0']['attributes'];
         //get input
         $input                                  = Input::only('komen_mobile','komen_desktop');
 
@@ -135,7 +136,9 @@ class webController extends BaseController
         }else{
             $comment->content                  = $input['komen_mobile'];
         }
-        $comment->status                        = 'pending';
+        $comment->username                      = $user['username'];
+        $comment->email                         = $user['email'];
+        $comment->status                        = '0';
         $comment->save();
         $this->errors                           = $comment->getErrors();
         $this->page_attributes->msg             = 'Data telah disimpan';

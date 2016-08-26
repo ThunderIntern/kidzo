@@ -133,6 +133,24 @@ Route::group(['namespace' => 'Backend'], function(){
 			'update' 	=> 'backend.crm.customer.update', 
 			'destroy' 	=> 'backend.crm.customer.destroy'
 		]]);
+		Route::resource('/admin/crm/comment', 'commentController', ['names' => [
+			'index' 	=> 'backend.crm.comment.index',
+			'create'	=> 'backend.crm.comment.create', 
+			'store' 	=> 'backend.crm.comment.store', 
+			'show' 		=> 'backend.crm.comment.show', 
+			'edit' 		=> 'backend.crm.comment.edit', 
+			'update' 	=> 'backend.crm.comment.update', 
+			'destroy' 	=> 'backend.crm.comment.destroy'
+		]]);
+		Route::resource('/admin/crm/log', 'logController', ['names' => [
+			'index' 	=> 'backend.crm.log.index',
+			'create'	=> 'backend.crm.log.create', 
+			'store' 	=> 'backend.crm.log.store', 
+			'show' 		=> 'backend.crm.log.show', 
+			'edit' 		=> 'backend.crm.log.edit', 
+			'update' 	=> 'backend.crm.log.update', 
+			'destroy' 	=> 'backend.crm.log.destroy'
+		]]);
 	});
 
 	//Admin

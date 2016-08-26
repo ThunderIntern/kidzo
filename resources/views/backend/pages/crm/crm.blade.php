@@ -25,6 +25,12 @@
 	<li class="nav-item">
 		<a class="nav-link" data-toggle="tab" href="#customer" role="tab">Customer</a>
 	</li>
+	<li class="nav-item">
+		<a class="nav-link" data-toggle="tab" href="#comment" role="tab">Comment</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" data-toggle="tab" href="#log" role="tab">Log</a>
+	</li>
 	<!-- cont. here	-->
 	</ul>   
 	<div class="row" style="margin-top: -2px;">
@@ -39,6 +45,12 @@
 				  	</div>
 				  	<div class="tab-pane fade" id="customer" role="tabpanel">
 				  		3
+				  	</div>
+				  	<div class="tab-pane fade" id="comment" role="tabpanel">
+				  		4
+				  	</div>
+				  	<div class="tab-pane fade" id="log" role="tabpanel">
+				  		5
 				  	</div>
 					<!-- cont. here	-->
 				</div>          
