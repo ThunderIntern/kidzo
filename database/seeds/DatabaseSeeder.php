@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(adminsTableSeeder::class);
         $this->call(commentTableSeeder::class);
         $this->call(LogTableSeeder::class);
+        $this->call(emailTimeTableSeeder::class);
     }
 }

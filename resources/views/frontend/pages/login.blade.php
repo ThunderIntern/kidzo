@@ -9,6 +9,7 @@
 		{!! Form::password('password', ['placeholder' => 'Password Anda' , 'class' => 'form-control mbottom-s']) !!}
 		<button class="btn btn-success mbottom-s" type="submit">Log In</button>
     {!! Form::close() !!}
+		<a href="{{route('forgot')}}"><button class="btn btn-success mbottom-s" type="submit">Forgot Password</button></a>
     </div>
     @stop
     @else

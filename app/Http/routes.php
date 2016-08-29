@@ -46,6 +46,9 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/password', ['uses' => 'webController@password', 'as' => 'password']);
 	Route::post('/newPassword', ['uses' => 'webController@updatePassword', 'as' => 'updatePassword']);
 	Route::get('/profile', ['uses' => 'webController@profile', 'as' => 'profile']);
+	Route::get('/forgot', ['uses' => 'webController@forgot', 'as' => 'forgot']);
+	Route::post('/verification', ['uses' => 'webController@verification', 'as' => 'verification']);
+	Route::get('/time/{id}', ['uses' => 'webController@emailTime', 'as' => 'id']);
 });
 
 Route::group(['namespace' => 'Backend'], function(){

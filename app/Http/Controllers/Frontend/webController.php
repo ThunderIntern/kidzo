@@ -12,7 +12,9 @@ use App\Models\WebsiteConfig;
 use App\Models\Version;
 use App\Models\User;
 use App\Models\Comment;
+use App\Models\emailTime;
 use Input, URL, Hash;
+use Carbon\Carbon;
 
 class webController extends BaseController
 {
@@ -29,6 +31,71 @@ class webController extends BaseController
     public function __construct()
     {
         parent::__construct();
+    }
+
+    public function emailTime($id)
+    {
+        $email                         = new email;
+        $time                          = emailTime::find($id);
+        $now=Carbon::now();
+        $user                          = User::where('email', $time['email'])
+                                            ->first()['attributes'];
+        
+        if($time['created_at']->addHour() >= $now){
+            $email -> password('Password Anda', 'Silahkan masukkan password anda : '. $user['password'], $time['email'], $this->page_datas->datas);
+            $this->page_attributes->msg             = 'Silahkan login';
+            return $this->generateRedirect(route('signuped'));
+        }else{
+            $email -> maaf('Expired', 'Maaf anda telah melawati batas waktu yang ditentukan, cobalah kembali.', $user['email'], $this->page_datas->datas);
+            $this->page_attributes->msg             = 'Silahkan coba lagi';
+            return $this->generateRedirect(route('forgot'));
+        }
+    }
+
+
+    public function verification()
+    {
+        $time                               = new emailTime; 
+        $input                              = Input::only('username', 'email');
+        
+        // Input tidak ada dlm database
+        $user                                = User::where('username', $input['username'])
+                                                        ->count();        
+        if($user==0){
+            $this->page_attributes->msg             = 'Username Tidak Ditemukan';
+            return $this->generateView('frontend.pages.forgot', Request::route()->getName());
+        }
+        
+        //Input ada
+        $user                                = User::where('username', $input['username'])
+                                                        ->get()['0']['attributes'];
+        if($user['email']!=$input['email']){
+            $this->page_attributes->msg             = 'Username / Email Tidak Sesuai';
+            return $this->generateView('frontend.pages.forgot', Request::route()->getName());
+        }
+
+
+        
+
+        $time['judul']            = 'Verification';
+        $time['content']          = 'Waktu verifikasi anda hanya satu jam!';
+        $time['email']            = $user['email'];
+        $time->save();
+        
+        $email = new email;
+        $email -> forgot($time['judul'], $time['content'], $user['email'], $this->page_datas->datas, $time['id']);
+        
+        $this->page_attributes->msg             = 'Data telah disimpan';        
+
+        return $this->generateRedirect(route('signuped'));
+    }
+
+    public function forgot()
+    {
+        //generate view
+        $view_source                            = $this->view_source_root . '.forgot';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);   
     }
 
     public function profile($id = null)
@@ -302,10 +369,22 @@ class webController extends BaseController
 
     public function signup()
     {
-        $user                                   = new User;
-
-        //get input
         $input                                  = Input::only('email','username','password','conf_password','nama','no','alamat');
+
+        $user                                   = User::where('email', $input['email'])
+                                                        ->count();
+        
+        if($user!=0){
+            $user                                   = User::where('email', $input['email'])
+                                                        ->get()['0']['attributes'];
+
+            if($user['email'] == $input['email']){
+                $this->page_attributes->msg             = 'Email sudah ada, coba email lain';
+                return $this->generateView('frontend.pages.signup', Request::route()->getName());
+            }
+        }
+
+        $user                                   = new User;
 
         if($input['password'] != $input['conf_password']){
             $this->page_attributes->msg             = 'Password Tidak Sesuai';
