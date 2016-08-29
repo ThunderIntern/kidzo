@@ -49,6 +49,7 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/forgot', ['uses' => 'webController@forgot', 'as' => 'forgot']);
 	Route::post('/verification', ['uses' => 'webController@verification', 'as' => 'verification']);
 	Route::get('/time/{id}', ['uses' => 'webController@emailTime', 'as' => 'id']);
+	Route::get('/create', ['uses' => 'webController@newMember', 'as' => 'create']);
 });
 
 Route::group(['namespace' => 'Backend'], function(){

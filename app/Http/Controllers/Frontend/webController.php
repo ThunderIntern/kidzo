@@ -412,7 +412,10 @@ class webController extends BaseController
     {
         return $this->generateView('frontend.pages.login', Request::route()->getName());
     }
-
+    public function newMember($id = null)
+    {
+        return $this->generateView('frontend.pages.signup', Request::route()->getName());
+    }
     public function login()
     {
         $user                                   = new User;
