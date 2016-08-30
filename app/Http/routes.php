@@ -188,6 +188,7 @@ Route::group(['namespace' => 'Backend'], function(){
 	//Transaksi
 	Route::group(['namespace' => 'Transaksi'], function(){	
 		Route::resource('/admin/transaksi/pembayaran', 'pembayaranController', ['names' => [
+			'update' 	=> 'backend.transaksi.pembayaran.updatePassword',
 			'index' 	=> 'backend.transaksi.pembayaran.index',
 			'create'	=> 'backend.transaksi.pembayaran.create', 
 			'store' 	=> 'backend.transaksi.pembayaran.store', 

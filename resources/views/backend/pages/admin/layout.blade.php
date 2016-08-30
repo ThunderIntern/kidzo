@@ -14,7 +14,7 @@
 				'description' 	=> 'Pengaturan Admin',
 				'components' 	=> [
 										'1' => ['link' => Route('backend.admin.administrator.index'), 'caption' => 'Administrator'],
-										'2' => ['link' => Route("backend.admin.changePassword.index"), 'caption' => 'Change Password'],
+										'2' => ['link' => Route('backend.admin.changePassword.index'), 'caption' => 'Change Password'],
 									]
 			])
 		</div>
