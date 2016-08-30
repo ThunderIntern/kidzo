@@ -15,7 +15,8 @@
         <div class="jumbotron text-center">
             {!! Form::text('username',null, array('class' => 'form-control mbottom10' , 'placeholder' => 'Username')) !!}
             {{ Form::password('password', array('class' => 'form-control mbottom10' , 'placeholder' => 'Password')) }}
-            <button class="btn btn-primary text-uppercase form-control" type="submit">Login</button>
+            <button class="btn btn-primary text-uppercase form-control mbottom10" type="submit">Login</button>
+            @include('backend.widgets.alertbox')
         </div>
         {!! Form::close() !!}
     </div>

@@ -97,6 +97,17 @@ class dashboardController extends baseController
         return $this->generateView($view_source , $route_source);
     }
 
+    public function transaksi()
+    {
+        //page attributes
+        $this->page_attributes->page_title  = 'Transaksi';
+
+        //generate view
+        $view_source                        = $this->view_source_root . '.transaksi.home';
+        $route_source                       = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }
+
     public function login()
     {
         $admin                                   = new Admin;
@@ -115,13 +126,13 @@ class dashboardController extends baseController
                                                         ->first()['attributes'];
         //dd($cari);
         if(is_null($cari)){
-            $this->errors                           = $admin->getErrors();
+            
             $this->page_attributes->msg             = 'Login Gagal';
             return $this->generateRedirect(route('loginPage'));                
         }
         else{
             session(['key' => $input['username']]);
-            $this->errors                           = $admin->getErrors();
+            
             $this->page_attributes->msg             = 'Login Berhasil';
             return $this->generateRedirect(route('backend.dashboard'));
         }

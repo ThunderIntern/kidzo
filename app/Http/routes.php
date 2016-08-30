@@ -21,6 +21,10 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/home', ['uses' => 'webController@home', 'as' => 'home']);
 	Route::get('/about', ['uses' => 'webController@about', 'as' => 'about']);
 	Route::get('/about/{category}/{sub_category}', ['uses' => 'webController@about', 'as' => 'aboutCategory']);
+	Route::get('/katalog', ['uses' => 'webController@katalog', 'as' => 'katalog']);
+	Route::get('/Deskripsi Katalog/{id}', ['uses' => 'webController@deskripsiKatalog', 'as' => 'deskripsiKatalog']);
+	Route::get('/chart', ['uses' => 'webController@chart', 'as' => 'chart']);
+	Route::get('/chart/delete/{nama}', ['uses' => 'webController@deleteChart', 'as' => 'deleteChart']);
 	Route::post('/newsletter/register', ['uses' => 'webController@registerNewsletter', 'as' => 'register']);
 	Route::get('/newsletter/registered', ['uses' => 'webController@registeredNewsletter', 'as' => 'registered']);
 	Route::post('/newsletter/unsubscribe', ['uses' => 'webController@unsubscribeNewsletter', 'as' => 'unsubscribe']);
@@ -57,6 +61,7 @@ Route::group(['namespace' => 'Backend'], function(){
 	Route::get('/admin/website', 		['uses' => 'dashboardController@website', 'as' => 'backend.website']);
 	Route::get('/admin/CRM', 		['uses' => 'dashboardController@crm', 'as' => 'backend.crm']);
 	Route::get('/admin/admin', 		['uses' => 'dashboardController@admin', 'as' => 'backend.admin']);
+	Route::get('/admin/transaksi', 		['uses' => 'dashboardController@transaksi', 'as' => 'backend.transaksi']);
 	Route::post('/cms/login', 		['uses' => 'dashboardController@login', 'as' => 'logincms']);
 	Route::get('/cms/logout', 		['uses' => 'dashboardController@logout', 'as' => 'logoutcms']);
 	Route::get('/admin', 		['uses' => 'dashboardController@loginPage', 'as' => 'loginPage']);
@@ -178,6 +183,38 @@ Route::group(['namespace' => 'Backend'], function(){
 			'destroy' 	=> 'backend.admin.changePassword.destroy'
 		]]);
 	});
+
+	//Transaksi
+	Route::group(['namespace' => 'Transaksi'], function(){	
+		Route::resource('/admin/transaksi/pembayaran', 'pembayaranController', ['names' => [
+			'index' 	=> 'backend.transaksi.pembayaran.index',
+			'create'	=> 'backend.transaksi.pembayaran.create', 
+			'store' 	=> 'backend.transaksi.pembayaran.store', 
+			'show' 		=> 'backend.transaksi.pembayaran.show', 
+			'edit' 		=> 'backend.transaksi.pembayaran.edit', 
+			'update' 	=> 'backend.transaksi.pembayaran.update', 
+			'destroy' 	=> 'backend.transaksi.pembayaran.destroy'
+		]]);
+		Route::resource('/admin/transaksi/manage_Barang', 'manageBarangController', ['names' => [
+			'index' 	=> 'backend.transaksi.manageBarang.index',
+			'create'	=> 'backend.transaksi.manageBarang.create', 
+			'store' 	=> 'backend.transaksi.manageBarang.store', 
+			'show' 		=> 'backend.transaksi.manageBarang.show', 
+			'edit' 		=> 'backend.transaksi.manageBarang.edit', 
+			'update' 	=> 'backend.transaksi.manageBarang.update', 
+			'destroy' 	=> 'backend.transaksi.manageBarang.destroy'
+		]]);
+		Route::resource('/admin/transaksi/manage_Inventory', 'manageInventoryController', ['names' => [
+			'index' 	=> 'backend.transaksi.manageInventory.index',
+			'create'	=> 'backend.transaksi.manageInventory.create', 
+			'store' 	=> 'backend.transaksi.manageInventory.store', 
+			'show' 		=> 'backend.transaksi.manageInventory.show', 
+			'edit' 		=> 'backend.transaksi.manageInventory.edit', 
+			'update' 	=> 'backend.transaksi.manageInventory.update', 
+			'destroy' 	=> 'backend.transaksi.manageInventory.destroy'
+		]]);
+	});
+
 	// Route::resource('/admin/about', 'aboutController', ['names' => ['index' => 'backend.about.index', 'create' => 'backend.about.create', 'store' => 'backend.about.store', 'show' => 'backend.about.show', 'edit' => 'backend.about.edit', 'update' => 'backend.about.update', 'destroy' => 'backend.about.destroy']]);
 	// Route::resource('/admin/slider', 'sliderController', ['names' => ['index' => 'backend.slider.index', 'create' => 'backend.slider.create', 'store' => 'backend.slider.store', 'show' => 'backend.slider.show', 'edit' => 'backend.slider.edit', 'update' => 'backend.slider.update', 'destroy' => 'backend.slider.destroy']]);
 	// Route::resource('/admin/CRM/manage_newsletter', 'newsletterController', ['names' => ['index' => 'backend.newsletter.index', 'create' => 'backend.newsletter.create', 'store' => 'backend.newsletter.store', 'show' => 'backend.newsletter.show', 'edit' => 'backend.newsletter.edit', 'update' => 'backend.newsletter.update', 'destroy' => 'backend.newsletter.destroy']]);

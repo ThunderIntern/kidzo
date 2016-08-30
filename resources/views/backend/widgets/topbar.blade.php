@@ -31,6 +31,12 @@
 					<i class="fa fa-user fa-2x fa-fw"></i><br>Admin
 				</a>
 			</li>
+			<li class="list-inline-item text-xs-center">
+				<a href="{{route('backend.transaksi')}}" class="block p-y-1 p-x-0 ">
+					<i class="fa fa-shopping-cart fa-2x fa-fw"></i><br>Transaction
+				</a>
+			</li>
+			
 		</ul>
 	</div>
 </nav>

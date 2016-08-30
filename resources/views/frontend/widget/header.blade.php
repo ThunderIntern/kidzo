@@ -35,7 +35,7 @@ button:
                                         <a class="marginRight-10 paddingRight10 black paddingBottom20 paddingTop20 borderRight1 <?php if($segment1=='home') echo 'red';?>" href="{{Route('home')}}">Home</a>
                                    </li>
                                     <li class="mainanHover nav-item borderTop5 green paddingBottom25 paddingTop25">
-                                        <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black borderRight1 <?php if($segment1=='mainan') echo 'green';?>" href="#">Mainan</a>
+                                        <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black borderRight1 <?php if($segment1=='katalog') echo 'green';?>" href="{{Route('katalog')}}">Mainan</a>
                                     </li>
                                     <li class="partyHover nav-item borderTop5 orange paddingBottom25 paddingTop25">
                                         <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black borderRight1 <?php if($segment1=='party') echo 'orange';?>" href="#">Party Pack</a>
@@ -58,7 +58,7 @@ button:
                         </div>
 
                         <div class="pull-right"> {{-- Tombol shoping cart + search --}}
-                            <a href="#">        {{-- Tombol shoping cart --}}        
+                            <a href="{{Route('chart')}}">        {{-- Tombol shoping cart --}}        
                                 <button class="navbar-toggler padding30 dropbtn right-navbar-button" type="button">
                                     <i class="fa fa-shopping-cart fa-lg black" aria-hidden="true"></i>
                                 </button>
@@ -107,7 +107,7 @@ button:
                         <div class="floatRight paddingRight10">
                             {{-- Button shoping --}}
                             <button class="navbar-toggler padding30 dropbtn" type="button">
-                                <a href="#"><i class="fa fa-shopping-cart fa-lg paddingRight10 black" aria-hidden="true"></i></a>
+                                <a href="{{Route('chart')}}"><i class="fa fa-shopping-cart fa-lg paddingRight10 black" aria-hidden="true"></i></a>
                             </button>
 
 
@@ -140,7 +140,7 @@ button:
                                             </a>
                                         </li>
                                         <li class="nav-item hoverMainan ">
-                                            <a class="nav-link pull-left paddingLeft30" href="#">
+                                            <a class="nav-link pull-left paddingLeft30" href="{{Route('katalog')}}">
                                                 <div class="green">Mainan</div>
                                             </a>
                                         </li>

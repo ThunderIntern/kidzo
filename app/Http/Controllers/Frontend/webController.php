@@ -13,6 +13,9 @@ use App\Models\Version;
 use App\Models\User;
 use App\Models\Comment;
 use App\Models\emailTime;
+use App\Models\Barang;
+use App\Models\Inventory;
+use App\Models\Transaksi;
 use Input, URL, Hash;
 use Carbon\Carbon;
 
@@ -290,6 +293,96 @@ class webController extends BaseController
         return $this->generateView($view_source , $route_source);
     }
 
+    public function katalog(){
+        $katalog                                = Barang::all();
+        //dd($katalog);
+
+        $this->page_datas->datas                = $katalog;
+
+        $this->page_attributes->page_title      = $this->page_title;
+        //generate view
+        $view_source                            = $this->view_source_root . '.katalog';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }
+
+    public function deskripsiKatalog($id){
+        $katalog                                = Barang::find($id);
+        //dd($katalog);
+
+        $this->page_datas->datas                = $katalog;
+        //dd($this->page_datas->datas);
+
+        $this->page_attributes->page_title      = $this->page_title;
+        //generate view
+        $view_source                            = $this->view_source_root . '.deskripsiKatalog';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }
+
+    public function chart(){
+        //dd(session(['key']));
+        $chart                                  = Transaksi::where('username',session('key'))
+                                                           ->where('status','chart')
+                                                           ->first();
+        //dd($chart);
+
+        $this->page_datas->datas                = $chart;
+        //dd($this->page_datas->datas);
+
+        $this->page_attributes->page_title      = $this->page_title;
+        //generate view
+        $view_source                            = $this->view_source_root . '.chart';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }
+
+    public function addChart($id){
+        //dd(session(['key']));
+        $chart                                  = Barang::where('username',session('key'))
+                                                        ->where('status','chart')
+                                                        ->first()['attributes'];
+        //dd($chart);
+        foreach ($chart['barang'] as $key => $data) {
+            //dd($data);
+            if($data['nama']!=$nama){
+                $brg = [$key => $data];
+            }
+        }
+        //dd($brg);
+
+        Transaksi::where('username',session('key'))
+                ->where('status','chart')
+                ->update(['barang' => $brg]);
+        //dd($this->page_datas->datas);
+        //$chart->save();
+        $this->page_attributes->msg             = 'Data telah dihapus';
+            return $this->generateRedirect(route('katalog'));
+    }
+
+    public function deleteChart($nama){
+        //dd(session(['key']));
+        $chart                                  = Transaksi::where('username',session('key'))
+                                                           ->where('status','chart')
+                                                           ->first()['attributes'];
+        //dd($chart);
+        foreach ($chart['barang'] as $key => $data) {
+            //dd($data);
+            if($data['nama']!=$nama){
+                $brg = [$key => $data];
+            }
+        }
+        //dd($brg);
+
+        Transaksi::where('username',session('key'))
+                ->where('status','chart')
+                ->update(['barang' => $brg]);
+        //dd($this->page_datas->datas);
+        //$chart->save();
+        $this->page_attributes->msg             = 'Data telah dihapus';
+            return $this->generateRedirect(route('chart'));
+    }    
+    
     public function registerNewsletter()
     {
         $newsletter                             = new Subscriber;
