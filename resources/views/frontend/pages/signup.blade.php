@@ -1,4 +1,4 @@
-	@if(is_null(Session::get('key')))
+	@if(is_null(Session::get('akun')))
 	@extends('frontend.layout.layout')
 	@section('content')
 	<div id="box">

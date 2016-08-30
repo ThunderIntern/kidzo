@@ -146,7 +146,7 @@ class dashboardController extends baseController
 
     public function logout()
     {
-        session()->flush();
+        session()->pull('key', 'default');
         $this->page_attributes->msg             = 'Logout Berhasil';       
         return $this->generateRedirect(route('loginPage'));
     }  

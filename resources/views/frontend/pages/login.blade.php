@@ -1,5 +1,5 @@
-	@if(is_null(Session::get('key')))
-	<?php //dd(Session::get('key')); ?>
+	@if(is_null(Session::get('akun')))
+	<?php //dd(Session::get('akun')); ?>
 	@extends('frontend.layout.layout')
 	@section('content')
 	<div id="box" >

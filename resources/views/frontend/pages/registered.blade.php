@@ -1,4 +1,4 @@
-@if(is_null(Session::get('key')))
+@if(is_null(Session::get('email')))
 <script type="text/javascript ">
    	window.location.href = '{{route("home")}}';
 </script>

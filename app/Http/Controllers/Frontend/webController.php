@@ -103,7 +103,7 @@ class webController extends BaseController
 
     public function profile($id = null)
     {
-        if(session('key')==null){
+        if(session('akun')==null){
             $this->page_attributes->msg             = 'Data telah disimpan';
             return $this->generateRedirect(route('login'));
         }
@@ -116,7 +116,7 @@ class webController extends BaseController
     public function updatePassword(){                                              
         //get input
         $input                              = Input::only('password', 'new_password', 'conf_password');
-        $user                                = User::where('username', session('key'))
+        $user                                = User::where('username', session('akun'))
                                                         ->get()['0']['attributes'];
                                                         
         if($input['password'] != $user['password'] || $input['new_password'] != $input['conf_password']){
@@ -126,7 +126,7 @@ class webController extends BaseController
 
         $data                                   = ['password' => $input['new_password'] ];
 
-        $user                                = User::where('username', session('key'))->update($data);
+        $user                                = User::where('username', session('akun'))->update($data);
         
         $this->page_attributes->msg             = 'Data telah disimpan';        
 
@@ -135,7 +135,7 @@ class webController extends BaseController
 
     public function password(){
 
-        if(session('key')==null){
+        if(session('akun')==null){
             $this->page_attributes->msg             = 'Data telah disimpan';
             return $this->generateRedirect(route('about'));
         }
@@ -155,8 +155,8 @@ class webController extends BaseController
                                                     'phone' => $input['no'],
                                                     'address' => $input['alamat']
                                                     ];
-        $user                                = User::where('username', session('key'))->update($data);
-        session(['key' => $input['username']]);        
+        $user                                = User::where('username', session('akun'))->update($data);
+        session(['akun' => $input['username']]);        
 
         $this->page_attributes->msg             = 'Data telah disimpan';
 
@@ -165,12 +165,12 @@ class webController extends BaseController
 
     public function setting(){
 
-        if(session('key')==null){
+        if(session('akun')==null){
             $this->page_attributes->msg             = 'Data telah disimpan';
             return $this->generateRedirect(route('about'));
         }
 
-        $user                                = User::where('username', session('key'))
+        $user                                = User::where('username', session('akun'))
                                                         ->get()['0']['attributes'];
                                                         
 
@@ -190,12 +190,12 @@ class webController extends BaseController
 
     public function proses(){
 
-        if(session('key')==null){
+        if(session('akun')==null){
             $this->page_attributes->msg             = 'Data telah disimpan';
             return $this->generateRedirect(route('about'));
         }
         $comment                             = new Comment;
-        $user                                = User::where('username', session('key'))
+        $user                                = User::where('username', session('akun'))
                                                         ->get()['0']['attributes'];
         //get input
         $input                                  = Input::only('komen_mobile','komen_desktop');
@@ -405,7 +405,7 @@ class webController extends BaseController
         $newsletter->unsubscribe_token         = $hashedToken;
         $newsletter->is_subscribe              = true;
 
-        session(['key' => $newsletter['email']]);
+        session(['email' => $newsletter['email']]);
 
         if(is_null($newsletter->admin)){
             $newsletter->admin                     = 'Admins';
@@ -434,7 +434,7 @@ class webController extends BaseController
 
     public function flushregisteredNewsletter($id = null)
     {
-        session()->flush();
+        session()->pull('email', 'default');
         $this->page_attributes->msg             = 'Newsletter Sukses';
         return $this->generateRedirect(route('home'));
     }
@@ -527,7 +527,7 @@ class webController extends BaseController
             return $this->generateRedirect(route('signuped'));                
         }
         else{
-            session(['key' => $input['username']]);
+            session(['akun' => $input['username']]);
             $this->errors                           = $user->getErrors();
             $this->page_attributes->msg             = 'Login Berhasil';
             return $this->generateRedirect(route('home'));
@@ -536,7 +536,7 @@ class webController extends BaseController
 
     public function logout($id = null)
     {
-        session()->flush();
+        session()->pull('akun', 'default');
         $this->page_attributes->msg             = 'Logout Berhasil';
         return $this->generateRedirect(route('signuped'));
     }

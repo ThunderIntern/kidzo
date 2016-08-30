@@ -44,7 +44,7 @@ button:
                                         <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black borderRight1 <?php if($segment1=='about') echo 'purple';?>" href="{{Route('about')}}">Tentang Kami</a>
                                     </li>
 
-                                    @if(is_null(Session::get('key')))
+                                    @if(is_null(Session::get('akun')))
                                         <li class="loginHover nav-item borderTop5 blue paddingBottom25 paddingTop25">
                                             <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black <?php if($segment1=='login') echo 'blue';?>" href="{{Route('signuped')}}">Login</a>
                                         </li>

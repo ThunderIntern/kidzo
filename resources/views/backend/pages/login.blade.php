@@ -12,6 +12,7 @@
     <div id="box">
         <h1 class="mtop25">CMS LOGIN</h1>
         {!! Form::open(['url' => route('logincms')]) !!}
+        
         <div class="jumbotron text-center">
             {!! Form::text('username',null, array('class' => 'form-control mbottom10' , 'placeholder' => 'Username')) !!}
             {{ Form::password('password', array('class' => 'form-control mbottom10' , 'placeholder' => 'Password')) }}
