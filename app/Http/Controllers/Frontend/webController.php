@@ -339,18 +339,25 @@ class webController extends BaseController
 
     public function addChart($id){
         //dd(session(['key']));
-        $chart                                  = Barang::where('username',session('key'))
-                                                        ->where('status','chart')
-                                                        ->first()['attributes'];
-        //dd($chart);
+        $barang                                  = Barang::find($id)
+                                                         ->first()['attributes'];
+        $nama                                    = $barang['nama'];
+        $harga                                   = $barang['harga'];
+        $url                                     = $barang['foto']['url'];
+        $array                                   = ['nama' => $nama, 'harga' => $harga ,'url' => $url];
+        //dd($array);
+        //dd($nama);
+        //dd($barang);
+        $chart                                  = Transaksi::where('username',session('key'))
+                                                           ->where('status','chart')
+                                                           ->first()['attributes'];
         foreach ($chart['barang'] as $key => $data) {
-            //dd($data);
-            if($data['nama']!=$nama){
-                $brg = [$key => $data];
-            }
+            //dd($key);
+                $brg[$key] = $data;
         }
+        
+        $brg[$nama] = $array;
         //dd($brg);
-
         Transaksi::where('username',session('key'))
                 ->where('status','chart')
                 ->update(['barang' => $brg]);
@@ -369,7 +376,7 @@ class webController extends BaseController
         foreach ($chart['barang'] as $key => $data) {
             //dd($data);
             if($data['nama']!=$nama){
-                $brg = [$key => $data];
+                $brg[$key] = $data;
             }
         }
         //dd($brg);
