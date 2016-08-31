@@ -10,6 +10,8 @@
             $.src="//v2.zopim.com/?49sPCi58YCcchToBgubnDnkN5xWzfhmL";z.t=+new Date;$.
             type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
         </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        {!! Html::script(elixir('js/frontend.js')) !!}
         <!--End of Zopim Live Chat Script-->
         <meta http-equiv="Content-Type" content="text/html" />
         
@@ -25,8 +27,6 @@
 		@yield('content')
         @include('frontend.widget.footer')
     </body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    {!! Html::script(elixir('js/frontend.js')) !!}
     <script>
         @yield('scripts')
     </script>

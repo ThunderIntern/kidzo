@@ -338,6 +338,10 @@ class webController extends BaseController
     }
 
     public function addChart($id){
+        if(is_null(session(['akun']))){
+            $this->page_attributes->msg             = 'Silahkan login terlebih dahulu';
+            return $this->generateRedirect(route('signuped'));
+        }
         //dd(session(['key']));
         $barang                                  = Barang::find($id)
                                                          ->first()['attributes'];
