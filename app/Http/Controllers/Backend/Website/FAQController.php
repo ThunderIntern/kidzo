@@ -9,7 +9,7 @@ use App\Models\Version;
 use App\Models\Faq;
 use Request, Input, URL;
 
-class faqController extends BaseController
+class FAQController extends BaseController
 {
     protected $view_source_root             = 'backend.pages.website.FAQ';
     protected $page_title                   = 'FAQ';
@@ -25,6 +25,20 @@ class faqController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function search(){
+        $search_result                          = Faq::where('pertanyaan', 'like', '%'.Input::get('search').'%')
+                                                    ->paginate();
+        $this->page_datas->datas                = $search_result;
+        $this->page_datas->id                   = null;
+        //page attributes
+        $this->page_attributes->page_title      = 'Search Result: '.Input::get('search');
+        //generate view
+        $view_source                            = $this->view_source_root . '.index';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }
+
     public function index()
     {
         //get data

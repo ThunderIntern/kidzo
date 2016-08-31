@@ -5,7 +5,7 @@
 	@include('backend.widgets.components.title.title-add-search', ['component' => [
 		'title'			=> 'Config / Page ' . $page_datas->datas->currentPage(),
 		'link-add'		=> route('backend.website.config.create'),
-		'link-search'	=> '#',
+		'link-search'	=> route('searchConfig'),
 	]])
 	</div>
 	@include('backend.widgets.alertbox')

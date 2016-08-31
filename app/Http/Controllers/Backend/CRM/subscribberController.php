@@ -23,6 +23,20 @@ class subscribberController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function search(){
+        $search_result                          = Subscriber::where('email', 'like', '%'.Input::get('search').'%')
+                                                    ->paginate();
+        $this->page_datas->datas                = $search_result;
+        $this->page_datas->id                   = null;
+        //page attributes
+        $this->page_attributes->page_title      = 'Search Result: '.Input::get('search');
+        //generate view
+        $view_source                            = $this->view_source_root . '.index';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }
+
     public function index()
     {
         $subscribber                            = new Subscriber;

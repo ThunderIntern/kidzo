@@ -5,7 +5,7 @@
 	@include('backend.widgets.components.title.title-add-search', ['component' => [
 		'title'			=> 'Manage User / Page' . $page_datas->datas->currentPage(),
 		'link-add'		=> route('backend.crm.customer.create'),
-		'link-search'	=> '#',
+		'link-search'	=> route('searchCustomer'),
 	]])
 	</div>
 	@include('backend.widgets.alertbox')

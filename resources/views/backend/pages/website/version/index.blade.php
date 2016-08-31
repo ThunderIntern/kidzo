@@ -5,7 +5,7 @@
 	@include('backend.widgets.components.title.title-add-search', ['component' => [
 		'title'			=> 'Version / Page '. $page_datas->datas->currentPage(),
 		'link-add'		=> route('backend.website.version.create'),
-		'link-search'	=> '#',
+		'link-search'	=> route('searchVersion'),
 	]])
 	</div>
 	@include('backend.widgets.alertbox')

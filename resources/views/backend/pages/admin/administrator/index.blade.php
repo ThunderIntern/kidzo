@@ -5,7 +5,7 @@
 	@include('backend.widgets.components.title.title-add-search', ['component' => [
 		'title'			=> 'Manage Admin/ Page' . $page_datas->datas->currentPage(),
 		'link-add'		=> route('backend.admin.administrator.create'),
-		'link-search'	=> '#',
+		'link-search'	=> route('searchAdministrator'),
 	]])
 	</div>
 	@include('backend.widgets.alertbox')

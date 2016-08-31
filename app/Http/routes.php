@@ -55,6 +55,7 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::post('/verification', ['uses' => 'webController@verification', 'as' => 'verification']);
 	Route::get('/time/{id}', ['uses' => 'webController@emailTime', 'as' => 'id']);
 	Route::get('/create', ['uses' => 'webController@newMember', 'as' => 'create']);
+
 });
 
 Route::group(['namespace' => 'Backend'], function(){
@@ -78,6 +79,8 @@ Route::group(['namespace' => 'Backend'], function(){
 			'update' 	=> 'backend.website.config.update', 
 			'destroy' 	=> 'backend.website.config.destroy'
 		]]);
+		Route::post('/searchConfig', ['uses' => 'configController@search', 'as' => 'searchConfig']);
+
 		Route::resource('/admin/website/faq', 'faqController', ['names' => [
 			'index' 	=> 'backend.website.faq.index',
 			'create'	=> 'backend.website.faq.create', 
@@ -87,6 +90,8 @@ Route::group(['namespace' => 'Backend'], function(){
 			'update' 	=> 'backend.website.faq.update', 
 			'destroy' 	=> 'backend.website.faq.destroy'
 		]]);
+		Route::post('/searchFAQ', ['uses' => 'FAQController@search', 'as' => 'searchFAQ']);
+		
 		Route::resource('/admin/website/slider', 'sliderController', ['names' => [
 			'index' 	=> 'backend.website.slider.index',
 			'create'	=> 'backend.website.slider.create', 
@@ -96,6 +101,7 @@ Route::group(['namespace' => 'Backend'], function(){
 			'update' 	=> 'backend.website.slider.update', 
 			'destroy' 	=> 'backend.website.slider.destroy'
 		]]);
+		Route::post('/searchSlider', ['uses' => 'sliderController@search', 'as' => 'searchSlider']);
 			
 		Route::resource('/admin/website/version', 'versionController', ['names' => [
 			'index' 	=> 'backend.website.version.index', 
@@ -106,6 +112,7 @@ Route::group(['namespace' => 'Backend'], function(){
 			'update' 	=> 'backend.website.version.update', 
 			'destroy' 	=> 'backend.website.version.destroy'
 		]]);
+		Route::post('/searchVersion', ['uses' => 'versionController@search', 'as' => 'searchVersion']);
 
 		//AJAX
 		Route::get('/admin/ajax/version', 	['uses' => 'versionController@ajaxGetVersion', 'as' => 'backend.ajax.getVersion']);
@@ -125,6 +132,8 @@ Route::group(['namespace' => 'Backend'], function(){
 			'update' 	=> 'backend.crm.subscribber.update', 
 			'destroy' 	=> 'backend.crm.subscribber.destroy'
 		]]);
+		Route::post('/searchSubscribber', ['uses' => 'subscribberController@search', 'as' => 'searchSubscribber']);
+
 		Route::resource('/admin/CRM/newsletter', 'newsletterController', ['names' => [
 			'index' 	=> 'backend.crm.newsletter.index',
 			'create'	=> 'backend.crm.newsletter.create', 
@@ -134,6 +143,8 @@ Route::group(['namespace' => 'Backend'], function(){
 			'update' 	=> 'backend.crm.newsletter.update', 
 			'destroy' 	=> 'backend.crm.newsletter.destroy'
 		]]);
+		Route::post('/searchNewsletter', ['uses' => 'newsletterController@search', 'as' => 'searchNewsletter']);
+		
 		Route::resource('/admin/crm/customer', 'customerController', ['names' => [
 			'index' 	=> 'backend.crm.customer.index',
 			'create'	=> 'backend.crm.customer.create', 
@@ -143,6 +154,8 @@ Route::group(['namespace' => 'Backend'], function(){
 			'update' 	=> 'backend.crm.customer.update', 
 			'destroy' 	=> 'backend.crm.customer.destroy'
 		]]);
+		Route::post('/searchCustomer', ['uses' => 'customerController@search', 'as' => 'searchCustomer']);
+		
 		Route::resource('/admin/crm/comment', 'commentController', ['names' => [
 			'index' 	=> 'backend.crm.comment.index',
 			'create'	=> 'backend.crm.comment.create', 
@@ -152,6 +165,8 @@ Route::group(['namespace' => 'Backend'], function(){
 			'update' 	=> 'backend.crm.comment.update', 
 			'destroy' 	=> 'backend.crm.comment.destroy'
 		]]);
+		Route::post('/searchComment', ['uses' => 'commentController@search', 'as' => 'searchComment']);
+		
 		Route::resource('/admin/crm/log', 'logController', ['names' => [
 			'index' 	=> 'backend.crm.log.index',
 			'create'	=> 'backend.crm.log.create', 
@@ -161,6 +176,8 @@ Route::group(['namespace' => 'Backend'], function(){
 			'update' 	=> 'backend.crm.log.update', 
 			'destroy' 	=> 'backend.crm.log.destroy'
 		]]);
+		Route::post('/searchLog', ['uses' => 'logController@search', 'as' => 'searchLog']);
+		
 	});
 
 	//Admin
@@ -174,6 +191,8 @@ Route::group(['namespace' => 'Backend'], function(){
 			'update' 	=> 'backend.admin.administrator.update', 
 			'destroy' 	=> 'backend.admin.administrator.destroy'
 		]]);
+		Route::post('/searchAdministrator', ['uses' => 'administratorController@search', 'as' => 'searchAdministrator']);
+		
 		Route::resource('/admin/admin/changePassword', 'changePasswordController', ['names' => [
 			'index' 	=> 'backend.admin.changePassword.index',
 			'create'	=> 'backend.admin.changePassword.create', 

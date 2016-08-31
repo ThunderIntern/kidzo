@@ -5,7 +5,7 @@
 	@include('backend.widgets.components.title.title-add-search', ['component' => [
 		'title'			=> 'Newsletter / Page' . $page_datas->datas->currentPage(),
 		'link-add'		=> route('backend.crm.newsletter.create'),
-		'link-search'	=> '#',
+		'link-search'	=> route('searchNewsletter'),
 	]])
 	</div>
 	@include('backend.widgets.alertbox')

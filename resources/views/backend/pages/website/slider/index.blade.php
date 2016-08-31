@@ -5,7 +5,7 @@
 	@include('backend.widgets.components.title.title-add-search', ['component' => [
 		'title'			=> 'Slider / Page 1',
 		'link-add'		=> route('backend.website.slider.create'),
-		'link-search'	=> '#',
+		'link-search'	=> route('searchSlider'),
 	]])
 	</div>
 	@include('backend.widgets.alertbox')
