@@ -532,10 +532,18 @@ class webController extends BaseController
         $comment                                = new Comment;
         $user                                   = User::where('email', $input['email'])
                                                         ->count();
-        
-        if($user!=0){
+        $username                                   = User::where('username', $input['username'])
+                                                        ->count();
+        if($user!=0 || $username!=0){
             $user                                   = User::where('email', $input['email'])
                                                         ->get()['0']['attributes'];
+            $username                               = User::where('username', $input['username'])
+                                                        ->get()['0']['attributes'];
+
+            if($username['username'] == $input['username']){
+                $this->page_attributes->msg             = 'Username sudah ada, coba username lain';
+                return $this->generateView('frontend.pages.signup', Request::route()->getName());
+            }
 
             if($user['email'] == $input['email']){
                 $this->page_attributes->msg             = 'Email sudah ada, coba email lain';
