@@ -321,10 +321,14 @@ class webController extends BaseController
     }
 
     public function chart(){
+        if(is_null(session('akun'))){
+            $this->page_attributes->msg             = 'Silahkan login terlebih dahulu';
+            return $this->generateRedirect(route('signuped'));
+        }
         //dd(session(['key']));
-        $chart                                  = Transaksi::where('username',session('key'))
+        $chart                                  = Transaksi::where('username',session('akun'))
                                                            ->where('status','chart')
-                                                           ->first();
+                                                           ->first()['attributes']['barang'];
         //dd($chart);
 
         $this->page_datas->datas                = $chart;
@@ -338,54 +342,76 @@ class webController extends BaseController
     }
 
     public function addChart($id){
-        if(is_null(session(['akun']))){
+        if(is_null(session('akun'))){
             $this->page_attributes->msg             = 'Silahkan login terlebih dahulu';
             return $this->generateRedirect(route('signuped'));
         }
-        //dd(session(['key']));
-        $barang                                  = Barang::find($id)
+        //dd(session(['akun']));
+        $input                                  = Input::only('event-jumlah','event-start-date','event-end-date');
+        //dd($input);
+        if(is_null($input['event-jumlah'])){
+            $this->page_attributes->msg             = 'Silahkan login terlebih dahulu';
+            return $this->generateRedirect(route('deskripsiKatalog'));
+        }
+        $barang                                  = Barang::where('_id', $id)
                                                          ->first()['attributes'];
+        //dd($barang);
         $nama                                    = $barang['nama'];
         $harga                                   = $barang['harga'];
+        $jumlah                                  = $input['event-jumlah'];
         $url                                     = $barang['foto']['url'];
-        $array                                   = ['nama' => $nama, 'harga' => $harga ,'url' => $url];
+        $tanggalm                                = $input['event-end-date'];
+        $tanggalk                                = $input['event-start-date'];
+        $array                                   = ['nama' => $nama, 'harga' => $harga ,'jumlah' => $jumlah, 'url' => $url, 'tanggal-masuk' => $tanggalm                                        ,'tanggal-keluar' => $tanggalk];
         //dd($array);
         //dd($nama);
         //dd($barang);
-        $chart                                  = Transaksi::where('username',session('key'))
+        $chart                                  = Transaksi::where('username',session('akun'))
                                                            ->where('status','chart')
-                                                           ->first()['attributes'];
-        foreach ($chart['barang'] as $key => $data) {
-            //dd($key);
-                $brg[$key] = $data;
+                                                           ->first()['attributes']['barang'];
+
+        if(is_null($chart)){
+            $brg[$nama] = $array;    
         }
+        else{
+            foreach ($chart as $key => $data) {
+                //dd($key);
+            $brg[$key] = $data;
+            }
         
-        $brg[$nama] = $array;
-        //dd($brg);
-        Transaksi::where('username',session('key'))
+            $brg[$nama] = $array;
+        }
+        //dd($array);
+        Transaksi::where('username',session('akun'))
                 ->where('status','chart')
                 ->update(['barang' => $brg]);
         //dd($this->page_datas->datas);
         //$chart->save();
         $this->page_attributes->msg             = 'Data telah dihapus';
-            return $this->generateRedirect(route('katalog'));
+            return $this->generateRedirect(route('chart'));
     }
 
     public function deleteChart($nama){
+        if(is_null(session('akun'))){
+            $this->page_attributes->msg             = 'Silahkan login terlebih dahulu';
+            return $this->generateRedirect(route('signuped'));
+        }
         //dd(session(['key']));
-        $chart                                  = Transaksi::where('username',session('key'))
+        $chart                                  = Transaksi::where('username',session('akun'))
                                                            ->where('status','chart')
                                                            ->first()['attributes'];
         //dd($chart);
+        $brg = null;
         foreach ($chart['barang'] as $key => $data) {
             //dd($data);
             if($data['nama']!=$nama){
                 $brg[$key] = $data;
             }
         }
+
         //dd($brg);
 
-        Transaksi::where('username',session('key'))
+        Transaksi::where('username',session('akun'))
                 ->where('status','chart')
                 ->update(['barang' => $brg]);
         //dd($this->page_datas->datas);

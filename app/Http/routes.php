@@ -24,7 +24,7 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/katalog', ['uses' => 'webController@katalog', 'as' => 'katalog']);
 	Route::get('/Deskripsi Katalog/{id}', ['uses' => 'webController@deskripsiKatalog', 'as' => 'deskripsiKatalog']);
 	Route::get('/chart', ['uses' => 'webController@chart', 'as' => 'chart']);
-	Route::get('/addtochart/{id}', ['uses' => 'webController@addChart', 'as' => 'addChart']);
+	Route::post('/addtochart/{id}', ['uses' => 'webController@addChart', 'as' => 'addChart']);
 	Route::get('/chart/delete/{nama}', ['uses' => 'webController@deleteChart', 'as' => 'deleteChart']);
 	Route::post('/newsletter/register', ['uses' => 'webController@registerNewsletter', 'as' => 'register']);
 	Route::get('/newsletter/registered', ['uses' => 'webController@registeredNewsletter', 'as' => 'registered']);

@@ -13,7 +13,7 @@
 					<h2 class="text-center">No Chart Added</h2>
 				</div>
 				@else
-				@foreach ($page_datas->datas['attributes']['barang'] as $key => $data)
+				@foreach ($page_datas->datas as $key => $data)
 				<div class="col-md-4 col-sm-12 mtop-s mbottom-s text-center">
 					@include("frontend.widget.wchart")
 				</div>

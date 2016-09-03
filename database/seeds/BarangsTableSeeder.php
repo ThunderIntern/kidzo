@@ -17,7 +17,7 @@ class BarangsTableSeeder extends Seeder
 
         $Barang 					= new Barang;
 
-        $Barang['nama']		        = 'Sepeda Anak';
+        $Barang['nama']		        = 'Sepeda';
         $Barang['jenis']            = 'Sport';  
         $Barang['foto']             = [
                                             'url'    =>'images/frontend/mainan1.jpg',
@@ -31,7 +31,7 @@ class BarangsTableSeeder extends Seeder
 
         $Barang                     = new Barang;
 
-        $Barang['nama']             = 'Mobil Anak';
+        $Barang['nama']             = 'Mobil';
         $Barang['jenis']            = 'Sport';  
         $Barang['foto']             = [
                                             'url'    =>'images/frontend/mainan1.jpg',
