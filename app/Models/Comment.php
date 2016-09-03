@@ -16,7 +16,6 @@ class Comment extends BaseModel
                                             'username'                      ,
                                             'email'                         ,
                                             'content'                       ,
-                                            'rating'                        ,
                                             'status'
                           ];
 

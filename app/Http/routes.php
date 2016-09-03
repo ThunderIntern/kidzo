@@ -45,7 +45,9 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/email', ['uses' => 'emailController@email', 'as' => 'email']);
 	Route::get('/unsubscribe/{unsub_token}', ['uses' => 'webController@unsubscribeNewsletter', 'as' => 'unsub.news']);
 
-	Route::post('/proses', ['uses' => 'webController@proses', 'as' => 'prosesKomen']);
+
+	Route::get('/prosesRating/{item}', ['uses' => 'webController@prosesRating', 'as' => 'prosesRating']);
+	Route::post('/prosesKomen', ['uses' => 'webController@prosesKomen', 'as' => 'prosesKomen']);
 	Route::get('/setting', ['uses' => 'webController@setting', 'as' => 'setting']);
 	Route::post('/update', ['uses' => 'webController@updateSetting', 'as' => 'updateSetting']);
 	Route::get('/password', ['uses' => 'webController@password', 'as' => 'password']);

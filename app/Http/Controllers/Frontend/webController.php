@@ -107,9 +107,16 @@ class webController extends BaseController
             $this->page_attributes->msg             = 'Data telah disimpan';
             return $this->generateRedirect(route('login'));
         }
-        $this->page_datas->komen                = Comment::where('status', true)
+        $this->page_datas->komen                = Comment::where('rating', '!=', null)
+                                                        
+                                                        ->orWhere('content.status', true)
+                                                        
                                                         ->orderBy('created_at','desc')
                                                         ->get();
+        $this->page_datas->id                   = Comment::where('username', session('akun'))
+                                                        ->get()['0']['attributes']['rating'];
+
+
         return $this->generateView('frontend.pages.profile', Request::route()->getName());
     }
 
@@ -187,8 +194,24 @@ class webController extends BaseController
         return $this->generateView($view_source , $route_source);
     }
 
+    public function prosesRating($id){
 
-    public function proses(){
+        if(session('akun')==null){
+            $this->page_attributes->msg             = 'Data telah disimpan';
+            return $this->generateRedirect(route('about'));
+        }
+        
+        //get input
+        $data                                   = ['rating' => $id];
+        $updateRating                           = Comment::where('username', session('akun'))->update($data);
+
+
+        $this->page_attributes->msg             = 'Data telah disimpan';
+                
+        return $this->generateRedirect(route('profile'));
+    }
+
+    public function prosesKomen(){
 
         if(session('akun')==null){
             $this->page_attributes->msg             = 'Data telah disimpan';
@@ -197,23 +220,28 @@ class webController extends BaseController
         $comment                             = new Comment;
         $user                                = User::where('username', session('akun'))
                                                         ->get()['0']['attributes'];
-        //get input
-        $input                                  = Input::only('komen_mobile','komen_desktop');
 
-        //save data
-        if(empty($input['komen_mobile'])){
-            $comment->content                  = $input['komen_desktop'];
+        $updateRating                        = Comment::where('email', $user['email'])
+                                                        ->get()['0']['attributes'];
+        //get input
+        $input                                  = Input::only('komen_mobile');
+
+        
+        if($updateRating['content']['isi']==null && $updateRating['rating']!=null || $updateRating['content']['isi']==null && $updateRating['rating']==null){
+            $data                                   = ['content.isi' => $input['komen_mobile']];
+            $user                                   = Comment::where('username', session('akun'))->update($data);
         }else{
-            $comment->content                  = $input['komen_mobile'];
+            //save data
+            $comment->content                       = ['isi' => $input['komen_mobile'], 'status'=> '0'];
+            $comment->username                      = $user['username'];
+            $comment->email                         = $user['email'];
+            $comment->rating                        = $updateRating['rating'];
+            $comment->save();
         }
-        $comment->username                      = $user['username'];
-        $comment->email                         = $user['email'];
-        $comment->status                        = '0';
-        $comment->save();
         $this->errors                           = $comment->getErrors();
         $this->page_attributes->msg             = 'Data telah disimpan';
         
-        return $this->generateRedirect(route('profile'));        
+        return $this->generateRedirect(route('profile'));
     }
 
 
@@ -501,6 +529,7 @@ class webController extends BaseController
     {
         $input                                  = Input::only('email','username','password','conf_password','nama','no','alamat');
 
+        $comment                                = new Comment;
         $user                                   = User::where('email', $input['email'])
                                                         ->count();
         
@@ -528,9 +557,16 @@ class webController extends BaseController
         $user->phone                            = $input['no'];
         $user->address                          = $input['alamat'];
 
+        $comment->username                      = $input['username'];
+        $comment->email                         = $input['email'];
+        $comment->rating                        = null;
+        $comment->content                       = ['isi'=>null, 'status'=>null];
+
         if(is_null($user->admin)){
             $user->admin                     = 'Admins';
         }
+
+        $comment->save();
         $user->save();
         $this->errors                           = $user->getErrors();
         $this->page_attributes->msg             = 'Data telah disimpan';

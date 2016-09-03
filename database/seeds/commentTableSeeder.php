@@ -16,19 +16,21 @@ class commentTableSeeder extends Seeder
 		Comment::truncate();
 
         $Comment 					= new Comment;
-        $Comment['username']        = 'gray';
-        $Comment['email']		    = 'abc@gmail.com';
-        $Comment['content']			= '$Version->toArray()';
-        $Comment['rating']		    = 'True';
-        $Comment['status']          = False;
+        $Comment['username']        = 'abc';
+        $Comment['email']            = 'abc@gmail.com';
+        $Comment['rating']           = '5';
+        $Comment['content']			= ['isi' => 'hello',
+                                        'status' =>False,
+                                        ];
         $Comment->save();
 
         $Comment 					= new Comment;
-        $Comment['username']        = 'gevaldi';
-        $Comment['email']           = 'abcdef@gmail.com';
-        $Comment['content']         = 'asdas';
-        $Comment['rating']          = 'True';
-        $Comment['status']          = True;
+        $Comment['username']        = 'def';
+        $Comment['email']           = 'def@gmail.com';
+        $Comment['rating']          = '1';
+        $Comment['content']         = ['isi' => 'hahaha',
+                                        'status' =>True,
+                                        ];
         $Comment->save();
     }
 }
