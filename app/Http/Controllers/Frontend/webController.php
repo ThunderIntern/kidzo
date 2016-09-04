@@ -336,7 +336,10 @@ class webController extends BaseController
 
     public function deskripsiKatalog($id){
         $katalog                                = Barang::find($id);
-        //dd($katalog);
+        $now                                    = Carbon::today();
+        //dd($now);
+        $inven                                  = Inventory::get();
+        //dd($ibulan);
 
         $this->page_datas->datas                = $katalog;
         //dd($this->page_datas->datas);
@@ -375,25 +378,79 @@ class webController extends BaseController
             return $this->generateRedirect(route('signuped'));
         }
         //dd(session(['akun']));
-        $input                                  = Input::only('event-jumlah','event-start-date','event-end-date');
+        $input                                  = Input::only('hari','tanggalk','jumlah');
         //dd($input);
-        if(is_null($input['event-jumlah'])){
+        if(is_null($input['jumlah'])){
+            $this->page_attributes->msg             = 'Silahkan login terlebih dahulu';
+            return $this->generateRedirect(route('deskripsiKatalog'));
+        }
+
+        if(is_null($input['hari'])){
+            $this->page_attributes->msg             = 'Silahkan login terlebih dahulu';
+            return $this->generateRedirect(route('deskripsiKatalog'));
+        }
+
+        if(is_null($input['tanggalk'])){
             $this->page_attributes->msg             = 'Silahkan login terlebih dahulu';
             return $this->generateRedirect(route('deskripsiKatalog'));
         }
         $barang                                  = Barang::where('_id', $id)
                                                          ->first()['attributes'];
+        
         //dd($barang);
+
         $nama                                    = $barang['nama'];
         $harga                                   = $barang['harga'];
-        $jumlah                                  = $input['event-jumlah'];
+        $jumlah                                  = $input['jumlah'];
         $url                                     = $barang['foto']['url'];
-        $tanggalm                                = $input['event-end-date'];
-        $tanggalk                                = $input['event-start-date'];
-        $array                                   = ['nama' => $nama, 'harga' => $harga ,'jumlah' => $jumlah, 'url' => $url, 'tanggal-masuk' => $tanggalm                                        ,'tanggal-keluar' => $tanggalk];
+        $hari                                    = $input['hari'];
+        $tanggalk                                = $input['tanggalk'];
+        
+        if($hari == 1){
+            $lama = Carbon::parse($tanggalk)->addDays(2);
+            //dd($lama);
+        }
+        elseif($hari == 2){
+            $lama = Carbon::parse($tanggalk)->addDays(3);
+            //dd($lama);
+        }
+        elseif($hari == 3){
+            $lama = Carbon::parse($tanggalk)->addDays(4);
+            //dd($lama);
+        }
+        elseif($hari == 4){
+            $lama = Carbon::parse($tanggalk)->addDays(5);
+            //dd($lama);
+        }
+        elseif($hari == 5){
+            $lama = Carbon::parse($tanggalk)->addDays(6);
+            //dd($lama);
+        }
+        elseif($hari == 6){
+            $lama = Carbon::parse($tanggalk)->addDays(7);
+            //dd($lama);
+        }
+        elseif($hari == 7){
+            $lama = Carbon::parse($tanggalk)->addWeeks(1)->addDays(1);
+            //dd($lama);
+        }
+        elseif($hari == 8){
+            $lama = Carbon::parse($tanggalk)->addWeeks(2)->addDays(1);
+            //dd($lama);
+        }
+        elseif($hari == 9){
+            $lama = Carbon::parse($tanggalk)->addMonths(1)->addDays(1);
+            //dd($lama);
+        }
+        $tanggalm = $lama->toDateString();
+        //dd($tanggalm);
+        $array                                   = ['nama' => $nama, 'harga' => $harga ,'jumlah' => $jumlah, 'url' => $url, 'lama-sewa' => $hari                                        ,'tanggal-keluar' => $tanggalk, 'tanggal-masuk' => $tanggalm];
         //dd($array);
         //dd($nama);
         //dd($barang);
+        $inven                                  = Inventory::where('tanggal', $tanggalk)
+                                                           ->get();
+        //dd($inven);
         $chart                                  = Transaksi::where('username',session('akun'))
                                                            ->where('status','chart')
                                                            ->first()['attributes']['barang'];
@@ -530,6 +587,7 @@ class webController extends BaseController
         $input                                  = Input::only('email','username','password','conf_password','nama','no','alamat');
 
         $comment                                = new Comment;
+        $transaksi                              = new Transaksi;
         $user                                   = User::where('email', $input['email'])
                                                         ->count();
         $username                                   = User::where('username', $input['username'])
@@ -570,10 +628,16 @@ class webController extends BaseController
         $comment->rating                        = null;
         $comment->content                       = ['isi'=>null, 'status'=>null];
 
+        $transaksi->username                    = $input['username'];
+        $transaksi->barang                      = null;
+        $transaksi->nota                        = null;
+        $transaksi->status                      = 'chart';
+
         if(is_null($user->admin)){
             $user->admin                     = 'Admins';
         }
 
+        $transaksi->save();
         $comment->save();
         $user->save();
         $this->errors                           = $user->getErrors();
