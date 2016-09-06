@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use Request;
 use App\Http\Controllers\Functions\email;
-use App\Http\Requests;
+
+use Requests;
 use App\Http\Controllers\BaseController;
 use App\Models\Subscriber;
 use App\Models\Faq;
@@ -34,6 +35,16 @@ class webController extends BaseController
     public function __construct()
     {
         parent::__construct();
+    }
+
+    public function photoStore(Requests $request){
+        $param = $request->all();
+        $filename = $request->file('file_photo')->getClientOriginalName();
+        $destinationPath = '../resources/assets/photos/';
+        $proses = $request->file('file_photo')->move($destinationPath, $filename);
+
+        $this->page_attributes->msg             = 'Username / Email Tidak Sesuai';
+            return $this->generateRedirect(route('profile'));
     }
 
     public function emailTime($id)

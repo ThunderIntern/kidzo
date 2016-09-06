@@ -21,6 +21,9 @@
 								'Comment'],
 								'4' => ['link' => Route('backend.crm.log.index'), 'caption' => 
 								'Log'],
+								'5' => ['link' => Route('backend.crm.statistic.index'), 'caption' => 
+								'Statistic'],
+		]])
 		]])
 		</div>
  

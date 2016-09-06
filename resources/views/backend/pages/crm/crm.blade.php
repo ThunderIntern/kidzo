@@ -31,6 +31,9 @@
 	<li class="nav-item">
 		<a class="nav-link" data-toggle="tab" href="#log" role="tab">Log</a>
 	</li>
+	<li class="nav-item">
+		<a class="nav-link" data-toggle="tab" href="#statistic" role="tab">Statistic</a>
+	</li>
 	<!-- cont. here	-->
 	</ul>   
 	<div class="row" style="margin-top: -2px;">
@@ -51,6 +54,9 @@
 				  	</div>
 				  	<div class="tab-pane fade" id="log" role="tabpanel">
 				  		5
+				  	</div>
+				  	<div class="tab-pane fade" id="statistic" role="tabpanel">
+				  		6
 				  	</div>
 					<!-- cont. here	-->
 				</div>          

@@ -58,6 +58,8 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/time/{id}', ['uses' => 'webController@emailTime', 'as' => 'id']);
 	Route::get('/create', ['uses' => 'webController@newMember', 'as' => 'create']);
 
+	Route::post('/creates', ['uses' => 'webController@photoStore', 'as' => 'storePhoto']);
+
 });
 
 Route::group(['namespace' => 'Backend'], function(){
@@ -180,6 +182,15 @@ Route::group(['namespace' => 'Backend'], function(){
 		]]);
 		Route::post('/searchLog', ['uses' => 'logController@search', 'as' => 'searchLog']);
 		
+		Route::resource('/admin/crm/statistic', 'statisticController', ['names' => [
+			'index' 	=> 'backend.crm.statistic.index',
+			'create'	=> 'backend.crm.statistic.create', 
+			'store' 	=> 'backend.crm.statistic.store', 
+			'show' 		=> 'backend.crm.statistic.show', 
+			'edit' 		=> 'backend.crm.statistic.edit', 
+			'update' 	=> 'backend.crm.statistic.update', 
+			'destroy' 	=> 'backend.crm.statistic.destroy'
+		]]);
 	});
 
 	//Admin

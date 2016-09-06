@@ -184,5 +184,11 @@
 		@endforeach
 	</div>
 
+	{!! Form::open(['url' => route('storePhoto'), 'enctype'=>"multipart/form-data"]) !!}
+		<input type="file" class="form-control" name="file_photo">
+		<button type="submit">Ok</button>
+	{!! Form::close() !!}
+
+
 	<div style="clear:both"></div>
 @stop
