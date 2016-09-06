@@ -18,7 +18,7 @@ class InventoriesTableSeeder extends Seeder
 
         $Inventory 					    = new Inventory;
 
-        $Inventory['tanggal']		    = strtotime('now');
+        $Inventory['tanggal']		    = '2016-09-05';
         $Inventory['barang']        = ['barang1' =>  [
                                                            'nama' => 'Sepeda',
                                                            'initialStock'    =>'5',
@@ -37,8 +37,8 @@ class InventoriesTableSeeder extends Seeder
                                                                                                                     'jumlah'    =>'1',
                                                                                                                     ],
                                                                                                      'tanggal_sewa' => [
-                                                                                                                    'tanggal_keluar'    =>strtotime('now'),
-                                                                                                                    'tanggal_masuk'    =>strtotime('now'),
+                                                                                                                    'tanggal_keluar'    =>null,
+                                                                                                                    'tanggal_masuk'    =>null,
                                                                                                                     ],
                                                                                                     ], 
                                                                                  ],
@@ -61,8 +61,8 @@ class InventoriesTableSeeder extends Seeder
                                                                                                                     'jumlah'    =>'2',
                                                                                                                     ],
                                                                                                      'tanggal_sewa' => [
-                                                                                                                    'tanggal_keluar'    =>strtotime('now'),
-                                                                                                                    'tanggal_masuk'    =>strtotime('now'),
+                                                                                                                    'tanggal_keluar'    =>null,
+                                                                                                                    'tanggal_masuk'    =>null,
                                                                                                                     ],
                                                                                                     ], 
                                                                                  ],
@@ -75,7 +75,7 @@ class InventoriesTableSeeder extends Seeder
 
         $Inventory                      = new Inventory;
 
-        $Inventory['tanggal']           = strtotime('now');
+        $Inventory['tanggal']           = '2016-09-06';
         $Inventory['barang']            = ['barang1' =>  [
                                                            'nama' => 'Mobil',
                                                            'initialStock'    =>'5',
@@ -94,8 +94,8 @@ class InventoriesTableSeeder extends Seeder
                                                                                                                     'jumlah'    =>'2',
                                                                                                                     ],
                                                                                                      'tanggal_sewa' => [
-                                                                                                                    'tanggal_keluar'    =>strtotime('now'),
-                                                                                                                    'tanggal_masuk'    =>strtotime('now'),
+                                                                                                                    'tanggal_keluar'    =>null,
+                                                                                                                    'tanggal_masuk'    =>null,
                                                                                                                     ],
                                                                                                     ], 
                                                                                  ],
@@ -118,8 +118,8 @@ class InventoriesTableSeeder extends Seeder
                                                                                                                     'jumlah'    =>'1',
                                                                                                                     ],
                                                                                                      'tanggal_sewa' => [
-                                                                                                                    'tanggal_keluar'    =>strtotime('now'),
-                                                                                                                    'tanggal_masuk'    =>strtotime('now'),
+                                                                                                                    'tanggal_keluar'    =>null,
+                                                                                                                    'tanggal_masuk'    =>null,
                                                                                                                     ],
                                                                                                     ], 
                                                                                  ],

@@ -25,6 +25,9 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/Deskripsi Katalog/{id}', ['uses' => 'webController@deskripsiKatalog', 'as' => 'deskripsiKatalog']);
 	Route::get('/chart', ['uses' => 'webController@chart', 'as' => 'chart']);
 	Route::post('/addtochart/{id}', ['uses' => 'webController@addChart', 'as' => 'addChart']);
+	Route::post('/checkout', ['uses' => 'webController@checkOut', 'as' => 'checkOut']);
+	Route::get('/Detail_CheckOut', ['uses' => 'webController@detailCheckOut', 'as' => 'detailCheckOut']);
+	Route::get('/Isi_Form_Pembelian', ['uses' => 'webController@pembelian', 'as' => 'pembelian']);
 	Route::get('/chart/delete/{nama}', ['uses' => 'webController@deleteChart', 'as' => 'deleteChart']);
 	Route::post('/newsletter/register', ['uses' => 'webController@registerNewsletter', 'as' => 'register']);
 	Route::get('/newsletter/registered', ['uses' => 'webController@registeredNewsletter', 'as' => 'registered']);

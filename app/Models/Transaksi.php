@@ -14,6 +14,9 @@ class Transaksi extends BaseModel
 	 */
 	protected $fillable				=	[	
 											'username'						,
+											'nama'							,
+											'alamat'						,
+											'nomor'							,
 											'barang'						,
 											'nota'							,
 											'status'
@@ -25,22 +28,9 @@ class Transaksi extends BaseModel
 	 * @var array
 	 */
 	protected $dates				=	[
-											'tanggal_Masuk'					,
-											'tanggal_Keluar'				,
 											'created_at'					, 
 											'updated_at'					, 
 											'deleted_at'
-										];
-
-/**
-	 * Basic rule of database
-	 *
-	 * @var array
-	 */
-
-	protected $rules				=	[
-											'tanggal_Masuk'					=> 'required|date',
-											'tanggal_Keluar'				=> 'required|date',
 										];
 
 	/**

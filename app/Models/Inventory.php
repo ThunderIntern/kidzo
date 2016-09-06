@@ -13,6 +13,7 @@ class Inventory extends BaseModel
 	 * @var array
 	 */
 	protected $fillable				=	[
+											'tanggal'						,
 											'barang'						
 										];
 
@@ -22,25 +23,11 @@ class Inventory extends BaseModel
 	 * @var array
 	 */
 	protected $dates				=	[
-											'tanggal'						,
-											'tanggal_keluar'				,
-											'tanggal_masuk'					,
 											'created_at'					, 
 											'updated_at'					, 
 											'deleted_at'
 										];
 
-/**
-	 * Basic rule of database
-	 *
-	 * @var array
-	 */
-
-	protected $rules				=	[
-											'tanggal'					=> 'required|date',
-											'tanggal_Keluar'	  		=> 'required|date',
-											'tanggal_Masuk'				=> 'required|date',
-										];
 
 	/**
 	 * Basic error message of rule

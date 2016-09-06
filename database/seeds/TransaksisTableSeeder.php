@@ -19,23 +19,11 @@ class TransaksisTableSeeder extends Seeder
         $Transaksi 					    = new Transaksi;
 
         $Transaksi['username']          = 'abc';
-        $Transaksi['barang']            = ['barang1' =>  [
-                                                           'nama' => 'Sepeda',
-                                                           'harga'       => '100000',
-                                                           'jumlah' => '2',
-                                                           'url'       => 'image/frontend/mainan1.jpg',
-                                                         ],
-                                            'barang2' =>  [
-                                                           'nama' => 'Mobil',
-                                                           'harga'       => '120000',
-                                                           'jumlah' => '1',
-                                                           'url'       => 'image/frontend/mainan2.jpg',
-                                                         ],
-                                          ];
-        $Transaksi['nota']              =  [
-                                            'nomor'    =>'002',
-                                            'jenis'    =>'Pembayaran',
-                                           ];
+        $Transaksi['nama']              = null;
+        $Transaksi['alamat']            = null;
+        $Transaksi['nomor']             = null;
+        $Transaksi['barang']            = null;
+        $Transaksi['nota']              = null;
         $Transaksi['status']            = 'chart';
         $Transaksi['admin']			    = 'Admin';
         $Transaksi->save();
@@ -45,24 +33,12 @@ class TransaksisTableSeeder extends Seeder
         $Transaksi                      = new Transaksi;
 
         $Transaksi['username']          = 'def';
-        $Transaksi['barang']            = ['barang1' =>  [
-                                                           'nama' => 'Sepeda',
-                                                           'harga'       => '100000',
-                                                           'jumlah' => '2',
-                                                           'url'       => 'image/frontend/mainan1.jpg',
-                                                         ],
-                                            'barang2' =>  [
-                                                           'nama' => 'Mobil',
-                                                           'harga'       => '120000',
-                                                           'jumlah' => '1',
-                                                           'url'       => 'image/frontend/mainan2.jpg',
-                                                         ],
-                                          ];
-        $Transaksi['nota']              =  [
-                                            'nomor'    =>'001',
-                                            'jenis'    =>'Pembayaran',
-                                           ];
-        $Transaksi['Status']            = 'delivered';
+        $Transaksi['nama']              = null;
+        $Transaksi['alamat']            = null;
+        $Transaksi['nomor']             = null;
+        $Transaksi['barang']            = null;
+        $Transaksi['nota']              = null;
+        $Transaksi['Status']            = 'chart';
         $Transaksi['admin']             = 'Admin';
         $Transaksi->save();
 

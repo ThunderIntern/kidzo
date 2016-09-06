@@ -18,6 +18,9 @@
 					@include("frontend.widget.wchart")
 				</div>
 				@endforeach
+				<div class="col-md-12 col-sm-12 mbottom-s text-center">
+					<a href="{{Route('pembelian')}}"><button class="btn btn-primary">Check Out</button></a>
+				</div>
 				@endif
 			</div>
 		</div>

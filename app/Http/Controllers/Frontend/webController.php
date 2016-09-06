@@ -348,11 +348,27 @@ class webController extends BaseController
     public function deskripsiKatalog($id){
         $katalog                                = Barang::find($id);
         $now                                    = Carbon::today();
-        //dd($now);
+        $bulan                                  = $now->month;
+        //dd($bulan);
         $inven                                  = Inventory::get();
         //dd($ibulan);
+        $array                                  = null;
+        foreach ($inven as $key => $tory) {
+            $itanggal = Carbon::parse($tory['tanggal']);
+            $ibulan = $itanggal->month;
+            $string = $itanggal->toDateString();
+            //dd($string);
+            if($ibulan == $bulan){
+                $array[$key] = ['inventory' => $tory , 'tanggal' => $string];
+            }
+        }
+        //dd($array);
 
-        $this->page_datas->datas                = $katalog;
+        $data = ['id' => $katalog['id'], 'barang' => $katalog , 'inven' => $array];
+
+        //dd($data);
+
+        $this->page_datas->datas                = $data;
         //dd($this->page_datas->datas);
 
         $this->page_attributes->page_title      = $this->page_title;
@@ -389,7 +405,7 @@ class webController extends BaseController
             return $this->generateRedirect(route('signuped'));
         }
         //dd(session(['akun']));
-        $input                                  = Input::only('hari','tanggalk','jumlah');
+        $input                                  = Input::only('hari','tanggalk','jumlah','sign');
         //dd($input);
         if(is_null($input['jumlah'])){
             $this->page_attributes->msg             = 'Silahkan login terlebih dahulu';
@@ -478,13 +494,21 @@ class webController extends BaseController
             $brg[$nama] = $array;
         }
         //dd($array);
+        
         Transaksi::where('username',session('akun'))
                 ->where('status','chart')
                 ->update(['barang' => $brg]);
         //dd($this->page_datas->datas);
         //$chart->save();
+        if($input['sign'] == 'chart'){
         $this->page_attributes->msg             = 'Data telah dihapus';
-            return $this->generateRedirect(route('chart'));
+        return $this->generateRedirect(route('chart'));
+        }
+
+        else{
+            $this->page_attributes->msg             = 'Data telah dihapus';
+            return $this->generateRedirect(route('pembelian'));
+        }
     }
 
     public function deleteChart($nama){
@@ -514,8 +538,138 @@ class webController extends BaseController
         //$chart->save();
         $this->page_attributes->msg             = 'Data telah dihapus';
             return $this->generateRedirect(route('chart'));
-    }    
-    
+    }
+
+    public function pembelian(){
+        $view_source                            = $this->view_source_root . '.isiDataPembelian';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }
+
+    public function checkOut(){
+        Transaksi::where('username',session('akun'))
+                 ->where('status','chart')
+                 ->update(['status' => 'pending']);
+
+        $input                                  = Input::only('nama','alamat','no');
+
+        Transaksi::where('username',session('akun'))
+                 ->where('status','pending')
+                 ->update(['nama' => $input['nama'] , 'alamat' => $input['alamat'] , 'nomor' => $input['no']]);
+
+        $transaksi                              = Transaksi::where('username',session('akun'))
+                                                           ->where('status','pending')
+                                                           ->first()['attributes'];
+
+        $inven                                  = Inventory::get();
+
+
+
+        $this->page_attributes->msg             = 'Data telah dihapus';
+        return $this->generateRedirect(route('detailCheckOut')); 
+    }
+
+    public function detailCheckOut(){
+        $check                                  = Transaksi::where('username',session('akun'))
+                                                           ->where('status','pending')
+                                                           ->first()['attributes'];
+        $total = null;
+
+
+        foreach ($check['barang'] as $key2 => $barang) {
+            $inven                                  = Inventory::get();
+            $tes1 = Carbon::parse($barang['tanggal-masuk']);
+            $tes2 = Carbon::parse($barang['tanggal-keluar']);
+            if($tes1->month > $tes2->month){
+                $var1 = $tes1->day + $tes2->daysInMonth;
+                $var2 = $tes2->day;
+                $tes = $var1 - $var2;
+                //dd($tes);                                                      
+            }
+            else{
+                $tes = $tes1->day - $tes2->day;
+            }
+            $var=0;
+            foreach ($inven as $key => $tory) {
+                if($tes2<=$tes1){
+                    $tanggal = $tes2->toDateString();
+                    //dd($tanggal);
+                    if($tory['tanggal'] == $tanggal){
+                        foreach ($tory['barang'] as $key1 => $value) {
+                        //dd($value);
+                            
+                                if($barang['nama'] == $value['nama']){
+                                    Inventory::where('tanggal' , $tanggal)
+                                             ->where('barang.'.$key1.'.nama'  , $barang['nama'])
+                                             ->update(['barang.'.$key1.'.currentStock' => (int)$value['currentStock'] - (int)$barang['jumlah']]);
+                                    //dd($cek);
+                                }
+                            }
+                    $tes2->addDays(1);
+                    $var += 1;
+                    }
+                }
+            }
+            //dd($tanggal);
+            for ($i=$var; $i <= $tes; $i++) {
+                $date = $tes2->toDateString();
+                    foreach ($check['barang'] as $key3 => $br) {
+                        if($br['nama'] == $barang['nama']){
+                            $brg[$key3] = ['nama' => $br['nama'] , 
+                                           'initialStock' => '5',
+                                           'currentStock' => 5 - (int)$br['jumlah'],
+                                           'brokenStock' => '0', 
+                                           'outStock' => [$check['username'] => 
+                                                                    ['nota' => ['nomor' => '00001', 'jenis' => 'pembayaran'], 
+                                                                     'keterangan' => ['telepon' => $check['nomor'], 'alamat' => $check['alamat'], 'lama' => $br['lama-sewa'], 'jumlah' => $br['jumlah']], 
+                                                                     'tanggal-sewa' => ['tanggal-keluar' => $br['tanggal-keluar'], 'tanggal-masuk' => $br['tanggal-masuk']
+                                                                            ]
+                                                                        ]
+                                                                    ]
+                                                                ];
+                        }
+                        else{
+                            $brg[$key3] = ['nama' => $br['nama'] , 
+                                           'initialStock' => '5',
+                                           'currentStock' => '5',
+                                           'brokenStock' => '0', 
+                                           'outStock' => [$check['username'] => 
+                                                                    ['nota' => ['nomor' => '00001', 'jenis' => 'pembayaran'], 
+                                                                     'keterangan' => ['telepon' => $check['nomor'], 'alamat' => $check['alamat'], 'lama' => $br['lama-sewa'], 'jumlah' => $br['jumlah']], 
+                                                                     'tanggal-sewa' => ['tanggal-keluar' => $br['tanggal-keluar'], 'tanggal-masuk' => $br['tanggal-masuk']
+                                                                            ]
+                                                                        ]
+                                                                    ]
+                                                                ];
+                        }
+                    }
+                    $new                                    = new Inventory;
+                    //dd($date);
+                    $new->tanggal = $date;
+                    $new->barang  = $brg;
+                    $new->save();
+                                        //dd($new);
+                $tes2->addDays(1);
+            }
+        }
+        //dd($check);
+        foreach ($check['barang'] as $key5 => $cek) {
+            //dd($cek);
+            $cek['harga']                         = (int)$cek['harga'];
+            $cek['jumlah']                        = (int)$cek['jumlah'];
+            $cek['lama-sewa']                     = (int)$cek['lama-sewa'];
+            $total                                += $cek['harga'] * $cek['jumlah'] * $cek['lama-sewa']; 
+        }
+
+        $array                                  =['transaksi' => $check , 'total' => $total];
+        //dd($total);
+        $this->page_datas->datas                = $array;
+
+        $view_source                            = $this->view_source_root . '.payment';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }
+
     public function registerNewsletter()
     {
         $newsletter                             = new Subscriber;
@@ -640,6 +794,9 @@ class webController extends BaseController
         $comment->content                       = ['isi'=>null, 'status'=>null];
 
         $transaksi->username                    = $input['username'];
+        $transaksi->nama                        = null;
+        $transaksi->alamat                      = null;
+        $transaksi->nomor                       = null;
         $transaksi->barang                      = null;
         $transaksi->nota                        = null;
         $transaksi->status                      = 'chart';
