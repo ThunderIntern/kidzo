@@ -481,17 +481,25 @@ class webController extends BaseController
         $chart                                  = Transaksi::where('username',session('akun'))
                                                            ->where('status','chart')
                                                            ->first()['attributes']['barang'];
+        $cek                                    = Transaksi::where('username',session('akun'))
+                                                           ->where('status','pending')
+                                                           ->first()['attributes']['barang'];
 
         if(is_null($chart)){
-            $brg[$nama]                       = $array;
-            $new->username                    = session('akun');
-            $new->nama                        = null;
-            $new->alamat                      = null;
-            $new->nomor                       = null;
-            $new->barang                      = $brg;
-            $new->nota                        = null;
-            $new->status                      = 'chart';
-            $new->save();
+            if(is_null($cek)){
+                $brg[$nama]                       = $array;
+            }
+            else{
+                $brg[$nama]                       = $array;
+                $new->username                    = session('akun');
+                $new->nama                        = null;
+                $new->alamat                      = null;
+                $new->nomor                       = null;
+                $new->barang                      = $brg;
+                $new->nota                        = null;
+                $new->status                      = 'chart';
+                $new->save();
+            }
         }
         else{
             foreach ($chart as $key => $data) {
