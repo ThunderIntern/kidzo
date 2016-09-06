@@ -407,25 +407,25 @@ class webController extends BaseController
         //dd(session(['akun']));
         $input                                  = Input::only('hari','tanggalk','jumlah','sign');
         //dd($input);
-        if(is_null($input['jumlah'])){
-            $this->page_attributes->msg             = 'Silahkan login terlebih dahulu';
-            return $this->generateRedirect(route('deskripsiKatalog'));
+        if($input['jumlah'] == ""){
+            $this->page_attributes->msg             = 'Masukkan jumlah yang disewa';
+            return $this->generateRedirect(route('deskripsiKatalog' , $id));
         }
 
-        if(is_null($input['hari'])){
-            $this->page_attributes->msg             = 'Silahkan login terlebih dahulu';
-            return $this->generateRedirect(route('deskripsiKatalog'));
+        if($input['hari'] == ""){
+            $this->page_attributes->msg             = 'Masukkan lama sewa';
+            return $this->generateRedirect(route('deskripsiKatalog' , $id));
         }
 
-        if(is_null($input['tanggalk'])){
-            $this->page_attributes->msg             = 'Silahkan login terlebih dahulu';
-            return $this->generateRedirect(route('deskripsiKatalog'));
+        if($input['tanggalk'] == ""){
+            $this->page_attributes->msg             = 'Masukkan tanggal sewa';
+            return $this->generateRedirect(route('deskripsiKatalog' , $id));
         }
         $barang                                  = Barang::where('_id', $id)
                                                          ->first()['attributes'];
-        
+        $new                                     = new Transaksi;
         //dd($barang);
-
+        $lama                                    = null;
         $nama                                    = $barang['nama'];
         $harga                                   = $barang['harga'];
         $jumlah                                  = $input['jumlah'];
@@ -483,7 +483,15 @@ class webController extends BaseController
                                                            ->first()['attributes']['barang'];
 
         if(is_null($chart)){
-            $brg[$nama] = $array;    
+            $brg[$nama]                       = $array;
+            $new->username                    = session('akun');
+            $new->nama                        = null;
+            $new->alamat                      = null;
+            $new->nomor                       = null;
+            $new->barang                      = $brg;
+            $new->nota                        = null;
+            $new->status                      = 'chart';
+            $new->save();
         }
         else{
             foreach ($chart as $key => $data) {
