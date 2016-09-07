@@ -32,27 +32,27 @@
 			]])
 			<fieldset class="form-group">
 				<label for="name">Nama Barang</label>
-				{{ Form::text('nama', $page_datas->datas['Nama_Barang'], ['class' => 'form-control']) }}
+				{{ Form::text('nama', $page_datas->datas['nama'], ['class' => 'form-control']) }}
 			</fieldset>		
 			<fieldset class="form-group">
 				<label for="name">Jenis Barang</label>
-				{{ Form::text('jenis', $page_datas->datas['Jenis_Barang'], ['class' => 'form-control']) }}
+				{{ Form::text('jenis', $page_datas->datas['jenis'], ['class' => 'form-control']) }}
 			</fieldset>				
 			<fieldset class="form-group">
 				<label for="name">Url Barang</label>
-				{{ Form::text('url', $page_datas->datas['Foto_Barang']['url'], ['class' => 'form-control']) }}
+				{{ Form::text('url', $page_datas->datas['foto']['url'], ['class' => 'form-control']) }}
 			</fieldset>		
 			<fieldset class="form-group">
 				<label for="name">Link Barang</label>
-				{{ Form::text('link', $page_datas->datas['Foto_Barang']['link'], ['class' => 'form-control']) }}
+				{{ Form::text('link', $page_datas->datas['foto']['link'], ['class' => 'form-control']) }}
 			</fieldset>
 			<fieldset class="form-group">
 				<label for="name">Harga Barang</label>
-				{{ Form::number('harga', $page_datas->datas['Harga'], ['class' => 'form-control']) }}
+				{{ Form::number('harga', $page_datas->datas['harga'], ['class' => 'form-control']) }}
 			</fieldset>			
 			<fieldset class="form-group">
 				<label for="name">Deskripsi</label>
-				{!! Form::textarea('deskripsi', $page_datas->datas['Deskripsi'], ['class' => 'form-control summernote', 'rows' => '10']) !!}
+				{!! Form::textarea('deskripsi', $page_datas->datas['deskripsi'], ['class' => 'form-control summernote', 'rows' => '10']) !!}
 			</fieldset>
 		</div>
 	</div>

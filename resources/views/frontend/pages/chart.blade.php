@@ -9,8 +9,9 @@
 		<div class="col-md-12">
 			<div class="row">
 				@if(is_null($page_datas->datas))
-				<div class="jumbotron">
-					<h2 class="text-center">No Chart Added</h2>
+				<div class="jumbotron text-center">
+					<h2>No Chart Added</h2>
+					<a href="{{route('detailCheckOut')}}"><button class="btn btn-primary">Cek Tagihan</button></a>
 				</div>
 				@else
 				@foreach ($page_datas->datas as $key => $data)

@@ -92,9 +92,7 @@ class pembayaranController extends BaseController
         $Transaksi                                    = Transaksi::findOrNew($id);
         
         //save data
-        $Transaksi->Barang                            = $input['barang'];
-        $Transaksi->Jumlah_Disewa                     = $input['jumlah'];
-        $Transaksi->Status                            = $input['status'];
+        $Transaksi->status                            = $input['status'];
 
         //set Admin
         if(is_null($Transaksi->admin)){
@@ -103,7 +101,7 @@ class pembayaranController extends BaseController
 
         $Transaksi->save();
 
-        $this->errors                           = $admin->getErrors();
+        $this->errors                           = $Transaksi->getErrors();
         $this->page_attributes->msg             = 'Data telah disimpan';
 
         return $this->generateRedirect($this->getRefererUrl());

@@ -38,7 +38,7 @@ class TransaksisTableSeeder extends Seeder
         $Transaksi['nomor']             = null;
         $Transaksi['barang']            = null;
         $Transaksi['nota']              = null;
-        $Transaksi['Status']            = 'chart';
+        $Transaksi['status']            = 'chart';
         $Transaksi['admin']             = 'Admin';
         $Transaksi->save();
 

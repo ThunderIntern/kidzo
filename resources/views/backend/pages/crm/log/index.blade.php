@@ -1,11 +1,11 @@
-@extends('backend.pages.transaksi.layout')
+@extends('backend.pages.crm.layout')
 @section('page_content')
 <div class="card">
 	<div class="card-block">
 	@include('backend.widgets.components.title.title-add-search', ['component' => [
-		'title'			=> 'Pembayaran / Page' . $page_datas->datas->currentPage(),
-		'link-add'		=> route('backend.transaksi.pembayaran.create'),
-		'link-search'	=> '#',
+		'title'			=> 'Log / Page' . $page_datas->datas->currentPage(),
+		'link-add'		=> route('backend.crm.log.create'),
+		'link-search'	=> route('searchLog'),
 	]])
 	</div>
 	@include('backend.widgets.alertbox')
@@ -15,35 +15,41 @@
 				<thead>
 					<tr>
 						<th class="col-md-1">#</th>
-						<th class="col-md-3">User</th>
-						<th class="col-md-3">Total</th>
-						<th class="col-md-3">Status</th>
+						<th class="col-md-3">Email</th>
+						<th class="col-md-2">Phone</th>
+						<th class="col-md-3">Content</th>
+						<th class="col-md-1">Status</th>
 						<th class="col-md-2 text-xs-right">Control</th>
+
 					</tr>
 				</thead>
 				<tbody>
 					@forelse ($page_datas->datas as $key => $data)
-						<?php //dd($data) ?>
 						<tr>
 							<td class="col-md-1">
 								{{($page_datas->datas->perpage() * ($page_datas->datas->currentPage()-1)) + ($key + 1)}}
 							</td>
 							<td class="col-md-3">
-								<a href="{{route('backend.transaksi.pembayaran.show', ['id' => $data['id']])}}">
-									{{ucfirst($data['username'])}}
+								<a href="{{route('backend.crm.log.show', ['id' => $data['id']])}}">
+									{{ucfirst($data['email'])}}
+								</a>
+							</td>
+							<td class="col-md-2">
+								<a href="{{route('backend.crm.log.show', ['id' => $data['id']])}}">
+									{{ucfirst($data['phone'])}}
 								</a>
 							</td>
 							<td class="col-md-3">
-								
+								{{$data['content']}}
 							</td>
-							<td class="col-md-3">
-								{{$data['status']}}
+							<td class="col-md-1">
+								{{ (($data['status']==True) ? 'Contacted' : 'Pending') }}
 							</td>
 							<td class="col-md-2 text-xs-right">
-								<a href="{{route('backend.transaksi.pembayaran.edit', ['id' => $data['id']])}}" class="btn btn-primary-outline btn-sm">
+								<a href="{{route('backend.crm.log.edit', ['id' => $data['id']])}}" class="btn btn-primary-outline btn-sm">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 						        </a>	
-								<a href="#" class="btn btn-primary-outline btn-sm" data-toggle="modal" data-target="#modalDelete" data-action="{!! route('backend.transaksi.pembayaran.destroy',['id' => $data['id']]) !!}">
+								<a href="#" class="btn btn-primary-outline btn-sm" data-toggle="modal" data-target="#modalDelete" data-action="{!! route('backend.crm.log.destroy',['id' => $data['id']]) !!}">
 									<i class="fa fa-times" aria-hidden="true"></i>
 						        </a>
 							</td>

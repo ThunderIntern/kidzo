@@ -1,44 +1,57 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Transaksi;
+namespace App\Http\Controllers\Backend\CRM;
 
 use App\Http\Controllers\baseController;
+use App\Http\Controllers\functions\dataFormatter;
 
-use App\Models\Barang;
-use App\Models\Inventory;
-use Request, Input, URL;
+use App\Models\Log;
+use Request, Input, URL, Hash;
 
-
-class manageInventoryController extends BaseController
+class logController extends BaseController
 {
-    protected $view_source_root             = 'backend.pages.transaksi.manageInventory';
-    protected $page_title                   = 'Pembayaran';
+    protected $view_source_root             = 'backend.pages.crm.log';
+    protected $page_title                   = 'log';
     protected $breadcrumb                   = [];
     public function __construct()
     {
         parent::__construct();
-    }
-
-    /**
+    } 
+    /**            
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function search(){
+        $search_result                          = Log::where('email', 'like', '%'.Input::get('search').'%')
+                                                    ->paginate();
+        $this->page_datas->datas                = $search_result;
+        $this->page_datas->id                   = null;
+        //page attributes
+        $this->page_attributes->page_title      = 'Search Result: '.Input::get('search');
+        //generate view
+        $view_source                            = $this->view_source_root . '.index';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }
+
     public function index()
     {
-                 //get data
-        $Inventory                              = new Inventory;
-        $datas                                  = $Inventory::paginate(10);
+        $log                                    = new Log;
+        $datas                                  = $log::orderBy('status','asc')
+                                                            ->orderBy('created_at','desc')
+                                                            ->paginate(50);
 
         $this->page_datas->datas                = $datas;
         $this->page_datas->id                   = null;
 
-        //page attributes
-        $this->page_attributes->page_title      = $this->page_title;
+         //page attributes
+        $this->page_attributes->page_title  = $this->page_title;
 
         //generate view
-        $view_source                            = $this->view_source_root . '.index';
-        $route_source                           = Request::route()->getName();        
+        $view_source                       = $this->view_source_root . '.index';
+        $route_source                      = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);
     }
 
@@ -49,27 +62,22 @@ class manageInventoryController extends BaseController
      */
     public function create($id = null)
     {
-        //get data
+         //get data
         $datas                                  = null;
         
         if($id != null)
         {
-            $Inventory                          = new Inventory;
-            $datas                              = $Inventory::find($id);
+            $log                                = new Log;
+            $datas                              = $log->find($id);
         }
 
-        //set data
         $this->page_datas->datas                = $datas;
 
         //set referral url
         $this->setRefererUrl();
 
         //page attributes
-        if($id != null){
-            $this->page_attributes->page_title  = 'Edit '. $this->page_title;
-        }else{
-            $this->page_attributes->page_title  = $this->page_title . ' Baru';
-        }
+        $this->page_attributes->msg             = $this->page_title;
         $this->page_datas->id                   = $id;
 
         //generate view
@@ -87,29 +95,24 @@ class manageInventoryController extends BaseController
     public function store($id = null)
     {
         //get input
-        $input                                  = Input::only('nama','awal','sekarang');
+        $input                          = Input::only('username','email','phone','content','status');
 
         //create or edit
-        $Inventory                                    = Inventory::findOrNew($id);
+        $log                            = Log::findOrNew($id);
 
         //save data
-        foreach ($Inventory['barang'] as $key => $data) {
-            if($data['nama'] == $input['nama']){
-                $data->initialStock                        = $input['awal'];
-                $data->currentStock                        = $input['sekarang'];
-            }
-        }
-        //set Admin
-        if(is_null($Inventory->admin)){
-            $Inventory->admin                         = 'Admins';
-        }
+        $log->username                  = $input['username'];
+        $log->email                     = $input['email'];
+        $log->phone                     = $input['phone'];
+        $log->content                   = $input['content'];
+        $log->status                    = ($input['status']=='True')?True:False;
 
-        $Inventory->save();
+        $log->save();
 
-        $this->errors                           = $admin->getErrors();
+        $this->errors                           = $log->getErrors();
         $this->page_attributes->msg             = 'Data telah disimpan';
 
-        return $this->generateRedirect($this->getRefererUrl());
+        return $this->generateRedirect(route('backend.crm.log.index'));
     }
 
     /**
@@ -120,9 +123,8 @@ class manageInventoryController extends BaseController
      */
     public function show($id)
     {
-        //get data
-        $Inventory                              = new Inventory;
-        $datas                                  = $Inventory::find($id);
+        $log                            = new Log;
+        $datas                                  = $log::find($id);
 
         $this->page_datas->datas                = $datas;
         $this->page_datas->id                   = $id;
@@ -155,7 +157,7 @@ class manageInventoryController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
         return $this->store($id);
     }
@@ -169,7 +171,7 @@ class manageInventoryController extends BaseController
     public function destroy($id)
     {
         //find 
-        $Inventory                              = Inventory::find($id);
+        $log                                    = Log::find($id);
 
         //get password
         $password                               = Input::get('password');
@@ -177,14 +179,14 @@ class manageInventoryController extends BaseController
             $this->errors                       = "Password not valid";
         }else{
             //delete data
-            $Inventory->delete();
+            $log->delete();
             
-            $this->errors                       = $Inventory->getErrors();
+            $this->errors                       = $log->getErrors();
         }
 
         //return view
         $this->page_attributes->msg             = 'Data telah dihapus';
 
-        return $this->generateRedirect(route('backend.transaksi.manageInventory.index'));
+        return $this->generateRedirect(route('backend.crm.log.index'));
     }
 }

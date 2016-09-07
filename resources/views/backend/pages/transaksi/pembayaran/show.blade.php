@@ -23,24 +23,32 @@
 	@include('backend.widgets.alertbox')
 	<div class="card-block">
 		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Nama Barang',
-			'content'	=>  ucfirst($page_datas->datas['Barang']['Nama_Barang'])
+			'title'		=> 'Username',
+			'content'	=>  ucfirst($page_datas->datas['username'])
 		]])	
 		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Jenis Barang',
-			'content'	=>  ucfirst($page_datas->datas['Barang']['Jenis_Barang'])
+			'title'		=> 'Nama',
+			'content'	=>  ucfirst($page_datas->datas['nama'])
 		]])		
 		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Harga',
-			'content'	=>  ucfirst($page_datas->datas['Barang']['Harga'])
+			'title'		=> 'Alamat',
+			'content'	=>  ucfirst($page_datas->datas['alamat'])
 		]])	
 		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Jumlah Disewa',
-			'content'	=>  ucfirst($page_datas->datas['Jumlah_Disewa'])
+			'title'		=> 'Nomor Telepon',
+			'content'	=>  ucfirst($page_datas->datas['nomor'])
+		]])
+		@include('backend.widgets.components.detail.detail-text',['component' => [
+			'title'		=> 'Total',
+			'content'	=>  ucfirst($page_datas->datas['total'])
+		]])
+		@include('backend.widgets.components.detail.detail-text',['component' => [
+			'title'		=> 'Bukti Transfer',
+			'content'	=>  ucfirst($page_datas->datas['bukti'])
 		]])
 		@include('backend.widgets.components.detail.detail-text',['component' => [
 			'title'		=> 'Status',
-			'content'	=>  $page_datas->datas['Status']
+			'content'	=>  $page_datas->datas['status']
 		]])	
 		@include('backend.widgets.components.detail.detail-text',['component' => [
 			'title'		=> 'Created By',

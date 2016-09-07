@@ -42,9 +42,14 @@ class webController extends BaseController
         $filename = $request->file('file_photo')->getClientOriginalName();
         $destinationPath = '../resources/assets/photos/';
         $proses = $request->file('file_photo')->move($destinationPath, $filename);
+        //dd($proses['pathname']);
+
+        Transaksi::where('username' , session('akun'))
+                 ->where('status' ,  'pending')
+                 ->update(['nota' => ['bukti' => $proses , 'nomor' => '00001']]);
 
         $this->page_attributes->msg             = 'Username / Email Tidak Sesuai';
-            return $this->generateRedirect(route('profile'));
+        return $this->generateRedirect(route('profile'));
     }
 
     public function emailTime($id)
@@ -575,7 +580,7 @@ class webController extends BaseController
 
         $transaksi                              = Transaksi::where('username',session('akun'))
                                                            ->where('status','pending')
-                                                           ->first()['attributes'];
+                                                           ->get();
 
         $inven                                  = Inventory::get();
 
@@ -588,97 +593,100 @@ class webController extends BaseController
     public function detailCheckOut(){
         $check                                  = Transaksi::where('username',session('akun'))
                                                            ->where('status','pending')
-                                                           ->first()['attributes'];
+                                                           ->get();
         $total = null;
 
-
-        foreach ($check['barang'] as $key2 => $barang) {
-            $inven                                  = Inventory::get();
-            $tes1 = Carbon::parse($barang['tanggal-masuk']);
-            $tes2 = Carbon::parse($barang['tanggal-keluar']);
-            if($tes1->month > $tes2->month){
-                $var1 = $tes1->day + $tes2->daysInMonth;
-                $var2 = $tes2->day;
-                $tes = $var1 - $var2;
-                //dd($tes);                                                      
-            }
-            else{
-                $tes = $tes1->day - $tes2->day;
-            }
-            $var=0;
-            foreach ($inven as $key => $tory) {
-                if($tes2<=$tes1){
-                    $tanggal = $tes2->toDateString();
-                    //dd($tanggal);
-                    if($tory['tanggal'] == $tanggal){
-                        foreach ($tory['barang'] as $key1 => $value) {
-                        //dd($value);
-                            
-                                if($barang['nama'] == $value['nama']){
-                                    Inventory::where('tanggal' , $tanggal)
-                                             ->where('barang.'.$key1.'.nama'  , $barang['nama'])
-                                             ->update(['barang.'.$key1.'.currentStock' => (int)$value['currentStock'] - (int)$barang['jumlah']]);
-                                    //dd($cek);
+        foreach ($check as $key => $trans) {
+            foreach ($trans['barang'] as $key2 => $barang) {
+                $inven                                  = Inventory::get();
+                $tes1 = Carbon::parse($barang['tanggal-masuk']);
+                $tes2 = Carbon::parse($barang['tanggal-keluar']);
+                if($tes1->month > $tes2->month){
+                    $var1 = $tes1->day + $tes2->daysInMonth;
+                    $var2 = $tes2->day;
+                    $tes = $var1 - $var2;
+                    //dd($tes);                                                      
+                }
+                else{
+                    $tes = $tes1->day - $tes2->day;
+                }
+                $var=0;
+                foreach ($inven as $key => $tory) {
+                    if($tes2<=$tes1){
+                        $tanggal = $tes2->toDateString();
+                        //dd($tanggal);
+                        if($tory['tanggal'] == $tanggal){
+                            foreach ($tory['barang'] as $key1 => $value) {
+                            //dd($value);
+                                
+                                    if($barang['nama'] == $value['nama']){
+                                        Inventory::where('tanggal' , $tanggal)
+                                                 ->where('barang.'.$key1.'.nama'  , $barang['nama'])
+                                                 ->update(['barang.'.$key1.'.currentStock' => (int)$value['currentStock'] - (int)$barang['jumlah']]);
+                                        //dd($cek);
+                                    }
                                 }
-                            }
-                    $tes2->addDays(1);
-                    $var += 1;
+                        $tes2->addDays(1);
+                        $var += 1;
+                        }
                     }
                 }
-            }
-            //dd($tanggal);
-            for ($i=$var; $i <= $tes; $i++) {
-                $date = $tes2->toDateString();
-                    foreach ($check['barang'] as $key3 => $br) {
-                        if($br['nama'] == $barang['nama']){
-                            $brg[$key3] = ['nama' => $br['nama'] , 
-                                           'initialStock' => '5',
-                                           'currentStock' => 5 - (int)$br['jumlah'],
-                                           'brokenStock' => '0', 
-                                           'outStock' => [$check['username'] => 
-                                                                    ['nota' => ['nomor' => '00001', 'jenis' => 'pembayaran'], 
-                                                                     'keterangan' => ['telepon' => $check['nomor'], 'alamat' => $check['alamat'], 'lama' => $br['lama-sewa'], 'jumlah' => $br['jumlah']], 
-                                                                     'tanggal-sewa' => ['tanggal-keluar' => $br['tanggal-keluar'], 'tanggal-masuk' => $br['tanggal-masuk']
+                //dd($tanggal);
+                for ($i=$var; $i <= $tes; $i++) {
+                    $date = $tes2->toDateString();
+                        foreach ($trans['barang'] as $key3 => $br) {
+                            if($br['nama'] == $barang['nama']){
+                                $brg[$key3] = ['nama' => $br['nama'] , 
+                                               'initialStock' => '5',
+                                               'currentStock' => 5 - (int)$br['jumlah'],
+                                               'brokenStock' => '0', 
+                                               'outStock' => [$trans['username'] => 
+                                                                        ['nota' => ['nomor' => '00001', 'jenis' => 'pembayaran'], 
+                                                                         'keterangan' => ['telepon' => $trans['nomor'], 'alamat' => $trans['alamat'], 'lama' => $br['lama-sewa'], 'jumlah' => $br['jumlah']], 
+                                                                         'tanggal-sewa' => ['tanggal-keluar' => $br['tanggal-keluar'], 'tanggal-masuk' => $br['tanggal-masuk']
+                                                                                ]
                                                                             ]
                                                                         ]
-                                                                    ]
-                                                                ];
-                        }
-                        else{
-                            $brg[$key3] = ['nama' => $br['nama'] , 
-                                           'initialStock' => '5',
-                                           'currentStock' => '5',
-                                           'brokenStock' => '0', 
-                                           'outStock' => [$check['username'] => 
-                                                                    ['nota' => ['nomor' => '00001', 'jenis' => 'pembayaran'], 
-                                                                     'keterangan' => ['telepon' => $check['nomor'], 'alamat' => $check['alamat'], 'lama' => $br['lama-sewa'], 'jumlah' => $br['jumlah']], 
-                                                                     'tanggal-sewa' => ['tanggal-keluar' => $br['tanggal-keluar'], 'tanggal-masuk' => $br['tanggal-masuk']
+                                                                    ];
+                            }
+                            else{
+                                $brg[$key3] = ['nama' => $br['nama'] , 
+                                               'initialStock' => '5',
+                                               'currentStock' => '5',
+                                               'brokenStock' => '0', 
+                                               'outStock' => [$trans['username'] => 
+                                                                        ['nota' => ['nomor' => '00001', 'jenis' => 'pembayaran'], 
+                                                                         'keterangan' => ['telepon' => $trans['nomor'], 'alamat' => $trans['alamat'], 'lama' => $br['lama-sewa'], 'jumlah' => $br['jumlah']], 
+                                                                         'tanggal-sewa' => ['tanggal-keluar' => $br['tanggal-keluar'], 'tanggal-masuk' => $br['tanggal-masuk']
+                                                                                ]
                                                                             ]
                                                                         ]
-                                                                    ]
-                                                                ];
+                                                                    ];
+                            }
                         }
-                    }
-                    $new                                    = new Inventory;
-                    //dd($date);
-                    $new->tanggal = $date;
-                    $new->barang  = $brg;
-                    $new->save();
-                                        //dd($new);
-                $tes2->addDays(1);
+                        $new                                    = new Inventory;
+                        //dd($date);
+                        $new->tanggal = $date;
+                        $new->barang  = $brg;
+                        $new->save();
+                                            //dd($new);
+                    $tes2->addDays(1);
+                }
             }
         }
-        //dd($check);
-        foreach ($check['barang'] as $key5 => $cek) {
-            //dd($cek);
-            $cek['harga']                         = (int)$cek['harga'];
-            $cek['jumlah']                        = (int)$cek['jumlah'];
-            $cek['lama-sewa']                     = (int)$cek['lama-sewa'];
-            $total                                += $cek['harga'] * $cek['jumlah'] * $cek['lama-sewa']; 
+        //dd($trans);
+        foreach ($check as $key => $trans) {
+            foreach ($trans['barang'] as $key5 => $cek) {
+                //dd($cek);
+                $cek['harga']                         = (int)$cek['harga'];
+                $cek['jumlah']                        = (int)$cek['jumlah'];
+                $cek['lama-sewa']                     = (int)$cek['lama-sewa'];
+                $total                                += $cek['harga'] * $cek['jumlah'] * $cek['lama-sewa']; 
+            }
         }
 
         $array                                  =['transaksi' => $check , 'total' => $total];
-        //dd($total);
+        //dd($array);
         $this->page_datas->datas                = $array;
 
         $view_source                            = $this->view_source_root . '.payment';

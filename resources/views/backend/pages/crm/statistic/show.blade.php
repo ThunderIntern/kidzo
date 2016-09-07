@@ -1,18 +1,18 @@
-@extends('backend.pages.transaksi.layout')
+@extends('backend.pages.crm.layout')
 @section('page_content')
 <div class="card">
 	<div class="card-block">
 	@include('backend.widgets.components.title.title-control', ['component' => [
-		'title'			=> 'Detail Barang',
+		'title'			=> 'Detail Newsletter',
 		'controls'		=> 	[
 								'back'		=>	[
-													'link'	=> route('backend.transaksi.manageBarang.index')
+													'link'	=> route('backend.crm.newsletter.index')
 												],
 								'edit'		=>	[
-													'link'	=> route('backend.transaksi.manageBarang.edit', ['id'=> $page_datas->id] )
+													'link'	=> route('backend.crm.newsletter.edit', ['id'=> $page_datas->id] )
 												],												
 								'delete'	=> 	[
-													'link'	=> route('backend.transaksi.manageBarang.destroy',['id' => $page_datas->id] )
+													'link'	=> route('backend.crm.newsletter.destroy',['id' => $page_datas->id] )
 												],
 							]		
 	]])
@@ -23,25 +23,16 @@
 	@include('backend.widgets.alertbox')
 	<div class="card-block">
 		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Nama Barang',
-			'content'	=>  ucfirst($page_datas->datas['nama'])
+			'title'		=> 'Judul',
+			'content'	=>  ucfirst($page_datas->datas['Judul'])
 		]])		
 		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Jenis Barang',
-			'content'	=>  ucfirst($page_datas->datas['jenis'])
-		]])		
-		<img src="{{$page_datas->datas['foto']['url']}}"></img>
-		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Foto Barang',
-			'content'	=>  ucfirst($page_datas->datas['foto']['url'])
+			'title'		=> 'Version Name',
+			'content'	=>  ucfirst($page_datas->datas['version']['version_name'])
 		]])
 		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Harga',
-			'content'	=>  ucfirst($page_datas->datas['harga'])
-		]])	
-		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Deskripsi',
-			'content'	=>  ucfirst($page_datas->datas['deskripsi'])
+			'title'		=> 'Content',
+			'content'	=>  ucfirst($page_datas->datas['content'])
 		]])	
 		@include('backend.widgets.components.detail.detail-text',['component' => [
 			'title'		=> 'Created By',

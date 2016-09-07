@@ -32,43 +32,15 @@
 			]])
 			<fieldset class="form-group">
 				<label for="name">Nama Barang</label>
-				{{ Form::text('nama', $page_datas->datas['Nama_Barang'], ['class' => 'form-control']) }}
-			</fieldset>		
-			<fieldset class="form-group">
-				<label for="name">Tanggal Masuk</label>
-				{{ Form::date('tm', $page_datas->datas['Tanggal_Masuk'], ['class' => 'form-control']) }}
-			</fieldset>				
-			<fieldset class="form-group">
-				<label for="name">Tanggal Keluar</label>
-				{{ Form::date('tk', $page_datas->datas['Tanggal_Keluar'], ['class' => 'form-control']) }}				
-			</fieldset>
-			<fieldset class="form-group">
-				<label for="name">Nomor Nota</label>
-				{{ Form::number('no', $page_datas->datas['Nota']['Nomor Nota'], ['class' => 'form-control']) }}
-			</fieldset>
-			<fieldset class="form-group">
-				<label for="name">Isi Nota</label>
-				{{ Form::number('isi', $page_datas->datas['Nota']['Isi Nota'], ['class' => 'form-control']) }}
-			</fieldset>
-			<fieldset class="form-group">
-				<label for="name">Keterangan Nomor Telepon Penyewa</label>
-				{{ Form::number('notel', $page_datas->datas['Keterangan']['Nomor Telepon'], ['class' => 'form-control']) }}
-			</fieldset>
-			<fieldset class="form-group">
-				<label for="name">Keterangan Lama Sewa</label>
-				{{ Form::text('lama', $page_datas->datas['Keterangan']['Lama Sewa'], ['class' => 'form-control']) }}
-			</fieldset>
-			<fieldset class="form-group">
-				<label for="name">Keterangan Alamat Penyewa</label>
-				{!! Form::textarea('deskripsi', $page_datas->datas['Keterangan']['Alamat Penyewa'], ['class' => 'form-control', 'rows' => '10']) !!}
-			</fieldset>
+				{{ Form::number('nama', null, ['class' => 'form-control']) }}
+			</fieldset>	
 			<fieldset class="form-group">
 				<label for="name">Stok Awal</label>
-				{{ Form::number('awal', $page_datas->datas['Initial_Stock'], ['class' => 'form-control']) }}
+				{{ Form::number('awal', null, ['class' => 'form-control']) }}
 			</fieldset>	
 			<fieldset class="form-group">
 				<label for="name">Stok Sekarang</label>
-				{{ Form::number('sekarang', $page_datas->datas['Current_Stock'], ['class' => 'form-control']) }}
+				{{ Form::number('sekarang', null, ['class' => 'form-control']) }}
 			</fieldset>	
 		</div>
 	</div>

@@ -28,7 +28,7 @@
 							</td>
 							<td class="col-md-9">
 								<a href="{{route('backend.transaksi.manageInventory.show', ['id' => $data['id']])}}">
-									{{$data['Tanggal']}}
+									{{$data['tanggal']}}
 								</a>
 							</td>
 							<td class="col-md-2 text-xs-right">

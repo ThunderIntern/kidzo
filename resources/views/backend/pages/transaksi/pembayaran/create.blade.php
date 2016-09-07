@@ -29,18 +29,10 @@
 															'link'	=> route('backend.transaksi.pembayaran.store', ['id' => $page_datas->id])
 														]
 									]
-			]])
-			<fieldset class="form-group">
-				<label for="name">Barang</label>
-				{{ Form::email('barang', $page_datas->datas['email'], ['class' => 'form-control']) }}
-			</fieldset>		
-			<fieldset class="form-group">
-				<label for="name">Jumlah Disewa</label>
-				{{ Form::text('jumlah', $page_datas->datas['username'], ['class' => 'form-control']) }}
-			</fieldset>				
+			]])			
 			<fieldset class="form-group">
 				<label for="name">Status</label>
-				{{ Form::password('status', array('class' => 'form-control')) }}				
+				{{ Form::select('status', ['chart' => 'chart', 'pending' => 'pending' , 'processed' => 'processed', 'delivered' => 'delivered'], $page_datas->datas['status'], ['class' => 'form-control c-select']) }}		
 			</fieldset>
 		</div>
 	</div>

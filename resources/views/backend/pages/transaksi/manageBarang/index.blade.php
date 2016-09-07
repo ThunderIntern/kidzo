@@ -29,14 +29,14 @@
 							</td>
 							<td class="col-md-3">
 								<a href="{{route('backend.transaksi.manageBarang.show', ['id' => $data['id']])}}">
-									{{ucfirst($data['Nama_Barang'])}}
+									{{ucfirst($data['nama'])}}
 								</a>
 							</td>
 							<td class="col-md-3">
-								{{ucfirst($data['Jenis_Barang'])}}
+								{{ucfirst($data['jenis'])}}
 							</td>
 							<td class="col-md-3">
-								{{ucfirst($data['Harga'])}}
+								{{ucfirst($data['harga'])}}
 							</td>
 							<td class="col-md-2 text-xs-right">
 								<a href="{{route('backend.transaksi.manageBarang.edit', ['id' => $data['id']])}}" class="btn btn-primary-outline btn-sm">

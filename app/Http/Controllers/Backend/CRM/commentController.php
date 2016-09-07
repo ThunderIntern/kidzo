@@ -1,34 +1,51 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Transaksi;
+namespace App\Http\Controllers\Backend\CRM;
 
 use App\Http\Controllers\baseController;
 
-use App\Models\Barang;
-use App\Models\Inventory;
+use App\Models\Comment;
 use Request, Input, URL;
 
-
-class manageInventoryController extends BaseController
+class commentController extends BaseController
 {
-    protected $view_source_root             = 'backend.pages.transaksi.manageInventory';
-    protected $page_title                   = 'Pembayaran';
+    protected $view_source_root             = 'backend.pages.crm.comment';
+    protected $page_title                   = 'Comment';
     protected $breadcrumb                   = [];
     public function __construct()
     {
         parent::__construct();
     }
+ 
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function search(){
+        $search_result                          = Comment::where('email', 'like', '%'.Input::get('search').'%')
+                                                    ->paginate();
+        $this->page_datas->datas                = $search_result;
+        $this->page_datas->id                   = null;
+        //page attributes
+        $this->page_attributes->page_title      = 'Search Result: '.Input::get('search');
+        //generate view
+        $view_source                            = $this->view_source_root . '.index';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }
+
     public function index()
     {
-                 //get data
-        $Inventory                              = new Inventory;
-        $datas                                  = $Inventory::paginate(10);
+        //get data
+        $comment                                = new Comment;
+        $datas                                  = $comment::where('content.isi', '!=', null)
+                                                            ->orWhere('rating', '!=', null)
+                                                            ->orderBy('content.status','asc')
+                                                            ->orderBy('created_at','desc')
+                                                            ->paginate(10);
 
         $this->page_datas->datas                = $datas;
         $this->page_datas->id                   = null;
@@ -39,7 +56,7 @@ class manageInventoryController extends BaseController
         //generate view
         $view_source                            = $this->view_source_root . '.index';
         $route_source                           = Request::route()->getName();        
-        return $this->generateView($view_source , $route_source);
+        return $this->generateView($view_source , $route_source); 
     }
 
     /**
@@ -54,8 +71,8 @@ class manageInventoryController extends BaseController
         
         if($id != null)
         {
-            $Inventory                          = new Inventory;
-            $datas                              = $Inventory::find($id);
+            $Comment                            = new Comment;
+            $datas                              = $Comment::find($id);
         }
 
         //set data
@@ -65,11 +82,7 @@ class manageInventoryController extends BaseController
         $this->setRefererUrl();
 
         //page attributes
-        if($id != null){
-            $this->page_attributes->page_title  = 'Edit '. $this->page_title;
-        }else{
-            $this->page_attributes->page_title  = $this->page_title . ' Baru';
-        }
+        $this->page_attributes->msg             = $this->page_title;
         $this->page_datas->id                   = $id;
 
         //generate view
@@ -87,29 +100,20 @@ class manageInventoryController extends BaseController
     public function store($id = null)
     {
         //get input
-        $input                                  = Input::only('nama','awal','sekarang');
+        $input                                  = Input::only('status');
 
         //create or edit
-        $Inventory                                    = Inventory::findOrNew($id);
+        $comment                            = Comment::findOrNew($id);
 
         //save data
-        foreach ($Inventory['barang'] as $key => $data) {
-            if($data['nama'] == $input['nama']){
-                $data->initialStock                        = $input['awal'];
-                $data->currentStock                        = $input['sekarang'];
-            }
-        }
-        //set Admin
-        if(is_null($Inventory->admin)){
-            $Inventory->admin                         = 'Admins';
-        }
+        $data                                   = ['content.status' => ($input['status']=='True')?True:False ];
 
-        $Inventory->save();
+        $user                                = Comment::where('_id', $id)->update($data);
 
-        $this->errors                           = $admin->getErrors();
+        $this->errors                           = $comment->getErrors();
         $this->page_attributes->msg             = 'Data telah disimpan';
 
-        return $this->generateRedirect($this->getRefererUrl());
+        return $this->generateRedirect(route('backend.crm.comment.index'));
     }
 
     /**
@@ -121,8 +125,8 @@ class manageInventoryController extends BaseController
     public function show($id)
     {
         //get data
-        $Inventory                              = new Inventory;
-        $datas                                  = $Inventory::find($id);
+        $Comment                                    = new Comment;
+        $datas                                  = $Comment::find($id);
 
         $this->page_datas->datas                = $datas;
         $this->page_datas->id                   = $id;
@@ -169,7 +173,7 @@ class manageInventoryController extends BaseController
     public function destroy($id)
     {
         //find 
-        $Inventory                              = Inventory::find($id);
+        $Comment                                    = Comment::find($id);
 
         //get password
         $password                               = Input::get('password');
@@ -177,14 +181,14 @@ class manageInventoryController extends BaseController
             $this->errors                       = "Password not valid";
         }else{
             //delete data
-            $Inventory->delete();
+            $Comment->delete();
             
-            $this->errors                       = $Inventory->getErrors();
+            $this->errors                       = $Comment->getErrors();
         }
 
         //return view
         $this->page_attributes->msg             = 'Data telah dihapus';
 
-        return $this->generateRedirect(route('backend.transaksi.manageInventory.index'));
+        return $this->generateRedirect(route('backend.crm.comment.index'));
     }
 }
