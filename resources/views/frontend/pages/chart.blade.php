@@ -11,7 +11,9 @@
 				@if(is_null($page_datas->datas))
 				<div class="jumbotron text-center">
 					<h2>No Chart Added</h2>
-					<a href="{{route('detailCheckOut')}}"><button class="btn btn-primary">Cek Tagihan</button></a>
+				</div>
+				<div  class="col-md-12 col-sm-12 text-center">
+					<a href="{{route('detailCheckOut')}}"><button class="btn btn-info">Cek Tagihan</button></a>
 				</div>
 				@else
 				@foreach ($page_datas->datas as $key => $data)
@@ -21,6 +23,9 @@
 				@endforeach
 				<div class="col-md-12 col-sm-12 mbottom-s text-center">
 					<a href="{{Route('pembelian')}}"><button class="btn btn-primary">Check Out</button></a>
+				</div>
+				<div class="col-md-12 col-sm-12 mbottom-s text-center">
+					<a href="{{Route('detailCheckOut')}}"><button class="btn btn-info">Cek Tagihan</button></a>
 				</div>
 				@endif
 			</div>

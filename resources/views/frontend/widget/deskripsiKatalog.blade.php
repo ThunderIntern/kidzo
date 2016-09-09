@@ -40,15 +40,48 @@
     </div>
 </div>
 <div class="col-md-3 col-sm-3">
-    @foreach($page_datas->datas['inven'] as $key => $data)
-    <div class="col-md-12 col-sm-12">
-        <?php //dd($data) ?>
-        {{$data['tanggal']}}</br>
-        @foreach($data['inventory']['barang'] as $key2 => $barang)
-            {{$barang['nama']}}</br>
-            {{$barang['currentStock']}}</br>
-        @endforeach    
-    </div>
-    @endforeach
+<table class="table">
+    <tr>
+        <th>Tanggal</th>
+        <th>Nama Barang</th>
+        <th>Sisa Stok</th>
+    </tr>    
+        @foreach($page_datas->datas['inven'] as $key => $data)
+        <tr>
+            <?php //dd($data) ?>
+            <td>{{$data['tanggal']}}</td>
+            @foreach($data['inventory']['barang'] as $key2 => $barang)
+                <td>{{$barang['nama']}}</td>
+                <td>{{$barang['currentStock']}}</td>
+            @endforeach    
+        </tr>
+        @endforeach
+</table>
 </div>
 {!! Form::close() !!}
+<script>
+  $( function() {
+    $( "#datepicker" ).datepicker({
+        <?php 
+                        $moment = null;
+                            foreach ($page_datas->datas['inven'] as $key => $data) {
+                                //dd($data);
+                                foreach($data['inventory']['barang'] as $key2 => $barang){
+                                    //dd($barang);
+                                    if($barang['nama'] == $page_datas->datas['barang']['attributes']['nama'] && $barang['currentStock'] == '0'){
+                                        $moment['$key'] = ['tanggal' => $data['tanggal']];
+                                    }
+                                }
+                            }
+                        //dd($moment); 
+                        ?>
+        dateFormat: 'Y-m-d',
+        defaultDate: "2016-9-10",
+        disabledDates: [
+                        moment("2016-9-8"),
+                        new Date(2016, 10 - 1, 9),
+                        "2016-9-9"
+                        ]
+    });
+  } );
+  </script>

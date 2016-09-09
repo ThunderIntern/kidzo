@@ -37,21 +37,6 @@ class webController extends BaseController
         parent::__construct();
     }
 
-    public function photoStore(Requests $request){
-        $param = $request->all();
-        $filename = $request->file('file_photo')->getClientOriginalName();
-        $destinationPath = '../resources/assets/photos/';
-        $proses = $request->file('file_photo')->move($destinationPath, $filename);
-        //dd($proses['pathname']);
-
-        Transaksi::where('username' , session('akun'))
-                 ->where('status' ,  'pending')
-                 ->update(['nota' => ['bukti' => $proses , 'nomor' => '00001']]);
-
-        $this->page_attributes->msg             = 'Username / Email Tidak Sesuai';
-        return $this->generateRedirect(route('profile'));
-    }
-
     public function emailTime($id)
     {
         $email                         = new email;
@@ -692,6 +677,108 @@ class webController extends BaseController
         $view_source                            = $this->view_source_root . '.payment';
         $route_source                           = Request::route()->getName();        
         return $this->generateView($view_source , $route_source);
+    }
+
+    public function batal(){
+        $batal                          = Transaksi::where('username',session('akun'))
+                                                           ->where('status','pending')
+                                                           ->get();
+
+        $cek                            = Transaksi::where('username',session('akun'))
+                                                           ->where('status','chart')
+                                                           ->get();
+
+        if($cek == null){
+            $cek->username                    = $input['username'];
+            $cek->nama                        = null;
+            $cek->alamat                      = null;
+            $cek->nomor                       = null;
+            $cek->barang                      = null;
+            $cek->nota                        = null;
+            $cek->status                      = 'chart';
+            $cek->save();
+        }
+
+        foreach ($batal as $key => $trans) {
+            foreach ($trans['barang'] as $key2 => $barang) {
+                $inven                                  = Inventory::get();
+                $tes1 = Carbon::parse($barang['tanggal-masuk']);
+                $tes2 = Carbon::parse($barang['tanggal-keluar']);
+                if($tes1->month > $tes2->month){
+                    $var1 = $tes1->day + $tes2->daysInMonth;
+                    $var2 = $tes2->day;
+                    $tes = $var1 - $var2;
+                    //dd($tes);                                                      
+                }
+                else{
+                    $tes = $tes1->day - $tes2->day;
+                }
+                $var=0;
+                foreach ($inven as $key => $tory) {
+                    if($tes2<=$tes1){
+                        $tanggal = $tes2->toDateString();
+                        //dd($tanggal);
+                        if($tory['tanggal'] == $tanggal){
+                            foreach ($tory['barang'] as $key1 => $value) {
+                            //dd($value);
+                                
+                                    if($barang['nama'] == $value['nama']){
+                                        Inventory::where('tanggal' , $tanggal)
+                                                 ->where('barang.'.$key1.'.nama'  , $barang['nama'])
+                                                 ->update(['barang.'.$key1.'.currentStock' => (int)$value['currentStock'] + (int)$barang['jumlah']]);
+                                        //dd($cek);
+                                    }
+                                }
+                        $tes2->addDays(1);
+                        $var += 1;
+                        }
+                    }
+                }
+            }
+        }
+        //dd($batal);
+        foreach ($batal as $key => $batals) {
+            $hapus = Transaksi::find($batals['id']);
+            $hapus->delete();    
+        }
+        
+        $this->errors                           = $config->getErrors();
+        $this->page_attributes->msg             = 'Data telah dihapus';
+        return $this->generateRedirect(route('home'));
+
+    }
+
+    public function prosesBayar(){
+        $view_source                            = $this->view_source_root . '.prosesPayment';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }
+
+    public function bayar(Request $request){
+        $param = $request->all();
+        $filename = $request->file('file_photo')->getClientOriginalName();
+        $destinationPath = '../resources/assets/photos/';
+        $proses = $request->file('file_photo')->move($destinationPath, $filename);
+        //dd($proses);
+
+        $input = Input::only('jumlah' ,'keterangan');
+
+        $random = random_int(1, 10000);
+        //dd($random);
+        $cek = Transaksi::get();
+
+        foreach ($cek as $key => $barang) {
+            if($barang['nota']['nomor'] == $random){
+                $random = random_int(1, 10000);
+            }
+        }
+
+        Transaksi::where('username' , session('akun'))
+                 ->where('status' ,  'pending')
+                 ->update(['nota' => ['bukti' => $filename , 'nomor' => $random , 'jumlah' => $input['jumlah'] , 'keterangan' => $input['keterangan'] ]]);
+
+        $this->page_attributes->msg             = 'Data Berhasil Ditambahkan';
+        return $this->generateRedirect(route('home'));
     }
 
     public function registerNewsletter()

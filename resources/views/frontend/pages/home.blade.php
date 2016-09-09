@@ -124,16 +124,16 @@
 		<div class="row mbottom-l">
 			<div class="col-md-12 desktop">
 				<h2 class="blue"><b>Temukan <a class="orange">1900</a> Koleksi Mainan Lainnya !</b>
-				<a href="#"><button class="btn btn-primary btn-lg white pull-right butKoleksi">Lihat Koleksi</button></a></h2>
+				<a href="{{Route('katalog')}}"><button class="btn btn-primary btn-lg white pull-right butKoleksi">Lihat Koleksi</button></a></h2>
 			</div>
 			<div class="col-sm-12 desktop text-center">
-				<a href="#"><button class="btn btn-primary btn-lg white butKoleksi2">Lihat Koleksi</button></a>
+				<a href="{{Route('katalog')}}"><button class="btn btn-primary btn-lg white butKoleksi2">Lihat Koleksi</button></a>
 			</div>
 			<div class="col-sm-12 mobile text-center">
 				<h2 class="blue"><b>Temukan <a class="orange">1900</a> Koleksi Mainan Lainnya !</b></h2>
 			</div>
 			<div class="col-sm-12 mobile text-center">
-				<a href="#"><button class="btn btn-primary btn-lg white">Lihat Koleksi</button></a>
+				<a href="{{Route('katalog')}}"><button class="btn btn-primary btn-lg white">Lihat Koleksi</button></a>
 			</div>
 			
 		</div>
