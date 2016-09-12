@@ -75,7 +75,7 @@ class webController extends BaseController
                                                         ->get()['0']['attributes'];
         if($user['email']!=$input['email']){
             $this->page_attributes->msg             = 'Username / Email Tidak Sesuai';
-            return $this->generateView('frontend.pages.forgot', Request::route()->getName());
+            return $this->generateRedirect(route('forgot'));
         }
 
 
@@ -108,11 +108,7 @@ class webController extends BaseController
             $this->page_attributes->msg             = 'Data telah disimpan';
             return $this->generateRedirect(route('login'));
         }
-        $this->page_datas->komen                = Comment::where('rating', '!=', null)
-                                                        
-                                                        ->orWhere('content.status', true)
-                                                        
-                                                        ->orderBy('created_at','desc')
+        $this->page_datas->komen                = Comment::orderBy('created_at','desc')
                                                         ->get();
         $this->page_datas->id                   = Comment::where('username', session('akun'))
                                                         ->get()['0']['attributes']['rating'];
@@ -876,12 +872,12 @@ class webController extends BaseController
 
             if($username['username'] == $input['username']){
                 $this->page_attributes->msg             = 'Username sudah ada, coba username lain';
-                return $this->generateView('frontend.pages.signup', Request::route()->getName());
+                return $this->generateRedirect(route('newMember'));
             }
 
             if($user['email'] == $input['email']){
                 $this->page_attributes->msg             = 'Email sudah ada, coba email lain';
-                return $this->generateView('frontend.pages.signup', Request::route()->getName());
+                return $this->generateRedirect(route('newMember'));
             }
         }
 
@@ -889,7 +885,7 @@ class webController extends BaseController
 
         if($input['password'] != $input['conf_password']){
             $this->page_attributes->msg             = 'Password Tidak Sesuai';
-            return $this->generateView('frontend.pages.signup', Request::route()->getName());
+            return $this->generateRedirect(route('newMember'));
         }
         //save data
         $user->email                            = $input['email'];
@@ -947,7 +943,7 @@ class webController extends BaseController
         //dd($cari);
         if(is_null($cari)){
             $this->errors                           = $user->getErrors();
-            $this->page_attributes->msg             = 'Login Gagal';
+            $this->page_attributes->msg             = 'Username atau password yang anda masukkan salah';
             return $this->generateRedirect(route('signuped'));                
         }
         else{

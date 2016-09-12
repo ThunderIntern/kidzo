@@ -5,6 +5,7 @@
 	<div id="box" >
 	{!! Form::open(['url' => route('login')]) !!}
 		<h1 class="text-center mtop-s mbottom-s">Login</h1>
+		@include('frontend.widget.alertbox')</br>
 		<p class="pull-left"><b>Username</b></p>
         {!! Form::text('username',null, ['placeholder' => 'Username Anda' , 'class' => 'form-control mbottom-s']) !!}
         <p class="pull-left"><b>Password</b></p>
