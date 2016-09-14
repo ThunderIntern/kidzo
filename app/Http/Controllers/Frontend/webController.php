@@ -407,6 +407,8 @@ class webController extends BaseController
             $this->page_attributes->msg             = 'Masukkan tanggal sewa';
             return $this->generateRedirect(route('deskripsiKatalog' , $id));
         }
+        $inven                                   = Inventory::get();
+
         $barang                                  = Barang::where('_id', $id)
                                                          ->first()['attributes'];
         $new                                     = new Transaksi;
@@ -419,6 +421,7 @@ class webController extends BaseController
         $hari                                    = $input['hari'];
         $tanggalk                                = $input['tanggalk'];
         
+
         if($hari == 1){
             $lama = Carbon::parse($tanggalk)->addDays(2);
             //dd($lama);
@@ -456,6 +459,50 @@ class webController extends BaseController
             //dd($lama);
         }
         $tanggalm = $lama->toDateString();
+
+        foreach ($inven as $key => $tory) {
+            $tes1 = Carbon::parse($tanggalm);
+            $tes2 = Carbon::parse($tanggalk);
+            if($tes1->month > $tes2->month){
+                $var1 = $tes1->day + $tes2->daysInMonth;
+                $var2 = $tes2->day;
+                $tes = $var1 - $var2;
+                //dd($tes);                                                      
+            }
+            else{
+                $tes = $tes1->day - $tes2->day;
+            }
+            $var=0;
+            if($tes2<=$tes1){
+                $tanggal = $tes2->toDateString();
+                //dd($tanggal);
+                if($tory['tanggal'] == $tanggal){
+                    foreach ($tory['barang'] as $key2 => $barang) {
+                        if($barang['nama'] == $nama){
+                            if((int)$barang['currentStock'] < (int)$jumlah){
+                                $this->page_attributes->msg             = 'Jumlah Barang Tidak Cukup';
+                                return $this->generateRedirect(route('deskripsiKatalog' , $id));
+                            }
+                        }
+                    }
+                $tes2->addDays(1);
+                $var += 1;
+                }
+                else{
+                    foreach ($tory['barang'] as $key2 => $barang) {
+                        if($barang['nama'] == $nama){
+                            if((int)$jumlah > 5){
+                                $this->page_attributes->msg             = 'Jumlah Barang Tidak Cukup';
+                                return $this->generateRedirect(route('deskripsiKatalog' , $id));
+                            }
+                        }
+                    }
+                $tes2->addDays(1);
+                $var += 1;
+                }
+            }
+        }
+
         //dd($tanggalm);
         $array                                   = ['nama' => $nama, 'harga' => $harga ,'jumlah' => $jumlah, 'url' => $url, 'lama-sewa' => $hari                                        ,'tanggal-keluar' => $tanggalk, 'tanggal-masuk' => $tanggalm];
         //dd($array);
@@ -606,6 +653,26 @@ class webController extends BaseController
                                                  ->update(['barang.'.$key1.'.currentStock' => (int)$value['currentStock'] - (int)$barang['jumlah']]);
                                         //dd($cek);
                                     }
+                                    else{
+                                        $brg = null;
+                                        foreach ($tory['barang'] as $key6 => $brgs) {
+                                            $brg[$key6] = $brgs;
+                                        }
+                                        $brg[$key2] = ['nama' => $barang['nama'] , 
+                                                       'initialStock' => '5',
+                                                       'currentStock' => 5 - (int)$barang['jumlah'],
+                                                       'brokenStock' => '0', 
+                                                       'outStock' => [$trans['username'] => 
+                                                                        ['nota' => ['nomor' => '00001', 'jenis' => 'pembayaran'], 
+                                                                         'keterangan' => ['telepon' => $trans['nomor'], 'alamat' => $trans['alamat'], 'lama' => $barang['lama-sewa'], 'jumlah' => $barang['jumlah']], 
+                                                                         'tanggal-sewa' => ['tanggal-keluar' => $barang['tanggal-keluar'], 'tanggal-masuk' => $barang['tanggal-masuk']
+                                                                                ]
+                                                                            ]
+                                                                        ]
+                                                                    ];
+                                        Inventory::where('tanggal' , $tanggal)
+                                                 ->update(['barang' => $brg]);
+                                    }
                                 }
                         $tes2->addDays(1);
                         $var += 1;
@@ -685,7 +752,7 @@ class webController extends BaseController
                                                            ->get();
 
         if($cek == null){
-            $cek->username                    = $input['username'];
+            $cek->username                    = session('akun');
             $cek->nama                        = null;
             $cek->alamat                      = null;
             $cek->nomor                       = null;
@@ -737,9 +804,17 @@ class webController extends BaseController
             $hapus = Transaksi::find($batals['id']);
             $hapus->delete();    
         }
+        $transaksi                              = new Transaksi;
+        $transaksi->username                    = session('akun');
+        $transaksi->nama                        = null;
+        $transaksi->alamat                      = null;
+        $transaksi->nomor                       = null;
+        $transaksi->barang                      = null;
+        $transaksi->nota                        = null;
+        $transaksi->status                      = 'chart';
+        $transaksi->save();
         
-        $this->errors                           = $config->getErrors();
-        $this->page_attributes->msg             = 'Data telah dihapus';
+        $this->page_attributes->msg             = 'Pembatalan Pesanan Berhasil';
         return $this->generateRedirect(route('home'));
 
     }
@@ -773,7 +848,7 @@ class webController extends BaseController
                  ->where('status' ,  'pending')
                  ->update(['nota' => ['bukti' => $filename , 'nomor' => $random , 'jumlah' => $input['jumlah'] , 'keterangan' => $input['keterangan'] ]]);
 
-        $this->page_attributes->msg             = 'Data Berhasil Ditambahkan';
+        $this->page_attributes->msg             = 'Pembayaran Berhasil Dilakukan';
         return $this->generateRedirect(route('home'));
     }
 

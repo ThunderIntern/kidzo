@@ -2,6 +2,10 @@
 @section('content')
 <div class="container">
 	<div class="col-md-12 col-sm-12 jumbotron text-center">
+		@if(is_null($page_datas->datas['total']))
+		<h1 class="mbottom-s">Tidak Ada Tagihan</h1>
+		<a href="{{route('chart')}}"><button class="btn btn-success">Kembali Ke Chart</button></a>
+		@else
 		<h1>Barang yang akan diproses :</h1>
 		@foreach($page_datas->datas['transaksi'] as $key => $data)
 			@foreach($data['barang'] as $key2 => $data2)
@@ -18,6 +22,7 @@
 			<a href="{{route('batal')}}"><button class="btn btn-danger">Batalkan Pesanan</button></a>
 			<a href="{{route('prosesBayar')}}"><button class="btn btn-success">Bayar Tagihan</button></a>
 		</div>
+		@endif
 	</div>
 </div>
 @stop

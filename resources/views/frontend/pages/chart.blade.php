@@ -13,7 +13,7 @@
 					<h2>No Chart Added</h2>
 				</div>
 				<div  class="col-md-12 col-sm-12 text-center">
-					<a href="{{route('detailCheckOut')}}"><button class="btn btn-info">Cek Tagihan</button></a>
+					<a href="{{route('detailCheckOut')}}"><button class="btn btn-info mbottom-s">Cek Tagihan</button></a>
 				</div>
 				@else
 				@foreach ($page_datas->datas as $key => $data)

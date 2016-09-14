@@ -19,7 +19,7 @@ class InventoriesTableSeeder extends Seeder
         $Inventory 					    = new Inventory;
 
         $Inventory['tanggal']		    = '2016-09-05';
-        $Inventory['barang']        = ['barang1' =>  [
+        $Inventory['barang']        = ['Sepeda' =>  [
                                                            'nama' => 'Sepeda',
                                                            'initialStock'    =>'5',
                                                            'currentStock'    =>'3',
@@ -43,7 +43,7 @@ class InventoriesTableSeeder extends Seeder
                                                                                                     ], 
                                                                                  ],
                                                          ],
-                                            'barang2' =>  [
+                                            'Mobil' =>  [
                                                            'nama' => 'Mobil',
                                                            'initialStock'    =>'5',
                                                            'currentStock'    =>'2',
@@ -76,8 +76,8 @@ class InventoriesTableSeeder extends Seeder
         $Inventory                      = new Inventory;
 
         $Inventory['tanggal']           = '2016-09-06';
-        $Inventory['barang']            = ['barang1' =>  [
-                                                           'nama' => 'Mobil',
+        $Inventory['barang']            = ['Sepeda' =>  [
+                                                           'nama' => 'Sepeda',
                                                            'initialStock'    =>'5',
                                                            'currentStock'    =>'2',
                                                            'brokenStock'     =>'1',
@@ -100,8 +100,8 @@ class InventoriesTableSeeder extends Seeder
                                                                                                     ], 
                                                                                  ],
                                                          ],
-                                            'barang2' =>  [
-                                                           'nama' => 'Sepeda',
+                                            'Mobil' =>  [
+                                                           'nama' => 'Mobil',
                                                            'initialStock'    =>'5',
                                                            'currentStock'    =>'3',
                                                            'brokenStock'     =>'1',
