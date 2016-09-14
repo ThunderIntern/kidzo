@@ -32,15 +32,11 @@
 			]])
 			<fieldset class="form-group">
 				<label for="name">Nama Barang</label>
-				{{ Form::number('nama', null, ['class' => 'form-control']) }}
+				{{ Form::text('nama', null, ['class' => 'form-control']) }}
 			</fieldset>	
 			<fieldset class="form-group">
-				<label for="name">Stok Awal</label>
+				<label for="name">Stok Ditambahkan</label>
 				{{ Form::number('awal', null, ['class' => 'form-control']) }}
-			</fieldset>	
-			<fieldset class="form-group">
-				<label for="name">Stok Sekarang</label>
-				{{ Form::number('sekarang', null, ['class' => 'form-control']) }}
 			</fieldset>	
 		</div>
 	</div>

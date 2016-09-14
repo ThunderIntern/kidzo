@@ -12,7 +12,7 @@ use Request, Input, URL;
 class manageBarangController extends BaseController
 {
     protected $view_source_root             = 'backend.pages.transaksi.manageBarang';
-    protected $page_title                   = 'Manage Barang';
+    protected $page_title                   = 'Barang';
     protected $breadcrumb                   = [];
     public function __construct()
     {
@@ -92,10 +92,6 @@ class manageBarangController extends BaseController
         //create or edit
         $Barang                                    = Barang::findOrNew($id);
 
-        if($input['password'] != $input['conf_password']){
-            $this->page_attributes->msg             = 'Password Tidak Sesuai';
-            return $this->generateRedirect(route('backend.transaksi.manageBarang.store'));
-        }
         //save data
         $Barang->email                           = $input['email'];
         $Barang->username                        = $input['username'];

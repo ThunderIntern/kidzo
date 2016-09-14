@@ -12,7 +12,7 @@ use Request, Input, URL;
 class manageInventoryController extends BaseController
 {
     protected $view_source_root             = 'backend.pages.transaksi.manageInventory';
-    protected $page_title                   = 'Pembayaran';
+    protected $page_title                   = 'Inventory';
     protected $breadcrumb                   = [];
     public function __construct()
     {
@@ -87,7 +87,7 @@ class manageInventoryController extends BaseController
     public function store($id = null)
     {
         //get input
-        $input                                  = Input::only('nama','awal','sekarang');
+        $input                                  = Input::only('nama','awal');
 
         //create or edit
         $Inventory                                    = Inventory::findOrNew($id);
@@ -95,8 +95,8 @@ class manageInventoryController extends BaseController
         //save data
         foreach ($Inventory['barang'] as $key => $data) {
             if($data['nama'] == $input['nama']){
-                $data->initialStock                        = $input['awal'];
-                $data->currentStock                        = $input['sekarang'];
+                $data->initialStock                        = (int)$data['initialStock'] + (int)$input['awal'];
+                $data->currentStock                        = (int)$data['currentStock'] + (int)$input['awal'];
             }
         }
         //set Admin
