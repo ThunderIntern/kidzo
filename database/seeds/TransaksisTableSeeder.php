@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 
-use App\Models\Barang;
 use App\Models\Transaksi;
 
 class TransaksisTableSeeder extends Seeder

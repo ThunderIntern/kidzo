@@ -17,6 +17,7 @@ use App\Models\emailTime;
 use App\Models\Barang;
 use App\Models\Inventory;
 use App\Models\Transaksi;
+use App\Models\History;
 use Input, URL, Hash;
 use Carbon\Carbon;
 
@@ -370,6 +371,7 @@ class webController extends BaseController
             return $this->generateRedirect(route('signuped'));
         }
         //dd(session(['key']));
+
         $chart                                  = Transaksi::where('username',session('akun'))
                                                            ->where('status','chart')
                                                            ->first()['attributes']['barang'];
@@ -407,6 +409,34 @@ class webController extends BaseController
             $this->page_attributes->msg             = 'Masukkan tanggal sewa';
             return $this->generateRedirect(route('deskripsiKatalog' , $id));
         }
+
+        $today                                   = Carbon::today();
+        $day1                                    = $today->day;
+        $month1                                  = $today->month;           
+        $year1                                   = $today->year;
+
+        $date                                    = Carbon::parse($input['tanggalk']);
+        $day2                                    = $date->day;
+        $month2                                  = $date->month;
+        $year2                                   = $date->year;
+        //dd($day1);
+        if($year2<$year1){
+            $this->page_attributes->msg             = 'Tanggal sewa salah';
+            return $this->generateRedirect(route('deskripsiKatalog' , $id));
+        }
+        elseif($year2==$year1){
+            if($month2<$month1){
+                $this->page_attributes->msg             = 'Tanggal sewa salah';
+                return $this->generateRedirect(route('deskripsiKatalog' , $id));       
+            }
+            elseif($month2==$month1){
+                if($day2<$day1){
+                    $this->page_attributes->msg             = 'Tanggal sewa salah';
+                    return $this->generateRedirect(route('deskripsiKatalog' , $id));       
+                }
+            }
+        }
+
         $inven                                   = Inventory::get();
 
         $barang                                  = Barang::where('_id', $id)
@@ -623,6 +653,8 @@ class webController extends BaseController
                                                            ->where('status','pending')
                                                            ->get();
         $total = null;
+
+        
 
         foreach ($check as $key => $trans) {
             foreach ($trans['barang'] as $key2 => $barang) {
@@ -935,6 +967,7 @@ class webController extends BaseController
 
         $comment                                = new Comment;
         $transaksi                              = new Transaksi;
+        $history                                = new History;
         $user                                   = User::where('email', $input['email'])
                                                         ->count();
         $username                                   = User::where('username', $input['username'])
@@ -983,10 +1016,15 @@ class webController extends BaseController
         $transaksi->nota                        = null;
         $transaksi->status                      = 'chart';
 
+        $history->username                    = $input['username'];
+        $history->history                     = null;
+        
+
         if(is_null($user->admin)){
             $user->admin                     = 'Admins';
         }
 
+        $history->save();
         $transaksi->save();
         $comment->save();
         $user->save();

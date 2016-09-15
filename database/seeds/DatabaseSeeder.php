@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BarangsTableSeeder::class);
         $this->call(InventoriesTableSeeder::class);
         $this->call(TransaksisTableSeeder::class);
+        $this->call(HistoriesTableSeeder::class);
         $this->call(statisticTableSeeder::class);
     }
 }

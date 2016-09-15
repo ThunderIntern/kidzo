@@ -6,6 +6,7 @@ use App\Http\Controllers\baseController;
 
 use App\Models\Barang;
 use App\Models\Transaksi;
+use App\Models\History;
 use Request, Input, URL;
 
 class pembayaranController extends BaseController
@@ -86,7 +87,7 @@ class pembayaranController extends BaseController
     public function store($id = null)
     {
         //get input
-        $input                                  = Input::only('barang','jumlah','status');
+        $input                                        = Input::only('barang','jumlah','status');
 
         //create or edit
         $Transaksi                                    = Transaksi::findOrNew($id);
@@ -100,6 +101,38 @@ class pembayaranController extends BaseController
         }
 
         $Transaksi->save();
+
+        if($input['status'] == 'delivered'){
+            $His = Transaksi::find($id);
+
+            $History = $His['attributes'];
+            //dd($History);
+            $cari = History::where('username' , $History['username'])
+                           ->first()['attributes'];
+            if($cari['history'] == null){
+                $history[] = $History;
+                History::where('username' , $History['username'])
+                        ->update(['history' => $history]);  
+            }
+            else{
+                foreach ($cari['history'] as $key => $car) {
+                    $history[$key] = $car;
+                }
+                $history[] = $History;
+                History::where('username' , $History['username'])
+                        ->update(['history' => $history]);   
+            }
+            $His->delete();
+            $new                              = new Transaksi;
+            $new->username                    = $History['username'];
+            $new->nama                        = null;
+            $new->alamat                      = null;
+            $new->nomor                       = null;
+            $new->barang                      = null;
+            $new->nota                        = null;
+            $new->status                      = 'chart';
+            $new->save();
+        }
 
         $this->errors                           = $Transaksi->getErrors();
         $this->page_attributes->msg             = 'Data telah disimpan';
