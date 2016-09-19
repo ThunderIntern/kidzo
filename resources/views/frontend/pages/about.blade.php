@@ -16,7 +16,7 @@
 				@endforeach
 			</ul>			
 		</div>
-		<div class="col-md-9 borderLeft1 paddingBottom100 paddingLeft30 paddingRight30">
+		<div class="col-md-9 paddingBottom100 paddingLeft30 paddingRight30 borderLeft1" style="padding-bottom: 60vh">
 			<div class="desktop row mbottom-s paddingTop50">
 				<div class="col-md-12">
 					<h1>Tentang Kami</h1>

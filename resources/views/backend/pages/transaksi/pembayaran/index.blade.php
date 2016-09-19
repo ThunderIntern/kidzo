@@ -34,7 +34,7 @@
 								</a>
 							</td>
 							<td class="col-md-3">
-								
+								{{$data['total']}}
 							</td>
 							<td class="col-md-3">
 								{{$data['status']}}

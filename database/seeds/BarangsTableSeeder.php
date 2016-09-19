@@ -25,6 +25,7 @@ class BarangsTableSeeder extends Seeder
                                       ];
         $Barang['harga']            = '100000';
         $Barang['deskripsi']        = 'Ini Mainan Kidzo';
+        $Barang['perawatan']        = '1';
         $Barang['admin']			= 'Admin';
         $Barang->save();
 
@@ -39,6 +40,7 @@ class BarangsTableSeeder extends Seeder
                                       ];
         $Barang['harga']            = '120000';
         $Barang['deskripsi']        = 'Ini Mainan Kidzo';
+        $Barang['perawatan']        = '2';
         $Barang['admin']            = 'Admin';
         $Barang->save();
 

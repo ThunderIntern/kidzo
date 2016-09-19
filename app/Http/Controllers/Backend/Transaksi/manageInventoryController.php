@@ -87,10 +87,10 @@ class manageInventoryController extends BaseController
     public function store($id = null)
     {
         //get input
-        $input                                  = Input::only('nama','awal');
+        $input                                             = Input::only('nama','awal');
 
         //create or edit
-        $Inventory                                    = Inventory::findOrNew($id);
+        $Inventory                                         = Inventory::findOrNew($id);
 
         //save data
         foreach ($Inventory['barang'] as $key => $data) {
@@ -101,13 +101,13 @@ class manageInventoryController extends BaseController
         }
         //set Admin
         if(is_null($Inventory->admin)){
-            $Inventory->admin                         = 'Admins';
+            $Inventory->admin                              = 'Admins';
         }
 
         $Inventory->save();
 
-        $this->errors                           = $admin->getErrors();
-        $this->page_attributes->msg             = 'Data telah disimpan';
+        $this->errors                                      = $admin->getErrors();
+        $this->page_attributes->msg                        = 'Data telah disimpan';
 
         return $this->generateRedirect($this->getRefererUrl());
     }

@@ -39,6 +39,7 @@ class InventoriesTableSeeder extends Seeder
                                                                                                      'tanggal_sewa' => [
                                                                                                                     'tanggal_keluar'    =>null,
                                                                                                                     'tanggal_masuk'    =>null,
+                                                                                                                    'tanggal-perawatan' => null,
                                                                                                                     ],
                                                                                                     ], 
                                                                                  ],
@@ -63,6 +64,7 @@ class InventoriesTableSeeder extends Seeder
                                                                                                      'tanggal_sewa' => [
                                                                                                                     'tanggal_keluar'    =>null,
                                                                                                                     'tanggal_masuk'    =>null,
+                                                                                                                    'tanggal-perawatan' => null,
                                                                                                                     ],
                                                                                                     ], 
                                                                                  ],
@@ -96,6 +98,7 @@ class InventoriesTableSeeder extends Seeder
                                                                                                      'tanggal_sewa' => [
                                                                                                                     'tanggal_keluar'    =>null,
                                                                                                                     'tanggal_masuk'    =>null,
+                                                                                                                    'tanggal-perawatan' => null,
                                                                                                                     ],
                                                                                                     ], 
                                                                                  ],
@@ -120,6 +123,7 @@ class InventoriesTableSeeder extends Seeder
                                                                                                      'tanggal_sewa' => [
                                                                                                                     'tanggal_keluar'    =>null,
                                                                                                                     'tanggal_masuk'    =>null,
+                                                                                                                    'tanggal-perawatan' => null,
                                                                                                                     ],
                                                                                                     ], 
                                                                                  ],

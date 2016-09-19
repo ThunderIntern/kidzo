@@ -27,7 +27,7 @@
             <label>Pilih Tanggal</label>
         </div>
         <div class="col-sm-6">
-            <input name="tanggalk" type="date" class="form-control">
+            <input name="tanggalk" type="text" class="datepicker form-control" id="datepicker">
         </div>
     </div>
     <div class="col-sm-12 mbottom-m">
@@ -63,6 +63,8 @@
   $( function() {
     $( "#datepicker" ).datepicker({
         <?php 
+                use Carbon\Carbon;
+                $now = Carbon::today()->format('d/m/Y');
                         $moment = null;
                             foreach ($page_datas->datas['inven'] as $key => $data) {
                                 //dd($data);
@@ -75,13 +77,9 @@
                             }
                         //dd($moment); 
                         ?>
-        dateFormat: 'Y-m-d',
-        defaultDate: "2016-9-10",
-        disabledDates: [
-                        moment("2016-9-8"),
-                        new Date(2016, 10 - 1, 9),
-                        "2016-9-9"
-                        ]
+   
+        format: 'yyyy-mm-dd',
+        startDate: new Date()
     });
   } );
   </script>

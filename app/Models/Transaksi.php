@@ -19,6 +19,7 @@ class Transaksi extends BaseModel
 											'nomor'							,
 											'barang'						,
 											'nota'							,
+											'total'							,
 											'status'
 										];
 

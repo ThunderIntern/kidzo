@@ -24,7 +24,9 @@
     </head>
     <body>
         @include('frontend.widget.header')
+        <div style="min-height: calc(90vh - 70px)">
 		@yield('content')
+        </div>
         @include('frontend.widget.footer')
     </body>
     <script>

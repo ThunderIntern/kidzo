@@ -376,7 +376,6 @@ class webController extends BaseController
                                                            ->where('status','chart')
                                                            ->first()['attributes']['barang'];
         //dd($chart);
-
         $this->page_datas->datas                = $chart;
         //dd($this->page_datas->datas);
 
@@ -397,6 +396,11 @@ class webController extends BaseController
         //dd($input);
         if($input['jumlah'] == ""){
             $this->page_attributes->msg             = 'Masukkan jumlah yang disewa';
+            return $this->generateRedirect(route('deskripsiKatalog' , $id));
+        }
+
+        if((int)$input['jumlah'] <= 0){
+            $this->page_attributes->msg             = 'Masukkan jumlah yang benar';
             return $this->generateRedirect(route('deskripsiKatalog' , $id));
         }
 
@@ -450,7 +454,24 @@ class webController extends BaseController
         $url                                     = $barang['foto']['url'];
         $hari                                    = $input['hari'];
         $tanggalk                                = $input['tanggalk'];
-        
+        $perawatan                               = $barang['perawatan'];
+
+        $cek                                     = Inventory::where('tanggal' , $tanggalk)
+                                                            ->first()['attributes'];
+        $cek2                                    = Inventory::orderBy('tanggal' , 'asc')
+                                                            ->get();
+        $init = null;
+        //dd($count);
+        if(is_null($cek)){
+            foreach ($cek2 as $key => $c) {
+                foreach ($c['barang'] as $key2 => $barang) {
+                    if($barang['nama'] == $nama){
+                        $init = $barang['initialStock'];
+                    }   
+                }
+            }
+            //dd($init);
+        }
 
         if($hari == 1){
             $lama = Carbon::parse($tanggalk)->addDays(2);
@@ -489,9 +510,10 @@ class webController extends BaseController
             //dd($lama);
         }
         $tanggalm = $lama->toDateString();
+        $tanggalp = $lama->addDays((int)$perawatan)->toDateString();
 
         foreach ($inven as $key => $tory) {
-            $tes1 = Carbon::parse($tanggalm);
+            $tes1 = Carbon::parse($tanggalp);
             $tes2 = Carbon::parse($tanggalk);
             if($tes1->month > $tes2->month){
                 $var1 = $tes1->day + $tes2->daysInMonth;
@@ -521,7 +543,7 @@ class webController extends BaseController
                 else{
                     foreach ($tory['barang'] as $key2 => $barang) {
                         if($barang['nama'] == $nama){
-                            if((int)$jumlah > 5){
+                            if((int)$jumlah > (int)$init){
                                 $this->page_attributes->msg             = 'Jumlah Barang Tidak Cukup';
                                 return $this->generateRedirect(route('deskripsiKatalog' , $id));
                             }
@@ -534,7 +556,7 @@ class webController extends BaseController
         }
 
         //dd($tanggalm);
-        $array                                   = ['nama' => $nama, 'harga' => $harga ,'jumlah' => $jumlah, 'url' => $url, 'lama-sewa' => $hari                                        ,'tanggal-keluar' => $tanggalk, 'tanggal-masuk' => $tanggalm];
+        $array                                   = ['nama' => $nama, 'harga' => $harga ,'jumlah' => $jumlah, 'url' => $url, 'lama-sewa' => $hari                                        ,'tanggal-keluar' => $tanggalk, 'tanggal-masuk' => $tanggalm, 'tanggal-perawatan' => $tanggalp];
         //dd($array);
         //dd($nama);
         //dd($barang);
@@ -560,6 +582,7 @@ class webController extends BaseController
                 $new->nomor                       = null;
                 $new->barang                      = $brg;
                 $new->nota                        = null;
+                $new->total                        = null;
                 $new->status                      = 'chart';
                 $new->save();
             }
@@ -653,13 +676,20 @@ class webController extends BaseController
                                                            ->where('status','pending')
                                                            ->get();
         $total = null;
-
-        
-
+        $init = null;
         foreach ($check as $key => $trans) {
             foreach ($trans['barang'] as $key2 => $barang) {
+                $cek                                    = Inventory::orderBy('tanggal' , 'asc')
+                                                            ->get();
+                foreach ($cek as $key7 => $c) {
+                    foreach ($c['barang'] as $key9 => $brng) {
+                        if($brng['nama'] == $barang['nama']){
+                            $init = $brng['initialStock'];
+                        }   
+                    }
+                }
                 $inven                                  = Inventory::get();
-                $tes1 = Carbon::parse($barang['tanggal-masuk']);
+                $tes1 = Carbon::parse($barang['tanggal-perawatan']);
                 $tes2 = Carbon::parse($barang['tanggal-keluar']);
                 if($tes1->month > $tes2->month){
                     $var1 = $tes1->day + $tes2->daysInMonth;
@@ -691,13 +721,13 @@ class webController extends BaseController
                                             $brg[$key6] = $brgs;
                                         }
                                         $brg[$key2] = ['nama' => $barang['nama'] , 
-                                                       'initialStock' => '5',
-                                                       'currentStock' => 5 - (int)$barang['jumlah'],
+                                                       'initialStock' => $init,
+                                                       'currentStock' => (int)$init - (int)$barang['jumlah'],
                                                        'brokenStock' => '0', 
                                                        'outStock' => [$trans['username'] => 
                                                                         ['nota' => ['nomor' => '00001', 'jenis' => 'pembayaran'], 
                                                                          'keterangan' => ['telepon' => $trans['nomor'], 'alamat' => $trans['alamat'], 'lama' => $barang['lama-sewa'], 'jumlah' => $barang['jumlah']], 
-                                                                         'tanggal-sewa' => ['tanggal-keluar' => $barang['tanggal-keluar'], 'tanggal-masuk' => $barang['tanggal-masuk']
+                                                                         'tanggal-sewa' => ['tanggal-keluar' => $barang['tanggal-keluar'], 'tanggal-masuk' => $barang['tanggal-masuk'] , 'tanggal-perawatan' => $barang['tanggal-perawatan']
                                                                                 ]
                                                                             ]
                                                                         ]
@@ -717,13 +747,13 @@ class webController extends BaseController
                         foreach ($trans['barang'] as $key3 => $br) {
                             if($br['nama'] == $barang['nama']){
                                 $brg[$key3] = ['nama' => $br['nama'] , 
-                                               'initialStock' => '5',
-                                               'currentStock' => 5 - (int)$br['jumlah'],
+                                               'initialStock' => $init,
+                                               'currentStock' => (int)$init - (int)$br['jumlah'],
                                                'brokenStock' => '0', 
                                                'outStock' => [$trans['username'] => 
                                                                         ['nota' => ['nomor' => '00001', 'jenis' => 'pembayaran'], 
                                                                          'keterangan' => ['telepon' => $trans['nomor'], 'alamat' => $trans['alamat'], 'lama' => $br['lama-sewa'], 'jumlah' => $br['jumlah']], 
-                                                                         'tanggal-sewa' => ['tanggal-keluar' => $br['tanggal-keluar'], 'tanggal-masuk' => $br['tanggal-masuk']
+                                                                         'tanggal-sewa' => ['tanggal-keluar' => $br['tanggal-keluar'], 'tanggal-masuk' => $br['tanggal-masuk'] , 'tanggal-perawatan' => $br['tanggal-perawatan']
                                                                                 ]
                                                                             ]
                                                                         ]
@@ -731,13 +761,13 @@ class webController extends BaseController
                             }
                             else{
                                 $brg[$key3] = ['nama' => $br['nama'] , 
-                                               'initialStock' => '5',
-                                               'currentStock' => '5',
+                                               'initialStock' => $init,
+                                               'currentStock' => $init,
                                                'brokenStock' => '0', 
                                                'outStock' => [$trans['username'] => 
                                                                         ['nota' => ['nomor' => '00001', 'jenis' => 'pembayaran'], 
                                                                          'keterangan' => ['telepon' => $trans['nomor'], 'alamat' => $trans['alamat'], 'lama' => $br['lama-sewa'], 'jumlah' => $br['jumlah']], 
-                                                                         'tanggal-sewa' => ['tanggal-keluar' => $br['tanggal-keluar'], 'tanggal-masuk' => $br['tanggal-masuk']
+                                                                         'tanggal-sewa' => ['tanggal-keluar' => $br['tanggal-keluar'], 'tanggal-masuk' => $br['tanggal-masuk'] , 'tanggal-perawatan' => $br['tanggal-perawatan']
                                                                                 ]
                                                                             ]
                                                                         ]
@@ -765,7 +795,12 @@ class webController extends BaseController
             }
         }
 
-        $array                                  =['transaksi' => $check , 'total' => $total];
+        Transaksi::where('username',session('akun'))
+                 ->where('status','pending')
+                 ->update(['total' => $total]);
+
+        $array                                  = ['transaksi' => $check , 'total' => $total];
+        
         //dd($array);
         $this->page_datas->datas                = $array;
 
@@ -790,6 +825,7 @@ class webController extends BaseController
             $cek->nomor                       = null;
             $cek->barang                      = null;
             $cek->nota                        = null;
+            $cek->total                       = null;
             $cek->status                      = 'chart';
             $cek->save();
         }
@@ -797,7 +833,7 @@ class webController extends BaseController
         foreach ($batal as $key => $trans) {
             foreach ($trans['barang'] as $key2 => $barang) {
                 $inven                                  = Inventory::get();
-                $tes1 = Carbon::parse($barang['tanggal-masuk']);
+                $tes1 = Carbon::parse($barang['tanggal-perawatan']);
                 $tes2 = Carbon::parse($barang['tanggal-keluar']);
                 if($tes1->month > $tes2->month){
                     $var1 = $tes1->day + $tes2->daysInMonth;
@@ -843,6 +879,7 @@ class webController extends BaseController
         $transaksi->nomor                       = null;
         $transaksi->barang                      = null;
         $transaksi->nota                        = null;
+        $transaksi->total                       = null;
         $transaksi->status                      = 'chart';
         $transaksi->save();
         
@@ -1014,6 +1051,7 @@ class webController extends BaseController
         $transaksi->nomor                       = null;
         $transaksi->barang                      = null;
         $transaksi->nota                        = null;
+        $transaksi->total                       = null;
         $transaksi->status                      = 'chart';
 
         $history->username                    = $input['username'];

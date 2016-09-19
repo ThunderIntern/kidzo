@@ -6,7 +6,7 @@ use App\Http\Controllers\baseController;
 
 use App\Models\Barang;
 use App\Models\Inventory;
-use Request, Input, URL;
+use Request, Input, URL, Carbon\Carbon;
 
 
 class manageBarangController extends BaseController
@@ -26,8 +26,8 @@ class manageBarangController extends BaseController
      */
     public function index()
     {
-                 //get data
-        $Barang                              = new Barang;
+        //get data
+        $Barang                                 = new Barang;
         $datas                                  = $Barang::paginate(10);
 
         $this->page_datas->datas                = $datas;
@@ -54,7 +54,7 @@ class manageBarangController extends BaseController
         
         if($id != null)
         {
-            $Barang                          = new Barang;
+            $Barang                             = new Barang;
             $datas                              = $Barang::find($id);
         }
 
@@ -87,25 +87,64 @@ class manageBarangController extends BaseController
     public function store($id = null)
     {
         //get input
-        $input                                  = Input::only('email','username','password','conf_password');
+        $input                                   = Input::only('nama' , 'jenis' , 'url' , 'link' , 'harga', 'deskripsi', 'jumlah');
 
         //create or edit
-        $Barang                                    = Barang::findOrNew($id);
+        $Barang                                  = Barang::findOrNew($id);
 
         //save data
-        $Barang->email                           = $input['email'];
-        $Barang->username                        = $input['username'];
-        $Barang->password                        = $input['password'];
+        $Barang->nama                            = $input['nama'];
+        $Barang->jenis                           = $input['jenis'];
+        $Barang->harga                           = $input['harga'];
+        $Barang->foto['url']                     = $input['url'];
+        $Barang->foto['link']                    = $input['link'];
+        $Barang->deskripsi                       = $input['deskripsi'];
+
+        $today                                   = Carbon::today()->toDateString();
+        $new                                     = new Inventory;
+        $inven                                   = Inventory::get();
+        $init = null;
+        $cur = null;
+        $brg = null;
+        foreach ($inven as $key => $tory) {
+            if($tory['tanggal'] == $today){
+                $brg = $tory['barang'];
+                foreach ($tory['barang'] as $key2 => $barang) {
+                    if($barang['nama'] == $input['nama']){
+                        $init = (int)$barang['initialStock'] + (int)$input['jumlah'];
+                        $cur  = (int)$barang['currentStock'] + (int)$input['jumlah'];
+                        Inventory::where('tanggal' , $today)
+                                 ->where('barang.' . $key . '.nama' , $input['nama'])
+                                 ->update(['barang.' . $key . '.initialStock' => $init , 'barang.' . $key . '.currentStock' => $cur]);
+                    }
+                    else{
+                        $brg[$input['nama']] = ['nama' => $input['nama'] , 'initialStock' => $input['jumlah'] , 'currentStock' => $input['jumlah'] , 'brokenStock' => '0' , 'outStock' => null];
+                        Inventory::where('tanggal' , $today)
+                                 ->update(['barang' => $brg]);
+                    }
+                }
+            }
+            else{
+                $new->tanggal                = $today;
+                $new->barang['nama']         = $input['nama'];
+                $new->barang['initialStock'] = $input['jumlah'];
+                $new->barang['currentStock'] = $input['jumlah'];
+                $new->barang['brokenStock']  = '0';
+                $new->barang['outStock']     = null;
+                $new->admin                  = 'admin';
+                $new->save();
+            }    
+        }
 
         //set Admin
         if(is_null($Barang->admin)){
-            $Barang->admin                         = 'Admins';
+            $Barang->admin                       = 'Admins';
         }
 
         $Barang->save();
 
-        $this->errors                           = $admin->getErrors();
-        $this->page_attributes->msg             = 'Data telah disimpan';
+        $this->errors                            = $admin->getErrors();
+        $this->page_attributes->msg              = 'Data telah disimpan';
 
         return $this->generateRedirect($this->getRefererUrl());
     }

@@ -16,7 +16,8 @@ class Barang extends BaseModel
 											'nama'						,
 											'jenis'						,
 											'foto'						,
-											'harga'								,
+											'harga'						,
+											'perawatan'					,
 											'deskripsi'
 										];
 
