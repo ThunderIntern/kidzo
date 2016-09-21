@@ -100,7 +100,7 @@
 						<a href="#"><button class="btn bgwhite blue mbutton-bottom">Lebih Lanjut</button></a>
 					</div>
 					<div class="col-md-4 desktop">
-						<a href="#"><img width="100%" class="img-responsive img-m-top img-center" src="{{asset('image/frontend/capture3.jpg')}}"></img></a>
+						<a href="#"><img width="100%" class="img-responsive img-m-top img-center pbottom" src="{{asset('image/frontend/capture3.jpg')}}"></img></a>
 					</div>
 				</div>
 			</div>

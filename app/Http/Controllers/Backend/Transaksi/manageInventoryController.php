@@ -87,26 +87,38 @@ class manageInventoryController extends BaseController
     public function store($id = null)
     {
         //get input
-        $input                                             = Input::only('nama','awal');
-
+        $input                                             = Input::only('nama','awal','now');
+        //dd($input);
         //create or edit
         $Inventory                                         = Inventory::findOrNew($id);
-
+        //dd($Inventory['tanggal']);
         //save data
-        foreach ($Inventory['barang'] as $key => $data) {
-            if($data['nama'] == $input['nama']){
-                $data->initialStock                        = (int)$data['initialStock'] + (int)$input['awal'];
-                $data->currentStock                        = (int)$data['currentStock'] + (int)$input['awal'];
+        if($input['now'] == ""){
+            foreach ($Inventory['barang'] as $key => $data) {
+                if($data['nama'] == $input['nama']){
+                    $data['initialStock']                        = (int)$data['initialStock'] + (int)$input['awal'];
+                    $data['currentStock']                        = (int)$data['currentStock'] + (int)$input['awal'];
+                    Inventory::where('tanggal' , $Inventory['tanggal'])
+                             ->where('barang.' .$key. '.nama' , $data['nama'])
+                             ->update(['barang.'.$key.'.initialStock' => $data['initialStock'] , 'barang.'.$key.'.currentStock' => $data['currentStock']]);
+                }
             }
         }
-        //set Admin
-        if(is_null($Inventory->admin)){
-            $Inventory->admin                              = 'Admins';
+        else{
+            foreach ($Inventory['barang'] as $key => $data) {
+                if($data['nama'] == $input['nama']){
+                    $data['initialStock']                        = (int)$data['initialStock'] + (int)$input['awal'];
+                    $data['currentStock']                        = $input['now'];
+                    Inventory::where('tanggal' , $Inventory['tanggal'])
+                             ->where('barang.' .$key. '.nama' , $data['nama'])
+                             ->update(['barang.'.$key.'.initialStock' => $data['initialStock'] , 'barang.'.$key.'currentStock' => $data['currentStock']]);
+                }
+            }
         }
 
         $Inventory->save();
 
-        $this->errors                                      = $admin->getErrors();
+        //$this->errors                                      = $admin->getErrors();
         $this->page_attributes->msg                        = 'Data telah disimpan';
 
         return $this->generateRedirect($this->getRefererUrl());

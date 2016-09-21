@@ -158,7 +158,7 @@ class manageBarangController extends BaseController
     public function show($id)
     {
         //get data
-        $Barang                              = new Barang;
+        $Barang                                 = new Barang;
         $datas                                  = $Barang::find($id);
 
         $this->page_datas->datas                = $datas;

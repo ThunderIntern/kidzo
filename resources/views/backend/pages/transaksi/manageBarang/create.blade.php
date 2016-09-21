@@ -55,7 +55,7 @@
 				{!! Form::textarea('deskripsi', $page_datas->datas['deskripsi'], ['class' => 'form-control summernote', 'rows' => '10']) !!}
 			</fieldset>
 			<fieldset class="form-group">
-				<label for="name">Jumlah Barang</label>
+				<label for="name">Jumlah Barang Ditambahkan</label>
 				{{ Form::number('jumlah', $page_datas->datas['jumlah'], ['class' => 'form-control']) }}
 			</fieldset>
 		</div>

@@ -37,6 +37,10 @@
 			<fieldset class="form-group">
 				<label for="name">Stok Ditambahkan</label>
 				{{ Form::number('awal', null, ['class' => 'form-control']) }}
+			</fieldset>
+			<fieldset class="form-group">
+				<label for="name">Stok Sekarang <small class='text-primary'>Kosongkan Bila Tidak Perlu</small></label>
+				{{ Form::number('now', null, ['class' => 'form-control']) }}
 			</fieldset>	
 		</div>
 	</div>
