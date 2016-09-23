@@ -79,11 +79,11 @@ class BarangsTableSeeder extends Seeder
         $Barang['isi']              = [
                                             'Mobil' => [
                                                             'nama' => 'Mobil',
-                                                            'jumlah' => '2'
+                                                            'jumlah' => '3'
                                                        ],
                                             'Sepeda' => [
                                                             'nama' => 'Sepeda',
-                                                            'jumlah' => '3'
+                                                            'jumlah' => '2'
                                                         ]
                                       ];
         $Barang['jenis']            = 'Party';  
