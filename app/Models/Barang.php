@@ -14,10 +14,12 @@ class Barang extends BaseModel
 	 */
 	protected $fillable				=	[
 											'nama'						,
+											'isi'						,
 											'jenis'						,
 											'foto'						,
 											'harga'						,
 											'perawatan'					,
+											'status'					,
 											'deskripsi'
 										];
 

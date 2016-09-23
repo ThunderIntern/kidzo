@@ -38,7 +38,7 @@ button:
                                         <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black borderRight1 <?php if($segment1=='katalog') echo 'green';?>" href="{{Route('katalog')}}">Mainan</a>
                                     </li>
                                     <li class="partyHover nav-item borderTop5 orange paddingBottom25 paddingTop25">
-                                        <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black borderRight1 <?php if($segment1=='party') echo 'orange';?>" href="#">Party Pack</a>
+                                        <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black borderRight1 <?php if($segment1=='party') echo 'orange';?>" href="{{Route('party')}}">Party Pack</a>
                                     </li>
                                     <li class="tentangHover nav-item borderTop5 purple paddingBottom25 paddingTop25">
                                         <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black borderRight1 <?php if($segment1=='about') echo 'purple';?>" href="{{Route('about')}}">Tentang Kami</a>
@@ -145,7 +145,7 @@ button:
                                             </a>
                                         </li>
                                         <li class="nav-item hoverParty ">
-                                            <a class="nav-link pull-left paddingLeft30" href="#">
+                                            <a class="nav-link pull-left paddingLeft30" href="{{Route('party')}}">
                                                 <div class="orange">Party Package</div>
                                             </a>
                                         </li>

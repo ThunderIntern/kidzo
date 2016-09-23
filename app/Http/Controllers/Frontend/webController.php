@@ -319,8 +319,56 @@ class webController extends BaseController
         return $this->generateView($view_source , $route_source);
     }
 
+    public function party(){
+        $katalog                                = Barang::where('status' , 'party')
+                                                        ->get();
+        //dd($katalog);
+
+        $this->page_datas->datas                = $katalog;
+
+        $this->page_attributes->page_title      = $this->page_title;
+        //generate view
+        $view_source                            = $this->view_source_root . '.katalogParty';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }
+
+    public function deskripsiParty($id){
+        $katalog                                = Barang::find($id);
+        $now                                    = Carbon::today();
+        $bulan                                  = $now->month;
+        //dd($bulan);
+        $inven                                  = Inventory::get();
+        //dd($ibulan);
+        $array                                  = null;
+        foreach ($inven as $key => $tory) {
+            $itanggal = Carbon::parse($tory['tanggal']);
+            $ibulan = $itanggal->month;
+            $string = $itanggal->toDateString();
+            //dd($string);
+            if($ibulan == $bulan){
+                $array[$key] = ['inventory' => $tory , 'tanggal' => $string];
+            }
+        }
+        //dd($array);
+
+        $data = ['id' => $katalog['id'], 'barang' => $katalog , 'inven' => $array];
+
+        //dd($data);
+
+        $this->page_datas->datas                = $data;
+        //dd($this->page_datas->datas);
+
+        $this->page_attributes->page_title      = $this->page_title;
+        //generate view
+        $view_source                            = $this->view_source_root . '.deskripsiParty';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }
+
     public function katalog(){
-        $katalog                                = Barang::all();
+        $katalog                                = Barang::where('status' , 'individu')
+                                                        ->get();
         //dd($katalog);
 
         $this->page_datas->datas                = $katalog;
