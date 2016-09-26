@@ -46,7 +46,7 @@ button:
 
                                     @if(is_null(Session::get('akun')))
                                         <li class="loginHover nav-item borderTop5 blue paddingBottom25 paddingTop25">
-                                            <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black <?php if($segment1=='signup') echo 'blue';?>" href="{{Route('signuped')}}">Login</a>
+                                            <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black <?php if($segment1=='signup') echo 'blue';?>" href="{{Route('signuped2')}}">Login</a>
                                         </li>
                                     @else
                                         <li class="loginHover nav-item borderTop5 blue paddingBottom25 paddingTop25">
@@ -155,7 +155,7 @@ button:
                                             </a>
                                         </li>
                                         <li class="nav-item hoverLogin">
-                                            <a class="nav-link pull-left paddingLeft30" href="{{Route('signuped')}}">
+                                            <a class="nav-link pull-left paddingLeft30" href="{{Route('signuped2')}}">
                                                 <div class="blue">Login</div>
                                             </a>
                                         </li>

@@ -38,9 +38,11 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/newsletter/registered', ['uses' => 'webController@registeredNewsletter', 'as' => 'registered']);
 	Route::post('/newsletter/unsubscribe', ['uses' => 'webController@unsubscribeNewsletter', 'as' => 'unsubscribe']);
 	Route::get('/newsletter/unsubscribed', ['uses' => 'webController@unsubscribedNewsletter', 'as' => 'unsubscribed']);
-	Route::post('/signup', ['uses' => 'webController@signup', 'as' => 'signup']);
-	Route::get('/signup/login', ['uses' => 'webController@signuped', 'as' => 'signuped']);
-	Route::post('/login', ['uses' => 'webController@login', 'as' => 'login']);
+	Route::post('/signup/{id}', ['uses' => 'webController@signup', 'as' => 'signup']);
+	Route::get('/signup/login/{id}', ['uses' => 'webController@signuped', 'as' => 'signuped']);
+	Route::get('/signup/login', ['uses' => 'webController@signuped2', 'as' => 'signuped2']);
+	Route::post('/login/{id}', ['uses' => 'webController@login', 'as' => 'login']);
+	Route::post('/login', ['uses' => 'webController@login2', 'as' => 'login2']);
 	Route::get('/login/done', ['uses' => 'webController@logined', 'as' => 'logined']);
 	Route::get('/logout', ['uses' => 'webController@logout', 'as' => 'logout']);
 	Route::get('/newsletter/flushed', ['uses' => 'webController@flushregisteredNewsletter', 'as' => 'flushregister']);
@@ -245,6 +247,15 @@ Route::group(['namespace' => 'Backend'], function(){
 			'edit' 		=> 'backend.transaksi.manageBarang.edit', 
 			'update' 	=> 'backend.transaksi.manageBarang.update', 
 			'destroy' 	=> 'backend.transaksi.manageBarang.destroy'
+		]]);
+		Route::resource('/admin/transaksi/manage_Party', 'managePartyController', ['names' => [
+			'index' 	=> 'backend.transaksi.manageParty.index',
+			'create'	=> 'backend.transaksi.manageParty.create', 
+			'store' 	=> 'backend.transaksi.manageParty.store', 
+			'show' 		=> 'backend.transaksi.manageParty.show', 
+			'edit' 		=> 'backend.transaksi.manageParty.edit', 
+			'update' 	=> 'backend.transaksi.manageParty.update', 
+			'destroy' 	=> 'backend.transaksi.manageParty.destroy'
 		]]);
 		Route::resource('/admin/transaksi/manage_Inventory', 'manageInventoryController', ['names' => [
 			'index' 	=> 'backend.transaksi.manageInventory.index',

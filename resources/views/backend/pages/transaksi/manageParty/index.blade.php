@@ -3,8 +3,8 @@
 <div class="card">
 	<div class="card-block">
 	@include('backend.widgets.components.title.title-add-search', ['component' => [
-		'title'			=> 'Manage Barang / Page' . $page_datas->datas->currentPage(),
-		'link-add'		=> route('backend.transaksi.manageBarang.create'),
+		'title'			=> 'Manage Party Pack / Page' . $page_datas->datas->currentPage(),
+		'link-add'		=> route('backend.transaksi.manageParty.create'),
 		'link-search'	=> '#',
 	]])
 	</div>
@@ -28,7 +28,7 @@
 								{{($page_datas->datas->perpage() * ($page_datas->datas->currentPage()-1)) + ($key + 1)}}
 							</td>
 							<td class="col-md-3">
-								<a href="{{route('backend.transaksi.manageBarang.show', ['id' => $data['id']])}}">
+								<a href="{{route('backend.transaksi.manageParty.show', ['id' => $data['id']])}}">
 									{{ucfirst($data['nama'])}}
 								</a>
 							</td>
@@ -39,10 +39,10 @@
 								{{ucfirst($data['harga'])}}
 							</td>
 							<td class="col-md-2 text-xs-right">
-								<a href="{{route('backend.transaksi.manageBarang.edit', ['id' => $data['id']])}}" class="btn btn-primary-outline btn-sm">
+								<a href="{{route('backend.transaksi.manageParty.edit', ['id' => $data['id']])}}" class="btn btn-primary-outline btn-sm">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 						        </a>	
-								<a href="#" class="btn btn-primary-outline btn-sm" data-toggle="modal" data-target="#modalDelete" data-action="{!! route('backend.transaksi.manageBarang.destroy',['id' => $data['id']]) !!}">
+								<a href="#" class="btn btn-primary-outline btn-sm" data-toggle="modal" data-target="#modalDelete" data-action="{!! route('backend.transaksi.manageParty.destroy',['id' => $data['id']]) !!}">
 									<i class="fa fa-times" aria-hidden="true"></i>
 						        </a>
 							</td>
@@ -56,7 +56,6 @@
 					@endforelse								
 				</tbody>
 			</table>
-			{{$page_datas->datas->render()}}
 		</div>
 	</div>
 </div>

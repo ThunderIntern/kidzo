@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Request;
 use App\Http\Controllers\Functions\email;
 
-use Requests;
+use Request;
 use App\Http\Controllers\BaseController;
 use App\Models\Subscriber;
 use App\Models\Faq;
@@ -368,7 +367,7 @@ class webController extends BaseController
 
     public function katalog(){
         $katalog                                = Barang::where('status' , 'individu')
-                                                        ->get();
+                                                        ->paginate(6);
         //dd($katalog);
 
         $this->page_datas->datas                = $katalog;
@@ -437,7 +436,7 @@ class webController extends BaseController
     public function addChart($id){
         if(is_null(session('akun'))){
             $this->page_attributes->msg             = 'Silahkan login terlebih dahulu';
-            return $this->generateRedirect(route('signuped'));
+            return $this->generateRedirect(route('signuped' , $id));
         }
         $barang                                  = Barang::where('_id', $id)
                                                          ->first()['attributes'];
@@ -926,7 +925,7 @@ class webController extends BaseController
 
 
 
-        $this->page_attributes->msg             = 'Data telah dihapus';
+        $this->page_attributes->msg             = 'Check Out Berhasil';
         return $this->generateRedirect(route('detailCheckOut')); 
     }
 
@@ -1210,7 +1209,7 @@ class webController extends BaseController
             $cek->status                      = 'chart';
             $cek->save();
         }
-
+        //dd($batal);
         foreach ($batal as $key => $trans) {
             foreach ($trans['barang'] as $key2 => $barang) {
                 if($barang['status'] == 'individu'){
@@ -1234,11 +1233,11 @@ class webController extends BaseController
                             if($tory['tanggal'] == $tanggal){
                                 foreach ($tory['barang'] as $key1 => $value) {
                                 //dd($value);
-                                    
                                         if($barang['nama'] == $value['nama']){
                                             Inventory::where('tanggal' , $tanggal)
                                                      ->where('barang.'.$key1.'.nama'  , $barang['nama'])
                                                      ->update(['barang.'.$key1.'.currentStock' => (int)$value['currentStock'] + (int)$barang['jumlah']]);
+                                            //dd($key1);
                                             //dd($cek);
                                         }
                                     }
@@ -1247,6 +1246,7 @@ class webController extends BaseController
                             }
                         }
                     }
+                //dd($inven);
                 }
                 else{
                     foreach($barang['isi'] as $key9 => $isi){
@@ -1275,7 +1275,7 @@ class webController extends BaseController
                                                 Inventory::where('tanggal' , $tanggal)
                                                          ->where('barang.'.$key1.'.nama'  , $isi['nama'])
                                                          ->update(['barang.'.$key1.'.currentStock' => (int)$value['currentStock'] + (int)$isi['jumlah']]);
-                                                //dd($cek);
+                                                //dd($isi['jumlah']);
                                             }
                                         }
                                 $tes2->addDays(1);
@@ -1287,7 +1287,7 @@ class webController extends BaseController
                 }
             }
         }
-        //dd($batal);
+        //dd($inven);
         foreach ($batal as $key => $batals) {
             $hapus = Transaksi::find($batals['id']);
             $hapus->delete();    
@@ -1315,6 +1315,7 @@ class webController extends BaseController
     }
 
     public function bayar(Request $request){
+        Illuminate\Http\Request;
         $param = $request->all();
         $filename = $request->file('file_photo')->getClientOriginalName();
         $destinationPath = '../resources/assets/photos/';
@@ -1418,7 +1419,7 @@ class webController extends BaseController
         return $this->generateView('frontend.pages.unsubscribed', Request::route()->getName());
     }
 
-    public function signup()
+    public function signup($id)
     {
         $input                                  = Input::only('email','username','password','conf_password','nama','no','alamat');
 
@@ -1492,15 +1493,65 @@ class webController extends BaseController
         return $this->generateRedirect(route('signuped'));
     }
 
-    public function signuped($id = null)
+    public function signuped($id)
     {
-        return $this->generateView('frontend.pages.login', Request::route()->getName());
+        //dd($id);
+        if(is_null($id)){
+            return $this->generateRedirect(route('signuped2'));
+        }
+        else{
+            $this->page_datas->datas                = $id;
+            $view_source                            = $this->view_source_root . '.login';
+            $route_source                           = Request::route()->getName();        
+            return $this->generateView($view_source , $route_source);
+        }
     }
-    public function newMember($id = null)
+
+    public function signuped2(){
+        $this->page_datas->datas                = null;
+        $view_source                            = $this->view_source_root . '.login';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);
+    }
+
+    public function newMember($id)
     {
         return $this->generateView('frontend.pages.signup', Request::route()->getName());
     }
-    public function login()
+    public function login($id = null)
+    {
+        $user                                   = new User;
+
+        //get input
+        $input                                  = Input::only('username','password');
+
+        //save data
+        $cari                                   = $user::where('username',$input['username'])
+                                                        ->where('password',$input['password'])
+                                                        ->first()['attributes'];
+
+        $cek                                    = Barang::where('_id' , $id)
+                                                        ->first()['attributes'];
+        //dd($cari);
+        if(is_null($cari)){
+            $this->errors                           = $user->getErrors();
+            $this->page_attributes->msg             = 'Username atau password yang anda masukkan salah';
+            return $this->generateRedirect(route('signuped' , $id));                
+        }
+        else{
+            session(['akun' => $input['username']]);
+            $this->errors                           = $user->getErrors();
+            $this->page_attributes->msg             = 'Login Berhasil';
+            if($cek['status'] == 'individu'){
+                return $this->generateRedirect(route('deskripsiKatalog' , $id));
+            }
+            else{
+                return $this->generateRedirect(route('deskripsiKatalog' , $id));   
+            }
+        }
+    }
+
+    public function login2()
     {
         $user                                   = new User;
 
@@ -1515,21 +1566,21 @@ class webController extends BaseController
         if(is_null($cari)){
             $this->errors                           = $user->getErrors();
             $this->page_attributes->msg             = 'Username atau password yang anda masukkan salah';
-            return $this->generateRedirect(route('signuped'));                
+            return $this->generateRedirect(route('signuped' , $id));                
         }
         else{
             session(['akun' => $input['username']]);
             $this->errors                           = $user->getErrors();
             $this->page_attributes->msg             = 'Login Berhasil';
-            return $this->generateRedirect(route('home'));
+            return $this->generateRedirect(route('home'));   
         }
     }
 
-    public function logout($id = null)
+    public function logout()
     {
         session()->pull('akun', 'default');
         $this->page_attributes->msg             = 'Logout Berhasil';
-        return $this->generateRedirect(route('signuped'));
+        return $this->generateRedirect(route('signuped2'));
     }
 
     public function index()

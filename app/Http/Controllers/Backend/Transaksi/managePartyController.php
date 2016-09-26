@@ -9,10 +9,10 @@ use App\Models\Inventory;
 use Request, Input, URL, Carbon\Carbon;
 
 
-class manageBarangController extends BaseController
+class managePartyController extends BaseController
 {
-    protected $view_source_root             = 'backend.pages.transaksi.manageBarang';
-    protected $page_title                   = 'Barang';
+    protected $view_source_root             = 'backend.pages.transaksi.manageParty';
+    protected $page_title                   = 'Party Pack';
     protected $breadcrumb                   = [];
     public function __construct()
     {
@@ -28,7 +28,7 @@ class manageBarangController extends BaseController
     {
         //get data
         $Barang                                 = new Barang;
-        $datas                                  = $Barang::where('status' , 'individu')
+        $datas                                  = $Barang::where('status' , 'party')
                                                          ->paginate(10);
 
         $this->page_datas->datas                = $datas;
@@ -88,10 +88,57 @@ class manageBarangController extends BaseController
     public function store($id = null)
     {
         //get input
-        $input                                   = Input::only('nama' , 'jenis' , 'url' , 'link' , 'harga', 'deskripsi', 'jumlah');
-
+        $input                                   = Input::only('nama' , 'jenis' , 'url' , 'link' , 'harga', 'deskripsi', 'jumlah1' , 'nama1' , 'jumlah2' , 'nama2', 'jumlah3' , 'nama3', 'jumlah4' , 'nama4', 'jumlah5' , 'nama5', 'jumlah6' , 'nama6', 'jumlah7' , 'nama7');
+        //dd($input);
         //create or edit
         $Barang                                  = Barang::findOrNew($id);
+        $i = 0;
+
+        $array = null;
+
+        if($input['nama1'] && $input['jumlah1']){
+            $array[$i] = ['nama' => $input['nama1'],
+                         'jumlah' => $input['jumlah1']
+                         ];
+            $i++;
+        }
+        if($input['nama2'] && $input['jumlah2']){
+            $array[$i] = ['nama' => $input['nama2'],
+                         'jumlah' => $input['jumlah2']
+                         ];
+            $i++;
+        }
+        if($input['nama3'] && $input['jumlah3']){
+            $array[$i] = ['nama' => $input['nama3'],
+                         'jumlah' => $input['jumlah3']
+                         ];
+            $i++;
+        }
+        if($input['nama4'] && $input['jumlah4']){
+            $array[$i] = ['nama' => $input['nama4'],
+                         'jumlah' => $input['jumlah4']
+                         ];
+            $i++;
+        }
+        if($input['nama5'] && $input['jumlah5']){
+            $array[$i] = ['nama' => $input['nama5'],
+                         'jumlah' => $input['jumlah5']
+                         ];
+            $i++;
+        }
+        if($input['nama6'] && $input['jumlah6']){
+            $array[$i] = ['nama' => $input['nama6'],
+                         'jumlah' => $input['jumlah6']
+                         ];
+            $i++;
+        }
+        if($input['nama7'] && $input['jumlah7']){
+            $array[$i] = ['nama' => $input['nama7'],
+                         'jumlah' => $input['jumlah7']
+                         ];
+            $i++;
+        }
+        //dd($array);
 
         //save data
         $Barang->nama                            = $input['nama'];
@@ -101,54 +148,8 @@ class manageBarangController extends BaseController
                                                     'link' => $input['link']
                                                     ];
         $Barang->deskripsi                       = $input['deskripsi'];
-        $Barang->status                          = 'individu';
-
-        $today                                   = Carbon::today()->toDateString();
-        $new                                     = new Inventory;
-        $inven                                   = Inventory::get();
-        $init = null;
-        $cur = null;
-        $brg = null;
-        foreach ($inven as $key => $tory) {
-            if($input['jumlah'] != ""){
-                if($tory['tanggal'] == $today){
-                    $brg = $tory['barang'];
-                    foreach ($tory['barang'] as $key2 => $barang) {
-                        if($barang['nama'] == $input['nama']){
-                            $init = (int)$barang['initialStock'] + (int)$input['jumlah'];
-                            $cur  = (int)$barang['currentStock'] + (int)$input['jumlah'];
-                            Inventory::where('tanggal' , $today)
-                                     ->where('barang.' . $key . '.nama' , $input['nama'])
-                                     ->update(['barang.' . $key . '.initialStock' => $init , 'barang.' . $key . '.currentStock' => $cur]);
-                        }
-                        else{
-                            $brg[$input['nama']] = ['nama' => $input['nama'] , 'initialStock' => $input['jumlah'] , 'currentStock' => $input['jumlah'] , 'brokenStock' => '0' , 'outStock' => null];
-                            Inventory::where('tanggal' , $today)
-                                     ->update(['barang' => $brg]);
-                        }
-                    }
-                    $today = Carbon::parse($today)->addDays(1)->toDateString();
-                    //dd($today);
-                }
-                else{
-                    $brg = null;
-                    $flag = null;
-                    foreach ($inven as $key9 => $tory2) {
-                        if($tory2['tanggal'] == $today){
-                            $flag = 1;
-                        }
-                    }
-                    //dd($flag);
-                    if(is_null($flag)){
-                        $brg[$input['nama']] = ['nama' => $input['nama'] , 'initialStock' => $input['jumlah'] , 'currentStock' => $input['jumlah'] , 'brokenStock' => '0' , 'outStock' => null];
-                        $new->tanggal                = $today;
-                        $new->barang                 = $brg;
-                        $new->admin                  = 'admin';
-                        $new->save();
-                    }
-                }
-            }    
-        }
+        $Barang->status                          = 'party';
+        $Barang->isi                             = $array;
 
         //set Admin
         if(is_null($Barang->admin)){

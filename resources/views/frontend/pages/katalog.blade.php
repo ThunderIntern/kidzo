@@ -9,6 +9,7 @@
 				</div>
 				@endforeach
 			</div>
+			{{$page_datas->datas->render()}}
 		</div>
 	</div>
 @stop

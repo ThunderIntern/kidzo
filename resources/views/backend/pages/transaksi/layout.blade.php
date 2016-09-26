@@ -15,7 +15,8 @@
 				'components' 	=> [
 										'1' => ['link' => Route('backend.transaksi.pembayaran.index'), 'caption' => 'Pemabayaran'],
 										'2' => ['link' => Route("backend.transaksi.manageBarang.index"), 'caption' => 'Manage Barang'],
-										'3' => ['link' => Route("backend.transaksi.manageInventory.index"), 'caption' => 'Manage Inventory'],
+										'3' => ['link' => Route("backend.transaksi.manageParty.index"), 'caption' => 'Manage Party Pack'],
+										'4' => ['link' => Route("backend.transaksi.manageInventory.index"), 'caption' => 'Manage Inventory'],
 									]
 			])
 		</div>

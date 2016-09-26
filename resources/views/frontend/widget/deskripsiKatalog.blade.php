@@ -51,8 +51,11 @@
             <?php //dd($data) ?>
             <td>{{$data['tanggal']}}</td>
             @foreach($data['inventory']['barang'] as $key2 => $barang)
+            <tr>
+                <td></td>
                 <td>{{$barang['nama']}}</td>
                 <td>{{$barang['currentStock']}}</td>
+            </tr>
             @endforeach    
         </tr>
         @endforeach

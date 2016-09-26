@@ -24,6 +24,9 @@
 		 <a class="nav-link" data-toggle="tab" href="#manageBarang" role="tab">Manage Barang</a>
 	</li>
 	<li class="nav-item">    
+		 <a class="nav-link" data-toggle="tab" href="#manageParty" role="tab">Manage Party Pack</a>
+	</li>
+	<li class="nav-item">    
 		 <a class="nav-link" data-toggle="tab" href="#manageInventory" role="tab">Manage Inventory</a>
 	</li>
 </ul>   
@@ -38,8 +41,11 @@
 			  	<div class="tab-pane fade" id="manageBarang" role="tabpanel">
 					2
 				</div>
-				<div class="tab-pane fade" id="manageInventory" role="tabpanel">
+				<div class="tab-pane fade" id="manageParty" role="tabpanel">
 					3
+				</div>
+				<div class="tab-pane fade" id="manageInventory" role="tabpanel">
+					4
 				</div>
 				<!-- cont. here	-->
 			</div>          

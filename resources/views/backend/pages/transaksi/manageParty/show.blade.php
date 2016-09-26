@@ -3,16 +3,16 @@
 <div class="card">
 	<div class="card-block">
 	@include('backend.widgets.components.title.title-control', ['component' => [
-		'title'			=> 'Detail Pembayaran',
+		'title'			=> 'Detail Barang',
 		'controls'		=> 	[
 								'back'		=>	[
-													'link'	=> route('backend.transaksi.pembayaran.index')
+													'link'	=> route('backend.transaksi.manageParty.index')
 												],
 								'edit'		=>	[
-													'link'	=> route('backend.transaksi.pembayaran.edit', ['id'=> $page_datas->id] )
+													'link'	=> route('backend.transaksi.manageParty.edit', ['id'=> $page_datas->id] )
 												],												
 								'delete'	=> 	[
-													'link'	=> route('backend.transaksi.pembayaran.destroy',['id' => $page_datas->id] )
+													'link'	=> route('backend.transaksi.manageParty.destroy',['id' => $page_datas->id] )
 												],
 							]		
 	]])
@@ -23,34 +23,36 @@
 	@include('backend.widgets.alertbox')
 	<div class="card-block">
 		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Username',
-			'content'	=>  ucfirst($page_datas->datas['username'])
-		]])	
-		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Nama',
+			'title'		=> 'Nama Barang',
 			'content'	=>  ucfirst($page_datas->datas['nama'])
 		]])		
 		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Alamat',
-			'content'	=>  ucfirst($page_datas->datas['alamat'])
+			'title'		=> 'Jenis Barang',
+			'content'	=>  ucfirst($page_datas->datas['jenis'])
+		]])		
+		<img src="{{$page_datas->datas['foto']['url']}}"></img>
+		@include('backend.widgets.components.detail.detail-text',['component' => [
+			'title'		=> 'Foto Barang',
+			'content'	=>  ucfirst($page_datas->datas['foto']['url'])
+		]])
+		@include('backend.widgets.components.detail.detail-text',['component' => [
+			'title'		=> 'Harga',
+			'content'	=>  ucfirst($page_datas->datas['harga'])
 		]])	
 		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Nomor Telepon',
-			'content'	=>  ucfirst($page_datas->datas['nomor'])
-		]])
-		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Total',
-			'content'	=>  ucfirst($page_datas->datas['total'])
-		]])
-		<img src="{{$page_datas->datas['nota']['bukti']}}"></img>
-		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Bukti Transfer',
-			'content'	=>  ucfirst($page_datas->datas['nota']['bukti'])
-		]])
-		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Status',
-			'content'	=>  $page_datas->datas['status']
+			'title'		=> 'Deskripsi',
+			'content'	=>  ucfirst($page_datas->datas['deskripsi'])
 		]])	
+		@foreach($page_datas->datas['isi'] as $key => $isi)
+			@include('backend.widgets.components.detail.detail-text',['component' => [
+				'title'		=> 'Nama Barang',
+				'content'	=>  ucfirst($isi['nama'])
+			]])
+			@include('backend.widgets.components.detail.detail-text',['component' => [
+				'title'		=> 'Jumlah Barang',
+				'content'	=>  ucfirst($isi['jumlah'])
+			]])
+		@endforeach
 		@include('backend.widgets.components.detail.detail-text',['component' => [
 			'title'		=> 'Created By',
 			'content'	=>  ucfirst($page_datas->datas['admin'])
