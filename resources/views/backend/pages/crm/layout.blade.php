@@ -24,7 +24,6 @@
 								'5' => ['link' => Route('backend.crm.statistic.index'), 'caption' => 
 								'Statistic'],
 		]])
-		]])
 		</div>
  
 		<div class="col-xs-12 col-lg-9">
