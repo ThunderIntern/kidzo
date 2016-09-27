@@ -3,7 +3,7 @@
 <div class="container">
 	<div id="box">
 	{!! Form::open(['url' => route('checkOut')]) !!}
-		<h1 class="text-center mtop-s mbottom-s">Isi Data Pembelian</h1>
+		<h1 class="text-center mtop-s mbottom-s">Isi Data Penyewaan</h1>
 		<p class="pull-left"><b>Nama Penerima</b></p>
         {!! Form::text('nama',null, ['class' => 'form-control mbottom-s' ,'placeholder' => 'Nama Penerima']) !!}
         <p class="pull-left"><b>Alamat Penerima</b></p>

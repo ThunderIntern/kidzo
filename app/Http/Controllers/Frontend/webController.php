@@ -415,7 +415,7 @@ class webController extends BaseController
     public function chart(){
         if(is_null(session('akun'))){
             $this->page_attributes->msg             = 'Silahkan login terlebih dahulu';
-            return $this->generateRedirect(route('signuped'));
+            return $this->generateRedirect(route('signuped2'));
         }
         //dd(session(['key']));
 
@@ -1174,7 +1174,8 @@ class webController extends BaseController
                 } 
             }
         }
-
+        $random = random_int(1, 100);
+        $total = $total - 100 + $random;
         Transaksi::where('username',session('akun'))
                  ->where('status','pending')
                  ->update(['total' => $total]);
@@ -1315,14 +1316,7 @@ class webController extends BaseController
     }
 
     public function bayar(Request $request){
-        Illuminate\Http\Request;
-        $param = $request->all();
-        $filename = $request->file('file_photo')->getClientOriginalName();
-        $destinationPath = '../resources/assets/photos/';
-        $proses = $request->file('file_photo')->move($destinationPath, $filename);
-        //dd($proses);
-
-        $input = Input::only('jumlah' ,'keterangan');
+        $input = Input::only('jumlah' ,'keterangan' , 'nama');
 
         $random = random_int(1, 10000);
         //dd($random);
@@ -1336,7 +1330,7 @@ class webController extends BaseController
 
         Transaksi::where('username' , session('akun'))
                  ->where('status' ,  'pending')
-                 ->update(['nota' => ['bukti' => $filename , 'nomor' => $random , 'jumlah' => $input['jumlah'] , 'keterangan' => $input['keterangan'] ]]);
+                 ->update(['nota' => ['nomor' => $random , 'jumlah' => $input['jumlah'] , 'keterangan' => $input['keterangan'] , 'atas_nama' => $input['nama'] ]]);
 
         $this->page_attributes->msg             = 'Pembayaran Berhasil Dilakukan';
         return $this->generateRedirect(route('home'));
@@ -1580,7 +1574,7 @@ class webController extends BaseController
     {
         session()->pull('akun', 'default');
         $this->page_attributes->msg             = 'Logout Berhasil';
-        return $this->generateRedirect(route('signuped2'));
+        return $this->generateRedirect(route('home'));
     }
 
     public function index()

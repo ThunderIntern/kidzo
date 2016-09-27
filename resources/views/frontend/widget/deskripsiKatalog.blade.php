@@ -63,7 +63,7 @@
 </div>
 {!! Form::close() !!}
 <script>
-  var disableddates = ["09-30-2016", "09-29-2016", "10-12-2016", "11-11-2016"];
+  var disableddates = ["2016-09-30", "2016-09-29", "2016-10-12", "2016-11-11"];
  
 function DisableSpecificDates(date) {
  
@@ -73,7 +73,7 @@ function DisableSpecificDates(date) {
  
  // First convert the date in to the mm-dd-yyyy format 
  // Take note that we will increment the month count by 1 
- var currentdate = (m + 1) + '-' + d + '-' + y ;
+ var currentdate = y + '-' + (m + 1) + '-' + d;
  
 
  
