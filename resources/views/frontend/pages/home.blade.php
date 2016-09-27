@@ -36,19 +36,19 @@
 		</div>
 		<div class="row mbottom-l">
 			<div class="col-sm-12 col-md-4 text-center">
-				<a href="#"><img width="65%" class="img-responsive img-circle img-center" src="{{asset('image/frontend/capture2.jpg')}}"></img><br><br></a>
-				<h2>1. Browse</h2><br>
+				<img width="65%" class="img-responsive img-circle img-center" src="{{asset('image/frontend/capture2.jpg')}}"></img><br><br>
+				<h2>1. Signup/Login</h2><br>
+				<h3>Daftar Akun Kidzo kemudian login.</h3>
+			</div>
+			<div class="col-sm-12 col-md-4 text-center">
+				<img width="65%" class="img-responsive img-circle img-center" src="{{asset('image/frontend/capture2.jpg')}}"></img><br><br>
+				<h2>2. Pilih Produk</h2><br>
 				<h3>Pilih produk permainan yang Anda suka.</h3>
 			</div>
 			<div class="col-sm-12 col-md-4 text-center">
-				<a href="#"><img width="65%" class="img-responsive img-circle img-center" src="{{asset('image/frontend/capture2.jpg')}}"></img><br><br></a>
-				<h2>2. Browse</h2><br>
-				<h3>Pilih produk permainan yang Anda suka.</h3>
-			</div>
-			<div class="col-sm-12 col-md-4 text-center">
-				<a href="#"><img width="65%" class="img-responsive img-circle img-center" src="{{asset('image/frontend/capture2.jpg')}}"></img><br><br></a>
-				<h2>3. Browse</h2><br>
-				<h3>Pilih produk permainan yang Anda suka.</h3>
+				<img width="65%" class="img-responsive img-circle img-center" src="{{asset('image/frontend/capture2.jpg')}}"></img><br><br>
+				<h2>3. Transaksi</h2><br>
+				<h3>Lakukan transaksi untuk produk yang anda suka.</h3>
 			</div>
 		</div>
 		<div class="row mbottom-s">

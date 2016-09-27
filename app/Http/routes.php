@@ -38,7 +38,7 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/newsletter/registered', ['uses' => 'webController@registeredNewsletter', 'as' => 'registered']);
 	Route::post('/newsletter/unsubscribe', ['uses' => 'webController@unsubscribeNewsletter', 'as' => 'unsubscribe']);
 	Route::get('/newsletter/unsubscribed', ['uses' => 'webController@unsubscribedNewsletter', 'as' => 'unsubscribed']);
-	Route::post('/signup/{id}', ['uses' => 'webController@signup', 'as' => 'signup']);
+	Route::post('/signup', ['uses' => 'webController@signup', 'as' => 'signup']);
 	Route::get('/signup/login/{id}', ['uses' => 'webController@signuped', 'as' => 'signuped']);
 	Route::get('/signup/login', ['uses' => 'webController@signuped2', 'as' => 'signuped2']);
 	Route::post('/login/{id}', ['uses' => 'webController@login', 'as' => 'login']);

@@ -43,20 +43,20 @@
 				{{ Form::text('url', $page_datas->datas['foto']['url'], ['class' => 'form-control']) }}
 			</fieldset>		
 			<fieldset class="form-group">
-				<label for="name">Link Barang</label>
-				{{ Form::text('link', $page_datas->datas['foto']['link'], ['class' => 'form-control']) }}
-			</fieldset>
-			<fieldset class="form-group">
 				<label for="name">Harga Barang</label>
 				{{ Form::number('harga', $page_datas->datas['harga'], ['class' => 'form-control']) }}
-			</fieldset>			
+			</fieldset>	
 			<fieldset class="form-group">
-				<label for="name">Deskripsi</label>
-				{!! Form::textarea('deskripsi', $page_datas->datas['deskripsi'], ['class' => 'form-control summernote', 'rows' => '10']) !!}
-			</fieldset>
+				<label for="name">Lama Perawatan</label>
+				{{ Form::number('lama', $page_datas->datas['perawatan'], ['class' => 'form-control']) }}
+			</fieldset>		
 			<fieldset class="form-group">
 				<label for="name">Jumlah Barang Ditambahkan</label>
 				{{ Form::number('jumlah', $page_datas->datas['jumlah'], ['class' => 'form-control']) }}
+			</fieldset>
+			<fieldset class="form-group">
+				<label for="name">Deskripsi</label>
+				{!! Form::textarea('deskripsi', $page_datas->datas['deskripsi'], ['class' => 'form-control summernote', 'rows' => '10']) !!}
 			</fieldset>
 		</div>
 	</div>

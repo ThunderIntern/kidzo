@@ -88,7 +88,7 @@ class manageBarangController extends BaseController
     public function store($id = null)
     {
         //get input
-        $input                                   = Input::only('nama' , 'jenis' , 'url' , 'link' , 'harga', 'deskripsi', 'jumlah');
+        $input                                   = Input::only('nama' , 'jenis' , 'url' , 'harga', 'deskripsi', 'jumlah' , 'lama');
 
         //create or edit
         $Barang                                  = Barang::findOrNew($id);
@@ -98,8 +98,9 @@ class manageBarangController extends BaseController
         $Barang->jenis                           = $input['jenis'];
         $Barang->harga                           = $input['harga'];
         $Barang->foto                            = ['url'=> $input['url'],
-                                                    'link' => $input['link']
+                                                    'link' => 'deskripsiKatalog'
                                                     ];
+        $Barang->perawatan                       = $input['lama'];
         $Barang->deskripsi                       = $input['deskripsi'];
         $Barang->status                          = 'individu';
 

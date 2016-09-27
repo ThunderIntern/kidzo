@@ -9,7 +9,9 @@
 				</div>
 				@endforeach
 			</div>
-			{{$page_datas->datas->render()}}
+			<div class="row text-center">
+				{{$page_datas->datas->render()}}
+			</div>
 		</div>
 	</div>
 @stop

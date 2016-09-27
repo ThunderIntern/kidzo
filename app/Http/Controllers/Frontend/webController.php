@@ -1514,7 +1514,7 @@ class webController extends BaseController
         return $this->generateView($view_source , $route_source);
     }
 
-    public function newMember($id)
+    public function newMember()
     {
         return $this->generateView('frontend.pages.signup', Request::route()->getName());
     }

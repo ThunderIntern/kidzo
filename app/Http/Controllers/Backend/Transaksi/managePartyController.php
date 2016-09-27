@@ -88,7 +88,7 @@ class managePartyController extends BaseController
     public function store($id = null)
     {
         //get input
-        $input                                   = Input::only('nama' , 'jenis' , 'url' , 'link' , 'harga', 'deskripsi', 'jumlah1' , 'nama1' , 'jumlah2' , 'nama2', 'jumlah3' , 'nama3', 'jumlah4' , 'nama4', 'jumlah5' , 'nama5', 'jumlah6' , 'nama6', 'jumlah7' , 'nama7');
+        $input                                   = Input::only('nama' , 'jenis' , 'url' , 'harga', 'deskripsi', 'jumlah1' , 'nama1' , 'jumlah2' , 'nama2', 'jumlah3' , 'nama3', 'jumlah4' , 'nama4', 'jumlah5' , 'nama5', 'jumlah6' , 'nama6', 'jumlah7' , 'nama7' , 'lama');
         //dd($input);
         //create or edit
         $Barang                                  = Barang::findOrNew($id);
@@ -145,9 +145,10 @@ class managePartyController extends BaseController
         $Barang->jenis                           = $input['jenis'];
         $Barang->harga                           = $input['harga'];
         $Barang->foto                            = ['url'=> $input['url'],
-                                                    'link' => $input['link']
+                                                    'link' => 'deskripsiParty'
                                                     ];
         $Barang->deskripsi                       = $input['deskripsi'];
+        $Barang->perawatan                       = $input['lama'];
         $Barang->status                          = 'party';
         $Barang->isi                             = $array;
 

@@ -30,8 +30,6 @@ elixir(function(mix) {
 				'inputmask/inputmask.date.extensions.js', 
 				'inputmask/jquery.inputmask.js', 
 				'inputmask/inputmask.binding.js',
-				'calender.min.js',
-				'datepicker.js',
 			], 'public/js/backend.js')
     .scripts([
     			'jquery.js',
@@ -39,8 +37,6 @@ elixir(function(mix) {
 				'selectize.min.js',
 				'owl_carousel.min.js',
 				'owl.js',
-				'calender.min.js',
-				'datepicker.js',
 			], 'public/js/frontend.js')
 	.version([
 				'public/css/backend.css',

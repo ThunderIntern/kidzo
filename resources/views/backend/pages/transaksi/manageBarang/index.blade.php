@@ -56,7 +56,9 @@
 					@endforelse								
 				</tbody>
 			</table>
-			{{$page_datas->datas->render()}}
+			<div class="row text-center">
+				{{$page_datas->datas->render()}}
+			</div>
 		</div>
 	</div>
 </div>
