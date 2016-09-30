@@ -191,25 +191,38 @@ class webController extends BaseController
         return $this->generateView($view_source , $route_source);
     }
 
-    public function prosesRating($id){
+    public function prosesRating($id, $idMainan){
+        $newComment                             = new Comment;
 
+        //dd($idMainan);
+        $this->setRefererUrl();
         if(session('akun')==null){
             $this->page_attributes->msg             = 'Data telah disimpan';
             return $this->generateRedirect(route('about'));
         }
         
-        //get input
+        $pemakai                               = Comment::where('username', session('akun'))
+                                                            ->where('idMainan', $idMainan)
+                                                            ->count();
+        // dd($pemakai);
+
         $data                                   = ['rating' => $id];
-        $updateRating                           = Comment::where('username', session('akun'))->update($data);
+        $updateRating                           = Comment::where('username', session('akun'))
+                                                            ->where('idMainan', $idMainan)
+                                                            ->update($data);
 
-
-        $this->page_attributes->msg             = 'Data telah disimpan';
+        $this->page_attributes->msg             = null;
                 
-        return $this->generateRedirect(route('profile'));
+        return $this->generateRedirect($this->getRefererUrl());
     }
 
-    public function prosesKomen(){
-
+    public function prosesKomen($idMainan){
+        if($idMainan == 'a'){
+            $this->page_attributes->msg             = 'Silahkan login terlebih dahulu';
+            return $this->generateRedirect(route('signuped2'));
+        }
+        
+        $this->setRefererUrl();
         if(session('akun')==null){
             $this->page_attributes->msg             = 'Data telah disimpan';
             return $this->generateRedirect(route('about'));
@@ -219,26 +232,33 @@ class webController extends BaseController
                                                         ->get()['0']['attributes'];
 
         $updateRating                        = Comment::where('email', $user['email'])
+                                                        ->where('idMainan', $idMainan)
                                                         ->get()['0']['attributes'];
         //get input
         $input                                  = Input::only('komen_mobile');
 
-        
         if($updateRating['content']['isi']==null && $updateRating['rating']!=null || $updateRating['content']['isi']==null && $updateRating['rating']==null){
             $data                                   = ['content.isi' => $input['komen_mobile']];
-            $user                                   = Comment::where('username', session('akun'))->update($data);
+            $user                                   = Comment::where('username', session('akun'))
+                                                                ->where('idMainan', $idMainan)
+                                                                ->update($data);
+        
         }else{
+            
             //save data
             $comment->content                       = ['isi' => $input['komen_mobile'], 'status'=> '0'];
+            $comment->idMainan                      = $idMainan;
             $comment->username                      = $user['username'];
             $comment->email                         = $user['email'];
             $comment->rating                        = $updateRating['rating'];
             $comment->save();
         }
         $this->errors                           = $comment->getErrors();
-        $this->page_attributes->msg             = 'Data telah disimpan';
         
-        return $this->generateRedirect(route('profile'));
+        
+        $this->page_attributes->msg             = null;
+                
+        return $this->generateRedirect($this->getRefererUrl());
     }
 
 
@@ -380,6 +400,78 @@ class webController extends BaseController
     }
 
     public function deskripsiKatalog($id){
+        $this->page_datas->idMainan             = 'a';
+        //dd($id);
+        $newComment                             = new Comment;
+
+//Menghitung rata-rata rating barang
+        $jumRating                              = Comment::where('idMainan', $id)
+                                                            ->get();
+        $banyak = count($jumRating);
+        $totRating=[];
+        $jumlahRating = 0;
+        $banyakUser2=0;
+        
+        //mengambil rating dari setiap user yang berbeda        
+        foreach ($jumRating as $sumRating) {
+            $tanda=0;
+            if($totRating!=null){
+                for($x=1;$x<=$banyakUser2;$x++){
+                    if($sumRating['attributes']['username']!=$totRating[$x-1][0]){
+
+                        $tanda=1;
+                    }else{
+                        $tanda=0;
+                        $x=$banyakUser2+1;
+                    }
+                }
+            }if($totRating==null){
+                array_push($totRating, [$sumRating['attributes']['username'],$sumRating['attributes']['rating']]);
+                $banyakUser2=1;
+            }
+            if($tanda==1){
+                array_push($totRating, [$sumRating['attributes']['username'],$sumRating['attributes']['rating']]);
+                $banyakUser2+=1;
+            }
+        }
+        $banyakUser = count($totRating);
+
+        //menjumlahkan rating setiap user
+        for($x=0;$x<$banyakUser;$x++){
+            $jumlahRating += $totRating[$x][1];
+        }
+        //menghitung rating total
+        $totalRating = ($jumlahRating / ($banyakUser*5))*5;
+
+        $this->page_datas->totalRating = number_format((float)$totalRating, 1, '.','');
+
+        if(session('akun')!=null){
+            $emails                                 = Comment::where('username', session('akun'))
+                                                                ->get()[0]['attributes']['email'];
+            $this->page_datas->ratingJenis          = Comment::where('username', session('akun'))
+                                                            ->where('idMainan', $id)
+                                                            ->count();
+            if($this->page_datas->ratingJenis==null){
+                $newComment->username                      = session('akun');
+                $newComment->idMainan                      = $id;
+                $newComment->email                         = $emails;
+                $newComment->rating                        = null;
+                $newComment->content                       = ['isi'=>null, 'status'=>null];
+                $newComment->save();
+            }
+
+            $this->page_datas->id         = Comment::where('username', session('akun'))
+                                                            ->where('idMainan', $id)
+                                                            ->get()[0]['attributes']['rating'];
+        
+            $this->page_datas->idMainan             = $id;
+        }
+
+        // dd($this->page_datas->idMainan);
+        $this->page_datas->komen                = Comment::where('idMainan', $id)
+                                                    ->orderBy('created_at','desc')
+                                                    ->get();
+
         $katalog                                = Barang::find($id);
         $now                                    = Carbon::today();
         $bulan                                  = $now->month;
@@ -486,7 +578,7 @@ class webController extends BaseController
                 elseif($month2==$month1){
                     if($day2<$day1){
                         $this->page_attributes->msg             = 'Tanggal sewa salah';
-                        return $this->generateRedirect(route('deskripsiKatalog' , $id));       
+                        return $this->generateRedirect(route('deskripsiKatalog' , $id));
                     }
                 }
             }
@@ -1456,6 +1548,7 @@ class webController extends BaseController
         $user->address                          = $input['alamat'];
 
         $comment->username                      = $input['username'];
+        $comment->idMainan                      = null;
         $comment->email                         = $input['email'];
         $comment->rating                        = null;
         $comment->content                       = ['isi'=>null, 'status'=>null];
@@ -1560,7 +1653,7 @@ class webController extends BaseController
         if(is_null($cari)){
             $this->errors                           = $user->getErrors();
             $this->page_attributes->msg             = 'Username atau password yang anda masukkan salah';
-            return $this->generateRedirect(route('signuped' , $id));                
+            return $this->generateRedirect(route('signuped2'));                
         }
         else{
             session(['akun' => $input['username']]);

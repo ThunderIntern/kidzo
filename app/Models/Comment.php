@@ -13,6 +13,7 @@ class Comment extends BaseModel
      * @var array
      */
     protected $fillable = [
+                                            'idMainan'                      ,
                                             'username'                      ,
                                             'email'                         ,
                                             'content'                       ,

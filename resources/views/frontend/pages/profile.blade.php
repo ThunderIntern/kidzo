@@ -137,8 +137,6 @@
 						<img width="1%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img><br><br>
 					@endif
 					</div>
-					
-					<h6 class="pul mbottom-xs">"{{ ucFirst($komen['content']['isi']) }}"</h6>
 				@endif
 
 				

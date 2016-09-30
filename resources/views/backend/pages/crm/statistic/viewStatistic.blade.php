@@ -3,8 +3,8 @@
 	<div class="card">
 		<div class="card-block">
 			<div class="col-md-12">
-				<h1 class="text-center mtop-s">Data Statistik {!! $page_datas->jenis!!} (dalam bulan)</h1>
-				<p><i>(Sistem akan memproses dan menghasilkan nilai yang optimal untuk jenis mainan dengan permintaan tertinggi pada bulan kemarin. Perhitungan untuk mendapatkan hasil yang optimal memerlukan setidaknya history transaksi minimal sebanyak 3 bulan)</i></p></br>
+				<h1 class="text-center mtop-s">Data Statistik {!! $page_datas->jenis!!}</h1>
+				<p><i>(Sistem ini menghitung berdasarkan data setiap bulan dalam 1 tahun, sehingga pada bulan pertama-ketiga hasil perhitungan tidak akan optimal. Perhitungan untuk mendapatkan hasil yang optimal memerlukan setidaknya history transaksi minimal sebanyak 3 bulan. Sistem akan memproses dan menghasilkan nilai yang optimal untuk jenis mainan dengan permintaan tertinggi pada bulan kemarin.)</i></p></br>
 			</div>
 
 			<div class="col-md-12" style="border:1px solid black">

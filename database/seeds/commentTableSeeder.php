@@ -16,6 +16,7 @@ class commentTableSeeder extends Seeder
 		Comment::truncate();
 
         $Comment 					= new Comment;
+        $Comment['idMainan']        = '57e8a0efd5bc3e2d58005d4a';
         $Comment['username']        = 'abc';
         $Comment['email']            = 'abc@gmail.com';
         $Comment['rating']           = '5';
@@ -25,6 +26,7 @@ class commentTableSeeder extends Seeder
         $Comment->save();
 
         $Comment 					= new Comment;
+        $Comment['idMainan']        = '57e8a0efd5bc3e2d58005d4b';
         $Comment['username']        = 'def';
         $Comment['email']           = 'def@gmail.com';
         $Comment['rating']          = '1';

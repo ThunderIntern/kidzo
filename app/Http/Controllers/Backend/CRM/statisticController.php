@@ -15,6 +15,7 @@ class statisticController extends BaseController
     protected $view_source_root             = 'backend.pages.crm.statistic';
     protected $page_title                   = 'Statistic';
     protected $breadcrumb                   = [];
+
     public function __construct()
     {
         parent::__construct();
@@ -51,6 +52,7 @@ class statisticController extends BaseController
         //menghitung jumlah total setiap barang
         $namaBarang = [];
         $totalJenis = count($namaBarang);
+        $default = null;
         foreach ($barang as $objek){
             foreach ($objek['attributes']['barang'] as $item){
                 //menghitung jumlah permintaan tertinggi dari setiap barang berdasarkan H-1 bulan terakhir
@@ -82,6 +84,14 @@ class statisticController extends BaseController
                 }
             }
         }
+        $divZero = 0;
+        if($default==null){
+            $divZero                                = 0;
+            $this->page_datas->divZero              = $divZero;
+            $this->page_attributes->msg             = null;
+            return $this->generateView('backend.pages.crm.statistic.noData', Request::route()->getName());
+        }
+
         if($namaBarang == null){
             $namaBarang[0][0] = $default;
         }else{
@@ -540,6 +550,15 @@ class statisticController extends BaseController
         $Statistic['persediaanAkhir']   = $stokLast;
         $Statistic['jumlahBeli']        = null;
         $Statistic->save();
+        
+        //menghindari pembagian dengan nol
+        if($Statistic['permintaanMax']==$Statistic['permintaanMin'] || $Statistic['persediaanMax']==$Statistic['persediaanMin']){
+            $divZero                                = 1;
+            $this->page_datas->divZero              = $divZero;
+            $this->page_attributes->msg             = null;
+            return $this->generateView('backend.pages.crm.statistic.noData', Request::route()->getName());
+        }
+
 
         if($Statistic['permintaanAkhir']<$Statistic['permintaanMin']){
             $permintaanTurun        = 1;
