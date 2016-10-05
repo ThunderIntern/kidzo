@@ -1,3 +1,3 @@
-<a href="{{Route($data['foto']['link'], ['id' => $data->id])}}"><img style="width: 300px; height: 300px" class="img-responsive img-center" src="{{asset($data['foto']['url'])}}"></img>
-<h3 class="black">{{$data['nama']}}</h3>
-<h4 class="black">Rp. {{$data['harga']}} /Hari</h4></a>
+<a href="{{Route($data['foto']['link'], ['id' => $data->id])}}"><img width="100%" class="img-responsive img-center" src="{{asset($data['foto']['url'])}}"></img>
+<h3 class="blue">{{$data['nama']}}</h3>
+<h4 class="black"><i>from</i> Rp. {{$data['harga']}} Available</h4></a>

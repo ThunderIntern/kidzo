@@ -19,7 +19,8 @@ class BarangsTableSeeder extends Seeder
 
         $Barang['nama']		        = 'Sepeda';
         $Barang['isi']              = null;
-        $Barang['jenis']            = 'Sport';  
+        $Barang['jenis']            = 'Sport';
+        $Barang['kategori']         = '1';  
         $Barang['foto']             = [
                                             'url'    =>'images/frontend/mainan1.jpg',
                                             'link'   => 'deskripsiKatalog'
@@ -28,6 +29,7 @@ class BarangsTableSeeder extends Seeder
         $Barang['deskripsi']        = 'Ini Mainan Kidzo';
         $Barang['perawatan']        = '1';
         $Barang['status']           = 'individu';
+        $Barang['gudang']           = 'Tidak';
         $Barang['admin']			= 'Admin';
         $Barang->save();
 
@@ -36,7 +38,8 @@ class BarangsTableSeeder extends Seeder
 
         $Barang['nama']             = 'Mobil';
         $Barang['isi']              = null;
-        $Barang['jenis']            = 'Sport';  
+        $Barang['jenis']            = 'Sport';
+        $Barang['kategori']         = '2';  
         $Barang['foto']             = [
                                             'url'    =>'images/frontend/mainan1.jpg',
                                             'link'   => 'deskripsiKatalog'
@@ -45,6 +48,7 @@ class BarangsTableSeeder extends Seeder
         $Barang['deskripsi']        = 'Ini Mainan Kidzo';
         $Barang['perawatan']        = '2';
         $Barang['status']           = 'individu';
+        $Barang['gudang']           = 'Ya';
         $Barang['admin']            = 'Admin';
         $Barang->save();
 
@@ -61,6 +65,7 @@ class BarangsTableSeeder extends Seeder
                                                             'jumlah' => '3'
                                                         ]
                                       ];
+        $Barang['kategori']         = '2';
         $Barang['jenis']            = 'Party';
         $Barang['foto']             = [
                                             'url'    =>'images/frontend/capture4.jpg',
@@ -70,6 +75,7 @@ class BarangsTableSeeder extends Seeder
         $Barang['deskripsi']        = '2 Mobil 3 Sepeda';
         $Barang['perawatan']        = '4';
         $Barang['status']           = 'party';
+        $Barang['gudang']           = 'Tidak';    
         $Barang['admin']            = 'Admin';
         $Barang->save();
 
@@ -86,6 +92,7 @@ class BarangsTableSeeder extends Seeder
                                                             'jumlah' => '2'
                                                         ]
                                       ];
+        $Barang['kategori']         = '2';
         $Barang['jenis']            = 'Party';  
         $Barang['foto']             = [
                                             'url'    =>'images/frontend/capture4.jpg',
@@ -95,6 +102,7 @@ class BarangsTableSeeder extends Seeder
         $Barang['deskripsi']        = '3 Mobil 2 Sepeda';
         $Barang['perawatan']        = '5';
         $Barang['status']           = 'party';
+        $Barang['gudang']           = 'Tidak';
         $Barang['admin']            = 'Admin';
         $Barang->save();
     }

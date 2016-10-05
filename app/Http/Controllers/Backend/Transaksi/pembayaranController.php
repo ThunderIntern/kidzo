@@ -107,10 +107,12 @@ class pembayaranController extends BaseController
 
             $History = $His['attributes'];
             //dd($History);
+
+            $array = ['nama' => $His['nama'] , 'alamat' => $His['alamat'] , 'nomor' => $His['nomor'] , 'barang' => $His['barang'] , 'nota' => $His['nota'] , 'total' => $His['total']];
             $cari = History::where('username' , $History['username'])
                            ->first()['attributes'];
             if($cari['history'] == null){
-                $history[] = $History;
+                $history[] = $array;
                 History::where('username' , $History['username'])
                         ->update(['history' => $history]);  
             }
@@ -118,20 +120,10 @@ class pembayaranController extends BaseController
                 foreach ($cari['history'] as $key => $car) {
                     $history[$key] = $car;
                 }
-                $history[] = $History;
+                $history[] = $array;
                 History::where('username' , $History['username'])
                         ->update(['history' => $history]);   
             }
-            $His->delete();
-            $new                              = new Transaksi;
-            $new->username                    = $History['username'];
-            $new->nama                        = null;
-            $new->alamat                      = null;
-            $new->nomor                       = null;
-            $new->barang                      = null;
-            $new->nota                        = null;
-            $new->status                      = 'chart';
-            $new->save();
         }
 
         $this->errors                           = $Transaksi->getErrors();

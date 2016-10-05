@@ -340,6 +340,7 @@ class webController extends BaseController
 
     public function party(){
         $katalog                                = Barang::where('status' , 'party')
+                                                        ->where('gudang' , 'Tidak')
                                                         ->get();
         //dd($katalog);
 
@@ -387,6 +388,7 @@ class webController extends BaseController
 
     public function katalog(){
         $katalog                                = Barang::where('status' , 'individu')
+                                                        ->where('gudang' , 'Tidak')
                                                         ->paginate(6);
         //dd($katalog);
 
@@ -514,8 +516,18 @@ class webController extends BaseController
         $chart                                  = Transaksi::where('username',session('akun'))
                                                            ->where('status','chart')
                                                            ->first()['attributes']['barang'];
+        $subtotal = 0;
         //dd($chart);
-        $this->page_datas->datas                = $chart;
+        foreach ($chart as $key => $brg) {
+            if($brg['status'] == 'individu'){
+                $subtotal += (int)$brg['harga'] * (int)$brg['jumlah'];
+            }
+            else{
+                $subtotal += (int)$brg['harga'];   
+            }
+        }
+        $array = ['chart' => $chart , 'subtotal' => $subtotal];
+        $this->page_datas->datas                = $array;
         //dd($this->page_datas->datas);
 
         $this->page_attributes->page_title      = $this->page_title;
@@ -710,21 +722,16 @@ class webController extends BaseController
                                                                ->first()['attributes']['barang'];
 
             if(is_null($chart)){
-                if(is_null($cek)){
-                    $brg[$nama]                       = $array;
-                }
-                else{
-                    $brg[$nama]                       = $array;
-                    $new->username                    = session('akun');
-                    $new->nama                        = null;
-                    $new->alamat                      = null;
-                    $new->nomor                       = null;
-                    $new->barang                      = $brg;
-                    $new->nota                        = null;
-                    $new->total                        = null;
-                    $new->status                      = 'chart';
-                    $new->save();
-                }
+                $brg[$nama]                       = $array;
+                $new->username                    = session('akun');
+                $new->nama                        = null;
+                $new->alamat                      = null;
+                $new->nomor                       = null;
+                $new->barang                      = $brg;
+                $new->nota                        = null;
+                $new->total                        = null;
+                $new->status                      = 'chart';
+                $new->save();
             }
             else{
                 foreach ($chart as $key => $data) {
@@ -915,26 +922,18 @@ class webController extends BaseController
             $chart                                  = Transaksi::where('username',session('akun'))
                                                                ->where('status','chart')
                                                                ->first()['attributes']['barang'];
-            $cek                                    = Transaksi::where('username',session('akun'))
-                                                               ->where('status','pending')
-                                                               ->first()['attributes']['barang'];
 
             if(is_null($chart)){
-                if(is_null($cek)){
-                    $brg[$nama]                       = $array;
-                }
-                else{
-                    $brg[$nama]                       = $array;
-                    $new->username                    = session('akun');
-                    $new->nama                        = null;
-                    $new->alamat                      = null;
-                    $new->nomor                       = null;
-                    $new->barang                      = $brg;
-                    $new->nota                        = null;
-                    $new->total                        = null;
-                    $new->status                      = 'chart';
-                    $new->save();
-                }
+                $brg[$nama]                       = $array;
+                $new->username                    = session('akun');
+                $new->nama                        = null;
+                $new->alamat                      = null;
+                $new->nomor                       = null;
+                $new->barang                      = $brg;
+                $new->nota                        = null;
+                $new->total                        = null;
+                $new->status                      = 'chart';
+                $new->save();
             }
             else{
                 foreach ($chart as $key => $data) {
@@ -1266,11 +1265,13 @@ class webController extends BaseController
                 } 
             }
         }
-        $random = random_int(1, 100);
-        $total = $total - 100 + $random;
-        Transaksi::where('username',session('akun'))
-                 ->where('status','pending')
-                 ->update(['total' => $total]);
+        if(is_null($check)){
+            $random = random_int(1, 100);
+            $total = $total - 100 + $random;
+        }
+            Transaksi::where('username',session('akun'))
+                     ->where('status','pending')
+                     ->update(['total' => $total]);
 
         $array                                  = ['transaksi' => $check , 'total' => $total];
         

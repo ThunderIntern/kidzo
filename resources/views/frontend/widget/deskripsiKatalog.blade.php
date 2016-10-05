@@ -39,6 +39,8 @@
         </div>
     </div>
 </div>
+@if(is_null($page_datas->datas['inven']))
+@else
 <div class="col-md-3 col-sm-3">
 <table class="table">
     <tr>
@@ -46,9 +48,9 @@
         <th>Nama Barang</th>
         <th>Sisa Stok</th>
     </tr>    
+            <?php //dd($page_datas->datas) ?>
         @foreach($page_datas->datas['inven'] as $key => $data)
         <tr>
-            <?php //dd($data) ?>
             <td>{{$data['tanggal']}}</td>
             @foreach($data['inventory']['barang'] as $key2 => $barang)
             <tr>
@@ -61,6 +63,7 @@
         @endforeach
 </table>
 </div>
+@endif
 {!! Form::close() !!}
 
 <div class="col-md-12">
@@ -288,22 +291,6 @@ function DisableSpecificDates(date) {
 }
   $( function() {
     $( "#datepicker" ).datepicker({
-        <?php 
-                use Carbon\Carbon;
-                $now = Carbon::today()->format('d/m/Y');
-                        $moment = null;
-                            foreach ($page_datas->datas['inven'] as $key => $data) {
-                                //dd($data);
-                                foreach($data['inventory']['barang'] as $key2 => $barang){
-                                    //dd($barang);
-                                    if($barang['nama'] == $page_datas->datas['barang']['attributes']['nama'] && $barang['currentStock'] == '0'){
-                                        $moment['$key'] = ['tanggal' => $data['tanggal']];
-                                    }
-                                }
-                            }
-                        //dd($moment); 
-                        ?>
-   
         format: 'yyyy-mm-dd',
         startDate: new Date()
     });
