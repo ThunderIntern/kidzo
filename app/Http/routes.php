@@ -56,11 +56,12 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/unsubscribe/{unsub_token}', ['uses' => 'webController@unsubscribeNewsletter', 'as' => 'unsub.news']);
 
 
-	Route::get('/prosesRating/{item}/{jenis}', ['uses' => 'webController@prosesRating', 'as' => 'prosesRating']);
-	Route::post('/prosesKomen/{jenis}', ['uses' => 'webController@prosesKomen', 'as' => 'prosesKomen']);
-	Route::get('/setting', ['uses' => 'webController@setting', 'as' => 'setting']);
+	Route::get('/profile/historyUser', ['uses' => 'webController@historyUser', 'as' => 'historyUser']);
+	Route::get('/prosesRating/{item}/{jenis}/{partyIndividu}', ['uses' => 'webController@prosesRating', 'as' => 'prosesRating']);
+	Route::post('/prosesKomen/{jenis}/{partyIndividu}', ['uses' => 'webController@prosesKomen', 'as' => 'prosesKomen']);
+	Route::get('/profile/setting', ['uses' => 'webController@setting', 'as' => 'setting']);
 	Route::post('/update', ['uses' => 'webController@updateSetting', 'as' => 'updateSetting']);
-	Route::get('/password', ['uses' => 'webController@password', 'as' => 'password']);
+	Route::get('/profile/password', ['uses' => 'webController@password', 'as' => 'password']);
 	Route::post('/newPassword', ['uses' => 'webController@updatePassword', 'as' => 'updatePassword']);
 	Route::get('/profile', ['uses' => 'webController@profile', 'as' => 'profile']);
 	Route::get('/forgot', ['uses' => 'webController@forgot', 'as' => 'forgot']);

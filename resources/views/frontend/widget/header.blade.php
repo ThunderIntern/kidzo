@@ -50,7 +50,7 @@ button:
                                         </li>
                                     @else
                                         <li class="loginHover nav-item borderTop5 blue paddingBottom25 paddingTop25">
-                                            <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black <?php if($segment1=='signup') echo 'blue';?>" href="{{Route('profile')}}">Profile</a>
+                                            <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black <?php if($segment1=='profile') echo 'blue';?>" href="{{Route('profile')}}">Profile</a>
                                         </li>
                                     @endif
                                 </ul>

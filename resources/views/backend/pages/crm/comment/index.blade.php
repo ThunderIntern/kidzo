@@ -24,6 +24,7 @@
 				</thead>
 				<tbody>
 					@forelse ($page_datas->datas as $key => $data)
+					@if($data['content']['isi']!=null)
 						<tr>
 							<td class="col-md-1">
 								{{($page_datas->datas->perpage() * ($page_datas->datas->currentPage()-1)) + ($key + 1)}}
@@ -48,6 +49,7 @@
 						        </a>
 							</td>
 						</tr>										
+					@endif
 					@empty
 						<tr>
 							<td COLSPAN=4>

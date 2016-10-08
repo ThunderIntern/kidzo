@@ -1,3 +1,4 @@
+
 .floatRight{
 	float:right;
 }
@@ -5,6 +6,9 @@
 	float:left;
 }
 
+.borderAbu{
+	border : 1px solid $abu;
+}
 .borderTop1{
 	border-top:1px solid;
 }
@@ -40,7 +44,7 @@
 }
 
 .borderBottom1{
-	border-bottom:1px solid;
+	border-bottom:1px solid $abu;
 }
 .borderBottom5{
 	border-bottom:5px solid;

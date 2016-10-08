@@ -31,6 +31,7 @@ class webController extends BaseController
     protected $view_source_root             = 'frontend.pages';
     protected $page_title                   = 'about';
     protected $breadcrumb                   = [];
+
     
     public function __construct()
     {
@@ -108,12 +109,14 @@ class webController extends BaseController
             $this->page_attributes->msg             = 'Data telah disimpan';
             return $this->generateRedirect(route('login'));
         }
-        $this->page_datas->komen                = Comment::orderBy('created_at','desc')
-                                                        ->get();
-        $this->page_datas->id                   = Comment::where('username', session('akun'))
-                                                        ->get()['0']['attributes']['rating'];
 
+        $pengguna                   = User::where('username', session('akun'))
+                                            ->get()['0']['attributes'];
+        $this->page_datas->name     = $pengguna['name'];
+        $this->page_datas->address  = $pengguna['address'];
+        $this->page_datas->phone  = $pengguna['phone'];
 
+        
         return $this->generateView('frontend.pages.profile', Request::route()->getName());
     }
 
@@ -124,8 +127,8 @@ class webController extends BaseController
                                                         ->get()['0']['attributes'];
                                                         
         if($input['password'] != $user['password'] || $input['new_password'] != $input['conf_password']){
-            $this->page_attributes->msg             = 'Password Tidak Sesuai';
-            return $this->generateView('frontend.pages.signup', Request::route()->getName());
+            $this->page_attributes->msg             = 'Password Tidak Sesuai / Tidak Terisi';
+            return $this->generateView('frontend.pages.password', Request::route()->getName());
         }
 
         $data                                   = ['password' => $input['new_password'] ];
@@ -134,11 +137,10 @@ class webController extends BaseController
         
         $this->page_attributes->msg             = 'Data telah disimpan';        
 
-        return $this->generateRedirect(route('home'));
+        return $this->generateRedirect(route('profile'));
     }
 
     public function password(){
-
         if(session('akun')==null){
             $this->page_attributes->msg             = 'Data telah disimpan';
             return $this->generateRedirect(route('about'));
@@ -151,20 +153,65 @@ class webController extends BaseController
         return $this->generateView($view_source , $route_source);    
     }
 
+    public function historyUser(){
+        if(session('akun')==null){
+            $this->page_attributes->msg             = 'Data telah disimpan';
+            return $this->generateRedirect(route('home'));
+        }
+
+        $riw                                    = History::where('username', session('akun'))
+                                                            ->get()[0]['attributes'];
+
+        $bnyk   = 0;
+        $item   = [];
+        $item2   = [];
+        //menginput data user per keranjang dalam array
+        foreach ($riw['history'] as $riwayat) {
+            if($riw['history']!=null){
+                $this->page_datas->username[$bnyk]             = $riw['username'];
+                $this->page_datas->nama[$bnyk]                 = $riwayat['nama'];
+                $this->page_datas->alamat[$bnyk]               = $riwayat['alamat'];
+                $this->page_datas->nomor[$bnyk]                = $riwayat['nomor'];
+                $this->page_datas->nota[$bnyk]                 = $riwayat['nota'];
+                $this->page_datas->total[$bnyk]                = $riwayat['total'];
+
+                //menginput data dari setiap jenis barang yang disewa per keranjang
+                foreach ($riwayat['barang'] as $riwayat2) {
+                    array_push($item, [$riwayat2['nama'], $riwayat2['harga'], $riwayat2['jumlah'],
+                     $riwayat2['lama-sewa'], $riwayat2['tanggal-keluar']]);
+                }
+                //menandai akhir array perkeranjang untuk tampilan
+                array_push($item, null);
+                //menginput hasil data perjenis mainan dalam 1 keranjang menjadi 1 array
+                array_push($item2, $item);
+            }else{
+                $this->page_datas->username                    = null;
+            }
+            $bnyk+=1;
+            $item=[];
+        }
+        $this->page_datas->barang               = $item2;
+        // dd($this->page_datas->barang);
+        $this->page_datas->banyakRiwayat        = $bnyk;
+
+        //generate view
+        $view_source                            = $this->view_source_root . '.historyUser';
+        $route_source                           = Request::route()->getName();        
+        return $this->generateView($view_source , $route_source);    
+    }
+
     public function updateSetting(){                                              
         //get input
-        $input                                  = Input::only('username','nama','no','alamat');
-        $data                                   = ['username' => $input['username'], 
-                                                    'name' => $input['nama'],
+        $input                                  = Input::only('nama','no','alamat');
+        $data                                   = ['name' => $input['nama'],
                                                     'phone' => $input['no'],
                                                     'address' => $input['alamat']
                                                     ];
         $user                                = User::where('username', session('akun'))->update($data);
-        session(['akun' => $input['username']]);        
 
         $this->page_attributes->msg             = 'Data telah disimpan';
 
-        return $this->generateRedirect(route('home'));
+        return $this->generateRedirect(route('profile'));
     }
 
     public function setting(){
@@ -191,11 +238,10 @@ class webController extends BaseController
         return $this->generateView($view_source , $route_source);
     }
 
-    public function prosesRating($id, $idMainan){
+    public function prosesRating($id, $idMainan, $partyIndividu){
         $newComment                             = new Comment;
 
         //dd($idMainan);
-        $this->setRefererUrl();
         if(session('akun')==null){
             $this->page_attributes->msg             = 'Data telah disimpan';
             return $this->generateRedirect(route('about'));
@@ -211,18 +257,22 @@ class webController extends BaseController
                                                             ->where('idMainan', $idMainan)
                                                             ->update($data);
 
-        $this->page_attributes->msg             = null;
-                
-        return $this->generateRedirect($this->getRefererUrl());
+        if($partyIndividu==1){
+            $this->page_attributes->msg             = null;
+            return $this->generateRedirect(route('deskripsiParty', $idMainan));
+        }
+        if($partyIndividu==2){
+            $this->page_attributes->msg             = null;
+            return $this->generateRedirect(route('deskripsiKatalog', $idMainan));
+        }
     }
 
-    public function prosesKomen($idMainan){
+    public function prosesKomen($idMainan, $partyIndividu){
         if($idMainan == 'a'){
             $this->page_attributes->msg             = 'Silahkan login terlebih dahulu';
             return $this->generateRedirect(route('signuped2'));
         }
         
-        $this->setRefererUrl();
         if(session('akun')==null){
             $this->page_attributes->msg             = 'Data telah disimpan';
             return $this->generateRedirect(route('about'));
@@ -255,10 +305,14 @@ class webController extends BaseController
         }
         $this->errors                           = $comment->getErrors();
         
-        
-        $this->page_attributes->msg             = null;
-                
-        return $this->generateRedirect($this->getRefererUrl());
+        if($partyIndividu==1){
+            $this->page_attributes->msg             = null;
+            return $this->generateRedirect(route('deskripsiParty', $idMainan));
+        }
+        if($partyIndividu==2){
+            $this->page_attributes->msg             = null;
+            return $this->generateRedirect(route('deskripsiKatalog', $idMainan));
+        }
     }
 
 
@@ -354,6 +408,80 @@ class webController extends BaseController
     }
 
     public function deskripsiParty($id){
+        $this->page_datas->partyIndividu        = 1;
+        
+        $newComment                             = new Comment;
+        $this->page_datas->komen                = Comment::where('idMainan', $id)
+                                                    ->orderBy('created_at','desc')
+                                                    ->get();
+
+        //Menghitung rata-rata rating barang
+        $jumRating                              = Comment::where('idMainan', $id)
+                                                            ->get();
+        $banyak = count($jumRating);
+        $totRating=[];
+        $jumlahRating = 0;
+        $banyakUser2=0;
+        
+        //mengambil rating dari setiap user yang berbeda        
+        foreach ($jumRating as $sumRating) {
+            $tanda=0;
+            if($totRating!=null){
+                for($x=1;$x<=$banyakUser2;$x++){
+                    if($sumRating['attributes']['username']!=$totRating[$x-1][0]){
+
+                        $tanda=1;
+                    }else{
+                        $tanda=0;
+                        $x=$banyakUser2+1;
+                    }
+                }
+            }if($totRating==null){
+                array_push($totRating, [$sumRating['attributes']['username'],$sumRating['attributes']['rating']]);
+                $banyakUser2=1;
+            }
+            if($tanda==1){
+                array_push($totRating, [$sumRating['attributes']['username'],$sumRating['attributes']['rating']]);
+                $banyakUser2+=1;
+            }
+        }
+        $banyakUser = count($totRating);
+        //menjumlahkan rating setiap user
+        for($x=0;$x<$banyakUser;$x++){
+            $jumlahRating += $totRating[$x][1];
+        }
+
+        //menghitung rating total
+        if($banyakUser!=0){
+            $totalRating = ($jumlahRating / ($banyakUser*5))*5;
+        }else{
+            $totalRating = 0;
+        }
+
+        $this->page_datas->totalRating = number_format((float)$totalRating, 1, '.','');
+
+        if(session('akun')!=null){
+            $emails                                 = Comment::where('username', session('akun'))
+                                                                ->get()[0]['attributes']['email'];
+            $this->page_datas->ratingJenis          = Comment::where('username', session('akun'))
+                                                            ->where('idMainan', $id)
+                                                            ->count();
+            if($this->page_datas->ratingJenis==null){
+                $newComment->username                      = session('akun');
+                $newComment->idMainan                      = $id;
+                $newComment->email                         = $emails;
+                $newComment->rating                        = null;
+                $newComment->content                       = ['isi'=>null, 'status'=>null];
+                $newComment->save();
+            }
+
+            $this->page_datas->id         = Comment::where('username', session('akun'))
+                                                            ->where('idMainan', $id)
+                                                            ->get()[0]['attributes']['rating'];
+        
+            $this->page_datas->idMainan             = $id;
+        }
+
         $katalog                                = Barang::find($id);
         $now                                    = Carbon::today();
         $bulan                                  = $now->month;
@@ -387,10 +515,59 @@ class webController extends BaseController
     }
 
     public function katalog(){
+        $totTiapJenis = 0;
+        $topRating                              = Comment::where('rating', '!=', null)
+                                                            ->get();
+        $jumTopRating=[];
+        foreach ($topRating as $topR) {
+            $tanda=0;
+            if($jumTopRating!=null){
+                for($x=1;$x<=$banyakUser2;$x++){
+                    if($topR['attributes']['idMainan']!=$jumTopRating[$x-1][0]){
+                        $tanda=1;
+                    }else{
+                        $tanda=0;
+                        $x=$banyakUser2+1;
+                    }
+                }
+            }if($jumTopRating==null){
+                array_push($jumTopRating, [$topR['attributes']['idMainan'],$topR['attributes']['rating']]);
+                $banyakUser2=1;
+            }
+            if($tanda==1){
+                array_push($jumTopRating, [$topR['attributes']['idMainan'],$topR['attributes']['rating']]);
+                $banyakUser2+=1;
+            }
+        }
+         // dd($jumTopRating);
+        $jtRating = count($jumTopRating);
+
+        $totalTiapJenis = [];
+        for($x=0;$x<$jtRating;$x++){
+            $jenisMainan = Comment::where('idMainan', $jumTopRating[$x][0])
+                                    ->where('rating', '!=', null)
+                                    ->get();
+                                    
+            foreach ($jenisMainan as $jnsMainan) {
+                $totTiapJenis += (int)$jnsMainan['attributes']['rating'];
+            }
+            array_push($totalTiapJenis, [$jumTopRating[$x][0], $totTiapJenis]);
+            $totTiapJenis = 0;
+        }
+        //melakukan sorting jumlah permintaan tertinggi dari seluruh mainan
+        for($x=count($totalTiapJenis)-1;$x>0;$x--){
+            if($totalTiapJenis[$x-1][1]>$totalTiapJenis[$x][1]){
+                $z = $totalTiapJenis[$x-1];
+                $totalTiapJenis[$x-1] = $totalTiapJenis[$x];
+                $totalTiapJenis[$x] = $z;
+            }
+        }
+        // dd($totalTiapJenis);
+
+
         $katalog                                = Barang::where('status' , 'individu')
                                                         ->where('gudang' , 'Tidak')
                                                         ->paginate(6);
-        //dd($katalog);
 
         $this->page_datas->datas                = $katalog;
 
@@ -402,6 +579,8 @@ class webController extends BaseController
     }
 
     public function deskripsiKatalog($id){
+        $this->page_datas->partyIndividu        = 2;
+
         $this->page_datas->idMainan             = 'a';
         //dd($id);
         $newComment                             = new Comment;
@@ -443,7 +622,11 @@ class webController extends BaseController
             $jumlahRating += $totRating[$x][1];
         }
         //menghitung rating total
-        $totalRating = ($jumlahRating / ($banyakUser*5))*5;
+        if($banyakUser!=0){
+            $totalRating = ($jumlahRating / ($banyakUser*5))*5;
+        }else{
+            $totalRating = 0;
+        }
 
         $this->page_datas->totalRating = number_format((float)$totalRating, 1, '.','');
 
@@ -497,7 +680,6 @@ class webController extends BaseController
         //dd($data);
 
         $this->page_datas->datas                = $data;
-        //dd($this->page_datas->datas);
 
         $this->page_attributes->page_title      = $this->page_title;
         //generate view
