@@ -8,7 +8,7 @@
 	<div class="container">
 		<div class="col-md-12">
 			<div class="row">
-				@if(is_null($page_datas->datas))
+				@if(is_null($page_datas->datas['chart']))
 				<div class="jumbotron text-center">
 					<h2>No Chart Added</h2>
 				</div>

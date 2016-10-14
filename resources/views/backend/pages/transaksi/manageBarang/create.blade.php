@@ -49,7 +49,15 @@
 			<fieldset class="form-group">
 				<label for="name">Lama Perawatan</label>
 				{{ Form::number('lama', $page_datas->datas['perawatan'], ['class' => 'form-control']) }}
+			</fieldset>	
+			<fieldset class="form-group">
+				<label for="name">Kategori</label>
+				{{ Form::select('kategori', ['0' => '0 Tahun', '1' => '1 Tahun' , '2' => '2 Tahun' , '3' => '3 Tahun' , '3+' => '3+ Tahun'], $page_datas->datas['kategori'], ['class' => 'form-control c-select']) }}
 			</fieldset>		
+			<fieldset class="form-group">
+				<label for="name">Gudang</label>
+				{{ Form::select('gudang', ['Tidak' => 'Tidak', 'Ya' => 'Ya'], $page_datas->datas['gudang'], ['class' => 'form-control c-select']) }}
+			</fieldset>	
 			<fieldset class="form-group">
 				<label for="name">Jumlah Barang Ditambahkan</label>
 				{{ Form::number('jumlah', $page_datas->datas['jumlah'], ['class' => 'form-control']) }}

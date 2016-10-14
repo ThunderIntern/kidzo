@@ -35,7 +35,7 @@ button:
                                         <a class="marginRight-10 paddingRight10 black paddingBottom20 paddingTop20 borderRight1 <?php if($segment1=='home') echo 'red';?>" href="{{Route('home')}}">Home</a>
                                    </li>
                                     <li class="mainanHover nav-item borderTop5 green paddingBottom25 paddingTop25">
-                                        <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black borderRight1 <?php if($segment1=='katalog') echo 'green';?>" href="{{Route('katalog')}}">Mainan</a>
+                                        <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black borderRight1 <?php if($segment1=='katalog') echo 'green';?>" href="{{Route('katalog' , ['no' => '0'])}}">Mainan</a>
                                     </li>
                                     <li class="partyHover nav-item borderTop5 orange paddingBottom25 paddingTop25">
                                         <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black borderRight1 <?php if($segment1=='party') echo 'orange';?>" href="{{Route('party')}}">Party Pack</a>
@@ -140,7 +140,7 @@ button:
                                             </a>
                                         </li>
                                         <li class="nav-item hoverMainan ">
-                                            <a class="nav-link pull-left paddingLeft30" href="{{Route('katalog')}}">
+                                            <a class="nav-link pull-left paddingLeft30" href="{{Route('katalog' , ['no' => '0'])}}">
                                                 <div class="green">Mainan</div>
                                             </a>
                                         </li>

@@ -23,7 +23,7 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/about/{category}/{sub_category}', ['uses' => 'webController@about', 'as' => 'aboutCategory']);
 	Route::get('/party', ['uses' => 'webController@party', 'as' => 'party']);
 	Route::get('/Deskripsi Party/{id}', ['uses' => 'webController@deskripsiParty', 'as' => 'deskripsiParty']);
-	Route::get('/katalog', ['uses' => 'webController@katalog', 'as' => 'katalog']);
+	Route::get('/katalog/{no}', ['uses' => 'webController@katalog', 'as' => 'katalog']);
 	Route::get('/Deskripsi Katalog/{id}', ['uses' => 'webController@deskripsiKatalog', 'as' => 'deskripsiKatalog']);
 	Route::get('/chart', ['uses' => 'webController@chart', 'as' => 'chart']);
 	Route::post('/addtochart/{id}', ['uses' => 'webController@addChart', 'as' => 'addChart']);

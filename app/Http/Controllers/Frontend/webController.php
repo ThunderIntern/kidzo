@@ -514,7 +514,7 @@ class webController extends BaseController
         return $this->generateView($view_source , $route_source);
     }
 
-    public function katalog(){
+    public function katalog($no){
         $totTiapJenis = 0;
         $topRating                              = Comment::where('rating', '!=', null)
                                                             ->get();
@@ -564,18 +564,75 @@ class webController extends BaseController
         }
         // dd($totalTiapJenis);
 
+        if($no == '0'){
+            $katalog                                = Barang::where('status' , 'individu')
+                                                            ->where('gudang' , 'Tidak')
+                                                            ->paginate(6);
 
-        $katalog                                = Barang::where('status' , 'individu')
-                                                        ->where('gudang' , 'Tidak')
-                                                        ->paginate(6);
+            $this->page_datas->datas                = $katalog;
 
-        $this->page_datas->datas                = $katalog;
+            $this->page_attributes->page_title      = $this->page_title;
+            //generate view
+            $view_source                            = $this->view_source_root . '.katalog';
+            $route_source                           = Request::route()->getName();        
+            return $this->generateView($view_source , $route_source);
+        }
+        elseif($no == '1'){
+            $katalog                                = Barang::where('status' , 'individu')
+                                                            ->where('gudang' , 'Tidak')
+                                                            ->whereIn('kategori' , ['0' ,'1'])
+                                                            ->paginate(6);
 
-        $this->page_attributes->page_title      = $this->page_title;
-        //generate view
-        $view_source                            = $this->view_source_root . '.katalog';
-        $route_source                           = Request::route()->getName();        
-        return $this->generateView($view_source , $route_source);
+            $this->page_datas->datas                = $katalog;
+
+            $this->page_attributes->page_title      = $this->page_title;
+            //generate view
+            $view_source                            = $this->view_source_root . '.katalog';
+            $route_source                           = Request::route()->getName();        
+            return $this->generateView($view_source , $route_source);
+        }
+        elseif($no == '2'){
+            $katalog                                = Barang::where('status' , 'individu')
+                                                            ->where('gudang' , 'Tidak')
+                                                            ->whereIn('kategori' , ['1' ,'2'])
+                                                            ->paginate(6);
+
+            $this->page_datas->datas                = $katalog;
+
+            $this->page_attributes->page_title      = $this->page_title;
+            //generate view
+            $view_source                            = $this->view_source_root . '.katalog';
+            $route_source                           = Request::route()->getName();        
+            return $this->generateView($view_source , $route_source);
+        }
+        elseif($no == '3'){
+            $katalog                                = Barang::where('status' , 'individu')
+                                                            ->where('gudang' , 'Tidak')
+                                                            ->whereIn('kategori' , ['2' ,'3'])
+                                                            ->paginate(6);
+
+            $this->page_datas->datas                = $katalog;
+
+            $this->page_attributes->page_title      = $this->page_title;
+            //generate view
+            $view_source                            = $this->view_source_root . '.katalog';
+            $route_source                           = Request::route()->getName();        
+            return $this->generateView($view_source , $route_source);
+        }
+        elseif($no == '4'){
+            $katalog                                = Barang::where('status' , 'individu')
+                                                            ->where('gudang' , 'Tidak')
+                                                            ->where('kategori' , '3+')
+                                                            ->paginate(6);
+
+            $this->page_datas->datas                = $katalog;
+
+            $this->page_attributes->page_title      = $this->page_title;
+            //generate view
+            $view_source                            = $this->view_source_root . '.katalog';
+            $route_source                           = Request::route()->getName();        
+            return $this->generateView($view_source , $route_source);
+        }
     }
 
     public function deskripsiKatalog($id){
@@ -700,12 +757,14 @@ class webController extends BaseController
                                                            ->first()['attributes']['barang'];
         $subtotal = 0;
         //dd($chart);
-        foreach ($chart as $key => $brg) {
-            if($brg['status'] == 'individu'){
-                $subtotal += (int)$brg['harga'] * (int)$brg['jumlah'];
-            }
-            else{
-                $subtotal += (int)$brg['harga'];   
+        if($chart != null){
+            foreach ($chart as $key => $brg) {
+                if($brg['status'] == 'individu'){
+                    $subtotal += (int)$brg['harga'] * (int)$brg['jumlah'];
+                }
+                else{
+                    $subtotal += (int)$brg['harga'];   
+                }
             }
         }
         $array = ['chart' => $chart , 'subtotal' => $subtotal];
