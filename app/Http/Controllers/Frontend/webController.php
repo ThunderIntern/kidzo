@@ -767,6 +767,7 @@ class webController extends BaseController
                 }
             }
         }
+
         $array = ['chart' => $chart , 'subtotal' => $subtotal];
         $this->page_datas->datas                = $array;
         //dd($this->page_datas->datas);
@@ -964,15 +965,6 @@ class webController extends BaseController
 
             if(is_null($chart)){
                 $brg[$nama]                       = $array;
-                $new->username                    = session('akun');
-                $new->nama                        = null;
-                $new->alamat                      = null;
-                $new->nomor                       = null;
-                $new->barang                      = $brg;
-                $new->nota                        = null;
-                $new->total                        = null;
-                $new->status                      = 'chart';
-                $new->save();
             }
             else{
                 foreach ($chart as $key => $data) {
@@ -1506,10 +1498,9 @@ class webController extends BaseController
                 } 
             }
         }
-        if(is_null($check)){
-            $random = random_int(1, 100);
-            $total = $total - 100 + $random;
-        }
+        $random = random_int(1, 100);
+        $total = $total - 100 + $random;
+        
             Transaksi::where('username',session('akun'))
                      ->where('status','pending')
                      ->update(['total' => $total]);

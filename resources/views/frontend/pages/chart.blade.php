@@ -44,7 +44,7 @@
 					<h5 class="pull-right black mtop-s mbottom-s mright-20">IDR {{$page_datas->datas['subtotal']}}</h5>
 				</div>
 				<div class="col-md-12 col-sm-12 mbottom-s text-center">
-					<a href="{{Route('katalog')}}"><button class="btn btn-secondary pull-left blue">Pilih Produk Lain</button></a>
+					<a href="{{Route('katalog' , ['no' => '0'])}}"><button class="btn btn-secondary pull-left blue">Pilih Produk Lain</button></a>
 					<a href="{{Route('pembelian')}}"><button class="btn btn-info pull-right">Checkout</button></a>
 				</div>
 				@endif
