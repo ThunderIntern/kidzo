@@ -73,50 +73,50 @@
 @if($page_datas->idMainan != 'a')
     <div class="col-md-12">
         @if($page_datas->id==null)
-            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img><br><br></a>
+            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img><br><br></a>
         
         @elseif($page_datas->id=='1')
-            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img><br><br></a>
+            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img><br><br></a>
                     
         @elseif($page_datas->id=='2')
-            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img><br><br></a>
+            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img><br><br></a>
                     
         @elseif($page_datas->id=='3')
-            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img><br><br></a>
+            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img><br><br></a>
                     
         @elseif($page_datas->id=='4')
-            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img><br><br></a>
+            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img><br><br></a>
         @else
-            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img><br><br></a>
+            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img><br><br></a>
         @endif
     </br>
 @endif
             
-        {!! Form::open(['url' => route('prosesKomen', ['jenis' => $page_datas->idMainan])]) !!}
+        {!! Form::open(['url' => route('prosesKomen', ['jenis' => $page_datas->idMainan, 'partyIndividu' => 2])]) !!}
         <div class="col-md-12">
             {!! Form::text('komen_mobile',null, ['class' => 'form-control width80Per pull-left', 'placeholder'=>'Komentar']) !!}
             <button type="submit" class="black bgabu butFoot width20Per">Submit</button>
@@ -164,7 +164,7 @@
                     @endif
                     </div>
                     
-                    <h6 class="pull-left mbottom-xs">"{{ ucFirst($komen['content']['isi']) }}"</h6>
+                    <h6 class="pull-left mbottom-xs">"{{ ucFirst($komen['content']['isi']) }}"</h6>></br></br></br></br></br>
                 @endif
 
 
