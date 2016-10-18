@@ -90,197 +90,201 @@
 @endif
 {!! Form::close() !!}
 
-<div class="col-md-12">
-    <hr><h3><b>Rating dan Komentar</b></h3><hr>
-</div>
-<h1>&nbsp&nbsp{!!$page_datas->totalRating!!}&nbsp&nbsp&nbsp</h1>
-@if($page_datas->idMainan != 'a')
-    <div class="col-md-12">
+<div class="col-md-4 col-sm-4"></div>
+<div class="col-md-8 col-sm-8 text-left">
+    <h2>Ulasan Produk</h2>
+    <h6><b>Rating Mainan : {!!$page_datas->totalRating!!}</b></h6>
+    <h6><b>User Rating &nbsp;&nbsp;&nbsp;&nbsp; : </b>
+    @if($page_datas->idMainan != 'a')
         @if($page_datas->id==null)
-            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img><br><br></a>
+            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></br></a>
         
         @elseif($page_datas->id=='1')
-            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img><br><br></a>
+            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></br></a>
                     
         @elseif($page_datas->id=='2')
-            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img><br><br></a>
+            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></br></a>
                     
         @elseif($page_datas->id=='3')
-            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img><br><br></a>
+            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></br></a>
                     
         @elseif($page_datas->id=='4')
-            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img><br><br></a>
+            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_black.png')}}"></img></br></a>
         @else
-            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
-            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="3%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img><br><br></a>
+            <a href="{{route('prosesRating', ['item' => '1', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '2', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '3', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '4', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></a>
+            <a href="{{route('prosesRating', ['item' => '5', 'jenis'=> $page_datas->idMainan, 'partyIndividu' => 2])}}"><img width="2%" class="img-responsive" src="{{asset('image/frontend/star_yellow.png')}}"></img></br></a>
         @endif
-    </br>
-@endif
+        </br></br>
+    @endif</h6>
+
+
+
+    @foreach ($page_datas->komen as $komen)
+        @if($komen['content']['status'] != false)
+            <h5 class="pull-left marginBottom0 blue">{{ ucFirst($komen['username']) }}</h5>
+            <div class="pull-left">
+            @if($komen['rating']=='1')
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br><br>
+            @elseif($komen['rating']=='2')
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br><br>
+                
+            @elseif($komen['rating']=='3')
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br><br>
+                
+            @elseif($komen['rating']=='4')
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br><br>
+            @elseif($komen['rating']=='5')
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img><br><br>
+            @endif
+            </div>
             
-        {!! Form::open(['url' => route('prosesKomen', ['jenis' => $page_datas->idMainan, 'partyIndividu' => 2])]) !!}
-        <div class="col-md-12">
-            {!! Form::text('komen_mobile',null, ['class' => 'form-control width80Per pull-left', 'placeholder'=>'Komentar']) !!}
-            <button type="submit" class="black bgabu butFoot width20Per">Submit</button>
-            {!! Form::close() !!}
-            </br></br>
-        </div>
+            <h6 class="pull-left mbottom-xs">"{{ ucFirst($komen['content']['isi']) }}"</h6>></br></br></br></br></br>
+        @endif
 
-        <div class="col-md-12">
-            @foreach ($page_datas->komen as $komen)
-                @if($komen['content']['status'] != false)
-                    <h5 class="pull-left marginBottom0"><b>{{ ucFirst($komen['username']) }}</b></h5>
-                    <div class="pull-left">
-                    @if($komen['rating']=='1')
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br><br>
-                    @elseif($komen['rating']=='2')
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br><br>
-                        
-                    @elseif($komen['rating']=='3')
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br><br>
-                        
-                    @elseif($komen['rating']=='4')
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br><br>
-                    @elseif($komen['rating']=='5')
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                        <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img><br><br>
-                    @endif
-                    </div>
+
+        @if($komen['content']['status'] == false || $komen['content']['status'] == null)
+            @if($komen['rating'] != null && $komen['content']['isi'] == null)
+                <h5 class="pull-left marginBottom0 blue">{{ ucFirst($komen['username']) }}</h5>
+                
+                <div class="pull-left">
+                @if($komen['rating']=='1')
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br></br>
+                @elseif($komen['rating']=='2')
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br></br>
                     
-                    <h6 class="pull-left mbottom-xs">"{{ ucFirst($komen['content']['isi']) }}"</h6>></br></br></br></br></br>
+                @elseif($komen['rating']=='3')
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br></br>
+                    
+                @elseif($komen['rating']=='4')
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br></br>
+                @elseif($komen['rating']=='5')
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
+                    <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img><br></br>
                 @endif
+                </div>
+                
+            @endif
 
-
-                @if($komen['content']['status'] == false || $komen['content']['status'] == null)
-                    @if($komen['rating'] != null && $komen['content']['isi'] == null)
-                        </br><h5 class="pull-left marginBottom0"><b>{{ ucFirst($komen['username']) }}</b></h5>
-                        
-                        <div class="pull-left">
+            
+            @if($komen['content']['isi'] != null)
+                @if($komen['rating'] != null)
+                    <h5 class="pull-left marginBottom0 blue">{{ ucFirst($komen['username']) }}</h5></br>
+                    <div class="pull-left">
                         @if($komen['rating']=='1')
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
-                            <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br><br>
+                            <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br>
                         @elseif($komen['rating']=='2')
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
-                            <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br><br>
+                            <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br>
                             
                         @elseif($komen['rating']=='3')
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
-                            <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br><br>
+                            <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br>
                             
                         @elseif($komen['rating']=='4')
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                            <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br><br>
+                            <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br>
                         @elseif($komen['rating']=='5')
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
                             <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                            <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img><br><br>
+                            <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img><br>
                         @endif
-                        </div>
-                        
-                    @endif
-
-                    
-                    @if($komen['content']['isi'] != null)
-                        <h5 class="pull-left marginBottom0"><b>{{ ucFirst($komen['username']) }}</b></h5></br>
-                        @if($komen['rating'] != null)
-                            <div class="pull-left">
-                            @if($komen['rating']=='1')
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br><br>
-                            @elseif($komen['rating']=='2')
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br><br>
-                                
-                            @elseif($komen['rating']=='3')
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br><br>
-                                
-                            @elseif($komen['rating']=='4')
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_black.png')}}"></img><br><br>
-                            @elseif($komen['rating']=='5')
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img>
-                                <img width="1%" class="img-responsive pull-left" src="{{asset('image/frontend/star_yellow.png')}}"></img><br><br>
-                            @endif
-                            </div>
-                        @endif
-                        <h6 class="pull-left mbottom-xs">(Komentar sedang dalam proses pending)</h6></br></br></br></br>
-                    @endif
-
+                    </div>
+                    <h6 class="pull-left mbottom-xs">(Komentar sedang dalam proses pending)</h6></br></br></br>
                 @endif
-            @endforeach
+                @if($komen['rating'] == null)
+                    <h5 class="pull-left marginBottom0 blue">{{ ucFirst($komen['username']) }}</h5></br>
+                    <h6 class="pull-left mbottom-xs">(Komentar sedang dalam proses pending)</h6></br></br>
+                @endif
+            @endif
+
+        @endif
+    @endforeach
+
+
+    {!! Form::open(['url' => route('prosesKomen', ['jenis' => $page_datas->idMainan, 'partyIndividu' => 2])]) !!}
+        {!! Form::text('komen_mobile',null, ['class' => 'form-control width100Per height100 pull-left']) !!}
+        <div class="col-md-12">
+            </br><button type="submit" class="marginLeft-10" style="background-color:white; border-radius:5px; padding-left:15px; padding-right:15px; border: 1px solid #46A0CF; color: #46A0CF;">Post Komentar</button></br></br>
         </div>
-    </div>
+    {!! Form::close() !!}
+</div>
 
 
 <script>
