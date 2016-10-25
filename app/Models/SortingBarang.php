@@ -10,7 +10,7 @@ class SortingBarang extends BaseModel
 	/**
 	 * The attributes that are mass assignable.
 	 *
-	 * @var array
+	 * @var array 
 	 */
 	protected $fillable				=	[
 											'nama'						,
