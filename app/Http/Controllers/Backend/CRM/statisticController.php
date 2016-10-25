@@ -59,7 +59,7 @@ class statisticController extends BaseController
                 if((int)substr($item['tanggal-keluar'], 5,2) == (int)substr($bulanAkhir, 5,2) - 1){
                     $mark=0;
                     if($namaBarang == null){
-                        array_push($namaBarang, [$item['nama'], (int)$item['jumlah'], (int)$item['jumlah']]);
+                        array_push($namaBarang, [$item['nama'], (int)$item['jumlah']*(int)$item['lama-sewa'], (int)$item['jumlah']*(int)$item['lama-sewa']]);
                         $mark=1;
                     }
 
@@ -68,12 +68,12 @@ class statisticController extends BaseController
                             //jika ada barang baru akn di buat arraynya
                             if($namaBarang[$i]['0'] != $item['nama']){
                                 if($i == $totalJenis){
-                                    array_push($namaBarang, [$item['nama'], (int)$item['jumlah'], (int)$item['jumlah']]);
+                                    array_push($namaBarang, [$item['nama'], (int)$item['jumlah']*(int)$item['lama-sewa'], (int)$item['jumlah']*(int)$item['lama-sewa']]);
                                 }
 
                             //menjumlah barang yang memiliki nama sama
                             }else{
-                                $totalJumlah = $namaBarang[$i]['2'] + (int)$item['jumlah'];
+                                $totalJumlah = $namaBarang[$i]['2'] + (int)$item['jumlah']*(int)$item['lama-sewa'];
                                 $namaBarang[$i]['2'] = $totalJumlah;
                             }
                         }
@@ -96,11 +96,13 @@ class statisticController extends BaseController
             $namaBarang[0][0] = $default;
         }else{
             //melakukan sorting jumlah permintaan tertinggi dari seluruh mainan
-            for($i=count($namaBarang)-1;$i>0;$i--){
-                if($namaBarang[$i-1][2]<$namaBarang[$i][2]){
-                    $z = $namaBarang[$i-1];
-                    $namaBarang[$i-1] = $namaBarang[$i];
-                    $namaBarang[$i] = $z;
+            for($ia=count($namaBarang)-1;$ia>0;$ia--){
+                for($i=count($namaBarang)-1;$i>0;$i--){
+                    if($namaBarang[$i-1][2]<$namaBarang[$i][2]){
+                        $z = $namaBarang[$i-1];
+                        $namaBarang[$i-1] = $namaBarang[$i];
+                        $namaBarang[$i] = $z;
+                    }
                 }
             }
         }

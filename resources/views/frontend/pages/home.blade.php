@@ -62,28 +62,28 @@
 				<div class="col-sm-12 col-md-3 text-center">
 					<div class="row">
 						<div class="col-12 kotak padding">
-							<a href="{{Route('katalog' , ['no' => '1'])}}"><h1 class="green bg0 kotakKategori">0 - 1<br>tahun</h1></a>
+							<a href="{{Route('katalog' , ['no' => '1', 'id' => 'data'])}}"><h1 class="green bg0 kotakKategori">0 - 1<br>tahun</h1></a>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-12 col-md-3 text-center">
 					<div class="row">
 						<div class="col-12 kotak padding">
-							<a href="{{Route('katalog' , ['no' => '2'])}}"><h1 class="orange bg3 kotakKategori">1 - 2<br>tahun</h1></a>
+							<a href="{{Route('katalog' , ['no' => '2', 'id' => 'data'])}}"><h1 class="orange bg3 kotakKategori">1 - 2<br>tahun</h1></a>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-12 col-md-3 text-center">
 					<div class="row">
 						<div class="col-12 kotak padding">
-							<a href="{{Route('katalog' , ['no' => '3'])}}"><h1 class="purple bg1 kotakKategori">2 - 3<br>tahun</h1></a>
+							<a href="{{Route('katalog' , ['no' => '3', 'id' => 'data'])}}"><h1 class="purple bg1 kotakKategori">2 - 3<br>tahun</h1></a>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-12 col-md-3 text-center">
 					<div class="row">
 						<div class="col-12 kotak padding">
-							<a href="{{Route('katalog' , ['no' => '4'])}}"><h1 class="aqua bg2 kotakKategori">3 + <br>tahun</h1></a>
+							<a href="{{Route('katalog' , ['no' => '4', 'id' => 'data'])}}"><h1 class="aqua bg2 kotakKategori">3 + <br>tahun</h1></a>
 						</div>
 					</div>
 				</div>
@@ -124,16 +124,16 @@
 		<div class="row mbottom-l">
 			<div class="col-md-12 desktop">
 				<h2 class="blue"><b>Temukan <a class="orange">1900</a> Koleksi Mainan Lainnya !</b>
-				<a href="{{Route('katalog' , ['no' => '0'])}}"><button class="btn btn-primary btn-lg white pull-right butKoleksi">Lihat Koleksi</button></a></h2>
+				<a href="{{Route('katalog' , ['no' => '0', 'id' => 'data'])}}"><button class="btn btn-primary btn-lg white pull-right butKoleksi">Lihat Koleksi</button></a></h2>
 			</div>
 			<div class="col-sm-12 desktop text-center">
-				<a href="{{Route('katalog' , ['no' => '0'])}}"><button class="btn btn-primary btn-lg white butKoleksi2">Lihat Koleksi</button></a>
+				<a href="{{Route('katalog' , ['no' => '0', 'id' => 'data'])}}"><button class="btn btn-primary btn-lg white butKoleksi2">Lihat Koleksi</button></a>
 			</div>
 			<div class="col-sm-12 mobile text-center">
 				<h2 class="blue"><b>Temukan <a class="orange">1900</a> Koleksi Mainan Lainnya !</b></h2>
 			</div>
 			<div class="col-sm-12 mobile text-center">
-				<a href="{{Route('katalog' , ['no' => '0'])}}"><button class="btn btn-primary btn-lg white">Lihat Koleksi</button></a>
+				<a href="{{Route('katalog' , ['no' => '0', 'id' => 'data'])}}"><button class="btn btn-primary btn-lg white">Lihat Koleksi</button></a>
 			</div>
 			
 		</div>

@@ -36,7 +36,7 @@
 
 				</div>
 			</div>	 -->
-			<div class="content-faq">		
+			<div class="content-faq">
 			@foreach ($page_datas->datas as $kategori)
 				@foreach ($kategori['content'] as $sub_kategori)
 					<div id="{{ str_replace(' ', '_', $kategori['_id']) . '_' . str_replace(' ', '_', $sub_kategori['sub_kategori']) }}" class="row mbottom-s paddingLeft20 faq" style="display:none;">
