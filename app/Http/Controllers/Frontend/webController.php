@@ -396,19 +396,76 @@ class webController extends BaseController
         return $this->generateView($view_source , $route_source);
     }
 
-    public function party(){
-        $katalog                                = Barang::where('status' , 'party')
-                                                        ->where('gudang' , 'Tidak')
-                                                        ->get();
-        //dd($katalog);
+    public function party($no){
+        if($no == '0'){
+            $katalog                                = Barang::where('status' , 'party')
+                                                            ->where('gudang' , 'Tidak')
+                                                            ->paginate(6);
 
-        $this->page_datas->datas                = $katalog;
+            $this->page_datas->datas                = $katalog;
 
-        $this->page_attributes->page_title      = $this->page_title;
-        //generate view
-        $view_source                            = $this->view_source_root . '.katalogParty';
-        $route_source                           = Request::route()->getName();        
-        return $this->generateView($view_source , $route_source);
+            $this->page_attributes->page_title      = $this->page_title;
+            //generate view
+            $view_source                            = $this->view_source_root . '.katalogParty';
+            $route_source                           = Request::route()->getName();        
+            return $this->generateView($view_source , $route_source);
+        }
+        elseif($no == '1'){
+            $katalog                                = Barang::where('status' , 'party')
+                                                            ->where('gudang' , 'Tidak')
+                                                            ->whereIn('kategori' , ['0' ,'1'])
+                                                            ->paginate(6);
+
+            $this->page_datas->datas                = $katalog;
+
+            $this->page_attributes->page_title      = $this->page_title;
+            //generate view
+            $view_source                            = $this->view_source_root . '.katalogParty';
+            $route_source                           = Request::route()->getName();        
+            return $this->generateView($view_source , $route_source);
+        }
+        elseif($no == '2'){
+            $katalog                                = Barang::where('status' , 'party')
+                                                            ->where('gudang' , 'Tidak')
+                                                            ->whereIn('kategori' , ['1' ,'2'])
+                                                            ->paginate(6);
+
+            $this->page_datas->datas                = $katalog;
+
+            $this->page_attributes->page_title      = $this->page_title;
+            //generate view
+            $view_source                            = $this->view_source_root . '.katalogParty';
+            $route_source                           = Request::route()->getName();        
+            return $this->generateView($view_source , $route_source);
+        }
+        elseif($no == '3'){
+            $katalog                                = Barang::where('status' , 'party')
+                                                            ->where('gudang' , 'Tidak')
+                                                            ->whereIn('kategori' , ['2' ,'3'])
+                                                            ->paginate(6);
+
+            $this->page_datas->datas                = $katalog;
+
+            $this->page_attributes->page_title      = $this->page_title;
+            //generate view
+            $view_source                            = $this->view_source_root . '.katalogParty';
+            $route_source                           = Request::route()->getName();        
+            return $this->generateView($view_source , $route_source);
+        }
+        elseif($no == '4'){
+            $katalog                                = Barang::where('status' , 'party')
+                                                            ->where('gudang' , 'Tidak')
+                                                            ->where('kategori' , '3+')
+                                                            ->paginate(6);
+
+            $this->page_datas->datas                = $katalog;
+
+            $this->page_attributes->page_title      = $this->page_title;
+            //generate view
+            $view_source                            = $this->view_source_root . '.katalogParty';
+            $route_source                           = Request::route()->getName();        
+            return $this->generateView($view_source , $route_source);
+        }
     }
 
     public function deskripsiParty($id){
@@ -1417,15 +1474,6 @@ class webController extends BaseController
 
             if(is_null($chart)){
                 $brg[$nama]                       = $array;
-                $new->username                    = session('akun');
-                $new->nama                        = null;
-                $new->alamat                      = null;
-                $new->nomor                       = null;
-                $new->barang                      = $brg;
-                $new->nota                        = null;
-                $new->total                        = null;
-                $new->status                      = 'chart';
-                $new->save();
             }
             else{
                 foreach ($chart as $key => $data) {
@@ -1493,6 +1541,20 @@ class webController extends BaseController
         Transaksi::where('username',session('akun'))
                  ->where('status','chart')
                  ->update(['status' => 'pending']);
+
+        $cek                            = Transaksi::where('username',session('akun'))
+                                                           ->where('status','chart')
+                                                           ->first()['attributes'];
+        $transaksi = new Transaksi;
+        $transaksi->username                    = session('akun');
+        $transaksi->nama                        = null;
+        $transaksi->alamat                      = null;
+        $transaksi->nomor                       = null;
+        $transaksi->barang                      = null;
+        $transaksi->nota                        = null;
+        $transaksi->total                       = null;
+        $transaksi->status                      = 'chart';
+        $transaksi->save();
 
         $input                                  = Input::only('nama','alamat','no');
 
@@ -1757,8 +1819,13 @@ class webController extends BaseController
                 } 
             }
         }
-        $random = random_int(1, 100);
-        $total = $total - 100 + $random;
+        if(is_null($total)){
+
+        }
+        else{
+            $random = random_int(1, 100);
+            $total = $total - 100 + $random;
+        }
         
             Transaksi::where('username',session('akun'))
                      ->where('status','pending')
@@ -1779,21 +1846,6 @@ class webController extends BaseController
                                                            ->where('status','pending')
                                                            ->get();
 
-        $cek                            = Transaksi::where('username',session('akun'))
-                                                           ->where('status','chart')
-                                                           ->get();
-
-        if($cek == null){
-            $cek->username                    = session('akun');
-            $cek->nama                        = null;
-            $cek->alamat                      = null;
-            $cek->nomor                       = null;
-            $cek->barang                      = null;
-            $cek->nota                        = null;
-            $cek->total                       = null;
-            $cek->status                      = 'chart';
-            $cek->save();
-        }
         //dd($batal);
         foreach ($batal as $key => $trans) {
             foreach ($trans['barang'] as $key2 => $barang) {
@@ -1877,17 +1929,21 @@ class webController extends BaseController
             $hapus = Transaksi::find($batals['id']);
             $hapus->delete();    
         }
-        $transaksi                              = new Transaksi;
-        $transaksi->username                    = session('akun');
-        $transaksi->nama                        = null;
-        $transaksi->alamat                      = null;
-        $transaksi->nomor                       = null;
-        $transaksi->barang                      = null;
-        $transaksi->nota                        = null;
-        $transaksi->total                       = null;
-        $transaksi->status                      = 'chart';
-        $transaksi->save();
-        
+        $cek                            = Transaksi::where('username',session('akun'))
+                                                           ->where('status','chart')
+                                                           ->first()['attributes'];
+        if(is_null($cek)){
+            $transaksi                              = new Transaksi;
+            $transaksi->username                    = session('akun');
+            $transaksi->nama                        = null;
+            $transaksi->alamat                      = null;
+            $transaksi->nomor                       = null;
+            $transaksi->barang                      = null;
+            $transaksi->nota                        = null;
+            $transaksi->total                       = null;
+            $transaksi->status                      = 'chart';
+            $transaksi->save();
+        }
         $this->page_attributes->msg             = 'Pembatalan Pesanan Berhasil';
         return $this->generateRedirect(route('home'));
 

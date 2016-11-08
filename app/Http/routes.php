@@ -21,7 +21,7 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/home', ['uses' => 'webController@home', 'as' => 'home']);
 	Route::get('/about', ['uses' => 'webController@about', 'as' => 'about']);
 	Route::get('/about/{category}/{sub_category}', ['uses' => 'webController@about', 'as' => 'aboutCategory']);
-	Route::get('/party', ['uses' => 'webController@party', 'as' => 'party']);
+	Route::get('/party/{no}', ['uses' => 'webController@party', 'as' => 'party']);
 	Route::get('/Deskripsi Party/{id}', ['uses' => 'webController@deskripsiParty', 'as' => 'deskripsiParty']);
 	Route::get('/katalog/{no}/{id}', ['uses' => 'webController@katalog', 'as' => 'katalog']);
 	Route::get('/Deskripsi Katalog/{id}', ['uses' => 'webController@deskripsiKatalog', 'as' => 'deskripsiKatalog']);
