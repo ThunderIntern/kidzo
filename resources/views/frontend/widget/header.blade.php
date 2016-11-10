@@ -35,10 +35,14 @@ button:
                                         <a class="marginRight-10 paddingRight10 black paddingBottom20 paddingTop20 borderRight1 <?php if($segment1=='home') echo 'red';?>" href="{{Route('home')}}">Home</a>
                                    </li>
                                     <li class="mainanHover nav-item borderTop5 green paddingBottom25 paddingTop25">
-                                        <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black borderRight1 <?php if($segment1=='katalog') echo 'green';?>" href="{{Route('katalog' , ['no' => '0', 'id' => 'data'])}}">Mainan</a>
+                                        <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black borderRight1 <?php if($segment1=='katalog' || $segment1=='DeskripsiKatalog') echo 'green';?>" href="{{Route('katalog' , ['no' => '0', 'id' => 'data'])}}">Mainan</a>
                                     </li>
                                     <li class="partyHover nav-item borderTop5 orange paddingBottom25 paddingTop25">
+
                                         <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black borderRight1 <?php if($segment1=='party') echo 'orange';?>" href="{{Route('party' , ['no' => '0'])}}">Party Pack</a>
+
+                                        <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black borderRight1 <?php if($segment1=='party' || $segment1=='DeskripsiParty') echo 'orange';?>" href="{{Route('party' , ['no' => '0', 'id' => 'data'])}}">Party Pack</a>
+
                                     </li>
                                     <li class="tentangHover nav-item borderTop5 purple paddingBottom25 paddingTop25">
                                         <a class="marginRight-10 paddingRight10 paddingBottom20 paddingTop20 black borderRight1 <?php if($segment1=='about') echo 'purple';?>" href="{{Route('about')}}">Tentang Kami</a>
@@ -145,7 +149,11 @@ button:
                                             </a>
                                         </li>
                                         <li class="nav-item hoverParty ">
+
                                             <a class="nav-link pull-left paddingLeft30" href="{{Route('party' , ['no' => '0'])}}">
+
+                                            <a class="nav-link pull-left paddingLeft30" href="{{Route('party' , ['no' => '0', 'id' => 'data'])}}">
+
                                                 <div class="orange">Party Package</div>
                                             </a>
                                         </li>

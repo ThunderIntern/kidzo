@@ -1,6 +1,6 @@
 @extends('frontend.layout.layout')
 @section('content')
-<div class="container-fluid pleft-0 pbottom-0">
+<div class="container pleft-0 pbottom-0">
 	<div class="desktop col-md-12 pright-0 pleft-0">
 		<div class="col-md-3 paddingTop35">
 			<ul class="paddingTop15 list-unstyled pul">

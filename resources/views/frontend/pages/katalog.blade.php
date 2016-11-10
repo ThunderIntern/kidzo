@@ -2,34 +2,34 @@
 @section('content')
 	<div class="container">
 		<div class="col-md-12 col-sm-12">
-			<div class="col-md-3 col-sm-3 borderRight1" style="min-height: calc(95vh)">
-				<h5 class="mtop-s"><b>Kategori</b></h5>
+			<div class="col-md-3 col-sm-3 borderRight1 paddingTop35" style="min-height: calc(95vh)">
+				<h6 class="mbottom-xs mtop-s"><b>Kategori</b></h6>
 				@if($page_datas->idSorting == "data")
-					<a href="{{Route('katalog' , ['no' => '0', 'id' => 'data'])}}"><h5 class="mleft-s black">Semua</h5></a>
-					<a href="{{Route('katalog' , ['no' => '1', 'id' => 'data'])}}"><h5 class="mleft-s black">0 - 1 Tahun</h5></a>
-					<a href="{{Route('katalog' , ['no' => '2', 'id' => 'data'])}}"><h5 class="mleft-s black">1 - 2 Tahun</h5></a>
-					<a href="{{Route('katalog' , ['no' => '3', 'id' => 'data'])}}"><h5 class="mleft-s black">2 - 3 Tahun</h5></a>
-					<a href="{{Route('katalog' , ['no' => '4', 'id' => 'data'])}}"><h5 class="mleft-s black">3 Tahun Keatas</h5></a>
+					<a href="{{Route('katalog' , ['no' => '0', 'id' => 'data'])}}"><h6 class="mbottom-xs mleft-s black">Semua</h6></a>
+					<a href="{{Route('katalog' , ['no' => '1', 'id' => 'data'])}}"><h6 class="mbottom-xs mleft-s black">0 - 1 Tahun</h6></a>
+					<a href="{{Route('katalog' , ['no' => '2', 'id' => 'data'])}}"><h6 class="mbottom-xs mleft-s black">1 - 2 Tahun</h6></a>
+					<a href="{{Route('katalog' , ['no' => '3', 'id' => 'data'])}}"><h6 class="mbottom-xs mleft-s black">2 - 3 Tahun</h6></a>
+					<a href="{{Route('katalog' , ['no' => '4', 'id' => 'data'])}}"><h6 class="mbottom-xs mleft-s black">3 Tahun Keatas</h6></a>
 				@endif
 				@if($page_datas->idSorting == "terlaris")
-					<a href="{{Route('katalog' , ['no' => '0', 'id' => 'terlaris'])}}"><h5 class="mleft-s black">Semua</h5></a>
-					<a href="{{Route('katalog' , ['no' => '1', 'id' => 'terlaris'])}}"><h5 class="mleft-s black">0 - 1 Tahun</h5></a>
-					<a href="{{Route('katalog' , ['no' => '2', 'id' => 'terlaris'])}}"><h5 class="mleft-s black">1 - 2 Tahun</h5></a>
-					<a href="{{Route('katalog' , ['no' => '3', 'id' => 'terlaris'])}}"><h5 class="mleft-s black">2 - 3 Tahun</h5></a>
-					<a href="{{Route('katalog' , ['no' => '4', 'id' => 'terlaris'])}}"><h5 class="mleft-s black">3 Tahun Keatas</h5></a>
+					<a href="{{Route('katalog' , ['no' => '0', 'id' => 'terlaris'])}}"><h6 class="mbottom-xs mleft-s black">Semua</h6></a>
+					<a href="{{Route('katalog' , ['no' => '1', 'id' => 'terlaris'])}}"><h6 class="mbottom-xs mleft-s black">0 - 1 Tahun</h6></a>
+					<a href="{{Route('katalog' , ['no' => '2', 'id' => 'terlaris'])}}"><h6 class="mbottom-xs mleft-s black">1 - 2 Tahun</h6></a>
+					<a href="{{Route('katalog' , ['no' => '3', 'id' => 'terlaris'])}}"><h6 class="mbottom-xs mleft-s black">2 - 3 Tahun</h6></a>
+					<a href="{{Route('katalog' , ['no' => '4', 'id' => 'terlaris'])}}"><h6 class="mbottom-xs mleft-s black">3 Tahun Keatas</h6></a>
 				@endif
 				@if($page_datas->idSorting == "rating")
-					<a href="{{Route('katalog' , ['no' => '0', 'id' => 'rating'])}}"><h5 class="mleft-s black">Semua</h5></a>
-					<a href="{{Route('katalog' , ['no' => '1', 'id' => 'rating'])}}"><h5 class="mleft-s black">0 - 1 Tahun</h5></a>
-					<a href="{{Route('katalog' , ['no' => '2', 'id' => 'rating'])}}"><h5 class="mleft-s black">1 - 2 Tahun</h5></a>
-					<a href="{{Route('katalog' , ['no' => '3', 'id' => 'rating'])}}"><h5 class="mleft-s black">2 - 3 Tahun</h5></a>
-					<a href="{{Route('katalog' , ['no' => '4', 'id' => 'rating'])}}"><h5 class="mleft-s black">3 Tahun Keatas</h5></a>
+					<a href="{{Route('katalog' , ['no' => '0', 'id' => 'rating'])}}"><h6 class="mbottom-xs mleft-s black">Semua</h6></a>
+					<a href="{{Route('katalog' , ['no' => '1', 'id' => 'rating'])}}"><h6 class="mbottom-xs mleft-s black">0 - 1 Tahun</h6></a>
+					<a href="{{Route('katalog' , ['no' => '2', 'id' => 'rating'])}}"><h6 class="mbottom-xs mleft-s black">1 - 2 Tahun</h6></a>
+					<a href="{{Route('katalog' , ['no' => '3', 'id' => 'rating'])}}"><h6 class="mbottom-xs mleft-s black">2 - 3 Tahun</h6></a>
+					<a href="{{Route('katalog' , ['no' => '4', 'id' => 'rating'])}}"><h6 class="mbottom-xs mleft-s black">3 Tahun Keatas</h6></a>
 				@endif
 			</div>
-			<div class="col-md-9 col-sm-9">
+			<div class="col-md-9 col-sm-9 paddingTop35">
 				<div class="col-md-12 mtop-s">
 					<h1>Koleksi Mainan</h1>
-					<hr class="garis-bawah-ungu pull-left mtop-0" width="50">
+					<hr class="garis-bawah-hijau pull-left mtop-0" width="50">
 				</div>
 				<div class="col-md-12">
 					<p class='text-right marginRight15'>Urutkan berdasarkan : 
