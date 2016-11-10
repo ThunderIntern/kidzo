@@ -551,6 +551,7 @@ class webController extends BaseController
                 $restart                      = SortingBarang::truncate();
                 for($i=0;$i<count($simUrutRating);$i++){
                     $sort                     = new SortingBarang;
+                    $sort['_id']              = $simUrutRating[$i]['_id'];
                     $sort['nama']             = $simUrutRating[$i]['nama'];
                     $sort['isi']              = $simUrutRating[$i]['isi'];
                     $sort['jenis']            = $simUrutRating[$i]['jenis'];
@@ -600,6 +601,7 @@ class webController extends BaseController
                 $this->page_datas->tampil   = $katalog;
             }else{
                 $this->page_datas->tampil   = Barang::where('status', 'party')
+                                                    ->where('gudang' , 'Tidak')
                                                     ->get();
             }
         }
@@ -710,6 +712,7 @@ class webController extends BaseController
                 $restart                      = SortingBarang::truncate();
                 for($i=0;$i<count($namaBarangAttrib);$i++){
                     $sort                     = new SortingBarang;
+                    $sort['_id']              = $simUrutRating[$i]['_id'];
                     $sort['nama']             = $namaBarangAttrib[$i]['nama'];
                     $sort['isi']              = $namaBarangAttrib[$i]['isi'];
                     $sort['jenis']            = $namaBarangAttrib[$i]['jenis'];
@@ -759,7 +762,8 @@ class webController extends BaseController
                 $this->page_datas->sortAllPermintaan   = $katalog;
             }else{
                 $this->page_datas->sortAllPermintaan   = Barang::where('status', 'party')
-                                                    ->get();
+                                                            ->where('gudang' , 'Tidak')
+                                                            ->get();
             }
         }
 //////////////////////////
@@ -1037,6 +1041,7 @@ class webController extends BaseController
                 $restart                      = SortingBarang::truncate();
                 for($i=0;$i<count($simUrutRating);$i++){
                     $sort                     = new SortingBarang;
+                    $sort['_id']              = $simUrutRating[$i]['_id'];
                     $sort['nama']             = $simUrutRating[$i]['nama'];
                     $sort['isi']              = $simUrutRating[$i]['isi'];
                     $sort['jenis']            = $simUrutRating[$i]['jenis'];
@@ -1086,6 +1091,7 @@ class webController extends BaseController
                 $this->page_datas->tampil   = $katalog;
             }else{
                 $this->page_datas->tampil   = Barang::where('status', 'individu')
+                                                    ->where('gudang' , 'Tidak')
                                                     ->get();
             }
         }
@@ -1196,6 +1202,7 @@ class webController extends BaseController
                 $restart                      = SortingBarang::truncate();
                 for($i=0;$i<count($namaBarangAttrib);$i++){
                     $sort                     = new SortingBarang;
+                    $sort['_id']             = $namaBarangAttrib[$i]['_id'];
                     $sort['nama']             = $namaBarangAttrib[$i]['nama'];
                     $sort['isi']              = $namaBarangAttrib[$i]['isi'];
                     $sort['jenis']            = $namaBarangAttrib[$i]['jenis'];
@@ -1245,7 +1252,8 @@ class webController extends BaseController
                 $this->page_datas->sortAllPermintaan   = $katalog;
             }else{
                 $this->page_datas->sortAllPermintaan   = Barang::where('status', 'individu')
-                                                    ->get();
+                                                                ->where('gudang' , 'Tidak')
+                                                                ->get();
             }
         }
 //////////////////////////
