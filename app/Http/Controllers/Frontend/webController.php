@@ -627,7 +627,6 @@ class webController extends BaseController
 
             //menghitung jumlah total setiap barang dalam tahun ini
             $namaBarang = [];
-            $totalJenis = count($namaBarang);
             $default = null;
             foreach ($barang as $objek){
                 foreach ($objek['attributes']['barang'] as $item){
@@ -639,18 +638,20 @@ class webController extends BaseController
                             $mark=1;
                         }
                         if($mark==0){
-                            for($i=0;$i<=$totalJenis;$i++){
+                            for($i=0;$i<count($namaBarang);$i++){
                                 //jika ada barang baru akn di buat arraynya
                                 if($namaBarang[$i]['0'] != $item['nama']){
-                                    if($i == $totalJenis){
-                                        array_push($namaBarang, [$item['nama'], (int)$item['jumlah']*(int)$item['lama-sewa'], (int)$item['jumlah']*(int)$item['lama-sewa']]);
-                                    }
-
+                                    $flag1 = 1;
                                 //menjumlah barang yang memiliki nama sama
                                 }else{
+                                    $flag1=0;
                                     $totalJumlah = $namaBarang[$i]['2'] + (int)$item['jumlah']*(int)$item['lama-sewa'];
                                     $namaBarang[$i]['2'] = $totalJumlah;
-                                }
+                                    $i=count($namaBarang)+1;
+                                }                                
+                            }
+                            if($flag1==1){
+                                array_push($namaBarang, [$item['nama'], (int)$item['jumlah']*(int)$item['lama-sewa'], (int)$item['jumlah']*(int)$item['lama-sewa']]);
                             }
                         }
                     //jika dalam H-1 bulan tidak ada permintaan akan diambil nama secara acak
@@ -1117,7 +1118,6 @@ class webController extends BaseController
 
             //menghitung jumlah total setiap barang dalam tahun ini
             $namaBarang = [];
-            $totalJenis = count($namaBarang);
             $default = null;
             foreach ($barang as $objek){
                 foreach ($objek['attributes']['barang'] as $item){
@@ -1129,18 +1129,20 @@ class webController extends BaseController
                             $mark=1;
                         }
                         if($mark==0){
-                            for($i=0;$i<=$totalJenis;$i++){
+                            for($i=0;$i<count($namaBarang);$i++){
                                 //jika ada barang baru akn di buat arraynya
                                 if($namaBarang[$i]['0'] != $item['nama']){
-                                    if($i == $totalJenis){
-                                        array_push($namaBarang, [$item['nama'], (int)$item['jumlah']*(int)$item['lama-sewa'], (int)$item['jumlah']*(int)$item['lama-sewa']]);
-                                    }
-
+                                    $flag1 = 1;
                                 //menjumlah barang yang memiliki nama sama
                                 }else{
+                                    $flag1=0;
                                     $totalJumlah = $namaBarang[$i]['2'] + (int)$item['jumlah']*(int)$item['lama-sewa'];
                                     $namaBarang[$i]['2'] = $totalJumlah;
-                                }
+                                    $i=count($namaBarang)+1;
+                                }                                
+                            }
+                            if($flag1==1){
+                                array_push($namaBarang, [$item['nama'], (int)$item['jumlah']*(int)$item['lama-sewa'], (int)$item['jumlah']*(int)$item['lama-sewa']]);
                             }
                         }
                     //jika dalam H-1 bulan tidak ada permintaan akan diambil nama secara acak
@@ -1150,7 +1152,6 @@ class webController extends BaseController
                     }
                 }
             }
-
 
             if($namaBarang == null){
                 $namaBarang[0][0] = $default;
