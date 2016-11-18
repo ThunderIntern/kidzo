@@ -19,7 +19,7 @@ class adminsTableSeeder extends Seeder
 
 		$admin['username']				= 'abc';      
 		$admin['password']				= '123456';    
-		$admin['email']					= 'abc@gmail.com';         
+		$admin['email']					= 'graygevaldi@gmail.com';         
 		$admin['admin']					= 'Admin';     
 
 		$admin->save();
@@ -29,7 +29,7 @@ class adminsTableSeeder extends Seeder
 
 		$admin['username']				= 'def';      
 		$admin['password']				= '789012';    
-		$admin['email']					= 'def@gmail.com';      
+		$admin['email']					= '311310010@student.machung.ac.id';      
 		$admin['admin']					= 'Admin';     
 
 		$admin->save();									

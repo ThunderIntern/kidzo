@@ -20,15 +20,15 @@ class SubscribersTableSeeder extends Seeder
 
         $Version 						= Version::first();
 
-        $Subscriber['email']			= 'abc@gmail.com';
+        $Subscriber['email']			= 'graygevaldi@gmail.com';
         $Subscriber['version']			= $Version->toArray();
         $Subscriber['is_subscribe']		= True;
         $Subscriber['unsubscribe_token']= 'askdjahusgdhagda';
         $Subscriber->save();
 
-        $Subscriber 					= new Subscriber;
+        $Subscriber                     = new Subscriber;
 
-        $Subscriber['email']			= 'cde@gmail.com';
+        $Subscriber['email']			= '311310010@student.machung.ac.id';
         $Subscriber['version']			= $Version->toArray();
         $Subscriber['is_subscribe']		= True;
         $Subscriber['unsubscribe_token']= 'askdjahusgdhagdh';

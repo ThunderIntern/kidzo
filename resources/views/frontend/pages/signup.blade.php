@@ -1,10 +1,12 @@
 	@if(is_null(Session::get('akun')))
 	@extends('frontend.layout.layout')
 	@section('content')
+
 	<div id="box">
 	{!! Form::open(['url' => route('signup')]) !!}
 		<h1 class="text-center mtop-s mbottom-s">Sign Up</h1>
-    @include('frontend.widget.alertbox')</br>
+    	@include('frontend.widget.alertbox')</br>
+		
 		<p class="pull-left"><b>Username</b></p>
         {!! Form::text('username',null, ['class' => 'form-control mbottom-s' ,'placeholder' => 'Username Anda']) !!}
         <p class="pull-left"><b>Password</b></p>

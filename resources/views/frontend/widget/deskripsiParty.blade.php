@@ -51,14 +51,6 @@
         </div>
     </div>
     <div class="col-md-12 col-sm-12 mbottom-m">
-        <div class="col-md-12 col-sm-12">
-            <label class="pull-left">Jumlah</label>
-        </div>
-        <div class="col-md-12 col-sm-12">
-            <input name="jumlah" type="number" class="form-control width80Per" placeholder="1" value="1">
-        </div>
-    </div>
-    <div class="col-md-12 col-sm-12 mbottom-m">
         <a href="#"><button type="submit" name="sign" value="chart" class="btn btn-secondary pull-left mleft-s green">Add To Chart</button></a>
         <a href="#"><button type="submit" name="sign" value="check" class="btn btn-secondary pull-right mright-xl blue">Check Out</button></a>
     </div>

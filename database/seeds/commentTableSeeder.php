@@ -18,7 +18,7 @@ class commentTableSeeder extends Seeder
         $Comment 					= new Comment;
         $Comment['idMainan']        = '57e8a0efd5bc3e2d58005d4a';
         $Comment['username']        = 'abc';
-        $Comment['email']            = 'abc@gmail.com';
+        $Comment['email']            = 'graygevaldi@gmail.com';
         $Comment['rating']           = '5';
         $Comment['content']			= ['isi' => 'hello',
                                         'status' =>False,
@@ -28,7 +28,7 @@ class commentTableSeeder extends Seeder
         $Comment 					= new Comment;
         $Comment['idMainan']        = '57e8a0efd5bc3e2d58005d4b';
         $Comment['username']        = 'def';
-        $Comment['email']           = 'def@gmail.com';
+        $Comment['email']           = '311310010@student.machung.ac.id';
         $Comment['rating']          = '1';
         $Comment['content']         = ['isi' => 'hahaha',
                                         'status' =>True,

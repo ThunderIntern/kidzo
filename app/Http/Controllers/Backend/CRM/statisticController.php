@@ -123,6 +123,7 @@ class statisticController extends BaseController
         $sumTransaksi       = count($transaksi);
         //dd($inventory[$sumInventory-1]);
 
+        // dd($inventory);
 //permintaan Max and Min
         $last='00';
         $jumlah=0;
@@ -146,7 +147,7 @@ class statisticController extends BaseController
         array_push($data, $jumlah);
         sort($data);
         $hasilPermintaan = count($data);
-        
+
 //total permintaanAkhir
         $mintaLast = 0;
         foreach($transaksi as $request){
@@ -166,7 +167,7 @@ class statisticController extends BaseController
             array_push($isiCurrent, [(int)substr($isi['tanggal'], 0,4), (int)substr($isi['tanggal'], 5,2), (int)substr($isi['tanggal'], 8,2), (int)$isi['barang'][$jenis]['currentStock'] ]);
         }
 
-        //dd($isiCurrent);
+        // dd($isiCurrent);
         foreach($inventory as $current){
             $month = substr($current['tanggal'], 5,2);
             $sum=0;
@@ -273,7 +274,7 @@ class statisticController extends BaseController
         }
         sort($simpan);
         $b = count($simpan);
-        // dd($simpan);
+         // dd($simpan);
 
 
 //total persediaanAkhir
@@ -552,9 +553,10 @@ class statisticController extends BaseController
         $Statistic['persediaanAkhir']   = $stokLast;
         $Statistic['jumlahBeli']        = null;
         $Statistic->save();
+// dd($Statistic['persediaanMax']);
         
         //menghindari pembagian dengan nol
-        if($Statistic['permintaanMax']==$Statistic['permintaanMin'] || $Statistic['persediaanMax']==$Statistic['persediaanMin']){
+        if($Statistic['permintaanMax']==$Statistic['permintaanMin']){
             $divZero                                = 1;
             $this->page_datas->divZero              = $divZero;
             $this->page_attributes->msg             = null;
@@ -648,7 +650,6 @@ class statisticController extends BaseController
         
 
         $jumlahBeli                 = ($ztnt + $zttt + $znnn + $zntn) / ($min1+$min2+$min3+$min4);
-        
         $data                       = ['jumlahBeli' => $jumlahBeli ];
         $user                       = Statistic::where('permintaanMax', 5000)->update($data);
 

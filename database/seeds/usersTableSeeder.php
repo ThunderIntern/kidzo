@@ -19,7 +19,7 @@ class usersTableSeeder extends Seeder
 
 		$user['username']				= 'abc';      
 		$user['password']				= '123456';    
-		$user['email']					= 'abc@gmail.com'; 
+		$user['email']					= 'graygevaldi@gmail.com'; 
 		$user['name']				    = 'abc';      
 		$user['phone']				    = '08123456789';    
 		$user['address']			    = 'jl.palembang';         
@@ -32,7 +32,7 @@ class usersTableSeeder extends Seeder
 
 		$user['username']				= 'def';      
 		$user['password']				= '789012';    
-		$user['email']					= 'def@gmail.com';
+		$user['email']					= '311310010@student.machung.ac.id';
 		$user['name']				    = 'def';      
 		$user['phone']				    = '08987654321';    
 		$user['address']			    = 'jl.bandung';         

@@ -50,7 +50,7 @@ class webController extends BaseController
         if($time['created_at']->addHour() >= $now){
             $email -> password('Password Anda', 'Silahkan masukkan password anda : '. $user['password'], $time['email'], $this->page_datas->datas);
             $this->page_attributes->msg             = 'Silahkan login';
-            return $this->generateRedirect(route('signuped'));
+            return $this->generateRedirect(route('signuped2'));
         }else{
             $email -> maaf('Expired', 'Maaf anda telah melawati batas waktu yang ditentukan, cobalah kembali.', $user['email'], $this->page_datas->datas);
             $this->page_attributes->msg             = 'Silahkan coba lagi';
@@ -93,7 +93,7 @@ class webController extends BaseController
         
         $this->page_attributes->msg             = 'Data telah disimpan';        
 
-        return $this->generateRedirect(route('signuped'));
+        return $this->generateRedirect(route('signuped2'));
     }
 
     public function forgot()
@@ -930,7 +930,36 @@ class webController extends BaseController
 
             //jika semua status rating pada database comment = null
             if($topRatingCount == 0){
-                $this->page_datas->tampil   = $this->page_datas->datas;
+                if($no == '0'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->paginate(6);
+                }
+                elseif($no == '1'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['0' ,'1'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '2'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['1' ,'2'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '3'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['2' ,'3'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '4'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->where('kategori' , '3+')
+                                                                    ->paginate(6);
+                }
+                $this->page_datas->tampil                = $katalog;
                 $this->page_datas->idSorting = $id;
 
                 $view_source                            = $this->view_source_root . '.katalog';
@@ -1091,9 +1120,36 @@ class webController extends BaseController
                 
                 $this->page_datas->tampil   = $katalog;
             }else{
-                $this->page_datas->tampil   = Barang::where('status', 'individu')
-                                                    ->where('gudang' , 'Tidak')
-                                                    ->get();
+                if($no == '0'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->paginate(6);
+                }
+                elseif($no == '1'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['0' ,'1'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '2'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['1' ,'2'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '3'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['2' ,'3'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '4'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->where('kategori' , '3+')
+                                                                    ->paginate(6);
+                }
+                $this->page_datas->tampil                = $katalog;
             }
         }
     //////////////////////////////
@@ -1105,7 +1161,36 @@ class webController extends BaseController
 
             //jika dalam tabel transaksi seluruh barang yang disewa = null
             if($barangCount == 0){
-                $this->page_datas->sortAllPermintaan   = $this->page_datas->datas;
+                if($no == '0'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->paginate(6);
+                }
+                elseif($no == '1'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['0' ,'1'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '2'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['1' ,'2'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '3'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['2' ,'3'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '4'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->where('kategori' , '3+')
+                                                                    ->paginate(6);
+                }
+                $this->page_datas->sortAllPermintaan                = $katalog;
                 $this->page_datas->idSorting = $id;
 
                 $view_source                            = $this->view_source_root . '.katalog';
@@ -1152,6 +1237,7 @@ class webController extends BaseController
                     }
                 }
             }
+// dd($namaBarang);
 
             if($namaBarang == null){
                 $namaBarang[0][0] = $default;
@@ -1252,9 +1338,36 @@ class webController extends BaseController
 
                 $this->page_datas->sortAllPermintaan   = $katalog;
             }else{
-                $this->page_datas->sortAllPermintaan   = Barang::where('status', 'individu')
-                                                                ->where('gudang' , 'Tidak')
-                                                                ->get();
+                if($no == '0'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->paginate(6);
+                }
+                elseif($no == '1'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['0' ,'1'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '2'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['1' ,'2'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '3'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['2' ,'3'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '4'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->where('kategori' , '3+')
+                                                                    ->paginate(6);
+                }
+                $this->page_datas->sortAllPermintaan                = $katalog;
             }
         }
 //////////////////////////
@@ -1825,7 +1938,7 @@ class webController extends BaseController
     public function deleteChart($nama){
         if(is_null(session('akun'))){
             $this->page_attributes->msg             = 'Silahkan login terlebih dahulu';
-            return $this->generateRedirect(route('signuped'));
+            return $this->generateRedirect(route('signuped2'));
         }
         //dd(session(['key']));
         $chart                                  = Transaksi::where('username',session('akun'))
@@ -2373,7 +2486,7 @@ class webController extends BaseController
         return $this->generateView('frontend.pages.unsubscribed', Request::route()->getName());
     }
 
-    public function signup($id)
+    public function signup()
     {
         $input                                  = Input::only('email','username','password','conf_password','nama','no','alamat');
 
@@ -2384,28 +2497,29 @@ class webController extends BaseController
                                                         ->count();
         $username                                   = User::where('username', $input['username'])
                                                         ->count();
-        if($user!=0 || $username!=0){
+        //mengecek apakah input username dan email ada yang sama di dalam database
+        if($user!=0){
             $user                                   = User::where('email', $input['email'])
                                                         ->get()['0']['attributes'];
+            if($user['email'] == $input['email']){
+                $this->page_attributes->msg             = 'Email sudah ada, coba email lain';
+                return $this->generateRedirect(route('create')); 
+            }
+        }
+        if($username!=0){
             $username                               = User::where('username', $input['username'])
                                                         ->get()['0']['attributes'];
 
             if($username['username'] == $input['username']){
                 $this->page_attributes->msg             = 'Username sudah ada, coba username lain';
-                return $this->generateRedirect(route('newMember'));
-            }
-
-            if($user['email'] == $input['email']){
-                $this->page_attributes->msg             = 'Email sudah ada, coba email lain';
-                return $this->generateRedirect(route('newMember'));
+                return $this->generateRedirect(route('create')); 
             }
         }
 
         $user                                   = new User;
-
         if($input['password'] != $input['conf_password']){
             $this->page_attributes->msg             = 'Password Tidak Sesuai';
-            return $this->generateRedirect(route('newMember'));
+            return $this->generateRedirect(route('create')); 
         }
         //save data
         $user->email                            = $input['email'];
@@ -2445,12 +2559,11 @@ class webController extends BaseController
         $this->errors                           = $user->getErrors();
         $this->page_attributes->msg             = 'Data telah disimpan';
 
-        return $this->generateRedirect(route('signuped'));
+        return $this->generateRedirect(route('signuped2'));
     }
 
     public function signuped($id)
     {
-        //dd($id);
         if(is_null($id)){
             return $this->generateRedirect(route('signuped2'));
         }
@@ -2501,7 +2614,7 @@ class webController extends BaseController
                 return $this->generateRedirect(route('deskripsiKatalog' , $id));
             }
             else{
-                return $this->generateRedirect(route('deskripsiKatalog' , $id));   
+                return $this->generateRedirect(route('deskripsiParty' , $id));   
             }
         }
     }

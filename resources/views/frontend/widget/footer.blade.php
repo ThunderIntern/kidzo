@@ -64,10 +64,10 @@ button:
                     </div>
                     <div class="floatLeft footer-col1">
                         <p><b>Kategori Mainan</b></p>
-                        <a href="#" class="black"><p>0 - 1 Tahun</p></a>
-                        <a href="#" class="black"><p>1 - 2 Tahun</p></a>
-                        <a href="#" class="black"><p>2 - 3 Tahun</p></a>
-                        <a href="#" class="black"><p>3 Tahun Keatas</p></a>
+                        <a href="{{Route('katalog' , ['no' => '1', 'id' => 'data'])}}" class="black"><p>0 - 1 Tahun</p></a>
+                        <a href="{{Route('katalog' , ['no' => '2', 'id' => 'data'])}}" class="black"><p>1 - 2 Tahun</p></a>
+                        <a href="{{Route('katalog' , ['no' => '3', 'id' => 'data'])}}" class="black"><p>2 - 3 Tahun</p></a>
+                        <a href="{{Route('katalog' , ['no' => '4', 'id' => 'data'])}}" class="black"><p>3 Tahun Keatas</p></a>
                     </div>
                     <div class="floatLeft footer-col3">
                         <p><b>Newslatter</b></p>
