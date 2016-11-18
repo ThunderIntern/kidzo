@@ -42,10 +42,9 @@
 			'title'		=> 'Total',
 			'content'	=>  ucfirst($page_datas->datas['total'])
 		]])
-		<img src="{{$page_datas->datas['nota']['bukti']}}"></img>
 		@include('backend.widgets.components.detail.detail-text',['component' => [
-			'title'		=> 'Bukti Transfer',
-			'content'	=>  ucfirst($page_datas->datas['nota']['bukti'])
+			'title'		=> 'Jumlah Dibayar',
+			'content'	=>  ucfirst($page_datas->datas['nota']['jumlah'])
 		]])
 		@include('backend.widgets.components.detail.detail-text',['component' => [
 			'title'		=> 'Status',

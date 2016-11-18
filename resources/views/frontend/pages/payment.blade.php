@@ -1,32 +1,51 @@
 @extends('frontend.layout.layout')
 @section('content')
 <div class="container">
-	<div class="col-md-12 col-sm-12 jumbotron text-center">
-		@if(is_null($page_datas->datas['total']))
-		<h1 class="mbottom-s">Tidak Ada Tagihan</h1>
-		<a href="{{route('chart')}}"><button class="btn btn-success">Kembali Ke Chart</button></a>
-		@else
-		<h1>Barang yang akan diproses :</h1>
-		@foreach($page_datas->datas['transaksi'] as $key => $data)
-			@foreach($data['barang'] as $key2 => $data2)
-				<h2>Nama Mainan : {{$data2['nama']}}</h2>
-				<h3>Lama Penyewaan : {{$data2['lama-sewa']}} hari</h3>
-				<h3>Tanggal Awal : {{$data2['tanggal-keluar']}}</h3>
-				<h3>Tanggal Akhir : {{$data2['tanggal-masuk']}}</h3>
-				@if($data2['status'] == 'party')
-				<h3>Subtotal : {{$data2['lama-sewa'] * $data2['harga']}}</h3>
+		<div class="col-md-12">
+			<div class="row">
+				@if(is_null($page_datas->datas['total']))
+				<div class="jumbotron text-center">
+					<h2>Tidak Ada Tagihan</h2>
+				</div>
+				<div  class="col-md-12 col-sm-12 text-center">
+					<a href="{{route('chart')}}"><button class="btn btn-success">Kembali Ke Chart</button></a>
+				</div>
 				@else
-				<h3>Jumlah Disewa : {{$data2['jumlah']}} buah</h3>
-				<h3>Subtotal : {{$data2['jumlah'] * $data2['lama-sewa'] * $data2['harga']}}</h3>
+				<div class="col-md-12 col-sm-12 mtop-s mbottom-s mleft-20">
+					<h2 class="black">Detail Checkout</h2>
+					<hr class="garis-bawah-hitam pull-left mtop-0" width="50">
+				</div>
+				<div class="col-md-12 col-sm-12 mbottom-s borderBottom1 abu">
+					<div class="col-md-6 col-sm-6">
+						<h3 class="pull-left black">Item</h3>
+					</div>
+					<div class="col-md-2 col-sm-2 text-right">
+						<h3 class="black">Price</h3>
+					</div>
+					<div class="col-md-2 col-sm-2 text-center">
+						<h3 class="black">Qty</h3>
+					</div>
+					<div class="col-md-2 col-sm-2 text-right">
+						<h3 class="black">Total</h3>
+					</div>
+				</div> 
+				@foreach ($page_datas->datas['transaksi'] as $key => $transaksi)
+					@foreach ($transaksi['barang'] as $key2 => $data)
+						<div class="col-md-12 col-sm-12 mbottom-s text-center">
+							@include("frontend.widget.wpayment")
+						</div>
+					@endforeach
+				@endforeach
+				<div class="col-md-12 col-sm-12 mbottom-s borderBottom1 borderTop1 abu">
+					<h5 class="pull-left black mtop-s mbottom-s mleft-20">Subtotal</h5>
+					<h5 class="pull-right black mtop-s mbottom-s mright-20">IDR {{$page_datas->datas['total']}}</h5>
+				</div>
+				<div class="col-md-12 col-sm-12 mbottom-s text-center">
+					<a href="{{Route('batal')}}"><button class="btn btn-secondary pull-left red">Batal</button></a>
+					<a href="{{Route('prosesBayar')}}"><button class="btn btn-secondary pull-right green">Bayar Tagihan</button></a>
+				</div>
 				@endif
-			@endforeach
-		@endforeach
-		<h3 class="mbottom-m">Total : {{$page_datas->datas['total']}}</h3>
-		<div class="text-center">
-			<a href="{{route('batal')}}"><button class="btn btn-danger">Batalkan Pesanan</button></a>
-			<a href="{{route('prosesBayar')}}"><button class="btn btn-success">Bayar Tagihan</button></a>
+			</div>
 		</div>
-		@endif
 	</div>
-</div>
 @stop

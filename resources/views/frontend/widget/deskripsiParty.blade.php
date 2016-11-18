@@ -1,6 +1,6 @@
 {!! Form::open(['url' => route('addChart', ['id' => $page_datas->datas['id']]), 'method' => 'post']) !!}
-<div class="col-md-4 col-sm-4">
-    <img style="width: 300px; height: 300px" class="img-responsive img-center" src="{{asset($page_datas->datas['barang']['attributes']['foto']['url'])}}"></img>
+<div class="col-md-4 col-sm-4 grow pic">
+    <img width="300px" height="300px" src="{{asset($page_datas->datas['barang']['attributes']['foto']['url'])}}"></img>
 </div>
 <div class="col-md-5 col-sm-5">
     <div class="col-md-12 col-sm-12 mbottom-m">
@@ -55,37 +55,6 @@
         <a href="#"><button type="submit" name="sign" value="check" class="btn btn-secondary pull-right mright-xl blue">Check Out</button></a>
     </div>
 </div>
-@if(is_null($page_datas->datas['inven']))
-@else
-<div class="col-md-3 col-sm-3">
-<table class="table">
-    <tr>
-        <th>Tanggal</th>
-        <th>Nama Barang</th>
-        <th>Sisa Stok</th>
-    </tr>    
-
-            <?php //dd($page_datas->datas) ?>
-
-        @if(is_null($page_datas->datas['inven']))
-        @else
-
-        @foreach($page_datas->datas['inven'] as $key => $data)
-        <tr>
-            <td>{{$data['tanggal']}}</td>
-            @foreach($data['inventory']['barang'] as $key2 => $barang)
-            <tr>
-                <td></td>
-                <td>{{$barang['nama']}}</td>
-                <td>{{$barang['currentStock']}}</td>
-            </tr>
-            @endforeach    
-        </tr>
-        @endforeach
-        @endif
-</table>
-</div>
-@endif
 {!! Form::close() !!}
 
 <div class="col-md-4 col-sm-4"></div>
@@ -310,3 +279,21 @@
     });
   } );
   </script>
+
+  <style type="text/css">
+    .grow img {
+  height: 300px;
+  width: 300px;
+ 
+  -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+       -o-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+          transition: all 1s ease;
+}
+ 
+.grow img:hover {
+  width: 400px;
+  height: 400px;
+}
+</style>
