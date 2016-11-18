@@ -38,7 +38,7 @@ class statisticController extends BaseController
     public function index()
     {
         if(session('key')==null){
-            $this->page_attributes->msg             = 'Data telah disimpan';
+            $this->page_attributes->msg             = 'Silahkan login terlebih dahulu';
             return $this->generateRedirect(route('backend.dashboard'));
             
         }
@@ -84,6 +84,9 @@ class statisticController extends BaseController
                 }
             }
         }
+        // dd($namaBarang);
+
+        //jika tidak ada data transaksi dalam database
         $divZero = 0;
         if($default==null){
             $divZero                                = 0;
@@ -109,7 +112,7 @@ class statisticController extends BaseController
 
         $jenis = $namaBarang[0][0];
 
-        //dd($namaBarang);
+        // dd($namaBarang);
 
         $transaksi                      = Transaksi::where('barang.' .$jenis. '.tanggal-keluar', '!=', null)
                                                     ->orderBy('barang.' .$jenis. '.tanggal-keluar', 'asc')
@@ -553,16 +556,15 @@ class statisticController extends BaseController
         $Statistic['persediaanAkhir']   = $stokLast;
         $Statistic['jumlahBeli']        = null;
         $Statistic->save();
-// dd($Statistic['persediaanMax']);
+// dd($Statistic['persediaanMin']);
         
         //menghindari pembagian dengan nol
-        if($Statistic['permintaanMax']==$Statistic['permintaanMin']){
+        if($Statistic['permintaanMax']==$Statistic['permintaanMin'] || $Statistic['persediaanMax']==$Statistic['persediaanMin']){
             $divZero                                = 1;
             $this->page_datas->divZero              = $divZero;
             $this->page_attributes->msg             = null;
             return $this->generateView('backend.pages.crm.statistic.noData', Request::route()->getName());
         }
-
 
         if($Statistic['permintaanAkhir']<$Statistic['permintaanMin']){
             $permintaanTurun        = 1;
