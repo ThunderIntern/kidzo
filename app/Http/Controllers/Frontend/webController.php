@@ -439,10 +439,39 @@ class webController extends BaseController
 
             //jika semua status rating pada database comment = null
             if($topRatingCount == 0){
-                $this->page_datas->tampil   = $this->page_datas->datas;
+                if($no == '0'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->paginate(6);
+                }
+                elseif($no == '1'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['0' ,'1'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '2'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['1' ,'2'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '3'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['2' ,'3'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '4'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->where('kategori' , '3+')
+                                                                    ->paginate(6);
+                }
+                $this->page_datas->tampil                = $katalog;
                 $this->page_datas->idSorting = $id;
 
-                $view_source                            = $this->view_source_root . '.katalog';
+                $view_source                            = $this->view_source_root . '.katalogParty';
                 $route_source                           = Request::route()->getName();        
                 return $this->generateView($view_source , $route_source);
             }
@@ -600,9 +629,36 @@ class webController extends BaseController
                 
                 $this->page_datas->tampil   = $katalog;
             }else{
-                $this->page_datas->tampil   = Barang::where('status', 'party')
-                                                    ->where('gudang' , 'Tidak')
-                                                    ->get();
+                if($no == '0'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->paginate(6);
+                }
+                elseif($no == '1'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['0' ,'1'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '2'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['1' ,'2'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '3'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['2' ,'3'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '4'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->where('kategori' , '3+')
+                                                                    ->paginate(6);
+                }
+                $this->page_datas->tampil                = $katalog;
             }
         }
     //////////////////////////////Terlaris
@@ -614,10 +670,39 @@ class webController extends BaseController
 
             //jika dalam tabel transaksi seluruh barang yang disewa = null
             if($barangCount == 0){
-                $this->page_datas->sortAllPermintaan   = $this->page_datas->datas;
+                if($no == '0'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->paginate(6);
+                }
+                elseif($no == '1'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['0' ,'1'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '2'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['1' ,'2'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '3'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['2' ,'3'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '4'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->where('kategori' , '3+')
+                                                                    ->paginate(6);
+                }
+                $this->page_datas->sortAllPermintaan                = $katalog;
                 $this->page_datas->idSorting = $id;
 
-                $view_source                            = $this->view_source_root . '.katalog';
+                $view_source                            = $this->view_source_root . '.katalogParty';
                 $route_source                           = Request::route()->getName();        
                 return $this->generateView($view_source , $route_source);
             }
@@ -762,9 +847,36 @@ class webController extends BaseController
 
                 $this->page_datas->sortAllPermintaan   = $katalog;
             }else{
-                $this->page_datas->sortAllPermintaan   = Barang::where('status', 'party')
-                                                            ->where('gudang' , 'Tidak')
-                                                            ->get();
+                if($no == '0'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->paginate(6);
+                }
+                elseif($no == '1'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['0' ,'1'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '2'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['1' ,'2'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '3'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['2' ,'3'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '4'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->where('kategori' , '3+')
+                                                                    ->paginate(6);
+                }
+                $this->page_datas->sortAllPermintaan                = $katalog;
             }
         }
 //////////////////////////
