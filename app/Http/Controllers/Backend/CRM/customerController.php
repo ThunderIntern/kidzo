@@ -40,8 +40,8 @@ class customerController extends BaseController
     public function index()
     {
         //get data
-        $user                                   = new User;
-        $datas                                  = $user::paginate(10);
+        $datas                                  = User::orderBy('created_at', desc)
+                                                    ->paginate(10);
 
         $this->page_datas->datas                = $datas;
         $this->page_datas->id                   = null;

@@ -49,7 +49,7 @@ class webController extends BaseController
         
         if($time['created_at']->addHour() >= $now){
             $email -> password('Password Anda', 'Silahkan masukkan password anda : '. $user['password'], $time['email'], $this->page_datas->datas);
-            $this->page_attributes->msg             = 'Silahkan login';
+            $this->page_attributes->msg             = 'Email anda telah menerima password untuk melakukan login';
             return $this->generateRedirect(route('signuped2'));
         }else{
             $email -> maaf('Expired', 'Maaf anda telah melawati batas waktu yang ditentukan, cobalah kembali.', $user['email'], $this->page_datas->datas);
@@ -91,7 +91,7 @@ class webController extends BaseController
         $email = new email;
         $email -> forgot($time['judul'], $time['content'], $user['email'], $this->page_datas->datas, $time['id']);
         
-        $this->page_attributes->msg             = 'Data telah disimpan';        
+        $this->page_attributes->msg             = 'Silahkan verifikasi email anda untuk mendapat password';
 
         return $this->generateRedirect(route('signuped2'));
     }
@@ -798,7 +798,7 @@ class webController extends BaseController
                 $restart                      = SortingBarang::truncate();
                 for($i=0;$i<count($namaBarangAttrib);$i++){
                     $sort                     = new SortingBarang;
-                    $sort['_id']              = $simUrutRating[$i]['_id'];
+                    $sort['_id']              = $namaBarangAttrib[$i]['_id'];
                     $sort['nama']             = $namaBarangAttrib[$i]['nama'];
                     $sort['isi']              = $namaBarangAttrib[$i]['isi'];
                     $sort['jenis']            = $namaBarangAttrib[$i]['jenis'];
@@ -2524,10 +2524,18 @@ class webController extends BaseController
     public function registerNewsletter()
     {
         $newsletter                             = new Subscriber;
-
+        $subscriber                             = Subscriber::orderBy('created_at','desc')
+                                                            ->get();
         //get input
         $input                                  = Input::only('email_mobile','email_desktop');
 
+        foreach ($subscriber as $value) {
+            if($value['attributes']['email'] == $input['email_mobile'] || $value['attributes']['email'] == $input['email_desktop']){
+                $this->errors                           = $newsletter->getErrors();
+                $this->page_attributes->msg             = 'Data telah disimpan';
+                return $this->generateRedirect(route('registered'));
+            }
+        }
         //save data
         if(empty($input['email_mobile'])){
             $newsletter->email                  = $input['email_desktop'];
@@ -2559,7 +2567,7 @@ class webController extends BaseController
 
         $email = new email;
         $email -> send('Selamat Datang!', 'Anda telah berhasil berlangganan newsletter.       
- -            Terima kasih sudah mendaftar service newsletter kami dan ikuti terus update dari barang-barang terbaru kami!',$newsletter->email, $this->page_datas->datas);
+            Terima kasih sudah mendaftar service newsletter kami dan ikuti terus update dari barang-barang terbaru kami!',$newsletter->email, $this->page_datas->datas);
 
 
         return $this->generateRedirect(route('registered'));
@@ -2590,7 +2598,7 @@ class webController extends BaseController
         $email -> unSubscribe('Terima Kasih', 'Anda telah berhenti berlangganan newsletter.',
             $datas['email'], null);
 
-        return $this->generateView('frontend.pages.unsubscribed', Request::route()->getName());
+        return $this->generateRedirect(route('unsubscribed'));
     }
 
     public function unsubscribedNewsletter($id = null)

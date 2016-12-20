@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Mail;
 Route::get('/a',function(){
 	return view('email/email');
 });
-
+error_reporting(E_ERROR);
 Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('/home', ['uses' => 'webController@home', 'as' => 'home']);
 	Route::get('/about', ['uses' => 'webController@about', 'as' => 'about']);

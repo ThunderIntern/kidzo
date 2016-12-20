@@ -39,8 +39,8 @@ class subscribberController extends BaseController
 
     public function index()
     {
-        $subscribber                            = new Subscriber;
-        $datas                                  = $subscribber->paginate(50);
+        $datas                                  = Subscriber::orderBy('created_at','desc')
+                                                            ->paginate(50);
 
         $this->page_datas->datas                = $datas;
         $this->page_datas->id                   = null;

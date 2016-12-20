@@ -41,8 +41,8 @@ class newsletterController extends BaseController
 
     public function index()
     {
-        $newsletter                             = new Newsletter;
-        $datas                                  = $newsletter->paginate(50);
+        $datas                                  = Newsletter::orderBy('created_at', desc)
+                                                            ->paginate(50);
 
         $this->page_datas->datas                = $datas;
         $this->page_datas->id                   = null;
@@ -125,7 +125,7 @@ class newsletterController extends BaseController
         $blast                                  = $subscriber::where('version.version_name','kidzo')
                                                                 ->where('is_subscribe', true)
                                                                 ->get();
-        dd($blast);
+        // dd($blast);
         foreach($blast as $nl){
             $email = new email;
             $email -> send($newsletter->Judul, $newsletter->content, $nl->email, $nl->unsubscribe_token);
