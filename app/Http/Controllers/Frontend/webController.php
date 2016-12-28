@@ -2869,7 +2869,7 @@ class webController extends BaseController
                                                         ->get()['0']['attributes'];
         $hashedToken                           = hash('md5', strtotime('now'));
         $newsletter->unsubscribe_token         = $hashedToken;
-        $newsletter->is_subscribe              = true;
+        $newsletter->is_subscribe              = 'pending';
 
         session(['email' => $newsletter['email']]);
 
@@ -2879,16 +2879,7 @@ class webController extends BaseController
         $newsletter->save();
         $this->errors                           = $newsletter->getErrors();
         $this->page_attributes->msg             = 'Data telah disimpan';
-        $newsletter1                            = Subscriber::where('unsubscribe_token', $hashedToken)->get();
         
-        foreach($newsletter1 as $nl){
-            $this->page_datas->datas = $nl->unsubscribe_token;
-        }
-
-        $email = new email;
-        $email -> send('Selamat Datang!', 'Anda telah berhasil berlangganan newsletter.       
-            Terima kasih sudah mendaftar service newsletter kami dan ikuti terus update dari barang-barang terbaru kami!',$newsletter->email, $this->page_datas->datas);
-
 
         return $this->generateRedirect(route('registered'));
     }
@@ -2908,10 +2899,9 @@ class webController extends BaseController
      public function unsubscribeNewsletter($id)
     {
         if($id != null){
-            
             $datas                              = Subscriber::where('unsubscribe_token', $id)
                                                             ->get()['0']['attributes'];
-            Subscriber::where('unsubscribe_token', $id)->update(['is_subscribe'=> false]);
+            Subscriber::where('unsubscribe_token', $id)->update(['is_subscribe'=> 'unsubscribed']);
         
         }
         $email = new email;

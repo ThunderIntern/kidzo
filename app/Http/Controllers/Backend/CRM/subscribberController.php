@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Backend\CRM;
+use App\Http\Controllers\Functions\email;
 
 use App\Http\Controllers\baseController;
 use App\Http\Controllers\functions\dataFormatter;
-
 use App\Models\Subscriber;
 use App\Models\Version;
 use Request, Input, URL, Hash;
@@ -113,6 +113,19 @@ class subscribberController extends BaseController
         }
 
         $subscribber->save();
+
+        if($input['is_subscribe']=='subscribed'){
+            $newsletter1                            = Subscriber::where('unsubscribe_token', $subscribber['unsubscribe_token'])->get();
+
+            foreach($newsletter1 as $nl){
+                $this->page_datas->datas = $nl->unsubscribe_token;
+            }
+
+            $email = new email;
+            $email -> send('Selamat Datang!', 'Anda telah berhasil berlangganan newsletter.       
+                Terima kasih sudah mendaftar service newsletter kami dan ikuti terus update dari barang-barang terbaru kami!',$newsletter1[0]['attributes']['email'], $this->page_datas->datas);    
+        }
+        
 
         $this->errors                           = $subscribber->getErrors();
         $this->page_attributes->msg             = 'Data telah disimpan';

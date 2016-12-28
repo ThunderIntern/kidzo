@@ -72,7 +72,7 @@ button:
                             @else
                             <a href="{{Route('profile')}}">        {{-- Tombol shoping cart --}}        
                                 <button class="navbar-toggler padding30 dropbtn right-navbar-button" type="button">
-                                    <i class="fa fa-user fa-lg black" aria-hidden="true"></i></br>
+                                    <i class="fa fa-user fa-lg black" aria-hidden="true"> Log out</i>
                                 </button>
                             </a>
                             @endif

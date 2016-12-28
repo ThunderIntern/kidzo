@@ -38,7 +38,7 @@ class Subscriber extends BaseModel
 
 	protected $rules				=	[
 											'email'							=> 'required|email',
-											'is_subscribe'					=> 'required|boolean',
+											
 										];
 
 	/**
