@@ -13,7 +13,9 @@ use App\Models\Version;
 use App\Models\User;
 use App\Models\Comment;
 use App\Models\emailTime;
-use App\Models\SortingBarang;
+use App\Models\SortingRating;
+use App\Models\SortingHarga;
+use App\Models\SortingTerlaris;
 use App\Models\Barang;
 use App\Models\Inventory;
 use App\Models\Transaksi;
@@ -181,7 +183,7 @@ class webController extends BaseController
                 //menginput data dari setiap jenis barang yang disewa per keranjang
                 foreach ($riwayat['barang'] as $riwayat2) {
                     array_push($item, [$riwayat2['nama'], $riwayat2['harga'], $riwayat2['jumlah'],
-                     $riwayat2['lama-sewa'], $riwayat2['tanggal-keluar']]);
+                     $riwayat2['lama-sewa'], $riwayat2['tanggal-keluar'], $riwayat2['tanggal-masuk']]);
                 }
                 //menandai akhir array perkeranjang untuk tampilan
                 array_push($item, null);
@@ -429,7 +431,7 @@ class webController extends BaseController
             }
             $this->page_datas->datas                = $katalog;
         }
-        //////Sorting rating
+//////Sorting rating
         if($id=='rating'){
             $totTiapJenis = 0;
             $topRatingCount                              = Comment::where('rating', '!=', null)
@@ -540,7 +542,7 @@ class webController extends BaseController
             $this->page_datas->sumUrutRating = count($totalTiapJenis);
 
             $simUrutRating = [];
-            $totBar         = Barang::where('status', 'party')
+            $totBar         = Barang::where('gudang', 'Tidak')
                                     ->get();
             //mengantisipasi adanya perubahan id dalam database barang saat melakukan db:seed dari database comment(array $totalTiapJenis diambil dari tabel comment)
             for($i=0;$i<count($totalTiapJenis);$i++){
@@ -556,8 +558,7 @@ class webController extends BaseController
 
 
             //menambahkan barang yang tidak ada dalam array $simurutrating dari tabel barang ke dalam $simurutrating
-            $tampil             = Barang::where('status' , 'party')
-                                        ->where('gudang' , 'Tidak')
+            $tampil             = Barang::where('gudang' , 'Tidak')
                                         ->get();
             $flagg = 0;
             foreach ($tampil as $tmpl) {
@@ -575,11 +576,11 @@ class webController extends BaseController
             }
             // dd($simUrutRating);
 
-            //memasukkan data setiap barang dari array ke dalam tabel SortingBarang
+            //memasukkan data setiap barang dari array ke dalam tabel SortingRating
             if($simUrutRating != null){
-                $restart                      = SortingBarang::truncate();
+                $restart                      = SortingRating::truncate();
                 for($i=0;$i<count($simUrutRating);$i++){
-                    $sort                     = new SortingBarang;
+                    $sort                     = new SortingRating;
                     $sort['_id']              = $simUrutRating[$i]['_id'];
                     $sort['nama']             = $simUrutRating[$i]['nama'];
                     $sort['isi']              = $simUrutRating[$i]['isi'];
@@ -598,30 +599,30 @@ class webController extends BaseController
                     $sort->save();
                 }
                 if($no == '0'){
-                    $katalog                                = SortingBarang::where('status' , 'party')
+                    $katalog                                = SortingRating::where('status' , 'party')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->paginate(6);
                 }
                 elseif($no == '1'){
-                    $katalog                                = SortingBarang::where('status' , 'party')
+                    $katalog                                = SortingRating::where('status' , 'party')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->whereIn('kategori' , ['0' ,'1'])
                                                                     ->paginate(6);
                 }
                 elseif($no == '2'){
-                    $katalog                                = SortingBarang::where('status' , 'party')
+                    $katalog                                = SortingRating::where('status' , 'party')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->whereIn('kategori' , ['1' ,'2'])
                                                                     ->paginate(6);
                 }
                 elseif($no == '3'){
-                    $katalog                                = SortingBarang::where('status' , 'party')
+                    $katalog                                = SortingRating::where('status' , 'party')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->whereIn('kategori' , ['2' ,'3'])
                                                                     ->paginate(6);
                 }
                 elseif($no == '4'){
-                    $katalog                                = SortingBarang::where('status' , 'party')
+                    $katalog                                = SortingRating::where('status' , 'party')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->where('kategori' , '3+')
                                                                     ->paginate(6);
@@ -661,7 +662,164 @@ class webController extends BaseController
                 $this->page_datas->tampil                = $katalog;
             }
         }
-    //////////////////////////////Terlaris
+
+//////Sorting Harga
+        if($id=='harga'){
+            $countBarang                        = Barang::where('gudang' , 'Tidak')
+                                                        ->count();
+            $barang                             = Barang::where('gudang' , 'Tidak')
+                                                        ->get();
+            //jika dalam tabel transaksi seluruh barang yang disewa = null
+            if($countBarang == 0){
+                if($no == '0'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->paginate(6);
+                }
+                elseif($no == '1'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['0' ,'1'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '2'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['1' ,'2'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '3'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['2' ,'3'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '4'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->where('kategori' , '3+')
+                                                                    ->paginate(6);
+                }
+                $this->page_datas->sortHarga                = $katalog;
+                $this->page_datas->idSorting = $id;
+
+                $view_source                            = $this->view_source_root . '.katalog';
+                $route_source                           = Request::route()->getName();        
+                return $this->generateView($view_source , $route_source);
+            }
+            $arrBar = [];
+
+            foreach ($barang as $objek) {
+                array_push($arrBar, [(int)$objek['attributes']['harga'],$objek['attributes']['nama'],$objek['attributes']['_id']]);
+            }
+            //melakukan sorting jumlah permintaan tertinggi dari seluruh mainan
+            for($ia=count($arrBar)-1;$ia>0;$ia--){
+                for($i=count($arrBar)-1;$i>0;$i--){
+                    if($arrBar[$i-1][0]>$arrBar[$i][0]){
+                        $z = $arrBar[$i-1];
+                        $arrBar[$i-1] = $arrBar[$i];
+                        $arrBar[$i] = $z;
+                    }
+                }
+            }
+
+            //menginput dan membuat array baru seluruh attribut masing-masing barang untuk tampilan
+            $arrBarAttrib = [];
+            for($x=0;$x<count($arrBar);$x++){
+                $allPermintaan = Barang::where('nama', $arrBar[$x][1])
+                                        ->get()[0]['attributes'];
+
+                array_push($arrBarAttrib, $allPermintaan);
+            }
+            // dd($arrBarAttrib);
+            if($arrBar != null){
+                $restart                      = SortingHarga::truncate();
+                for($i=0;$i<count($arrBarAttrib);$i++){
+                    $sort                     = new SortingHarga;
+                    $sort['_id']             = $arrBarAttrib[$i]['_id'];
+                    $sort['nama']             = $arrBarAttrib[$i]['nama'];
+                    $sort['isi']              = $arrBarAttrib[$i]['isi'];
+                    $sort['jenis']            = $arrBarAttrib[$i]['jenis'];
+                    $sort['kategori']         = $arrBarAttrib[$i]['kategori'];
+                    $sort['foto']             = [
+                                                        'url'    => $arrBarAttrib[$i]['foto']['url'],
+                                                        'link'   => $arrBarAttrib[$i]['foto']['link']
+                                                  ];
+                    $sort['harga']            = $arrBarAttrib[$i]['harga'];
+                    $sort['deskripsi']        = $arrBarAttrib[$i]['deskripsi'];
+                    $sort['perawatan']        = $arrBarAttrib[$i]['perawatan'];
+                    $sort['status']           = $arrBarAttrib[$i]['status'];
+                    $sort['gudang']           = $arrBarAttrib[$i]['gudang'];
+                    $sort['admin']            = $arrBarAttrib[$i]['admin'];
+                    $sort->save();
+                }
+                if($no == '0'){
+                    $katalog                                = SortingHarga::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->paginate(6);
+                }
+                elseif($no == '1'){
+                    $katalog                                = SortingHarga::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['0' ,'1'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '2'){
+                    $katalog                                = SortingHarga::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['1' ,'2'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '3'){
+                    $katalog                                = SortingHarga::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['2' ,'3'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '4'){
+                    $katalog                                = SortingHarga::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->where('kategori' , '3+')
+                                                                    ->paginate(6);
+                }
+
+                $this->page_datas->sortHarga   = $katalog;
+            }else{
+                if($no == '0'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->paginate(6);
+                }
+                elseif($no == '1'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['0' ,'1'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '2'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['1' ,'2'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '3'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['2' ,'3'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '4'){
+                    $katalog                                = Barang::where('status' , 'party')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->where('kategori' , '3+')
+                                                                    ->paginate(6);
+                }
+                $this->page_datas->sortHarga                = $katalog;
+            }
+
+        }
+
+//////////////////////////////Terlaris
         if($id=='terlaris'){
             $barangCount                         = Transaksi::where('barang', '!=', null)
                                                         ->count();
@@ -765,7 +923,6 @@ class webController extends BaseController
             // dd($namaBarang);
 
             $sortAllPermintaan             = Barang::where('_id', '!=', null)
-                                                    ->where('status', 'party')
                                                     ->get();
 
             //menambahkan nama barang yang tidak pernah masuk dalam tabel transaksi ke dalam 
@@ -795,9 +952,9 @@ class webController extends BaseController
              // dd($namaBarangAttrib);
 
             if($namaBarang != null){
-                $restart                      = SortingBarang::truncate();
+                $restart                      = SortingTerlaris::truncate();
                 for($i=0;$i<count($namaBarangAttrib);$i++){
-                    $sort                     = new SortingBarang;
+                    $sort                     = new SortingTerlaris;
                     $sort['_id']              = $namaBarangAttrib[$i]['_id'];
                     $sort['nama']             = $namaBarangAttrib[$i]['nama'];
                     $sort['isi']              = $namaBarangAttrib[$i]['isi'];
@@ -816,30 +973,30 @@ class webController extends BaseController
                     $sort->save();
                 }
                 if($no == '0'){
-                    $katalog                                = SortingBarang::where('status' , 'party')
+                    $katalog                                = SortingTerlaris::where('status' , 'party')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->paginate(6);
                 }
                 elseif($no == '1'){
-                    $katalog                                = SortingBarang::where('status' , 'party')
+                    $katalog                                = SortingTerlaris::where('status' , 'party')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->whereIn('kategori' , ['0' ,'1'])
                                                                     ->paginate(6);
                 }
                 elseif($no == '2'){
-                    $katalog                                = SortingBarang::where('status' , 'party')
+                    $katalog                                = SortingTerlaris::where('status' , 'party')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->whereIn('kategori' , ['1' ,'2'])
                                                                     ->paginate(6);
                 }
                 elseif($no == '3'){
-                    $katalog                                = SortingBarang::where('status' , 'party')
+                    $katalog                                = SortingTerlaris::where('status' , 'party')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->whereIn('kategori' , ['2' ,'3'])
                                                                     ->paginate(6);
                 }
                 elseif($no == '4'){
-                    $katalog                                = SortingBarang::where('status' , 'party')
+                    $katalog                                = SortingTerlaris::where('status' , 'party')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->where('kategori' , '3+')
                                                                     ->paginate(6);
@@ -1000,6 +1157,7 @@ class webController extends BaseController
     }
 
     public function katalog($no, $id){
+////data baru
         if($id=='data'){
             if($no == '0'){
                 $katalog                                = Barang::where('status' , 'individu')
@@ -1032,6 +1190,7 @@ class webController extends BaseController
             }
             $this->page_datas->datas                = $katalog;
         }
+
 //////Sorting rating
         if($id=='rating'){
             $totTiapJenis = 0;
@@ -1144,6 +1303,7 @@ class webController extends BaseController
 
             $simUrutRating = [];
             $totBar         = Barang::where('status', 'individu')
+                                    ->where('gudang', 'Tidak')
                                     ->get();
             //mengantisipasi adanya perubahan id dalam database barang saat melakukan db:seed dari database comment(array $totalTiapJenis diambil dari tabel comment)
             for($i=0;$i<count($totalTiapJenis);$i++){
@@ -1159,8 +1319,7 @@ class webController extends BaseController
 
 
             //menambahkan barang yang tidak ada dalam array $simurutrating dari tabel barang ke dalam $simurutrating
-            $tampil             = Barang::where('status' , 'individu')
-                                        ->where('gudang' , 'Tidak')
+            $tampil             = Barang::where('gudang' , 'Tidak')
                                         ->get();
             $flagg = 0;
             foreach ($tampil as $tmpl) {
@@ -1178,11 +1337,11 @@ class webController extends BaseController
             }
             // dd($simUrutRating);
 
-            //memasukkan data setiap barang dari array ke dalam tabel SortingBarang
+            //memasukkan data setiap barang dari array ke dalam tabel SortingRating
             if($simUrutRating != null){
-                $restart                      = SortingBarang::truncate();
+                $restart                      = SortingRating::truncate();
                 for($i=0;$i<count($simUrutRating);$i++){
-                    $sort                     = new SortingBarang;
+                    $sort                     = new SortingRating;
                     $sort['_id']              = $simUrutRating[$i]['_id'];
                     $sort['nama']             = $simUrutRating[$i]['nama'];
                     $sort['isi']              = $simUrutRating[$i]['isi'];
@@ -1201,30 +1360,30 @@ class webController extends BaseController
                     $sort->save();
                 }
                 if($no == '0'){
-                    $katalog                                = SortingBarang::where('status' , 'individu')
+                    $katalog                                = SortingRating::where('status' , 'individu')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->paginate(6);
                 }
                 elseif($no == '1'){
-                    $katalog                                = SortingBarang::where('status' , 'individu')
+                    $katalog                                = SortingRating::where('status' , 'individu')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->whereIn('kategori' , ['0' ,'1'])
                                                                     ->paginate(6);
                 }
                 elseif($no == '2'){
-                    $katalog                                = SortingBarang::where('status' , 'individu')
+                    $katalog                                = SortingRating::where('status' , 'individu')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->whereIn('kategori' , ['1' ,'2'])
                                                                     ->paginate(6);
                 }
                 elseif($no == '3'){
-                    $katalog                                = SortingBarang::where('status' , 'individu')
+                    $katalog                                = SortingRating::where('status' , 'individu')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->whereIn('kategori' , ['2' ,'3'])
                                                                     ->paginate(6);
                 }
                 elseif($no == '4'){
-                    $katalog                                = SortingBarang::where('status' , 'individu')
+                    $katalog                                = SortingRating::where('status' , 'individu')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->where('kategori' , '3+')
                                                                     ->paginate(6);
@@ -1264,7 +1423,163 @@ class webController extends BaseController
                 $this->page_datas->tampil                = $katalog;
             }
         }
-    //////////////////////////////
+//////Sorting Harga
+        if($id=='harga'){
+            $countBarang                        = Barang::where('gudang' , 'Tidak')
+                                                        ->count();
+            $barang                             = Barang::where('gudang' , 'Tidak')
+                                                        ->get();
+            //jika dalam tabel transaksi seluruh barang yang disewa = null
+            if($countBarang == 0){
+                if($no == '0'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->paginate(6);
+                }
+                elseif($no == '1'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['0' ,'1'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '2'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['1' ,'2'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '3'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['2' ,'3'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '4'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->where('kategori' , '3+')
+                                                                    ->paginate(6);
+                }
+                $this->page_datas->sortHarga                = $katalog;
+                $this->page_datas->idSorting = $id;
+
+                $view_source                            = $this->view_source_root . '.katalog';
+                $route_source                           = Request::route()->getName();        
+                return $this->generateView($view_source , $route_source);
+            }
+            $arrBar = [];
+
+            foreach ($barang as $objek) {
+                array_push($arrBar, [(int)$objek['attributes']['harga'],$objek['attributes']['nama'],$objek['attributes']['_id']]);
+            }
+            //melakukan sorting jumlah permintaan tertinggi dari seluruh mainan
+            for($ia=count($arrBar)-1;$ia>0;$ia--){
+                for($i=count($arrBar)-1;$i>0;$i--){
+                    if($arrBar[$i-1][0]>$arrBar[$i][0]){
+                        $z = $arrBar[$i-1];
+                        $arrBar[$i-1] = $arrBar[$i];
+                        $arrBar[$i] = $z;
+                    }
+                }
+            }
+
+            //menginput dan membuat array baru seluruh attribut masing-masing barang untuk tampilan
+            $arrBarAttrib = [];
+            for($x=0;$x<count($arrBar);$x++){
+                $allPermintaan = Barang::where('nama', $arrBar[$x][1])
+                                        ->get()[0]['attributes'];
+
+                array_push($arrBarAttrib, $allPermintaan);
+            }
+            // dd($arrBarAttrib);
+            if($arrBar != null){
+                $restart                      = SortingHarga::truncate();
+                for($i=0;$i<count($arrBarAttrib);$i++){
+                    $sort                     = new SortingHarga;
+                    $sort['_id']             = $arrBarAttrib[$i]['_id'];
+                    $sort['nama']             = $arrBarAttrib[$i]['nama'];
+                    $sort['isi']              = $arrBarAttrib[$i]['isi'];
+                    $sort['jenis']            = $arrBarAttrib[$i]['jenis'];
+                    $sort['kategori']         = $arrBarAttrib[$i]['kategori'];
+                    $sort['foto']             = [
+                                                        'url'    => $arrBarAttrib[$i]['foto']['url'],
+                                                        'link'   => $arrBarAttrib[$i]['foto']['link']
+                                                  ];
+                    $sort['harga']            = $arrBarAttrib[$i]['harga'];
+                    $sort['deskripsi']        = $arrBarAttrib[$i]['deskripsi'];
+                    $sort['perawatan']        = $arrBarAttrib[$i]['perawatan'];
+                    $sort['status']           = $arrBarAttrib[$i]['status'];
+                    $sort['gudang']           = $arrBarAttrib[$i]['gudang'];
+                    $sort['admin']            = $arrBarAttrib[$i]['admin'];
+                    $sort->save();
+                }
+                if($no == '0'){
+                    $katalog                                = SortingHarga::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->paginate(6);
+                }
+                elseif($no == '1'){
+                    $katalog                                = SortingHarga::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['0' ,'1'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '2'){
+                    $katalog                                = SortingHarga::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['1' ,'2'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '3'){
+                    $katalog                                = SortingHarga::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['2' ,'3'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '4'){
+                    $katalog                                = SortingHarga::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->where('kategori' , '3+')
+                                                                    ->paginate(6);
+                }
+
+                $this->page_datas->sortHarga   = $katalog;
+            }else{
+                if($no == '0'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->paginate(6);
+                }
+                elseif($no == '1'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['0' ,'1'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '2'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['1' ,'2'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '3'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->whereIn('kategori' , ['2' ,'3'])
+                                                                    ->paginate(6);
+                }
+                elseif($no == '4'){
+                    $katalog                                = Barang::where('status' , 'individu')
+                                                                    ->where('gudang' , 'Tidak')
+                                                                    ->where('kategori' , '3+')
+                                                                    ->paginate(6);
+                }
+                $this->page_datas->sortHarga                = $katalog;
+            }
+
+        }
+
+////////sorting terlaris
         if($id=='terlaris'){
             $barangCount                         = Transaksi::where('barang', '!=', null)
                                                         ->count();
@@ -1368,7 +1683,6 @@ class webController extends BaseController
             // dd($namaBarang);
 
             $sortAllPermintaan             = Barang::where('_id', '!=', null)
-                                                    ->where('status', 'individu')
                                                     ->get();
 
             //menambahkan nama barang yang tidak pernah masuk dalam tabel transaksi ke dalam 
@@ -1398,9 +1712,9 @@ class webController extends BaseController
              // dd($namaBarangAttrib);
 
             if($namaBarang != null){
-                $restart                      = SortingBarang::truncate();
+                $restart                      = SortingTerlaris::truncate();
                 for($i=0;$i<count($namaBarangAttrib);$i++){
-                    $sort                     = new SortingBarang;
+                    $sort                     = new SortingTerlaris;
                     $sort['_id']             = $namaBarangAttrib[$i]['_id'];
                     $sort['nama']             = $namaBarangAttrib[$i]['nama'];
                     $sort['isi']              = $namaBarangAttrib[$i]['isi'];
@@ -1419,30 +1733,30 @@ class webController extends BaseController
                     $sort->save();
                 }
                 if($no == '0'){
-                    $katalog                                = SortingBarang::where('status' , 'individu')
+                    $katalog                                = SortingTerlaris::where('status' , 'individu')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->paginate(6);
                 }
                 elseif($no == '1'){
-                    $katalog                                = SortingBarang::where('status' , 'individu')
+                    $katalog                                = SortingTerlaris::where('status' , 'individu')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->whereIn('kategori' , ['0' ,'1'])
                                                                     ->paginate(6);
                 }
                 elseif($no == '2'){
-                    $katalog                                = SortingBarang::where('status' , 'individu')
+                    $katalog                                = SortingTerlaris::where('status' , 'individu')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->whereIn('kategori' , ['1' ,'2'])
                                                                     ->paginate(6);
                 }
                 elseif($no == '3'){
-                    $katalog                                = SortingBarang::where('status' , 'individu')
+                    $katalog                                = SortingTerlaris::where('status' , 'individu')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->whereIn('kategori' , ['2' ,'3'])
                                                                     ->paginate(6);
                 }
                 elseif($no == '4'){
-                    $katalog                                = SortingBarang::where('status' , 'individu')
+                    $katalog                                = SortingTerlaris::where('status' , 'individu')
                                                                     ->where('gudang' , 'Tidak')
                                                                     ->where('kategori' , '3+')
                                                                     ->paginate(6);

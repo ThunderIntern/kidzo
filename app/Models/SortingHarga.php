@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-class SortingBarang extends BaseModel
+class SortingHarga extends BaseModel
 {
-	protected $collection			= 'SortingBarang';
+	protected $collection			= 'SortingHarga';
 	public $timestamps				= true;
 	
 	/**
