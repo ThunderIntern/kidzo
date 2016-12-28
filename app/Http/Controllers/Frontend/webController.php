@@ -182,8 +182,14 @@ class webController extends BaseController
 
                 //menginput data dari setiap jenis barang yang disewa per keranjang
                 foreach ($riwayat['barang'] as $riwayat2) {
+                    $ubah = $riwayat2['lama-sewa'];
+                    if($ubah==8){
+                        $ubah = 14;
+                    }elseif($ubah==9){
+                        $ubah = 30;
+                    }
                     array_push($item, [$riwayat2['nama'], $riwayat2['harga'], $riwayat2['jumlah'],
-                     $riwayat2['lama-sewa'], $riwayat2['tanggal-keluar'], $riwayat2['tanggal-masuk']]);
+                     $ubah, $riwayat2['tanggal-keluar'], $riwayat2['tanggal-masuk']]);
                 }
                 //menandai akhir array perkeranjang untuk tampilan
                 array_push($item, null);

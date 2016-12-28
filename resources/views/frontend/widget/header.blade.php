@@ -63,34 +63,20 @@ button:
                                     <i class="fa fa-shopping-cart fa-lg black" aria-hidden="true"></i>
                                 </button>
                             </a>
-                            <div class="dropdown">  {{-- Tombol search --}}
-                                <a href="javascript:void(0)">
-                                    <button onclick="dropSearch(this)" class="dropbtn navbar-toggler padding30 right-navbar-button" type="button">
-                                        <i class="fa fa-search fa-lg black" aria-hidden="true"></i>
-                                    </button>
-                                </a>
-                                {{-- Yang keluar saat tombol search ditekan --}}
-                                <div id="myDropdown" class="dropdown-content box drop-search"> 
-                                        <form method="GET" action="#" accept-charset="UTF-8" class="p-y-0">
-                                            <div class="input-group">
-                                                <input type="text" name="search" value="" class="form-control navbar-input-search" placeholder="Pencarian Produk">
-                                                <span class="input-group-btn">
-                                                    <button class="btn navbar-btn-search" type="submit">Cari</button>
-                                                </span>
-                                            </div>
-                                        </form>
-
-                                        <a href="#" class="textCenter navbar-advance-search">Advance Search</a>
-                                </div>
-                            </div> {{-- Tombol search --}}
+                            @if(is_null(Session::get('akun')))
+                            <a href="{{Route('create')}}">        {{-- Tombol shoping cart --}}        
+                                <button class="navbar-toggler padding30 dropbtn right-navbar-button" type="button">
+                                    <b class="black" aria-hidden="true">Sign Up</b>
+                                </button>
+                            </a>
+                            @else
+                            <a href="{{Route('profile')}}">        {{-- Tombol shoping cart --}}        
+                                <button class="navbar-toggler padding30 dropbtn right-navbar-button" type="button">
+                                    <i class="fa fa-user fa-lg black" aria-hidden="true"></i></br>
+                                </button>
+                            </a>
+                            @endif
                         </div>{{-- Tombol shoping cart + search --}}
-                        <div id="myDropdown" class="dropdown-content box width25Per marginTop79 marginRight15"> 
-                            <form class="form-inline">
-                                    {!! Form::text('email_mobile',null, ['class' => 'form-control width80Per', 'placeholder'=>'Cari Produk']) !!}
-                                    <button type="submit" class="black bgabu butFoot width20Per">Cari</button>
-                                    <a href="#" class="textCenter">Advance Search</a>
-                            </form>
-                        </div>
                     </div>
                 </nav>
                 </div>
