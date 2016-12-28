@@ -123,7 +123,7 @@ class newsletterController extends BaseController
 
         $subscriber                             = new Subscriber;
         $blast                                  = $subscriber::where('version.version_name','kidzo')
-                                                                ->where('is_subscribe', true)
+                                                                ->where('is_subscribe', 'subscribed')
                                                                 ->get();
         // dd($blast);
         foreach($blast as $nl){

@@ -45,7 +45,7 @@
 			</fieldset>				
 			<fieldset class="form-group">
 				<label for="name">Content</label>
-				{!! Form::textarea('content', $page_datas->datas['content'], ['class' => 'form-control summernote', 'rows' => '10']) !!}				
+				{!! Form::textarea('content', $page_datas->datas['content'], ['class' => 'form-control', 'rows' => '10']) !!}
 			</fieldset>
 		</div>
 	</div>
