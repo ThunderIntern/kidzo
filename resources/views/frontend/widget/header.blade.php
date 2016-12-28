@@ -122,45 +122,45 @@ button:
                     </div>
                     {{-- Yang keluar saat tombol search ditekan --}}
                     <div id="myDropdown3" class="dropdown-content box marginTop77"> 
-                                    <form class="form-inline marginTop15 paddingLeft30 paddingRight30">
-                                            {!! Form::text('email_mobile',null, ['class' => 'form-control width80Per floatLeft', 'placeholder'=>'Cari Mainan']) !!}
-                                            <button type="submit" class="black bgabu width20Per butFoot floatLeft"><i class="fa fa-search fa-lg black" aria-hidden="true"></i></button>
-                                        </br></br><button type="submit" class="buttonAdvan width100Per">
-                                        <a href="#" class="textCenter">
-                                            <div style="color:#808080">Pencarian Lanjutan</div>
-                                        </a></button>
-                                    </form>
-                                    </br></br>
-                                     <ul class="nav navbar-nav">
-                                        <li class="nav-item borderTop5">
-                                        </li>
-                                        <li class="nav-item hoverHome">
-                                            <a class="nav-link pull-left paddingLeft30" href="{{Route('home')}}">
-                                                <div class="red">Home</div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item hoverMainan ">
-                                            <a class="nav-link pull-left paddingLeft30" href="{{Route('katalog' , ['no' => '0', 'id' => 'data'])}}">
-                                                <div class="green">Mainan</div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item hoverParty ">
-                                            <a class="nav-link pull-left paddingLeft30" href="{{Route('party' , ['no' => '0', 'id' => 'data'])}}">
-                                                <div class="orange">Party Package</div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item hoverTentang ">
-                                            <a class="nav-link pull-left paddingLeft30" href="{{Route('about')}}">
-                                                <div class="purple">Tentang Kami</div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item hoverLogin">
-                                            <a class="nav-link pull-left paddingLeft30" href="{{Route('signuped2')}}">
-                                                <div class="blue">Login</div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                        <form class="form-inline marginTop15 paddingLeft30 paddingRight30">
+                                {!! Form::text('email_mobile',null, ['class' => 'form-control width80Per floatLeft', 'placeholder'=>'Cari Mainan']) !!}
+                                <button type="submit" class="black bgabu width20Per butFoot floatLeft"><i class="fa fa-search fa-lg black" aria-hidden="true"></i></button>
+                            </br></br><button type="submit" class="buttonAdvan width100Per">
+                            <a href="#" class="textCenter">
+                                <div style="color:#808080">Pencarian Lanjutan</div>
+                            </a></button>
+                        </form>
+                        </br></br>
+                         <ul class="nav navbar-nav">
+                            <li class="nav-item borderTop5">
+                            </li>
+                            <li class="nav-item hoverHome">
+                                <a class="nav-link pull-left paddingLeft30" href="{{Route('home')}}">
+                                    <div class="red">Home</div>
+                                </a>
+                            </li>
+                            <li class="nav-item hoverMainan ">
+                                <a class="nav-link pull-left paddingLeft30" href="{{Route('katalog' , ['no' => '0', 'id' => 'data'])}}">
+                                    <div class="green">Mainan</div>
+                                </a>
+                            </li>
+                            <li class="nav-item hoverParty ">
+                                <a class="nav-link pull-left paddingLeft30" href="{{Route('party' , ['no' => '0', 'id' => 'data'])}}">
+                                    <div class="orange">Party Package</div>
+                                </a>
+                            </li>
+                            <li class="nav-item hoverTentang ">
+                                <a class="nav-link pull-left paddingLeft30" href="{{Route('about')}}">
+                                    <div class="purple">Tentang Kami</div>
+                                </a>
+                            </li>
+                            <li class="nav-item hoverLogin">
+                                <a class="nav-link pull-left paddingLeft30" href="{{Route('signuped2')}}">
+                                    <div class="blue">Login</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </nav>
             </div>{{-- Saat ukuran mobile --}}
             

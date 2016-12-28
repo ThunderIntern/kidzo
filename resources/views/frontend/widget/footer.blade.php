@@ -70,7 +70,7 @@ button:
                         <a href="{{Route('katalog' , ['no' => '4', 'id' => 'data'])}}" class="black"><p>3 Tahun Keatas</p></a>
                     </div>
                     <div class="floatLeft footer-col3">
-                        <p><b>Newslatter</b></p>
+                        <p><b>Newsletter</b></p>
                         <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
                         
                         <form class="form-inline">
@@ -81,7 +81,7 @@ button:
             </div>{{-- isi Footer ukuran desktop --}}
             {{-- isi Footer ukuran mobile --}}
             <div class="kecila paddingLeft50 bgabumuda  paddingRight50">
-                <p><b>Newslatter</b></p>
+                <p><b>Newsletter</b></p>
                 <p>Daftarkan email Anda untuk menerima penawaran menarik dari kami !</p>
                 <form class="form-inline">
                     {!! Form::email('email_mobile',null, ['class' => 'form-control pull-left width75Per', 'placeholder' => 'Email Anda']) !!}

@@ -156,7 +156,7 @@
             @endif
             </div>
             
-            <h6 class="pull-left mbottom-xs">"{{ ucFirst($komen['content']['isi']) }}"</h6>></br></br></br></br></br>
+            <h6 class="pull-left mbottom-xs">"{{ ucFirst($komen['content']['isi']) }}"</h6></br></br></br></br></br>
         @endif
 
 
