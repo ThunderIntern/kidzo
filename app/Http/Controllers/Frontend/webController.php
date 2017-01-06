@@ -345,6 +345,12 @@ class webController extends BaseController
                                                     ->orderBy('published_at','desc')
                                                     ->first()['attributes']['config'];
 
+        //koleksi mainan
+        $mainan                                 = Barang::where('status', 'individu')
+                                                        ->where('gudang', 'Tidak')
+                                                        ->count();
+
+        $this->page_datas->mainan               = $mainan-4;
         $this->page_datas->datas                = $datas;
 
         return $this->generateView('frontend.pages.home', Request::route()->getName());
@@ -2877,6 +2883,7 @@ class webController extends BaseController
             $newsletter->admin                     = 'Admins';
         }
         $newsletter->save();
+
         $this->errors                           = $newsletter->getErrors();
         $this->page_attributes->msg             = 'Data telah disimpan';
         
@@ -2886,6 +2893,12 @@ class webController extends BaseController
 
     public function registeredNewsletter($id = null)
     {
+        //koleksi mainan
+        $mainan                                 = Barang::where('status', 'individu')
+                                                        ->where('gudang', 'Tidak')
+                                                        ->count();
+
+        $this->page_datas->mainan               = $mainan-4;
         return $this->generateView('frontend.pages.registered', Request::route()->getName());
     }
 
@@ -2913,6 +2926,12 @@ class webController extends BaseController
 
     public function unsubscribedNewsletter($id = null)
     {
+        //koleksi mainan
+        $mainan                                 = Barang::where('status', 'individu')
+                                                        ->where('gudang', 'Tidak')
+                                                        ->count();
+
+        $this->page_datas->mainan               = $mainan-4;
         return $this->generateView('frontend.pages.unsubscribed', Request::route()->getName());
     }
 

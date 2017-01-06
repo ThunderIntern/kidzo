@@ -95,6 +95,10 @@
 @if($page_datas->status  == 'historyUser')
 	@if($page_datas->username!=null)
 		@for($x=0;$x<$page_datas->banyakRiwayat;$x++)
+			<?php 
+				$i = 0; 
+				$tot = 0;
+			?>
 			<div class="col-md-6">
 				<div class="col-md-12">
 					<h5><b>Tujuan Pengiriman</b></h5>
@@ -111,11 +115,11 @@
 			</div></br></br></br></br></br>
 
 			<div class="col-md-12 borderAbu">
-				<div class="col-md-2">
+				<div class="col-md-1">
 					<h5><b>Nama Produk</b></h5>
 				</div>
-				<div class="col-md-2">
-					<h5><b>Tanggal Sewa</b></h5>
+				<div class="col-md-3 paddingLeft30">
+					<h5><b>Tanggal Sewa / </br>Tanggal Kembali</b></h5>
 				</div>
 				<div class="col-md-2" >
 					<h5><b>Harga</b></h5>
@@ -130,17 +134,14 @@
 					<h5><b>Subtotal</b></h5>
 				</div>
 			</div>
-			<?php 
-				$i = 0; 
-				$tot = 0;
-			?>
+			
 			@while($page_datas->barang[$x][$i]!=null)
 				<div class="col-md-12 borderBottom1 borderLeft1 borderRight1">
-					<div class="col-md-2">
+					<div class="col-md-1">
 						<h6>{!!$page_datas->barang[$x][$i][0]!!}</h6>
 					</div>
-					<div class="col-md-2">
-						<h6>{!!$page_datas->barang[$x][$i][4]!!}</h6>
+					<div class="col-md-3 paddingLeft30">
+						<h6>{!!$page_datas->barang[$x][$i][4]!!} /</br>{!!$page_datas->barang[$x][$i][5]!!} </h6>
 					</div>
 					<div class="col-md-2">
 						<h6>{!!$page_datas->barang[$x][$i][1]!!}</h6>
@@ -149,7 +150,13 @@
 						<h6>{!!$page_datas->barang[$x][$i][2]!!}</h6>
 					</div>
 					<div class="col-md-2">
-						<h6>{!!$page_datas->barang[$x][$i][3]!!}</h6>
+						@if($page_datas->barang[$x][$i][3]==30)
+							<h6>1 bulan</h6>
+						@elseif($page_datas->barang[$x][$i][3]==14)
+							<h6>2 minggu</h6>
+						@else
+							<h6>{!!$page_datas->barang[$x][$i][3]!!} hari</h6>
+						@endif
 					</div>
 					<div class="col-md-2">
 						<h6>{!!(int)$page_datas->barang[$x][$i][1]*(int)$page_datas->barang[$x][$i][2]*(int)$page_datas->barang[$x][$i][3];
